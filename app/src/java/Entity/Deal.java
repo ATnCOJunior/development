@@ -6,7 +6,7 @@ package Entity;
 
 import java.util.*;
 
-public class Deals {
+public class Deal {
 
     private String company;
     private int dealID;
@@ -19,16 +19,18 @@ public class Deals {
     
     
     /**
-     * Creates a Customer object with parameters company, dealID, date_initiated, date_expired, shares_required, shares_current, position, views
+     * Creates a Deal object with parameters company, dealID, date_initiated, date_expired, shares_required, shares_current, position, views
      * @param company the company that created the deal
      * @param dealID the unique ID of the deal
      * @param date_initiated the date on which the deal began
      * @param date_expired the date on which the deal expired
-     * @param profession the customer's profession
-     * @param facebookName the customer's Facebook username
+     * @param shares_required the shares required to redeem the deal
+     * @param shares_current the current number of shares for the deal
+     * @param position the position of the deal
+     * @param views the current number of views of this deal
      */
     
-    public Deals(String company, int dealID, Date date_initiated, Date date_expired, int shares_required, int shares_current, String position, int views){
+    public Deal(String company, int dealID, Date date_initiated, Date date_expired, int shares_required, int shares_current, String position, int views){
         this.company = company;
         this.dealID = dealID;
         this.date_initiated = date_initiated; 

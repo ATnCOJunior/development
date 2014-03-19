@@ -18,6 +18,9 @@ username varchar(32) not null primary key,
 password varchar(32) not null,
 company varchar(100) not null);
 
+#indexing the company column of merchant
+ALTER TABLE merchant ADD UNIQUE company_index (company);
+
 #deals
 create table deals(
 company varchar(100) not null,
@@ -30,6 +33,9 @@ position varchar(100) not null,
 views tinyint(10) not null,
 constraint deals_pk primary key(company, dealID),
 constraint deals_fk  foreign key(company) references merchant(company));
+
+ALTER TABLE deals ADD UNIQUE company_index (company);
+ALTER TABLE deals ADD UNIQUE dealID_index (dealID);
 
 #deals_category
 create table deals_category(
@@ -44,7 +50,7 @@ constraint deals_category_fk_2 foreign key(dealID) references deals(dealID));
 create table deals_shared(
 username varchar(32) not null,
 company varchar(100) not null,
-dealID varchar(100) not null,
+dealID tinyint(5) not null,
 constraint deals_shared_pk primary key(username, company, dealID),
 constraint deals_shared_fk_1 foreign key(username) references customer(username),
 constraint deals_shared_fk_2 foreign key(company) references deals(company),
@@ -53,7 +59,7 @@ constraint deals_shared_fk_3 foreign key(dealID) references deals(dealID));
 #redemption
 create table redemption(
 company varchar(100) not null,
-dealID varchar(100) not null,
+dealID tinyint(5) not null,
 options varchar(100) not null, 
 amount tinyint(5) not null,
 constraint redemption_pk primary key(company, dealID),
@@ -71,7 +77,7 @@ create table transaction(
 admin_username varchar(32) not null,
 customer_username varchar(32) not null,
 company varchar(100) not null,
-dealID varchar(100) not null,
+dealID tinyint(5) not null,
 constraint transaction_pk primary key(admin_username, customer_username, company, dealID),
 constraint transaction_fk_1 foreign key(admin_username) references admin(username),
 constraint transaction_fk_2 foreign key(customer_username) references customer(username),
