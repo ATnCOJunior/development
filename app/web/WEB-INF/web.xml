@@ -4,6 +4,10 @@
         <servlet-name>MerchantLoginServlet</servlet-name>
         <servlet-class>MerchantLoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Bootstrap</servlet-name>
+        <servlet-class>Utility.Bootstrap</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MerchantLoginServlet</servlet-name>
         <url-pattern>/merchant_login</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>MerchantRegisterServlet</servlet-name>
         <url-pattern>/merchant_register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Bootstrap</servlet-name>
+        <url-pattern>/Bootstrap</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

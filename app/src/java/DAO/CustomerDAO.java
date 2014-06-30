@@ -63,10 +63,11 @@ public class CustomerDAO {
                 char gender = rs.getString("gender").charAt(0);
                 String profession = rs.getString("profession");
                 String facebookName = rs.getString("facebook");
+                int currentPoints = rs.getInt("current_points");
                 //String photo = rs.getString("photo"); needed but Entity class needs to be modified
                 //int currentPoints = rs.getInt("current_points"); needed but Entity class needs to be modified
 
-                Customer customer = new Customer(username, password, name, age, gender, profession, facebookName);
+                Customer customer = new Customer(username, password, name, age, gender, profession, facebookName, currentPoints);
                 //Customer customer = new Customer(username, password, name, age, gender, profession, facebookName, photo, currentPoints);                
                 custList.add(customer);
             }
@@ -106,10 +107,11 @@ public class CustomerDAO {
                 char gender = rs.getString("gender").charAt(0);
                 String profession = rs.getString("profession");
                 String facebookName = rs.getString("facebook");
+                int currentPoints = rs.getInt("current_points");
                 //String photo = rs.getString("photo"); needed but Entity class needs to be modified
                 //int currentPoints = rs.getInt("current_points"); needed but Entity class needs to be modified
                 
-                customer = new Customer(username, password, name, age, gender, profession, facebookName);
+                customer = new Customer(username, password, name, age, gender, profession, facebookName, currentPoints);
                 //customer = new Customer(username, password, name, age, gender, profession, facebookName, photo, currentPoints);
             }
         } catch (SQLException ex) {
