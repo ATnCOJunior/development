@@ -2679,6 +2679,8 @@ Webflow.define('tabs', function ($, _) {
  */
 Webflow.require('ix').init([
   {"slug":"hover-text","name":"hover TEXT","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}},
-  {"slug":"hover-img","name":"hover IMG","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms","group":"A","trigger":{"modelType":"MacroTrigger","macro":{"modelType":"Macro","guid":"18bf3369-1ebe-3bed-2ff4-e4c59711e6c1","style":{"modelType":"MacroStyle"}}}}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms","group":"B","trigger":{"modelType":"MacroTrigger","macro":{"modelType":"Macro","guid":"18bf3369-1ebe-3bed-2ff4-e4c59711e6c1","style":{"modelType":"MacroStyle"}}}}],"macro":{"modelType":"Macro","guid":"18bf3369-1ebe-3bed-2ff4-e4c59711e6c1","style":{"modelType":"MacroStyle"}}}]}},
-  {"slug":"hover-ads","name":"hover ads","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}}
+  {"slug":"hover-img","name":"hover IMG","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}},
+  {"slug":"hover-ads","name":"hover ads","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}},
+  {"slug":"hover-merchant","name":"hover merchant","value":{"style":{},"triggers":[{"type":"hover","selector":".user","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}},
+  {"slug":"hover-user","name":"hover user","value":{"style":{},"triggers":[{"type":"hover","selector":".merchant","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}}
 ]);
