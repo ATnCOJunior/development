@@ -85,7 +85,7 @@ public class Merchant {
      */
     
     public String getCompany(){
-        return password;
+        return company;
     }
     
     

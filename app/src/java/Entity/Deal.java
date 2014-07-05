@@ -16,6 +16,7 @@ public class Deal {
     private int shares_current;
     private String position;
     private int views;
+    private String photoLocation;
     
     
     /**
@@ -27,10 +28,11 @@ public class Deal {
      * @param shares_required the shares required to redeem the deal
      * @param shares_current the current number of shares for the deal
      * @param position the position of the deal
-     * @param views the current number of views of this deal
+     * @param views the current number of views of this 
+     * @param photoLocation the reference of the photo
      */
     
-    public Deal(String company, int dealID, Date date_initiated, Date date_expired, int shares_required, int shares_current, String position, int views){
+    public Deal(String company, int dealID, Date date_initiated, Date date_expired, int shares_required, int shares_current, String position, int views, String photoLocation){
         this.company = company;
         this.dealID = dealID;
         this.date_initiated = date_initiated; 
@@ -39,6 +41,7 @@ public class Deal {
         this.shares_current = shares_current; 
         this.position = position;
         this.views = views;
+        this.photoLocation = photoLocation;
     }
     
     public void setCompany(String company){
@@ -57,7 +60,7 @@ public class Deal {
         this.date_expired = date_expired; 
     }
     
-    public void setSharesRequired(int shares_reqired){
+    public void setSharesRequired(int shares_required){
         this.shares_required = shares_required;
     }
     
@@ -72,7 +75,11 @@ public class Deal {
     public void setViews(int views){
         this.views = views;
     }
-    
+
+    public void setPhotoLocation(String photoLocation) {
+        this.photoLocation = photoLocation;
+    }
+        
     public String getCompany(){
         return company;
     }
@@ -104,7 +111,9 @@ public class Deal {
     public int getViews(){
         return views;
     }
+
+    public String getPhotoLocation() {
+        return photoLocation;
+    }
     
-    
-   
 }

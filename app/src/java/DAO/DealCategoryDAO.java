@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class DealCategoryDAO{
 
-    private static final String TBLNAME = "DealCategory";
+    private static final String TBLNAME = "deals_category";
 
     /**
      * Provide a consistent manner to handle SQL Exception

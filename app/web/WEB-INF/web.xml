@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Bootstrap</servlet-name>
-        <url-pattern>/Bootstrap</url-pattern>
+        <url-pattern>/uploadFile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

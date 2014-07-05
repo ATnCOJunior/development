@@ -1,0 +1,5 @@
+company,dealID,date_initiated,date_expired,shares_required,shares_current,position,views,photo
+Sakae Sushi,1,2013-04-13,2014-04-13,1000,0,1,0,abc
+Sakae Sushi,2,2013-04-13,2014-04-13,1000,0,1,0,haha
+Sushi Tei,3,2013-04-13,2014-04-13,500,0,1,0,efg
+Sushi Tei,4,2013-04-13,2014-04-13,1200,0,1,0,asd

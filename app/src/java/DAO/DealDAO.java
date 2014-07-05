@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class DealDAO {
 
-    private static final String TBLNAME = "Deal";
+    private static final String TBLNAME = "deals";
 
     /**
      * Provide a consistent manner to handle SQL Exception
@@ -65,8 +65,9 @@ public class DealDAO {
                 int shares_current = rs.getInt("shares_current");
                 String position = rs.getString("position");
                 int views = rs.getInt("views");
-               
-                Deal deal = new Deal(company, dealID, date_initiated, date_expired, shares_required, shares_current, position, views);            
+                String photoLocation = rs.getString("photo");
+                
+                Deal deal = new Deal(company, dealID, date_initiated, date_expired, shares_required, shares_current, position, views, photoLocation);            
                 deals.add(deal);
             }
         } catch (SQLException ex) {
@@ -106,8 +107,9 @@ public class DealDAO {
                 int shares_current = rs.getInt("shares_current");
                 String position = rs.getString("position");
                 int views = rs.getInt("views");
+                String photoLocation = rs.getString("photo");
                
-                deal = new Deal(company, dealID, date_initiated, date_expired, shares_required, shares_current, position, views);      
+                deal = new Deal(company, dealID, date_initiated, date_expired, shares_required, shares_current, position, views, photoLocation);      
             }
         } catch (SQLException ex) {
             handleSQLException(ex, sql);
@@ -130,17 +132,22 @@ public class DealDAO {
             conn = DBConnector.getConnection();
 
             sql = "INSERT INTO " + TBLNAME
-                    + " (company,dealID,date_initiated,date_expired,shares_required,shares_current,position,views) VALUES (?,?,?,?,?,?,?,?)";
+                    + " (company,dealID,date_initiated,date_expired,shares_required,shares_current,position,views,photo) VALUES (?,?,?,?,?,?,?,?,?)";
             stmt = conn.prepareStatement(sql);
 
+            java.sql.Date sqlDateInitiated = new java.sql.Date(deal.getDateInitiated().getTime());
+            java.sql.Date sqlDateExpired = new java.sql.Date(deal.getDateExpired().getTime());
+            
+            
             stmt.setString(1, deal.getCompany());
             stmt.setInt(2, deal.getDealID());
-            stmt.setDate(3, (java.sql.Date) deal.getDateInitiated());
-            stmt.setDate(4, (java.sql.Date) deal.getDateExpired());
+            stmt.setDate(3, sqlDateInitiated);
+            stmt.setDate(4, sqlDateExpired);
             stmt.setInt(5, deal.getSharesRequired());
             stmt.setInt(6, deal.getSharesCurrent());
             stmt.setString(7, deal.getPosition());
             stmt.setInt(8, deal.getViews());
+            stmt.setString(9, deal.getPhotoLocation());
             
             stmt.executeUpdate();
 
@@ -214,14 +221,24 @@ public class DealDAO {
         try {
             conn = DBConnector.getConnection();
             sql = "UPDATE " + TBLNAME
-                    + " SET password=?"
+                    + " SET date_initiated=? and date_expired=? and shares_required=? and shares_current=? and position=? and views=? and photo=?"
                     + " WHERE company=?"
                     + " and dealID=?";
             stmt = conn.prepareStatement(sql);
-
-            stmt.setString(1, deal.getCompany());
-            stmt.setInt(2, deal.getDealID());
-
+            
+            java.sql.Date sqlDateInitiated = new java.sql.Date(deal.getDateInitiated().getTime());
+            java.sql.Date sqlDateExpired = new java.sql.Date(deal.getDateExpired().getTime());
+                        
+            stmt.setDate(1, sqlDateInitiated);
+            stmt.setDate(2, sqlDateExpired);
+            stmt.setInt(3, deal.getSharesRequired());
+            stmt.setInt(4, deal.getSharesCurrent());
+            stmt.setString(5, deal.getPosition());
+            stmt.setInt(6, deal.getViews());
+            stmt.setString(7, deal.getPhotoLocation());
+            stmt.setString(8, deal.getCompany());
+            stmt.setInt(9, deal.getDealID());
+            
             stmt.executeUpdate();
 
         } catch (SQLException ex) {

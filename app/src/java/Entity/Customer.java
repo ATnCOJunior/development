@@ -17,6 +17,7 @@ public class Customer {
     private String profession;
     private String facebookName;
     private int currentPoints;
+    private String photoLocation;
 
     /**
      * Creates a Customer object with default parameters
@@ -37,6 +38,7 @@ public class Customer {
         profession = null;
         facebookName = null;
         currentPoints = 0;
+        photoLocation = null;
     }
 
     /**
@@ -51,7 +53,7 @@ public class Customer {
      * @param profession the customer's profession
      * @param facebookName the customer's Facebook username
      */
-    public Customer(String username, String password, String name, int age, char gender, String profession, String facebookName, int currentPoint) {
+    public Customer(String username, String password, String name, int age, char gender, String profession, String facebookName, String photoLoc, int currentPoint) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -60,6 +62,7 @@ public class Customer {
         this.profession = profession;
         this.facebookName = facebookName;
         this.currentPoints = currentPoints;
+        this.photoLocation = photoLoc;
     }
 
     /**
@@ -191,6 +194,14 @@ public class Customer {
      */
     public int getCurrentPoints() {
         return currentPoints;
+    }
+    
+    public void setPhotoLoc(String newLoc) {
+        this.photoLocation = newLoc;
+    }
+    
+    public String getPhotoLoc(){
+        return photoLocation;
     }
 
 }

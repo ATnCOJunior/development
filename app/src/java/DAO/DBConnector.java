@@ -18,19 +18,6 @@ public class DBConnector {
     private static String dbURL;
 
     static {
-        // grab environment variable
-        String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-        if (host != null) {
-            // this is production environment
-            // obtain database connection properties from environment variables
-            String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
-            String dbName = System.getenv("OPENSHIFT_APP_NAME");
-            dbUser = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-            dbPassword = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-
-            dbURL = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
-
-        } else {
             // this is development environment
             // obtain database connection properties from properties file
 
@@ -42,7 +29,7 @@ public class DBConnector {
                 props.load(is);
 
                 // load database connection details
-                host = props.getProperty("db.host").trim();
+                String host = props.getProperty("db.host").trim();
                 String port = props.getProperty("db.port").trim();
                 String dbName = props.getProperty("db.name").trim();
                 dbUser = props.getProperty("db.user").trim();
@@ -57,8 +44,6 @@ public class DBConnector {
                 Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, message, ex);
                 throw new RuntimeException(message, ex);
             }
-
-        }
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();

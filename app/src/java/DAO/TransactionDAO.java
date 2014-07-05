@@ -7,16 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Entity.DealShared;
-import java.util.Date;
+import Entity.Transaction;
 
 /**
  * This class is responsible to interacts with the database to perform the
- * CRUD(Create,Read,Update & Delete) functions of DealShared
+ * CRUD(Create,Read/Retrieve,Update & Delete) functions of Transaction
  */
-public class DealSharedDAO{
+public class TransactionDAO {
 
-    private static final String TBLNAME = "deals_shared";
+    private static final String TBLNAME = "Transaction";
 
     /**
      * Provide a consistent manner to handle SQL Exception
@@ -31,21 +30,21 @@ public class DealSharedDAO{
         for (String parameter : parameters) {
             msg += "," + parameter;
         }
-        Logger.getLogger(DealSharedDAO.class.getName()).log(Level.SEVERE, msg, ex);
+        Logger.getLogger(TransactionDAO.class.getName()).log(Level.SEVERE, msg, ex);
         throw new RuntimeException(msg, ex);
     }
 
     /**
-     * Retrieves all instances of Deal that are stored in the database
+     * Retrieves all instances of Transaction that are stored in the database
      *
-     * @return an arrayList of Deals
+     * @return an arrayList of Transactions
      */
-    public static ArrayList<DealShared> retrieveAll() {
+    public static ArrayList<Transaction> retrieveAll() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String sql = "";
-        ArrayList<DealShared> dealSharedList = new ArrayList<DealShared>();
+        ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
 
         try {
             conn = DBConnector.getConnection();
@@ -54,92 +53,96 @@ public class DealSharedDAO{
             stmt = conn.prepareStatement(sql);
 
             rs = stmt.executeQuery();
-
+            
             while (rs.next()) {
                 //Retrieve by column name
-                String username = rs.getString("username");
+                String adminUsername = rs.getString("admin_username");
+                String customerUsername = rs.getString("customer_username");
                 String company = rs.getString("company");
                 int dealID = rs.getInt("dealID");
-               
-                DealShared dealShared = new DealShared(company, username, dealID);            
-                dealSharedList.add(dealShared);
+
+                Transaction transaction = new Transaction(adminUsername, customerUsername, company, dealID);
+                transactionList.add(transaction);
             }
         } catch (SQLException ex) {
             handleSQLException(ex, sql);
         } finally {
             DBConnector.close(conn, stmt, rs);
         }
-        return dealSharedList;
+        return transactionList;
     }
 
     /**
-     * Retrieves an instance of Deal that is stored in the database with
-     * provided username and password
+     * Retrieves an instance of Transaction that is stored in the database with provided username and password
      *
-     * @param company the company the deal belongs to
-     * @param dealID the ID of the deal
-     * @return Deal
+     * @param username the Transaction username
+     * @param password the Transaction password
+     * @return Transaction
      */
-    public static DealShared retrieve(String company, String username, int dealID) {
+    public static Transaction retrieve(String adminUsername, String customerUsername, String company, int dealID) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String sql = "";
-        DealShared dealShared = null;
+        Transaction transaction = null;
 
         try {
             conn = DBConnector.getConnection();
 
-            sql = "SELECT * FROM " + TBLNAME + " WHERE company='" + company + "' and username='" + username + "'and dealID='" + dealID + "'";
-            stmt = conn.prepareStatement(sql); 
+            sql = "SELECT * FROM " + TBLNAME + " WHERE admin_username='" + adminUsername + "' and customer_username='" + customerUsername + "' and company='" + company + "' and dealID='" + dealID + "'";
+            stmt = conn.prepareStatement(sql);
 
             rs = stmt.executeQuery();
             while (rs.next()) {
-                dealShared = new DealShared(company, username, dealID);      
+                //Retrieve by column name
+                String options = rs.getString("options");
+                int amount = rs.getInt("amount");
+                
+                transaction = new Transaction(adminUsername, customerUsername, company, dealID);
             }
         } catch (SQLException ex) {
             handleSQLException(ex, sql);
         } finally {
             DBConnector.close(conn, stmt, rs);
         }
-        return dealShared;
+        return transaction;
     }
 
     /**
-     * Creates a specific instance of DealShared into the database
-     *
-     * @param dealShared the deal that is going to be created
+     * Creates a specific instance of Transaction into the database
+     * @param transaction the transaction that is going to be created
      */
-    public static void create(DealShared dealShared) {
+    public static void create(Transaction transaction) {
         Connection conn = null;
         PreparedStatement stmt = null;
         String sql = "";
         try {
             conn = DBConnector.getConnection();
-
+            
             sql = "INSERT INTO " + TBLNAME
-                    + " (company,username,dealID) VALUES (?,?,?)";
+                    + " (admin_username,customer_username,company,dealID) VALUES (?,?,?,?)";
             stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, dealShared.getCompany());
-            stmt.setString(2, dealShared.getUsername());
-            stmt.setInt(3, dealShared.getDealID());
+            stmt.setString(1, transaction.getAdminUsername());
+            stmt.setString(2, transaction.getCustomerUsername());
+            stmt.setString(3, transaction.getCompany());
+            stmt.setInt(4, transaction.getDealID());
             
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
-            handleSQLException(ex, sql, "DealShared={" + dealShared + "}");
+            handleSQLException(ex, sql, "Transaction={" + transaction + "}");
         } finally {
             DBConnector.close(conn, stmt);
         }
     }
 
     /**
-     * Deletes a specific dealShared in the database
+     * Deletes a specific transaction in the database
      *
-     * @param dealShared the deal to be deleted
+     * @param transaction the transaction to be deleted
      */
-    public static void delete(DealShared dealShared) {
+    public static void delete(Transaction transaction) {
         Connection conn = null;
         PreparedStatement stmt = null;
         String sql = "";
@@ -147,23 +150,24 @@ public class DealSharedDAO{
         try {
             conn = DBConnector.getConnection();
             sql = "DELETE FROM " + TBLNAME
-                    + " WHERE company=? and username=? and dealID=?";
+                    + " WHERE admin_username=? and customer_username=? and company=? and dealID=?";
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, dealShared.getCompany());
-            stmt.setString(2, dealShared.getUsername());
-            stmt.setInt(3, dealShared.getDealID());
-
+            stmt.setString(1, transaction.getAdminUsername());
+            stmt.setString(2, transaction.getCustomerUsername());
+            stmt.setString(3, transaction.getCompany());
+            stmt.setInt(4, transaction.getDealID());
+            
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
-            handleSQLException(ex, sql, "DealShared={" + dealShared + "}");
+            handleSQLException(ex, sql, "Transaction={" + transaction + "}");
         } finally {
             DBConnector.close(conn, stmt);
         }
     }
 
     /**
-     * Deletes all dealShareds in the database
+     * Deletes all transactions in the database
      */
     public static void deleteAll() {
         Connection conn = null;
@@ -178,7 +182,7 @@ public class DealSharedDAO{
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
-            handleSQLException(ex, sql, "DealShared Table Not Cleared");
+            handleSQLException(ex, sql, "Transaction Table Not Cleared");
         } finally {
             DBConnector.close(conn, stmt);
         }
