@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Fri Jul 04 2014 06:55:15 GMT+0000 (UTC) -->
+<!-- Last Published: Tue Jul 08 2014 13:11:13 GMT+0000 (UTC) -->
 <html data-wf-site="53b0e85e1d17af924509fbc5">
 <head>
   <meta charset="utf-8">
@@ -27,18 +27,26 @@
   </div>
   <div>
     <div class="w-row div">
-      <div class="w-col w-col-6 w-col-small-6 user" data-ix="hover-user">
+      <div class="w-col w-col-4 user" data-ix="hover-user">
         <div class="w-container container">
           <div class="user-login facebook">
             <div class="text" id="user-login">facebook login</div>
             <img class="img" src="images/facebook.png" width="40" alt="53b62c71e05702c711d00d66_facebook.png">
           </div>
-          <div class="w-form user-login">
+        </div>
+      </div>
+      <div class="w-col w-col-4 merchant" data-ix="hover-merchant">
+        <div class="w-container container">
+          <div class="merchant-login normal">
+            <div class="text" id="merchant-login">merchant login</div>
+            <div class="text error" id="merchant-login">- error? –</div>
+          </div>
+          <div class="w-form merchant-login">
             <form id="email-form" name="email-form" data-name="Email Form">
-              <label for="user-id">ID:</label>
-              <input class="w-input" id="user-id" type="text" placeholder="Enter your ID" name="user-id" data-name="user ID" required="required">
-              <label for="password">Password</label>
-              <input class="w-input" id="password" type="email" placeholder="Enter your password" name="password" data-name="Password" required="required">
+              <label for="merchant-id">ID:</label>
+              <input class="w-input" id="merchant-id" type="text" placeholder="Enter your ID" name="merchant-id" data-name="merchant ID" required="required">
+              <label for="password-2">Password</label>
+              <input class="w-input" id="password-2" type="email" placeholder="Enter your password" name="password-2" data-name="Password 2" required="required">
               <input class="w-button" type="submit" value="Submit" data-wait="Please wait...">
             </form>
             <div class="w-form-done">
@@ -50,18 +58,18 @@
           </div>
         </div>
       </div>
-      <div class="w-col w-col-6 w-col-small-6 merchant" data-ix="hover-merchant">
+      <div class="w-col w-col-4 merchant register">
         <div class="w-container container">
           <div class="merchant-login normal">
-            <div class="text" id="merchant-login">merchant login</div>
-            <img class="img" src="images/53a25c2741d34bac1093050c_briefcase13.png" width="40" alt="53b217777dc1ed81531c49e9_53a25c2741d34bac1093050c_briefcase13.png">
+            <div class="text" id="merchant-login">merchant registration</div>
+            <div class="text error" id="merchant-login">- error? –</div>
           </div>
           <div class="w-form merchant-login">
             <form id="email-form" name="email-form" data-name="Email Form">
-              <label for="merchant-id">ID:</label>
-              <input class="w-input" id="merchant-id" type="text" placeholder="Enter your ID" name="merchant-id" data-name="merchant ID" required="required">
-              <label for="password-2">Password</label>
-              <input class="w-input" id="password-2" type="email" placeholder="Enter your password" name="password-2" data-name="Password 2" required="required">
+              <label for="merchant-id-2">ID:</label>
+              <input class="w-input" id="merchant-id-2" type="text" placeholder="Enter your ID" name="merchant-id-2" data-name="Merchant Id 2" required="required">
+              <label for="password-3">Password</label>
+              <input class="w-input" id="password-3" type="email" placeholder="Enter your password" name="password-3" data-name="Password 3" required="required">
               <input class="w-button" type="submit" value="Submit" data-wait="Please wait...">
             </form>
             <div class="w-form-done">
