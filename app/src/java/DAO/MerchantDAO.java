@@ -105,6 +105,31 @@ public class MerchantDAO {
         }
         return merchant;
     }
+    
+    public static boolean checkExist(String username, String password, String company) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        boolean exist = false;
+
+        try {
+            conn = DBConnector.getConnection();
+
+            sql = "SELECT * FROM " + TBLNAME + " WHERE username='" + username + "' and password='" + password + "' and company='" + company + "'";
+            stmt = conn.prepareStatement(sql);
+
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+               exist = true;
+            }
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);
+        } finally {
+            DBConnector.close(conn, stmt, rs);
+        }
+        return exist;
+    }
 
     /**
      * Creates a specific instance of Merchant into the database

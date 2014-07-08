@@ -57,12 +57,32 @@
             <img class="img" src="images/53a25c2741d34bac1093050c_briefcase13.png" width="40" alt="53b217777dc1ed81531c49e9_53a25c2741d34bac1093050c_briefcase13.png">
           </div>
           <div class="w-form merchant-login">
-            <form id="email-form" name="email-form" data-name="Email Form">
+            <form action="authenticate_merchant.jsp" method="POST" id="email-form" name="email-form" data-name="Email Form">
               <label for="merchant-id">ID:</label>
               <input class="w-input" id="merchant-id" type="text" placeholder="Enter your ID" name="merchant-id" data-name="merchant ID" required="required">
               <label for="password-2">Password</label>
-              <input class="w-input" id="password-2" type="email" placeholder="Enter your password" name="password-2" data-name="Password 2" required="required">
+              <input class="w-input" id="password-2" type="password" placeholder="Enter your password" name="password-2" data-name="Password 2" required="required">
               <input class="w-button" type="submit" value="Submit" data-wait="Please wait...">
+            </form>
+            <div class="w-form-done">
+              <p>Thank you! Your submission has been received!</p>
+            </div>
+            <div class="w-form-fail">
+              <p>Oops! Something went wrong while submitting the form :(</p>
+            </div>
+          </div><div class="w-form merchant-login">
+            <form action="register_merchant.jsp" method="POST" id="email-form" name="email-form" data-name="Email Form">
+              
+              <label for="merchant-id">ID:</label>
+              <input class="w-input" id="new-merchant-id" type="text" placeholder="Enter your ID" name="new-merchant-id" data-name="new merchant ID" required="required">
+              
+              <label for="merchant_password">Password</label>
+              <input class="w-input" id="new-merchant-password" type="password" placeholder="Enter your password" name="new-merchant-password" data-name="new merchant password" required="required">
+              
+              <label for="merchant-company">Company</label>
+              <input class="w-input" id="new-merchant-company" type="text" placeholder="Enter your company" name="new-merchant-company" data-name="new merchant company" required="required">
+              
+              <input class="w-button" type="submit" value="Register" data-wait="Please wait...">
             </form>
             <div class="w-form-done">
               <p>Thank you! Your submission has been received!</p>
