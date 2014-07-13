@@ -1,0 +1,13 @@
+<article class="adsblock">
+    <div class="w-container ads">
+      <div class="w-row row">
+        <article class="w-col w-col-3 w-col-small-6 display">
+          <% _(images).each(function(image) { %>
+          <div>
+            <a href="/i/<%= image.id %>"><img src="<%= image.get('sizeSmall').url() %>" /></a>
+          </div>
+          <% }); %>
+        </article>  
+      </div>
+    </div>
+  </article>
