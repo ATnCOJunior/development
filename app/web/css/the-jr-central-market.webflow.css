@@ -153,6 +153,7 @@ p {
   border-color: black black gray;
   background-color: white;
 }
+
 .display {
   display: block;
   margin-right: auto;
@@ -167,7 +168,7 @@ p {
   margin-left: 0px;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 0px;
+  padding-left: 100px;
 }
 .upload {
   position: relative;
@@ -215,7 +216,6 @@ p {
   position: relative;
   top: 260px;
   display: block;
-  height: 300px;
   margin-right: auto;
   margin-left: auto;
   padding: 100px 300px;
@@ -223,6 +223,22 @@ p {
   font-family: Exo, sans-serif;
   color: white;
   font-size: 16px;
+}
+.about {
+  position: relative;
+  top: 260px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 100px 300px;
+  background-color: lavenderblush;
+  font-family: Exo, sans-serif;
+  color: white;
+  font-size: 16px;
+}
+.space {
+  background-color: black;
+  height: 300px;
 }
 .header {
   position: relative;
@@ -235,7 +251,7 @@ p {
 .div {
   position: relative;
   left: 0px;
-  top: 260px;
+  top: 250px;
   right: 0px;
   bottom: 250px;
   display: block;
