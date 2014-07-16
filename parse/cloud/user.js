@@ -24,7 +24,7 @@ module.exports = function(){
       res.redirect('/');
     }, function(error) {
       // Show the error message and let the user try again
-      res.render('signup', { flash: error.message });
+      res.render('login', { flash: error.message });
     });
   });
 
@@ -36,7 +36,7 @@ module.exports = function(){
   // Logs in the user
   app.post('/login', function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
-      res.redirect('/');
+      res.redirect('/merchant');
     }, function(error) {
       // Show the error message and let the user try again
       res.render('login', { flash: error.message });

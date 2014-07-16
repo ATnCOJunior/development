@@ -4,8 +4,19 @@
   <div class="present">
     <div class="w-container">
       <div class="w-row">
-        <!-- Display Present Photos -->
-        PRESENT PHOTOS
+    <article class="adsblock">
+      <div class="w-container ads">
+       <div class="w-row row">
+        <article class="w-col w-col-3 w-col-small-6 display">
+          <% _(images).each(function(image) { %>
+          <div>
+            <a href="/i/<%= image.id %>"><img src="<%= image.get('sizeSmall').url() %>" /></a>
+          </div>
+          <% }); %>
+        </article>  
+      </div>
+    </div>
+  </article>
       </div>
     </div>
   </div>
@@ -38,24 +49,22 @@
   </div>
   <div class="upload">
       <form id="upload" name="email-form" data-name="Email Form">
-        <label for="company-name-4">Company Name:</label>
+        <!-- <label for="company-name-4">Company Name:</label>
         <input class="w-input" id="company-name-4" type="text" placeholder="Enter your company name" name="company-name" data-name="Company Name" required="required">
         <label for="email-4">Email Address:</label>
-        <input class="w-input" id="email-4" type="email" placeholder="Enter your email address" name="email" data-name="Email" required="required">
+        <input class="w-input" id="email-4" type="email" placeholder="Enter your email address" name="email" data-name="Email" required="required"> -->
         <label for="ads-title-4">Ads Title</label>
-        <input class="w-input" id="ads-title-4" type="email" placeholder="Enter the title of your ads" name="ads-title" data-name="Ads Title" required="required">
+        <input class="w-input" id="ads-title-4" type="email" placeholder="Enter the title of your ads" name="title" data-name="Ads Title" required="required">
         <label for="ad-expiry-date">Expiry Date</label>
-        <input class="w-input" id="ad-expiry-date" type="email" placeholder="Enter its expiry date ddmmyyyy" name="ad-expiry-date" data-name="Ad expiry date" required="required">
+        <input class="w-input" id="ad-expiry-date" type="email" placeholder="Enter its expiry date ddmmyyyy" name="expiry-date" data-name="Ad expiry date" required="required">
         <label for="file-4">Image</label>
         <input type="file" />
-        <a href="#" class="upload">Pick an image</a>
+        <a href="#" class="upload"></a>
         <!-- <input class="w-button submi"t type="submit" value="Submit" data-wait="Please wait..."> -->
       </form>
-
       <script type="text/javascript">
         new Uploader({ el: "#upload" });
       </script>
-
       <div class="w-form-done">
         <p>Thank you! Your submission has been received!</p>
       </div>

@@ -38,22 +38,35 @@
             <%= Parse.User.current().get('username') %>
         <% } %></div>
         </div>
-        <div class="w-col w-col-2 w-col-small-4 w-col-tiny-6">
+        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
           <div class="text">ABOUT US</div>
         </div>
-        <div class="w-col w-col-2 w-col-small-4 w-col-tiny-6">
+        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
           <div class="text">CATEGORIES</div>
         </div>
-        <div class="w-col w-col-2 w-col-small-4 w-col-tiny-6">
+        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
           <div class="text">NEW</div>
         </div>
-        <div class="w-col w-col-2 w-col-small-4 w-col-tiny-6">
+        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
           <div class="text">ENDING</div>
         </div>
-        <div class="w-col w-col-2 w-col-small-4 w-col-tiny-6">
+        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
           <div class="text">TRENDING</div>
         </div>
-      </div>
+      <% if (Parse.User.current()) { %>
+          <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
+          <div class="text">
+          <form action="/logout" method="post" id="logout">
+            <div class="text">
+              <button>LOGOUT</button>
+            </div>
+          </form>
+
+          </div>
+        </div>
+        <% } else { %>
+        <% } %>
+       </div>
     </nav>
     <div>
       <% if (locals.flash) { %>

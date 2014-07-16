@@ -59,6 +59,23 @@ module.exports = function() {
     });
   });
 
+// View all the most viewed images
+  app.get('/trending', function(req, res) {
+    var query = new Parse.Query(Image);
+
+    query.descending(image.get("imageMetadata").get("views"));
+    
+    query.find().then(function(objects) {
+      res.render('image/list', {
+        images: objects,
+        title: "Latest"
+      });
+    });
+  });
+
+
+
+
   // Shows images you uploaded
   app.get('/mine', requireUser, function(req, res) {
     var query = new Parse.Query(Image);

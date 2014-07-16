@@ -14,11 +14,11 @@
         <div class="text error" id="merchant-login">- error? –</div>
       </div>
       <div class="w-form merchant-login">
-        <form action="/login" id="email-form" name="email-form" data-name="Email Form">
+        <form action="/login" method="post" id="email-form" name="email-form" data-name="Email Form">
           <label for="merchant-id">ID:</label>
           <input class="w-input" id="merchant-id" type="text" placeholder="Enter your ID" name="username" data-name="merchant ID" required="required">
           <label for="password-2">Password</label>
-          <input class="w-input" id="password-2" type="email" placeholder="Enter your password" name="password" data-name="Password 2" required="required">
+          <input class="w-input" id="password-2" type="password" placeholder="Enter your password" name="password" data-name="Password 2" required="required">
           <input class="w-button" type="submit" value="Submit" data-wait="Please wait...">
         </form>
         <div class="w-form-done">
@@ -37,7 +37,7 @@
         <div class="text error" id="merchant-login">- error? –</div>
       </div>
       <div class="w-form merchant-login">
-        <form action="/signup" method="POST" id="email-form" name="email-form" data-name="Email Form">
+        <form action="/login" method="POST" id="email-form" name="email-form" data-name="Email Form">
           
           <label for="merchant-id">ID:</label>
           <input class="w-input" id="new-merchant-id" type="text" placeholder="Enter your ID" name="username" data-name="new merchant ID" required="required">
