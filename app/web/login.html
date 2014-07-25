@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Fri Jul 25 2014 09:07:00 GMT+0000 (UTC) -->
+<!-- Last Published: Fri Jul 25 2014 10:39:44 GMT+0000 (UTC) -->
 <html data-wf-site="53d0fce04156486e385c75ee">
 <head>
   <meta charset="utf-8">
@@ -39,11 +39,41 @@
       </div>
       <div class="head">
         <h1 id="dining">merchant</h1>
-        <div class="box merchant">
+        <div class="box into">
           <div class="w-row">
-            <div class="w-col w-col-6 box login _1"><a class="w-clearfix w-inline-block nav-img" href="merchant.html"><h3 data-ix="over">REGISTER</h3></a>
+            <div class="w-col w-col-6 box login _1">
+              <div class="w-form reg">
+                <form id="wf-form-reg" name="wf-form-reg" data-name="reg">
+                  <label for="email">Email Address:</label>
+                  <input class="w-input" id="email" type="email" name="email" data-name="Email" required="required">
+                  <label for="password">Password:</label>
+                  <input class="w-input" id="password" type="email" name="password" data-name="password" required="required">
+                  <input class="w-button" type="submit" value="REGISTER" data-wait="Please wait...">
+                </form>
+                <div class="w-form-done go">
+                  <p>Thank you! Your submission has been received!</p>
+                </div>
+                <div class="w-form-fail go">
+                  <p>Oops! Something went wrong &nbsp;:(</p>
+                </div>
+              </div>
             </div>
-            <div class="w-col w-col-6 box login _2"><a class="w-clearfix w-inline-block nav-img" href="merchant.html"><h3 data-ix="over">LOGIN</h3></a>
+            <div class="w-col w-col-6 box login _2">
+              <div class="w-form reg">
+                <form id="wf-form-reg" name="wf-form-reg" data-name="reg">
+                  <label for="email-2">Email Address:</label>
+                  <input class="w-input" id="email-2" type="email" name="email-2" data-name="Email 2" required="required">
+                  <label for="password-2">Password:</label>
+                  <input class="w-input" id="password-2" type="email" name="password-2" data-name="Password 2" required="required">
+                  <input class="w-button" type="submit" value="LOGIN" data-wait="Please wait...">
+                </form>
+                <div class="w-form-done go">
+                  <p>Thank you! Your submission has been received!</p>
+                </div>
+                <div class="w-form-fail go">
+                  <p>Oops! Something went wrong &nbsp;:(</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

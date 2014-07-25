@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Tue Jul 08 2014 13:11:13 GMT+0000 (UTC) -->
-<html data-wf-site="53b0e85e1d17af924509fbc5">
+<!-- Last Published: Fri Jul 25 2014 10:39:44 GMT+0000 (UTC) -->
+<html data-wf-site="53d0fce04156486e385c75ee">
 <head>
   <meta charset="utf-8">
-  <title>THE JR CENTRAL MARKET - admin</title>
+  <title>atncoJR - admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
-  <link rel="stylesheet" type="text/css" href="css/the-jr-central-market.webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/atncojr.webflow.css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script>
     WebFont.load({
@@ -22,79 +22,44 @@
   <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/placeholder/favicon.ico">
 </head>
 <body>
-  <div class="main">
-    <div class="head"></div>
-    <nav class="top">
-      <div class="w-row top">
-        <div class="w-col w-col-2">
-          <div class="text">bootstrap</div>
-        </div>
-        <div class="w-col w-col-2">
-          <div class="text">ads</div>
-        </div>
-        <div class="w-col w-col-2">
-          <div class="text">merchants</div>
-        </div>
-        <div class="w-col w-col-2">
-          <div class="text">users</div>
-        </div>
-        <div class="w-col w-col-2">
-          <div class="text">popularity</div>
-        </div>
-        <div class="w-col w-col-2">
-          <div class="text">top ads</div>
-        </div>
+  <div class="w-row bod">
+    <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav"><a class="w-inline-block nav-img" href="#ads"><h2 class="admin" data-ix="over">ads</h2></a><a class="w-inline-block nav-img" href="#merchants"><h2 class="admin" data-ix="over">merchants</h2></a><a class="w-inline-block nav-img" href="#users"><h2 class="admin" data-ix="over">users</h2></a>
+      <a
+      class="w-inline-block nav-img" href="#pops">
+        <h2 class="admin" data-ix="over">popularity</h2>
+        </a><a class="w-inline-block nav-img" href="#top-ads"><h2 class="admin" data-ix="over">top ads</h2></a><a class="w-inline-block nav-img" href="#reports"><h2 class="admin" data-ix="over">reports</h2></a>
+        <a class="w-inline-block nav-img" href="#ads"
+        data-ix="over">
+          <img class="logo" src="images/chef3.png" id="home" alt="53d10a5465325541683a71da_chef3.png" data-ix="over">
+        </a><a class="w-inline-block nav-img" href="index.html"><h2 class="admin" data-ix="over">logout</h2></a>
+    </div>
+    <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main">
+      <div class="w-clearfix head">
+        <h1 id="ads">PENDING ADS</h1>
+        <img class="image" src="images/5_1.png" width="300" alt="53d10cb665325541683a723a_5.png">
+        <img class="image" src="images/22.png" width="300" alt="53d10d36c886457038f628a0_22.png">
+        <img class="image" src="images/36.jpg" width="300" alt="53d10d7e8a6ef840684166a7_36.jpg">
       </div>
-    </nav>
-  </div>
-  <div class="header">
-    <h1>bootstrap</h1>
-  </div>
-  <div class="content">
-    <div class="w-container container">
-      <h3>place your bootstrap form here</h3></b>
-  </div>
-  
-  </div class="space"></div>
-
-  <div class="header">
-    <h1>ads</h1>
-  </div>
-  <div class="content">
-    <div class="w-container">
-      <h3>ads for your approval<br>ads id - ads img - ads title - company name - approve or reject</h3>
-    </div>
-  </div>
-  <div class="header">
-    <h1>merchants</h1>
-  </div>
-  <div class="content">
-    <div class="w-container">
-      <h3>merchant list<br>merchant id - company name - password - email&nbsp;</h3>
-    </div>
-  </div>
-  <div class="header">
-    <h1>users</h1>
-  </div>
-  <div class="content">
-    <div class="w-container">
-      <h3>user list<br>user id - # likes - # shares - # feedbacks&nbsp;</h3>
-    </div>
-  </div>
-  <div class="header">
-    <h1>popularity</h1>
-  </div>
-  <div class="content">
-    <div class="w-container">
-      <h3>algorithm and implementation</h3>
-    </div>
-  </div>
-  <div class="header">
-    <h1>top ads</h1>
-  </div>
-  <div class="content">
-    <div class="w-container">
-      <h3>place the top ads</h3>
+      <div class="head">
+        <h1 id="merchants">MERCHANTS</h1>
+        <div class="box merchant"></div>
+      </div>
+      <div class="head">
+        <h1 id="users">USERS</h1>
+        <div class="box users"></div>
+      </div>
+      <div class="head">
+        <h1 id="pops">POPULARITY</h1>
+        <div class="box info"></div>
+      </div>
+      <div class="head">
+        <h1 id="top-ads">TOP ADS</h1>
+        <div class="box report"></div>
+      </div>
+      <div class="head">
+        <h1 id="reports">REPORTS</h1>
+        <div class="box upload"></div>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
