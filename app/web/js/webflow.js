@@ -3269,9 +3269,9 @@ Webflow.define('dropdown', function ($, _) {
     // Store state in data
     var data = $.data(el, namespace);
     if (!data) data = $.data(el, namespace, { open: false, el: $el, config: {} });
-    data.list = $el.find('.w-dropdown-list');
-    data.toggle = $el.find('.w-dropdown-toggle');
-    data.links = data.list.find('.w-dropdown-link');
+    data.list = $el.children('.w-dropdown-list');
+    data.toggle = $el.children('.w-dropdown-toggle');
+    data.links = data.list.children('.w-dropdown-link');
     data.outside = outside(data);
 
     // Remove old events
@@ -3328,8 +3328,9 @@ Webflow.define('dropdown', function ($, _) {
     // Close menu when tapped outside
     return _.debounce(function (evt) {
       if (!data.open) return;
-      var dropdown = $(evt.target).closest(namespace);
-      if (!data.el.is(dropdown)) {
+      var $target = $(evt.target);
+      if ($target.closest('.w-dropdown-toggle').length) return;
+      if (!data.el.is($target.closest(namespace))) {
         close(data);
       }
     });
