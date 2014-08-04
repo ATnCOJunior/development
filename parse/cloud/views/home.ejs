@@ -1,95 +1,13 @@
-<div class="w-row bod">
-    <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav">
-      <a class="w-inline-block nav-img" href="#top">
-        <img class="nav-img" src="images/1.png" alt="53d106e08a6ef84068416646_1.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#top">
-        <img class="nav-img" src="images/2.png" alt="53d106ef65325541683a7198_2.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#top">
-        <img class="nav-img" src="images/3.png" alt="53d106f74156486e385c767e_3.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#cafe">
-        <img class="nav-img" src="images/4.png" alt="53d106ff65325541683a719b_4.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#bars">
-        <img class="nav-img" src="images/5.png" alt="53d1070a65325541683a719d_5.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#dining">
-        <img class="nav-img" src="images/6.png" alt="53d107134156486e385c7680_6.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#top">
-        <img class="logo home" src="images/chef3.png" id="home" alt="53d10a5465325541683a71da_chef3.png" data-ix="over">
-      </a><a class="w-inline-block nav-img" href="/login" data-ix="over"><h2 data-ix="over">login</h2></a>
+<article class="adsblock">
+    <div class="w-container ads">
+      <div class="w-row row">
+        <article class="w-col w-col-3 w-col-small-6 display">
+          <% _(images).each(function(image) { %>
+          <div>
+            <a href="/i/<%= image.id %>"><img src="<%= image.get('sizeSmall').url() %>" /></a>
+          </div>
+          <% }); %>
+        </article>  
+      </div>
     </div>
-    <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main">
-      <div class="w-clearfix head">
-        <h1 id="top">#</h1>
-        <% _(images).each(function(image) { %>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }); %>
-      </div>
-      <div class="w-clearfix head">
-        <h1 id="cafe">cafe</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("category")=="cafe"){%>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
-      </div>
-      <div class="w-clearfix head">
-        <h1 id="bars">bar</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("category")=="bar"){%>
-          <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
-      </div>
-      <div class="w-clearfix head">
-        <h1 id="dining">dining</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("category")=="dining"){%>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
-        
-      </div>
-  </div>
-</div>
+  </article>

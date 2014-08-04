@@ -1,130 +1,89 @@
-<div class="w-row bod">
-    <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav">
-      <a class="w-inline-block nav-img" href="#current" data-ix="hover">
-        <img class="nav-img" src="images/8_1.png" alt="53d1182465325541683a72c4_8.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#pending" data-ix="hover">
-        <img class="nav-img" src="images/9_1.png" alt="53d116178a6ef8406841679d_9.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#expired" data-ix="hover">
-        <img class="nav-img" src="images/10.png" alt="53d116278a6ef8406841679e_10.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#profile" data-ix="over">
-        <img class="nav-img" src="images/16.png" alt="53d117b1c886457038f6295b_16.png" data-ix="over">
-      </a>
-      <a class="w-inline-block nav-img" href="#reports" data-ix="over">
-        <img class="nav-img" src="images/8.png" alt="53d11499c886457038f6292f_8.png" data-ix="over">
-      </a>
-      <a class="w-inline-block nav-img" href="#upload" data-ix="over">
-        <img class="nav-img" src="images/9.png" alt="53d114a58a6ef8406841678b_9.png" data-ix="over">
-      </a>
-      <a class="w-inline-block nav-img" href="#current" data-ix="over">
-        <img class="logo" src="images/chef3.png" id="home" alt="53d10a5465325541683a71da_chef3.png" data-ix="over">
-      </a>
-      <a class="w-inline-block nav-img" href="index.html"><h2 data-ix="over">logout</h2></a>
+<div class="header">
+    <h1>PRESENT</h1>
+  </div>
+  <div class="present">
+    <div class="w-container">
+      <div class="w-row">
+    <article class="adsblock">
+      <div class="w-container ads">
+       <div class="w-row row">
+        <article class="w-col w-col-3 w-col-small-6 display">
+          <% _(images).each(function(image) { %>
+          <div>
+            <a href="/i/<%= image.id %>"><img src="<%= image.get('sizeSmall').url() %>" /></a>
+          </div>
+          <% }); %>
+        </article>  
+      </div>
     </div>
-    <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main">
-      <div class="w-clearfix head">
-        <h1 id="current">CURRENT</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("approval")==1){%>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
-      </div>
-      <div class="w-clearfix head">
-        <h1 id="pending">PENDING</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("approval")==0){%>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
-      </div>
-      <div class="w-clearfix head">
-        <h1 id="expired">EXPIRED</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("approval")==2){%>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
-      </div>
-      <div class="head">
-        <h1 id="profile">PROFILE</h1>
-        <div class="box info">
-          <div class="w-form">
-            <form id="wf-form-upload" name="wf-form-upload" data-name="upload">
-              <label for="title-2">Company Name:</label>
-              <input class="w-input field" id="title-2" type="text" name="title-2" data-name="Title 2">
-              <label for="expiry-2">Email:</label>
-              <input class="w-input" id="expiry-2" type="email" name="expiry-2" data-name="Expiry 2" required="required">
-              <input class="w-button" type="submit" value="update" data-wait="Please wait...">
-            </form>
-            <div class="w-form-done msg upload">
-              <p>Thank you! Your submission has been received!</p>
-            </div>
-            <div class="w-form-fail msg upload">
-              <p>Oops! Something went wrong while submitting the form :(</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="head">
-        <h1 id="reports">REPORTS</h1>
-        <div class="box report"></div>
-      </div>
-      <div class="head">
-        <h1 id="upload">UPLOAD</h1>
-        <div class="box upload">
-          <div class="w-form">
-            <form id="wf-form-upload" name="wf-form-upload" data-name="upload">
-              <label for="title">Title:</label>
-              <input class="w-input" id="title" type="text" name="title" data-name="title">
-              <label for="expiry">Expiry date:</label>
-              <input class="w-input" id="expiry" type="email" name="expiry" data-name="Expiry" required="required">
-              <label for="file-4">File:</label>
-              <input type="file" />
-              <a href="#" class="upload"></a>
-              <!-- <input class="w-button" type="submit" value="upload" data-wait="Please wait..."> -->
-            </form>
-            <div class="w-form-done msg upload">
-              <p>Thank you! Your submission has been received!</p>
-            </div>
-            <div class="w-form-fail msg upload">
-              <p>Oops! Something went wrong while submitting the form :(</p>
-            </div>
-          </div>
-        </div>
+  </article>
       </div>
     </div>
   </div>
-  
+  <div class="header">
+    <h1>PAST</h1>
+  </div>
+  <div class="past">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-row">
+        <!-- Display Past Photos -->
+        PAST PHOTOS
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="header">
+    <h1>STATS</h1>
+  </div>
+  <div class="stats">
+    <div class="w-container">
+      <div class="w-row">
+        <!-- Display STATS -->
+        STATS
+      </div>
+    </div>
+  </div>
+  <div class="header">
+    <h1>UPLOAD</h1>
+  </div>
+  <div class="upload">
+      <form id="upload" name="email-form" data-name="Email Form">
+        <!-- <label for="company-name-4">Company Name:</label>
+        <input class="w-input" id="company-name-4" type="text" placeholder="Enter your company name" name="company-name" data-name="Company Name" required="required">
+        <label for="email-4">Email Address:</label>
+        <input class="w-input" id="email-4" type="email" placeholder="Enter your email address" name="email" data-name="Email" required="required"> -->
+        <label for="ads-title-4">Ads Title</label>
+        <input class="w-input" id="ads-title-4" type="email" placeholder="Enter the title of your ads" name="title" data-name="Ads Title" required="required">
+        <label for="ad-expiry-date">Expiry Date</label>
+        <input class="w-input" id="ad-expiry-date" type="email" placeholder="Enter its expiry date ddmmyyyy" name="expiry-date" data-name="Ad expiry date" required="required">
+        <label for="file-4">Image</label>
+        <input type="file" />
+        <a href="#" class="upload"></a>
+        <!-- <input class="w-button submi"t type="submit" value="Submit" data-wait="Please wait..."> -->
+      </form>
+      <script type="text/javascript">
+        new Uploader({ el: "#upload" });
+      </script>
+      <div class="w-form-done">
+        <p>Thank you! Your submission has been received!</p>
+      </div>
+      <div class="w-form-fail">
+        <p>Oops! Something went wrong while submitting the form :(</p>
+      </div>
+    </div>
+  <div class="header">
+    <h1>PROFILE</h1>
+  </div>
+  <div class="profile">
+    <div>ID</div>
+    <div>name</div>
+    <div>company name</div>
+    <div>popularity score</div>
+    <div>old password</div>
+    <div>new password</div>
+  </div>
+
 <script type="text/javascript">
   new Uploader({ el: "#upload" });
 </script>
