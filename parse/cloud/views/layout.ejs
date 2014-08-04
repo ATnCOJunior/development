@@ -1,73 +1,24 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>THE JR CENTRAL MARKET</title>
-      
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-     
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-    <script>
-      WebFont.load({
-        google: {
-          families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"]
-        }
-      });
-    </script>
-    <script type="text/javascript" src="js/modernizr.js"></script>
-     <script src="/javascripts/backbone.js"></script>
-     <script src="https://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
-     <script type="text/javascript" src="/javascripts/main.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/placeholder/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Webflow">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/webflow.css">
-    <link rel="stylesheet" type="text/css" href="css/the-jr-central-market.webflow.css">
-  </head>
-
-  <body>
-      <div class="head home" id="home-page"></div>
-      <nav class="top">
-      <div class="w-row">
-      <div class="w-col w-col-2 w-col-small-4 w-col-tiny-6">
-          <div class="text">
-      <% if (!Parse.User.current()) { %>
-          <a href="/login">LOGIN</a>
-        <% } else { %>
-            <%= Parse.User.current().get('username') %>
-        <% } %></div>
-        </div>
-        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
-          <div class="text">ABOUT US</div>
-        </div>
-        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
-          <div class="text">CATEGORIES</div>
-        </div>
-        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
-          <div class="text">NEW</div>
-        </div>
-        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
-          <div class="text">ENDING</div>
-        </div>
-        <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
-          <div class="text">TRENDING</div>
-        </div>
-      <% if (Parse.User.current()) { %>
-          <div class="w-col w-col-2-1 w-col-small-4 w-col-tiny-6">
-          <div class="text">
-          <form action="/logout" method="post" id="logout">
-            <div class="text">
-              <button>LOGOUT</button>
-            </div>
-          </form>
-
-          </div>
-        </div>
-        <% } else { %>
-        <% } %>
-       </div>
-    </nav>
+<html data-wf-site="53d0fce04156486e385c75ee">
+<head>
+  <meta charset="utf-8">
+  <title>atncoJR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/atncojr.webflow.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/placeholder/favicon.ico">
+</head>
+<body>
     <div>
       <% if (locals.flash) { %>
         <div class="flash"><%= flash %></div>
@@ -77,9 +28,9 @@
     </div>
 
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script type="text/javascript" src="js/webflow.js"></script>
-    <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-  </body>
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="js/webflow.js"></script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
 </html>
   

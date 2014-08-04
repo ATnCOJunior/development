@@ -1,5 +1,3 @@
-// This page contains the methods for handling images
-
 var requireUser = require('cloud/require-user');
 
 var Image = Parse.Object.extend({
@@ -23,6 +21,7 @@ module.exports = function() {
       var image = new Image();
       image.set("sizeOriginal", req.body.file);
       image.set("title", req.body.title);
+      image.set("approval", 0)
 
       // Set up the ACL so everyone can read the image
       // but only the owner can have write access
@@ -59,23 +58,6 @@ module.exports = function() {
     });
   });
 
-// View all the most viewed images
-  app.get('/trending', function(req, res) {
-    var query = new Parse.Query(Image);
-
-    query.descending(image.get("imageMetadata").get("views"));
-    
-    query.find().then(function(objects) {
-      res.render('image/list', {
-        images: objects,
-        title: "Latest"
-      });
-    });
-  });
-
-
-
-
   // Shows images you uploaded
   app.get('/mine', requireUser, function(req, res) {
     var query = new Parse.Query(Image);
@@ -91,7 +73,41 @@ module.exports = function() {
     });
   });
 
-  // Shows one image
+  //Shows one image
+  app.post('/:id/approve', function(req, res) {
+    var id = req.params.id;
+
+    // Build the query to find an image by id
+    var query = new Parse.Query(Image);
+    query.equalTo("objectId", id);
+    query.include("imageMetadata");
+    
+    query.find().then(function(objects) {
+      if (objects.length === 0) {
+        res.send("Image not found");
+      } else {
+        var image = objects[0];
+        image.set("approval")=1;
+        // Update metadata on image (adds a view)
+        Parse.Cloud.run('viewImage', {
+          metadataId: image.get("imageMetadata").id
+        }).then(function() {
+          // Render the template to show one image
+          res.render('image/show', {
+            image: image,
+            size: 'sizeNormal',
+            title: image.title()
+          });
+        }, function(error) {
+          res.send("Error: " + error);
+        });
+      }
+    }, function(error) {
+      res.send("Image not found");
+    });
+  });
+
+  //Shows one image
   app.get('/:id', function(req, res) {
     var id = req.params.id;
 

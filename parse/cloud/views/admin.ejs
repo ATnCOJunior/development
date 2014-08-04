@@ -1,0 +1,150 @@
+<div class="w-row bod">
+    <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav"><a class="w-inline-block nav-img" href="#ads"><h2 class="admin" data-ix="over">ads</h2></a><a class="w-inline-block nav-img" href="#merchants"><h2 class="admin" data-ix="over">merchants</h2></a><a class="w-inline-block nav-img" href="#users"><h2 class="admin" data-ix="over">users</h2></a>
+      <a
+      class="w-inline-block nav-img" href="#pops">
+        <h2 class="admin" data-ix="over">popularity</h2>
+        </a><a class="w-inline-block nav-img" href="#top-ads"><h2 class="admin" data-ix="over">top ads</h2></a><a class="w-inline-block nav-img" href="#reports"><h2 class="admin" data-ix="over">reports</h2></a>
+        <a class="w-inline-block nav-img" href="#ads"
+        data-ix="over">
+          <img class="logo" src="images/chef3.png" id="home" alt="53d10a5465325541683a71da_chef3.png" data-ix="over">
+        </a><a class="w-inline-block nav-img" href="/logout"><h2 class="admin" data-ix="over">logout</h2></a>
+    </div>
+    <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main">
+      <div class="w-clearfix head">
+        <h1 id="ads">PENDING ADS</h1>
+        <article class="adsblock">
+            <div class="w-container ads">
+             <div class="w-row row">
+              <article class="w-col w-col-3 w-col-small-6 display">
+                <% _(images).each(function(image) { 
+                  if (image.get("approval")==0) {
+                  %>
+                <div>
+                  <a href="/i/<%= image.id %>"><img src="<%= image.get('sizeOriginal').url() %>" /></a>
+                </div>
+                <% 
+                  }
+                }); %>
+              </article>  
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="head">
+        <h1 id="merchants">MERCHANTS</h1>
+        <div class="box merchant"></div>
+      </div>
+      <div class="head">
+        <h1 id="users">USERS</h1>
+        <div class="box users"></div>
+      </div>
+      <div class="head">
+        <h1 id="pops">POPULARITY</h1>
+        <div class="box info"></div>
+      </div>
+      <div class="head">
+        <h1 id="top-ads">TOP ADS</h1>
+        <div class="box report"></div>
+      </div>
+      <div class="head">
+        <h1 id="reports">REPORTS</h1>
+        <div class="box upload"></div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- 
+
+
+div class="main">
+    <div class="head"></div>
+    <nav class="top">
+      <div class="w-row top">
+        <div class="w-col w-col-2">
+          <div class="text">bootstrap</div>
+        </div>
+        <div class="w-col w-col-2">
+          <div class="text">ads</div>
+        </div>
+        <div class="w-col w-col-2">
+          <div class="text">merchants</div>
+          <article class="adsblock">
+            <div class="w-container ads">
+             <div class="w-row row">
+              <article class="w-col w-col-3 w-col-small-6 display">
+                <% _(images).each(function(image) { 
+                  if (image.get("approval")==0) {
+                  %>
+                <div>
+                  <a href="/i/<%= image.id %>"><img src="<%= image.get('sizeSmall').url() %>" /></a>
+                </div>
+                <% 
+                  }
+                }); %>
+              </article>  
+            </div>
+          </div>
+        </article>
+
+        </div>
+        <div class="w-col w-col-2">
+          <div class="text">users</div>
+        </div>
+        <div class="w-col w-col-2">
+          <div class="text">popularity</div>
+        </div>
+        <div class="w-col w-col-2">
+          <div class="text">top ads</div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="header">
+    <h1>bootstrap</h1>
+  </div>
+  <div class="content">
+    <div class="w-container container">
+      <h3>place your bootstrap form here</h3>
+    </div>
+  </div>
+  <div class="header">
+    <h1>ads</h1>
+  </div>
+  <div class="content">
+    <div class="w-container">
+      <h3>ads for your approval<br>ads id - ads img - ads title - company name - approve or reject</h3>
+    </div>
+  </div>
+  <div class="header">
+    <h1>merchants</h1>
+  </div>
+  <div class="content">
+    <div class="w-container">
+      <h3>merchant list<br>merchant id - company name - password - email&nbsp;</h3>
+    </div>
+  </div>
+  <div class="header">
+    <h1>users</h1>
+  </div>
+  <div class="content">
+    <div class="w-container">
+      <h3>user list<br>user id - # likes - # shares - # feedbacks&nbsp;</h3>
+    </div>
+  </div>
+  <div class="header">
+    <h1>popularity</h1>
+  </div>
+  <div class="content">
+    <div class="w-container">
+      <h3>algorithm and implementation</h3>
+    </div>
+  </div>
+  <div class="header">
+    <h1>top ads</h1>
+  </div>
+  <div class="content">
+    <div class="w-container">
+      <h3>place the top ads</h3>
+    </div>
+  </div> -->

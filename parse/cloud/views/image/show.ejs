@@ -20,10 +20,17 @@
     </div>
   </div>
   <div class="metadata">
-    <% if (Parse.User.current()) { %>
-      <div class="user">by <%= Parse.User.current().get('username') %></div>
-    <% } %>
+      <div class="user">by <%= image.get('username') %></div>
     Views: <%= image.get("imageMetadata").get("views") %>
+  </div>
+  <div>
+    <% if (image.get("imageMetadata").get('approval')=="0" && Parse.User.current().get('username')=="admin"){ %>
+      <form action="/i/<%= image.id %>/approve" method="post" id="approve">
+            <div class="text">
+              <button>APPROVE</button>
+            </div>
+          </form>
+    <% } %>
   </div>
 </div>
 
