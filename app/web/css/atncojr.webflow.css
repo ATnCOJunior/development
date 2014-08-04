@@ -19,6 +19,7 @@ h2 {
   display: block;
   margin: auto;
   font-family: Exo, sans-serif;
+  color: black;
   font-size: 20px;
   line-height: 36px;
   font-weight: 600;
@@ -52,7 +53,7 @@ h6 {
   color: gray;
   font-size: 14px;
   line-height: 50px;
-  font-weight: 400;
+  font-weight: 300;
 }
 p {
   margin-bottom: 5px;
@@ -130,13 +131,17 @@ p {
 .nav-img {
   position: relative;
   display: block;
-  width: 90px;
+  width: 70px;
   margin: auto;
   font-family: Exo, sans-serif;
   color: black;
   font-size: 28px;
   text-align: center;
   text-decoration: none;
+}
+.nav-img.help {
+  width: 40px;
+  padding-top: 10px;
 }
 .user {
   display: block;
@@ -152,33 +157,37 @@ p {
   float: none;
   clear: none;
 }
+.head.pendads {
+  margin-left: 60px;
+}
 .box {
   position: static;
   left: 0px;
   right: 0px;
   bottom: 0px;
   display: block;
-  height: 400px;
+  height: 800px;
   margin: auto;
   padding-right: 200px;
   padding-left: 200px;
+  background-color: #c0392b;
   color: white;
 }
 .box.info {
-  height: 750px;
+  height: 800px;
   padding-top: 300px;
   background-color: #e74c3c;
 }
 .box.report {
-  height: 750px;
-  background-color: #16a085;
+  height: 800px;
+  background-color: #2980b9;
 }
 .box.upload {
   height: 800px;
   padding-top: 300px;
   padding-right: 200px;
   padding-left: 200px;
-  background-color: #7f8c8d;
+  background-color: #27ae60;
 }
 .box.fb {
   height: 300px;
@@ -187,16 +196,15 @@ p {
   background-color: #3498db;
 }
 .box.merchant {
-  height: 750px;
-  padding-right: 0px;
-  padding-left: 0px;
-  background-color: #f39c12;
+  height: 800px;
+  background-color: #c0392b;
 }
 .box.login {
   padding-top: 160px;
   background-color: #f1c40f;
 }
 .box.login._1 {
+  height: auto;
   margin-left: auto;
   padding-top: 100px;
   padding-right: 20px;
@@ -205,6 +213,7 @@ p {
   font-size: 18px;
 }
 .box.login._2 {
+  height: auto;
   padding-top: 100px;
   padding-right: 20px;
   padding-left: 20px;
@@ -213,12 +222,31 @@ p {
   font-size: 18px;
 }
 .box.users {
-  height: 750px;
+  height: 800px;
   background-color: #2980b9;
 }
 .box.into {
+  height: auto;
   padding-right: 0px;
   padding-left: 0px;
+  background-color: transparent;
+}
+.box.payment {
+  background-color: #f1c40f;
+}
+.box.redeem {
+  height: 800px;
+  background-color: #95a5a6;
+}
+.box.pay {
+  height: 800px;
+  background-color: #7f8c8d;
+}
+.box.top {
+  background-color: #16a085;
+}
+.box.pops {
+  background-color: #f39c12;
 }
 .msg {
   background-color: #34495e;
@@ -237,8 +265,8 @@ p {
   clear: both;
 }
 .admin {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 .like {
   display: block;
@@ -274,9 +302,23 @@ p {
   color: white;
   text-align: center;
 }
+.about {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 1px;
+  padding-bottom: 15px;
+  background-color: white;
+  font-family: Exo, sans-serif;
+  color: black;
+  font-weight: 700;
+}
 @media (max-width: 991px) {
   h3 {
     margin-left: -40px;
+  }
+  h6 {
+    font-weight: 300;
   }
   .nav {
     z-index: 2;
@@ -317,16 +359,27 @@ p {
   .box.info {
     padding-right: 100px;
     padding-left: 100px;
+    background-color: #e74c3c;
+  }
+  .box.report {
+    background-color: #2980b9;
   }
   .box.upload {
     padding-right: 100px;
     padding-left: 100px;
+    background-color: #27ae60;
   }
   .box.login._1 {
+    height: auto;
     padding-left: 20px;
   }
   .box.login._2 {
+    height: auto;
     padding-left: 20px;
+  }
+  .box.into {
+    height: auto;
+    background-color: transparent;
   }
   .fblogin {
     margin-right: auto;
@@ -340,6 +393,14 @@ p {
   }
 }
 @media (max-width: 767px) {
+  h6 {
+    font-weight: 300;
+  }
+  .nav {
+    padding-right: 0px;
+    padding-left: 0px;
+    font-size: 14px;
+  }
   .logo {
     width: 140px;
   }
@@ -362,30 +423,43 @@ p {
   .nav-img {
     width: 90px;
   }
+  .head.pendads {
+    margin-left: auto;
+  }
   .box.info {
     padding-right: 50px;
     padding-left: 50px;
+    background-color: #e74c3c;
+  }
+  .box.report {
+    background-color: #2980b9;
   }
   .box.upload {
     height: 750px;
     padding-right: 50px;
     padding-left: 50px;
+    background-color: #27ae60;
   }
   .box.fb {
     padding-right: 0px;
     padding-left: 0px;
   }
   .box.login._1 {
-    height: 300px;
-    padding-top: 60px;
+    height: auto;
   }
   .box.login._2 {
-    height: 300px;
-    padding-top: 60px;
+    height: auto;
+  }
+  .box.into {
+    height: auto;
+    background-color: transparent;
   }
   .fblogin {
     margin-right: auto;
     margin-left: auto;
+  }
+  .admin {
+    font-size: 18px;
   }
   .like {
     width: 100px;
@@ -399,9 +473,14 @@ p {
     display: block;
     margin-right: auto;
     margin-left: auto;
+    float: none;
   }
   h2 {
     font-size: 16px;
+  }
+  h6 {
+    color: #7f8c8d;
+    font-weight: 300;
   }
   .nav {
     padding-right: 0px;
@@ -432,26 +511,63 @@ p {
     margin-top: auto;
     margin-bottom: -15px;
   }
+  .box {
+    height: 800px;
+    background-color: #c0392b;
+  }
   .box.info {
     height: 750px;
-    padding-right: 10px;
-    padding-left: 10px;
+    background-color: #e74c3c;
   }
   .box.report {
     padding-right: 0px;
     padding-left: 0px;
+    background-color: #2980b9;
   }
   .box.upload {
-    padding-right: 10px;
-    padding-left: 10px;
+    background-color: #27ae60;
+  }
+  .box.merchant {
+    padding-right: 0px;
+    padding-left: 0px;
   }
   .box.login._1 {
-    height: 300px;
-    padding-top: 60px;
+    height: auto;
   }
   .box.login._2 {
-    height: 300px;
-    padding-top: 60px;
+    height: auto;
+  }
+  .box.users {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .box.into {
+    height: auto;
+    background-color: transparent;
+  }
+  .box.payment {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .box.redeem {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .box.pay {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .box.top {
+    height: 800px;
+    padding-right: 0px;
+    padding-left: 0px;
+    background-color: #16a085;
+  }
+  .box.pops {
+    height: 800px;
+    padding-right: 0px;
+    padding-left: 0px;
+    background-color: #f39c12;
   }
   .fblogin {
     width: 100px;
@@ -460,5 +576,8 @@ p {
   .count {
     margin-top: auto;
     margin-bottom: auto;
+  }
+  .adminh1 {
+    font-size: 24px;
   }
 }
