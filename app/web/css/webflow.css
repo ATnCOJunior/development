@@ -1052,7 +1052,7 @@ textarea.w-select {
   text-align: left;
   margin-left: auto;
   margin-right: auto;
-  z-index: 1100;
+  z-index: 900;
 }
 .w-dropdown-btn,
 .w-dropdown-toggle,
@@ -1065,6 +1065,7 @@ textarea.w-select {
   text-align: left;
   margin-left: auto;
   margin-right: auto;
+  white-space: nowrap;
 }
 .w-dropdown-toggle {
   -webkit-user-select: none;
@@ -1090,18 +1091,15 @@ textarea.w-select {
 }
 .w-dropdown-list {
   position: absolute;
-  right: 0;
-  left: 0;
   background: #f2f2f2;
   display: none;
-  overflow: hidden;
+  min-width: 100%;
 }
-.w--dropdown-open .w-dropdown-list {
+.w-dropdown-list.w--open {
   display: block;
 }
 .w-dropdown-link {
   padding: 10px 20px;
-  white-space: nowrap;
   display: block;
 }
 .w-dropdown-link.w--current {
@@ -1485,10 +1483,6 @@ textarea.w-select {
   overflow: visible;
   min-width: 200px;
 }
-.w-nav-overlay .w--nav-menu-open {
-  position: static;
-  width: 100%;
-}
 .w--nav-link-open {
   display: block;
   position: relative;
@@ -1502,8 +1496,8 @@ textarea.w-select {
   right: 0;
   width: 100%;
 }
-.w-nav[data-animation="default"] .w--nav-menu-open {
-  top: 100%;
+.w-nav-overlay .w--nav-menu-open {
+  top: 0;
 }
 .w-nav[data-animation="over-left"] .w-nav-overlay {
   width: auto;
