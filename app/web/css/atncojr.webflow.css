@@ -76,7 +76,10 @@ p {
   height: 100%;
   margin-right: auto;
   margin-left: auto;
+  padding-right: 0px;
+  padding-left: 0px;
   background-color: white;
+  text-align: center;
 }
 .nav.login {
   padding: 350px 0px;
@@ -87,14 +90,14 @@ p {
   display: block;
   overflow-x: hidden;
   overflow-y: hidden;
-  width: 140px;
+  width: 100%;
   height: auto;
   margin: auto;
   clear: none;
 }
 .logo.home {
   margin-top: auto;
-  margin-bottom: auto;
+  margin-bottom: 15px;
 }
 .main {
   position: absolute;
@@ -102,6 +105,8 @@ p {
   right: 0px;
   bottom: 0px;
   display: block;
+  margin-right: auto;
+  margin-left: auto;
   padding-right: 0px;
   padding-left: 0px;
 }
@@ -116,7 +121,7 @@ p {
   overflow-y: visible;
   width: 250px;
   margin-right: auto;
-  padding-left: 0px;
+  margin-left: auto;
   float: left;
   clear: none;
   text-align: left;
@@ -126,12 +131,13 @@ p {
   float: left;
 }
 .image.track {
+  margin-bottom: 25px;
   margin-left: 25px;
 }
 .nav-img {
   position: relative;
   display: block;
-  width: 70px;
+  width: 75px;
   margin: auto;
   font-family: Exo, sans-serif;
   color: black;
@@ -141,7 +147,9 @@ p {
 }
 .nav-img.help {
   width: 40px;
-  padding-top: 10px;
+}
+.nav-img.text {
+  width: auto;
 }
 .user {
   display: block;
@@ -158,7 +166,7 @@ p {
   clear: none;
 }
 .head.pendads {
-  margin-left: 60px;
+  margin-left: auto;
 }
 .box {
   position: static;
@@ -265,6 +273,7 @@ p {
   clear: both;
 }
 .admin {
+  width: auto;
   margin-top: 10px;
   margin-bottom: 30px;
 }
@@ -289,8 +298,8 @@ p {
   margin-right: auto;
   margin-left: auto;
   font-family: Exo, sans-serif;
-  color: mistyrose;
-  font-size: 24px;
+  color: silver;
+  font-size: 20px;
   text-align: center;
 }
 .go {
@@ -313,6 +322,43 @@ p {
   color: black;
   font-weight: 700;
 }
+.imgadmin {
+  width: 250px;
+  margin-left: 25px;
+}
+.left {
+  height: 500px;
+  clear: both;
+  background-color: #3498db;
+  text-align: center;
+}
+.right {
+  height: 500px;
+  background-color: #f1c40f;
+  text-align: center;
+}
+.userleft {
+  height: 400px;
+}
+.merchantleft {
+  height: 400px;
+}
+.innertext {
+  width: 500px;
+  height: 100%;
+  padding-top: 170px;
+}
+.about-user {
+  background-color: #3498db;
+}
+.aboutmerchant {
+  background-color: #f1c40f;
+}
+.link {
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+}
 @media (max-width: 991px) {
   h3 {
     margin-left: -40px;
@@ -324,17 +370,18 @@ p {
     z-index: 2;
     overflow-x: hidden;
     overflow-y: hidden;
+    padding-right: 0px;
+    padding-left: 0px;
   }
   .logo {
-    width: 140px;
-    height: auto;
+    width: auto;
   }
   .main {
     padding-right: 0px;
     padding-left: 0px;
   }
   .image {
-    width: 300px;
+    width: 140px;
     height: auto;
     margin-right: auto;
     margin-left: auto;
@@ -349,12 +396,12 @@ p {
     display: block;
     overflow-x: visible;
     overflow-y: visible;
-    width: 80px;
+    width: 65px;
     margin-right: auto;
     margin-left: auto;
   }
-  .user {
-    margin-bottom: -10px;
+  .head.pendads {
+    margin-left: auto;
   }
   .box.info {
     padding-right: 100px;
@@ -391,6 +438,9 @@ p {
   .share {
     width: 150px;
   }
+  .innertext {
+    width: 300px;
+  }
 }
 @media (max-width: 767px) {
   h6 {
@@ -403,6 +453,9 @@ p {
   }
   .logo {
     width: 140px;
+  }
+  .logo.home {
+    width: 70%;
   }
   .main {
     padding-right: 0px;
@@ -419,9 +472,6 @@ p {
   }
   .image.track {
     margin-left: 25px;
-  }
-  .nav-img {
-    width: 90px;
   }
   .head.pendads {
     margin-left: auto;
@@ -467,6 +517,13 @@ p {
   .share {
     width: 100px;
   }
+  .imgadmin {
+    width: 200px;
+    margin-left: 25px;
+  }
+  .innertext {
+    width: 250px;
+  }
 }
 @media (max-width: 479px) {
   h1 {
@@ -485,6 +542,9 @@ p {
   .nav {
     padding-right: 0px;
     padding-left: 0px;
+  }
+  .logo.home {
+    width: 100%;
   }
   .main {
     position: absolute;
@@ -505,9 +565,13 @@ p {
     margin-left: 35px;
   }
   .nav-img {
-    width: 100px;
+    width: 60%;
+  }
+  .nav-img.help {
+    width: 60%;
   }
   .user {
+    width: 60%;
     margin-top: auto;
     margin-bottom: -15px;
   }
@@ -576,8 +640,26 @@ p {
   .count {
     margin-top: auto;
     margin-bottom: auto;
+    padding-top: 20px;
+  }
+  .about {
+    padding-top: 25px;
+    padding-bottom: 25px;
   }
   .adminh1 {
     font-size: 24px;
+  }
+  .imgadmin {
+    margin-left: 0px;
+  }
+  .left {
+    height: 150px;
+  }
+  .right {
+    height: 150px;
+  }
+  .innertext {
+    margin-left: 1px;
+    padding-top: 0px;
   }
 }
