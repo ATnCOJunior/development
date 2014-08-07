@@ -100,6 +100,10 @@ app.get('/trending', function(req, res) {
   });
 });
 
+app.get('/upload'), function(req, res) {
+  res.redirect('upload');
+}
+
 // Merchant endpoint
 app.get('/merchant', function(req, res) {
   if (!Parse.User.current()) {

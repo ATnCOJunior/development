@@ -1,5 +1,5 @@
 <div class="w-row bod">
-    <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav">
+    <!-- <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav">
       <a class="w-inline-block nav-img" href="#current" data-ix="hover">
         <img class="nav-img" src="images/8_1.png" alt="53d1182465325541683a72c4_8.png" data-ix="hover">
       </a>
@@ -15,14 +15,19 @@
       <a class="w-inline-block nav-img" href="#reports" data-ix="over">
         <img class="nav-img" src="images/8.png" alt="53d11499c886457038f6292f_8.png" data-ix="over">
       </a>
-      <a class="w-inline-block nav-img" href="#upload" data-ix="over">
+      <a class="w-inline-block nav-img" href="#upload_section" data-ix="over">
         <img class="nav-img" src="images/9.png" alt="53d114a58a6ef8406841678b_9.png" data-ix="over">
       </a>
       <a class="w-inline-block nav-img" href="#current" data-ix="over">
         <img class="logo" src="images/chef3.png" id="home" alt="53d10a5465325541683a71da_chef3.png" data-ix="over">
       </a>
-      <a class="w-inline-block nav-img" href="index.html"><h2 data-ix="over">logout</h2></a>
-    </div>
+      <form action="/logout" method="post" id="logout">
+        <div class="w-inline-block nav-img">
+          <button>LOGOUT</button>
+        </div>
+      </form>
+      <a class="w-inline-block nav-img" href="/logout"><h2 data-ix="over">logout</h2></a>
+    </div> -->
     <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main">
       <div class="w-clearfix head">
         <h1 id="current">CURRENT</h1>
@@ -100,34 +105,26 @@
         <div class="box report"></div>
       </div>
       <div class="head">
-        <h1 id="upload">UPLOAD</h1>
+        <h1 id="upload_section">UPLOAD</h1>
         <div class="box upload">
           <div class="w-form">
-            <form id="wf-form-upload" name="wf-form-upload" data-name="upload">
-              <label for="title">Title:</label>
-              <input class="w-input" id="title" type="text" name="title" data-name="title">
-              <label for="expiry">Expiry date:</label>
-              <input class="w-input" id="expiry" type="email" name="expiry" data-name="Expiry" required="required">
-              <label for="file-4">File:</label>
-              <input type="file" />
-              <a href="#" class="upload"></a>
-              <!-- <input class="w-button" type="submit" value="upload" data-wait="Please wait..."> -->
-            </form>
-            <script type="text/javascript">
-              new Uploader({ el: "#upload" });
-            </script> -->
-            <div class="w-form-done msg upload">
-              <p>Thank you! Your submission has been received!</p>
-            </div>
-            <div class="w-form-fail msg upload">
-              <p>Oops! Something went wrong while submitting the form :(</p>
-            </div>
+            <form id="upload" name="email-form" data-name="Email Form">
+              <div class="outer">
+                <div>
+                  <label for="title">Title:</label>
+                  <input class="w-input" id="title" type="text" name="title" data-name="title">
+                  <label for="expiry">Expiry date:</label>
+                  <input class="w-input" id="expiry" type="date" name="expiry" data-name="Expiry" required="required">
+                  <input type="file" />
+                </div>
+                <a href="#" class="upload">Pick an Image</a>
+              </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
 <script type="text/javascript">
   new Uploader({ el: "#upload" });
 </script>
