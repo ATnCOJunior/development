@@ -19,9 +19,10 @@ h2 {
   display: block;
   margin: auto;
   font-family: Exo, sans-serif;
-  font-size: 20px;
-  line-height: 36px;
-  font-weight: 600;
+  color: white;
+  font-size: 14px;
+  line-height: 30px;
+  font-weight: 200;
   text-align: center;
 }
 h3 {
@@ -33,26 +34,35 @@ h3 {
   font-size: 40px;
   line-height: 30px;
   font-weight: 400;
+  text-align: center;
 }
 h4 {
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 700;
+  font-family: Exo, sans-serif;
+  color: white;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 400;
+  text-align: center;
 }
 h5 {
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: Exo, sans-serif;
+  color: white;
+  font-size: 24px;
+  line-height: 10px;
+  font-weight: 100;
+  text-align: center;
 }
 h6 {
   color: gray;
   font-size: 14px;
   line-height: 50px;
-  font-weight: 400;
+  font-weight: 300;
 }
 p {
   margin-bottom: 5px;
@@ -75,10 +85,11 @@ p {
   height: 100%;
   margin-right: auto;
   margin-left: auto;
-  background-color: white;
-}
-.nav.login {
-  padding: 350px 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-right: 1px solid white;
+  background-color: black;
+  text-align: center;
 }
 .logo {
   position: relative;
@@ -86,14 +97,14 @@ p {
   display: block;
   overflow-x: hidden;
   overflow-y: hidden;
-  width: 140px;
+  width: 100%;
   height: auto;
   margin: auto;
   clear: none;
 }
 .logo.home {
   margin-top: auto;
-  margin-bottom: auto;
+  margin-bottom: 15px;
 }
 .main {
   position: absolute;
@@ -101,6 +112,9 @@ p {
   right: 0px;
   bottom: 0px;
   display: block;
+  margin-top: 1px;
+  margin-right: auto;
+  margin-left: auto;
   padding-right: 0px;
   padding-left: 0px;
 }
@@ -113,36 +127,34 @@ p {
   display: block;
   overflow-x: visible;
   overflow-y: visible;
-  width: 250px;
+  width: 20%;
   margin-right: auto;
-  padding-left: 0px;
+  margin-left: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   float: left;
   clear: none;
   text-align: left;
 }
 .image.bloc {
+  width: 20%;
   margin-left: 30px;
   float: left;
-}
-.image.track {
-  margin-left: 25px;
 }
 .nav-img {
   position: relative;
   display: block;
-  width: 70px;
-  margin: auto;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
   font-family: Exo, sans-serif;
   color: black;
-  font-size: 28px;
+  font-size: 14px;
   text-align: center;
   text-decoration: none;
 }
-.user {
-  display: block;
-  margin-right: auto;
-  margin-bottom: 0px;
-  margin-left: auto;
+.nav-img.text {
+  width: auto;
 }
 .head {
   position: static;
@@ -152,73 +164,22 @@ p {
   float: none;
   clear: none;
 }
+.head.pendads {
+  margin-left: auto;
+}
 .box {
   position: static;
   left: 0px;
   right: 0px;
   bottom: 0px;
   display: block;
-  height: 400px;
-  margin: auto;
-  padding-right: 200px;
-  padding-left: 200px;
-  color: white;
-}
-.box.info {
-  height: 750px;
-  padding-top: 300px;
-  background-color: #e74c3c;
-}
-.box.report {
-  height: 750px;
-  background-color: #16a085;
-}
-.box.upload {
   height: 800px;
-  padding-top: 300px;
+  margin: auto;
+  padding-top: 200px;
   padding-right: 200px;
   padding-left: 200px;
-  background-color: #7f8c8d;
-}
-.box.fb {
-  height: 300px;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  background-color: #3498db;
-}
-.box.merchant {
-  height: 750px;
-  padding-right: 0px;
-  padding-left: 0px;
-  background-color: #f39c12;
-}
-.box.login {
-  padding-top: 160px;
-  background-color: #f1c40f;
-}
-.box.login._1 {
-  margin-left: auto;
-  padding-top: 100px;
-  padding-right: 20px;
-  padding-left: 20px;
-  font-family: Exo, sans-serif;
-  font-size: 18px;
-}
-.box.login._2 {
-  padding-top: 100px;
-  padding-right: 20px;
-  padding-left: 20px;
-  background-color: #f39c12;
-  font-family: Exo, sans-serif;
-  font-size: 18px;
-}
-.box.users {
-  height: 750px;
-  background-color: #2980b9;
-}
-.box.into {
-  padding-right: 0px;
-  padding-left: 0px;
+  background-color: #c0392b;
+  color: white;
 }
 .msg {
   background-color: #34495e;
@@ -226,23 +187,18 @@ p {
 .msg.upload {
   background-color: #c0392b;
 }
-.fblogin {
-  position: static;
-  left: 0px;
-  top: 0px;
-  display: block;
-  width: 100px;
-  margin-right: auto;
-  margin-left: auto;
-  clear: both;
+.merchant {
+  height: 600px;
+  background-color: #c0392b;
 }
 .admin {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  width: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 .like {
   display: block;
-  width: 125px;
+  width: 50%;
   margin-right: auto;
   margin-left: auto;
   float: left;
@@ -250,7 +206,7 @@ p {
 }
 .share {
   display: block;
-  width: 125px;
+  width: 50%;
   margin-right: auto;
   margin-left: auto;
   float: left;
@@ -261,137 +217,365 @@ p {
   margin-right: auto;
   margin-left: auto;
   font-family: Exo, sans-serif;
-  color: mistyrose;
-  font-size: 24px;
+  color: silver;
+  font-size: 20px;
   text-align: center;
 }
-.go {
+.imgadmin {
+  display: block;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.imgnav {
+  width: 50%;
+}
+.infobox {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: none;
+  height: 100%;
+  padding-top: 100px;
+  padding-left: 100px;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.info {
+  display: block;
+  padding-top: 40px;
+  padding-bottom: 100px;
+}
+.inforow {
+  height: 100%;
+}
+.infoactive {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.infoicon {
+  padding: 10px;
+  text-decoration: none;
+}
+.infoimg {
+  width: 60px;
+}
+.currentinfo {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+  display: none;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100%;
+  padding-left: 100px;
+  background-color: rgba(0, 0, 0, 0.90);
+}
+.pendinginfo {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+  display: none;
+  padding-left: 100px;
+  background-color: rgba(0, 0, 0, 0.90);
+}
+.rejectedinfo {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+  display: none;
+  padding-left: 100px;
+  background-color: rgba(0, 0, 0, 0.90);
+}
+.divider {
+  height: 1px;
+  background-color: gray;
+}
+.expiredinfo {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+  display: none;
+  padding-left: 100px;
+  background-color: rgba(0, 0, 0, 0.90);
+}
+.navright {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-left: 1px solid white;
+  background-color: black;
+}
+.main-merchant {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
   display: block;
   margin-right: auto;
   margin-left: auto;
-  padding: 0px;
-  background-color: transparent;
+  padding: 10px 0px;
+}
+.report {
+  height: 800px;
+  padding: 100px 150px;
+  background-color: #34495e;
+  font-family: Exo, sans-serif;
   color: white;
   text-align: center;
 }
+.users {
+  height: 600px;
+  background-color: #2980b9;
+}
+.pops {
+  height: 600px;
+  background-color: #f39c12;
+}
+.redem {
+  height: 600px;
+  background-color: #95a5a6;
+}
+.pay {
+  height: 600px;
+  background-color: #7f8c8d;
+}
+.upload {
+  padding: 150px;
+  background-color: #27ae60;
+  font-family: Exo, sans-serif;
+  color: white;
+  text-align: left;
+}
+.profile {
+  padding: 150px;
+  background-color: #c0392b;
+  font-family: Exo, sans-serif;
+  color: white;
+  text-align: left;
+}
+.payment {
+  padding: 150px;
+  background-color: #f1c40f;
+  font-family: Exo, sans-serif;
+  color: white;
+  text-align: center;
+}
+.cover {
+  position: relative;
+  margin-top: -35px;
+  background-color: #34495e;
+}
+.reportbox {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+.selection {
+  width: 100%;
+  margin-bottom: 100px;
+}
+.background {
+  position: relative;
+  height: 100px;
+  margin-top: -30px;
+  background-color: #34495e;
+}
+.login {
+  margin: auto 200px;
+  font-family: Exo, sans-serif;
+  color: white;
+  font-weight: 400;
+}
+.go {
+  background-color: gray;
+}
+.label {
+  font-weight: 100;
+}
+.centertop {
+  width: 60%;
+}
+.top {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 100px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+.main-admin {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 0px;
+  padding-left: 0px;
+}
 @media (max-width: 991px) {
+  h2 {
+    display: none;
+  }
   h3 {
     margin-left: -40px;
+  }
+  h6 {
+    font-weight: 300;
   }
   .nav {
     z-index: 2;
     overflow-x: hidden;
     overflow-y: hidden;
+    padding-right: 0px;
+    padding-left: 0px;
   }
   .logo {
-    width: 140px;
-    height: auto;
+    width: auto;
   }
   .main {
     padding-right: 0px;
     padding-left: 0px;
   }
   .image {
-    width: 300px;
+    width: 50%;
     height: auto;
     margin-right: auto;
     margin-left: auto;
   }
   .image.bloc {
-    margin-left: 15px;
-  }
-  .image.track {
-    margin-left: 15px;
+    width: 45%;
+    margin-left: 25px;
   }
   .nav-img {
     display: block;
     overflow-x: visible;
     overflow-y: visible;
-    width: 80px;
+    width: 70%;
     margin-right: auto;
     margin-left: auto;
   }
-  .user {
-    margin-bottom: -10px;
-  }
-  .box.info {
-    padding-right: 100px;
-    padding-left: 100px;
-  }
-  .box.upload {
-    padding-right: 100px;
-    padding-left: 100px;
-  }
-  .box.login._1 {
-    padding-left: 20px;
-  }
-  .box.login._2 {
-    padding-left: 20px;
-  }
-  .fblogin {
-    margin-right: auto;
+  .head.pendads {
     margin-left: auto;
   }
   .like {
-    width: 150px;
+    width: 50%;
   }
   .share {
-    width: 150px;
+    width: 50%;
+  }
+  .imgnav {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .report {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .upload {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+  .profile {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .payment {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .embed-chart {
+    overflow-x: auto;
+    overflow-y: auto;
   }
 }
 @media (max-width: 767px) {
+  h2 {
+    display: none;
+  }
+  h6 {
+    font-weight: 300;
+  }
+  .nav {
+    padding-right: 0px;
+    padding-left: 0px;
+    font-size: 14px;
+  }
   .logo {
     width: 140px;
+  }
+  .logo.home {
+    width: 70%;
   }
   .main {
     padding-right: 0px;
     padding-left: 0px;
   }
   .image {
-    width: 200px;
+    width: 45%;
     height: auto;
-    margin: auto;
+    margin: auto auto auto 15px;
     clear: none;
   }
   .image.bloc {
-    margin-left: 25px;
-  }
-  .image.track {
-    margin-left: 25px;
+    width: 40%;
+    margin-left: 30px;
   }
   .nav-img {
-    width: 90px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
-  .box.info {
-    padding-right: 50px;
-    padding-left: 50px;
+  .head.pendads {
+    margin-left: auto;
   }
-  .box.upload {
-    height: 750px;
-    padding-right: 50px;
-    padding-left: 50px;
+  .admin {
+    font-size: 18px;
   }
-  .box.fb {
+  .like {
+    width: 50%;
+  }
+  .share {
+    width: 50%;
+  }
+  .imgadmin {
+    width: 200px;
+    margin-left: auto;
+  }
+  .imgnav {
+    width: 80%;
+  }
+  .navright {
     padding-right: 0px;
     padding-left: 0px;
   }
-  .box.login._1 {
-    height: 300px;
-    padding-top: 60px;
-  }
-  .box.login._2 {
-    height: 300px;
-    padding-top: 60px;
-  }
-  .fblogin {
-    margin-right: auto;
-    margin-left: auto;
-  }
-  .like {
-    width: 100px;
-  }
-  .share {
-    width: 100px;
+  .embed-chart {
+    overflow-x: auto;
+    overflow-y: auto;
   }
 }
 @media (max-width: 479px) {
@@ -399,13 +583,23 @@ p {
     display: block;
     margin-right: auto;
     margin-left: auto;
+    float: none;
+    font-size: 30px;
   }
   h2 {
+    display: none;
     font-size: 16px;
+  }
+  h6 {
+    color: #7f8c8d;
+    font-weight: 300;
   }
   .nav {
     padding-right: 0px;
     padding-left: 0px;
+  }
+  .logo.home {
+    width: 100%;
   }
   .main {
     position: absolute;
@@ -416,49 +610,51 @@ p {
   }
   .image {
     position: relative;
-    width: 200px;
-    margin: auto;
+    width: 45%;
+    margin: auto auto auto 10px;
   }
   .image.bloc {
-    margin-left: 35px;
-  }
-  .image.track {
-    margin-left: 35px;
+    width: 100%;
+    margin-left: auto;
   }
   .nav-img {
-    width: 100px;
+    width: 100%;
   }
-  .user {
-    margin-top: auto;
-    margin-bottom: -15px;
+  .box {
+    height: 800px;
+    background-color: #c0392b;
   }
-  .box.info {
-    height: 750px;
-    padding-right: 10px;
-    padding-left: 10px;
+  .like {
+    width: 50%;
   }
-  .box.report {
-    padding-right: 0px;
-    padding-left: 0px;
-  }
-  .box.upload {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  .box.login._1 {
-    height: 300px;
-    padding-top: 60px;
-  }
-  .box.login._2 {
-    height: 300px;
-    padding-top: 60px;
-  }
-  .fblogin {
-    width: 100px;
-    margin-left: auto;
+  .share {
+    width: 50%;
   }
   .count {
     margin-top: auto;
     margin-bottom: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .adminh1 {
+    font-size: 24px;
+  }
+  .imgadmin {
+    margin-left: 0px;
+  }
+  .imgnav {
+    width: 100%;
+  }
+  .upload {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .profile {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .payment {
+    padding-right: 20px;
+    padding-left: 20px;
   }
 }

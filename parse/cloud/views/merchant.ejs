@@ -1,130 +1,332 @@
 <div class="w-row bod">
-    <!-- <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav">
-      <a class="w-inline-block nav-img" href="#current" data-ix="hover">
-        <img class="nav-img" src="images/8_1.png" alt="53d1182465325541683a72c4_8.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#pending" data-ix="hover">
-        <img class="nav-img" src="images/9_1.png" alt="53d116178a6ef8406841679d_9.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#expired" data-ix="hover">
-        <img class="nav-img" src="images/10.png" alt="53d116278a6ef8406841679e_10.png" data-ix="hover">
-      </a>
-      <a class="w-inline-block nav-img" href="#profile" data-ix="over">
-        <img class="nav-img" src="images/16.png" alt="53d117b1c886457038f6295b_16.png" data-ix="over">
-      </a>
-      <a class="w-inline-block nav-img" href="#reports" data-ix="over">
-        <img class="nav-img" src="images/8.png" alt="53d11499c886457038f6292f_8.png" data-ix="over">
-      </a>
-      <a class="w-inline-block nav-img" href="#upload_section" data-ix="over">
-        <img class="nav-img" src="images/9.png" alt="53d114a58a6ef8406841678b_9.png" data-ix="over">
-      </a>
-      <a class="w-inline-block nav-img" href="#current" data-ix="over">
-        <img class="logo" src="images/chef3.png" id="home" alt="53d10a5465325541683a71da_chef3.png" data-ix="over">
-      </a>
-      <form action="/logout" method="post" id="logout">
-        <div class="w-inline-block nav-img">
-          <button>LOGOUT</button>
-        </div>
-      </form>
-      <a class="w-inline-block nav-img" href="/logout"><h2 data-ix="over">logout</h2></a>
-    </div> -->
-    <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main">
-      <div class="w-clearfix head">
-        <h1 id="current">CURRENT</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("approval")==1){%>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
+
+  <!-- disallow user from directly accessing this page -->
+  <% if (!Parse.User.current()) { %>
+    res.render("home")
+  <% }; %>
+
+  <!-- start of navigation codes -->
+  <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
+    <a class="w-inline-block nav-img" href="#current" data-ix="over">
+      <img class="imgnav" src="images/Media-Play-256.png" alt="53e23c27b0bc15262a404bc8_Media-Play-256.png">
+      <h2 data-ix="over">current</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#pending" data-ix="over">
+      <img class="imgnav" src="images/Media-Pause-256.png" alt="53e23c3ae62dd0272abc9d07_Media-Pause-256.png">
+      <h2 data-ix="over">pending</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#declined" data-ix="over">
+      <img class="imgnav" src="images/Media-End-256.png" alt="53e23c52b0bc15262a404bcf_Media-End-256.png">
+      <h2 data-ix="over">rejected</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#expired" data-ix="over">
+      <img class="imgnav" src="images/Media-Stop-256.png" alt="53e23c61c9ce004b04961144_Media-Stop-256.png">
+      <h2 data-ix="over">expired</h2>
+    </a>
+    <img src="images/Chef-Cap-256.png" alt="53e23ddab0bc15262a404c20_Chef-Cap-256.png"><a class="w-inline-block nav-img" href="/logout" data-ix="over"><h2 data-ix="over">logout</h2></a>
+  </div>
+  <!-- end of navigation codes -->
+
+  <!-- start of main body codes -->
+  <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main-merchant">
+    
+    <!-- start of current listing - showing images with approval setting 1 -->
+    <div class="w-clearfix head">
+      <h1 id="current">CURRENT</h1>
+      <% _(images).each(function(image) { 
+      if (image.get("approval")==1){%>
+      <div class="image" data-ix="click-show-current">
+        <img class="nav-img" src="<%= image.get('sizeOriginal').url() %>" width="208" alt="<%= image.get('sizeOriginal').url() %>" data-ix="over">
       </div>
-      <div class="w-clearfix head">
-        <h1 id="pending">PENDING</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("approval")==0){%>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
+      <% }}); %>
+    </div>
+    <!-- end of current listing -->
+
+    <!-- start of pending listing - showing images with approval setting 0 -->
+    <div class="w-clearfix head">
+      <h1 id="pending">PENDING</h1>
+      <% _(images).each(function(image) { 
+      if (image.get("approval")==0){%>
+      <div class="image" data-ix="click-show-current">
+        <img class="nav-img" src="<%= image.get('sizeOriginal').url() %>" width="208" alt="<%= image.get('sizeOriginal').url() %>" data-ix="over">
       </div>
-      <div class="w-clearfix head">
-        <h1 id="expired">EXPIRED</h1>
-        <% _(images).each(function(image) { 
-          if (image.get("approval")==2){%>
-        <div class="w-clearfix image bloc">
-          <a href="/i/<%= image.id %>">
-            <img class="image" src="<%= image.get('sizeSmall').url() %>" width="300" alt="<%= image.get('sizeSmall').url() %>" data-ix="over">
-          </a>
-          <div class="like">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share">
-            <h4 class="count">share</h4>
-          </div>
-        </div>
-        <% }}); %>
+      <% }}); %>
+    </div>
+    <!-- end of pending listing -->    
+
+    <!-- start of rejected listing - showing images with approval setting -1 -->
+    <div class="w-clearfix head">
+      <h1 id="declined">REJECTED</h1>
+      <% _(images).each(function(image) { 
+      if (image.get("approval")==-1){%>
+      <div class="image" data-ix="click-show-current">
+        <img class="nav-img" src="<%= image.get('sizeOriginal').url() %>" width="208" alt="<%= image.get('sizeOriginal').url() %>" data-ix="over">
       </div>
-      <div class="head">
-        <h1 id="profile">PROFILE</h1>
-        <div class="box info">
-          <div class="w-form">
-            <form id="wf-form-upload" name="wf-form-upload" data-name="upload">
-              <label for="title-2">Company Name:</label>
-              <input class="w-input field" id="title-2" type="text" name="title-2" data-name="Title 2">
-              <label for="expiry-2">Email:</label>
-              <input class="w-input" id="expiry-2" type="email" name="expiry-2" data-name="Expiry 2" required="required">
-              <input class="w-button" type="submit" value="update" data-wait="Please wait...">
-            </form>
-            <div class="w-form-done msg upload">
-              <p>Thank you! Your submission has been received!</p>
-            </div>
-            <div class="w-form-fail msg upload">
-              <p>Oops! Something went wrong while submitting the form :(</p>
-            </div>
-          </div>
+      <% }}); %>
+    </div>
+    <!-- end of rejected listing -->
+
+    <!-- start of expired listing - showing images with approval setting 2 -->
+    <div class="w-clearfix head">
+      <h1 id="expired">EXPIRED</h1>
+      <% _(images).each(function(image) { 
+      if (image.get("approval")==2){%>
+      <div class="image" data-ix="click-show-current">
+        <img class="nav-img" src="<%= image.get('sizeOriginal').url() %>" width="208" alt="<%= image.get('sizeOriginal').url() %>" data-ix="over">
+      </div>
+      <% }}); %>
+    </div>
+    <!-- end of expired listing -->
+    
+    <!-- start of payment codes -->
+    <div class="head">
+      <h1 id="pay">PAYMENT</h1>
+      <div class="payment">
+        <div class="w-container payment-embed">
+          <img src="images/payflow-iframe-1.png" alt="53e5cb1e8300c9c1489b8eae_payflow-iframe-1.png">
         </div>
       </div>
-      <div class="head">
-        <h1 id="reports">REPORTS</h1>
-        <div class="box report"></div>
-      </div>
-      <div class="head">
-        <h1 id="upload_section">UPLOAD</h1>
-        <div class="box upload">
-          <div class="w-form">
-            <form id="upload" name="email-form" data-name="Email Form">
-              <div class="outer">
-                <div>
-                  <label for="title">Title:</label>
-                  <input class="w-input" id="title" type="text" name="title" data-name="title">
-                  <label for="expiry">Expiry date:</label>
-                  <input class="w-input" id="expiry" type="date" name="expiry" data-name="Expiry" required="required">
-                  <input type="file" />
-                </div>
-                <a href="#" class="upload">Pick an Image</a>
-              </div>
+    </div>
+    <!-- end of payment codes -->
+
+    <!-- start of profile codes -->
+    <div class="head">
+      <h1 id="profile">PROFILE</h1>
+      <div class="profile">
+        <div class="w-form">
+          <form id="wf-form-upload" name="wf-form-upload" data-name="upload">
+            <label for="company-name">Company Name</label>
+            <input class="w-input field" id="company-name" type="text" name="company-name" data-name="company name" required="required" autofocus="autofocus">
+            <label for="email">Email</label>
+            <input class="w-input" id="email" type="email" name="email" data-name="email" required="required" autofocus="autofocus">
+            <label for="site">Website</label>
+            <input class="w-input" id="site" type="email" name="site" data-name="site" required="required" autofocus="autofocus">
+            <label for="social-media-Site">Social Media Site</label>
+            <input class="w-input" id="social-media-Site" type="email" name="social-media-Site" data-name="social media Site" required="required" autofocus="autofocus">
+            <label for="description">Company Description</label>
+            <textarea class="w-input" id="description" name="description" data-name="description" required="required" autofocus="autofocus"></textarea>
+            <input class="w-button" type="submit" value="update" data-wait="Please wait..." data-ix="over">
+          </form>
+          <div class="w-form-done msg upload">
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail msg upload">
+            <p>Oops! Something went wrong while submitting the form :(</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <!-- end of profile codes -->
 
-<script type="text/javascript">
-  new Uploader({ el: "#upload" });
-</script>
+    <!-- start of report code -->
+    <div class="head">
+      <h1 id="reports">REPORTS</h1>
+      <div class="report">
+        <div class="w-form selection">
+          <form id="wf-form-Selection" name="wf-form-Selection" data-name="Selection">
+            <select class="w-select" id="field" name="field" required="required">
+              <option value="">Select an ad for its report...</option>
+              <option value="First">First Choice</option>
+              <option value="Second">Second Choice</option>
+              <option value="Third">Third Choice</option>
+            </select>
+          </form>
+          <div class="w-form-done msg">
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail msg">
+            <p>Oops! Something went wrong while submitting the form :(</p>
+          </div>
+        </div>
+        <div class="w-container reportbox">
+          <div class="w-embed w-iframe embed-chart">
+            <iframe width="800" height="400" align="middle" src="https://embed.chartblocks.com/1.0/?c=53e5b2f5c9a61d59065c27c5&amp;t=ec87462c5ee0859" frameborder="0"></iframe>
+          </div>
+        </div>
+        <div class="background">
+          <div>&nbsp;</div>
+        </div>
+      </div>
+    </div>
+    <!-- end of report codes -->
+
+    <!-- start of upload codes -->
+    <div class="head">
+      <h1 id="upload-section">UPLOAD</h1>
+      <div class="upload">
+        <div class="w-form">
+          <form id="upload" name="wf-form-upload" data-name="upload">
+            <label for="title">Title</label>
+            <input class="w-input" id="upload-title" type="text" placeholder="Please enter the title of your promotion" name="title" data-name="title" required="required" autofocus="autofocus">
+            <label for="category">Category</label>
+            <input class="w-input" id="category" type="text" placeholder="What is your promotion category/ keyword" name="category" data-name="category" required="required" autofocus="autofocus">
+            <label for="expiry">Expiry date</label>
+            <input class="w-input" id="expiry" type="email" placeholder="Please enter your promotion validity period in DDMMYYY" name="Expiry" data-name="Expiry" required="required" autofocus="autofocus">
+            <label for="Location">Label</label>
+            <input class="w-input" id="Location" type="text" placeholder="Please provide location information or URL to your direction page" name="Location" required="required" autofocus="autofocus" data-name="Location">
+            <label for="details">Promotion details</label>
+            <textarea class="w-input" id="details" placeholder="Please provide more information about your promotion" name="details" data-name="details" required="required" autofocus="autofocus"></textarea>
+            <input type="file" />
+            <a href="#"></a>
+            <!-- <input class="w-button" type="submit" value="upload" data-wait="Please wait..." data-ix="over"> -->
+          </form>
+          <script type="text/javascript">
+            new Uploader({ el: "#upload" });
+          </script>
+          <!-- <div class="w-form-done msg upload">
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail msg upload">
+            <p>Oops! Something went wrong while submitting the form :(</p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- end of upload codes -->
+
+
+    <!-- START OF INFO CODES -->
+    <!-- start of current info -->
+    <div class="currentinfo" data-ix="click-hide-info">
+      <div class="w-row inforow">
+        <div class="w-col w-col-6 info">
+          <img class="nav-img" src="images/10339542_780818945292172_6298700757358783517_n.jpg" width="208" alt="53e084022c60de6924047b8e_10339542_780818945292172_6298700757358783517_n.jpg">
+        </div>
+        <div class="w-col w-col-6 info">
+          <h1>Current Promotion</h1>
+          <h4>ICE-CREAM WAFFLES<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
+          <h5>Expiry Date: DDMMYYYY</h5>
+          <h5>Category: CAFE</h5>
+          <h5>Points per like: 1</h5>
+          <h5>Points per share: 4</h5>
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Heart-256.png" alt="53e3387a623986d72445d126_Shape-Heart-256.png">
+              <h2>likes<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape12-256.png" alt="53e338a5623986d72445d133_Shape12-256.png">
+              <h2>shares<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Diamond-256.png" alt="53e36678623986d72445d59a_Shape-Diamond-256.png">
+              <h2>favourites<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Spade-256.png" alt="53e33844179eab193e62ec91_Shape-Spade-256.png">
+              <h2>visits<br>###</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of current info -->
+
+    <!-- start of pending info -->
+    <div class="pendinginfo" data-ix="click-hide-info">
+      <div class="w-row inforow">
+        <div class="w-col w-col-6 info">
+          <img class="nav-img" src="images/10339542_780818945292172_6298700757358783517_n.jpg" width="208" alt="53e084022c60de6924047b8e_10339542_780818945292172_6298700757358783517_n.jpg">
+        </div>
+        <div class="w-col w-col-6 info">
+          <h1>Pending Promotion</h1>
+          <h4>PROMOTION TITLE<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
+          <h5>Expiry Date: DDMMYYYY</h5>
+          <h5>Category: CAFE</h5>
+          <h5>Points per like: 1</h5>
+          <h5>Points per share: 4</h5>
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape69-256.png" alt="53e47f516121153f2d7b233c_Shape69-256.png">
+              <h2>edit</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of pending info -->
+
+    <!-- start of rejected info -->
+    <div class="rejectedinfo" data-ix="click-hide-info">
+      <div class="w-row inforow">
+        <div class="w-col w-col-6 info">
+          <img class="nav-img" src="images/10339542_780818945292172_6298700757358783517_n.jpg" width="208" alt="53e084022c60de6924047b8e_10339542_780818945292172_6298700757358783517_n.jpg">
+        </div>
+        <div class="w-col w-col-6 info">
+          <h1>Rejected Promotion</h1>
+          <h4>PROMOTION TITLE<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
+          <h5>Expiry Date: DDMMYYYY</h5>
+          <h5>Category: CAFE</h5>
+          <h5>Points per like: 1</h5>
+          <h5>Points per share: 4</h5>
+          <div class="divider"></div>
+          <h4><br>DETAILS OF REJECTION<br><br>image resolution too low<br>inappropriate content</h4>
+        </div>
+      </div>
+    </div>
+    <!-- end of rejected info -->
+
+    <!-- start of expired info -->
+    <div class="expiredinfo" data-ix="click-hide-info">
+      <div class="w-row inforow">
+        <div class="w-col w-col-6 info">
+          <img class="nav-img" src="images/10339542_780818945292172_6298700757358783517_n.jpg" width="208" alt="53e084022c60de6924047b8e_10339542_780818945292172_6298700757358783517_n.jpg">
+        </div>
+        <div class="w-col w-col-6 info">
+          <h1>Expired Promotion</h1>
+          <h4>ICE-CREAM WAFFLES<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
+          <h5>Expiry Date: DDMMYYYY</h5>
+          <h5>Category: CAFE</h5>
+          <h5>Points per like: 1</h5>
+          <h5>Points per share: 4</h5>
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Heart-256.png" alt="53e3387a623986d72445d126_Shape-Heart-256.png">
+              <h2>likes<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape12-256.png" alt="53e338a5623986d72445d133_Shape12-256.png">
+              <h2>shares<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Diamond-256.png" alt="53e36678623986d72445d59a_Shape-Diamond-256.png">
+              <h2>favourites<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Spade-256.png" alt="53e33844179eab193e62ec91_Shape-Spade-256.png">
+              <h2>visits<br>###</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of expired info -->
+  </div>
+  <!-- end of main body codes -->
+
+  <!-- start of another navigation codes -->
+  <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
+    <a class="w-inline-block nav-img" href="#pay" data-ix="over">
+      <img class="imgnav" src="images/Cash-256.png" alt="53e23aedb0bc15262a404b8f_Cash-256.png">
+      <h2 data-ix="over">payment</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#profile" data-ix="over">
+      <img class="imgnav" src="images/User-Profile-256.png" alt="53e23a632e905e4a0425fbce_User-Profile-256.png">
+      <h2 data-ix="over">profile</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#reports" data-ix="over">
+      <img class="imgnav" src="images/Bar-Chart-256.png" alt="53e23a4e2e905e4a0425fbcb_Bar-Chart-256.png">
+      <h2 data-ix="over">reports</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
+      <img class="imgnav" src="images/Upload-256-2.png" alt="53e23975e62dd0272abc9ca6_Upload-256-2.png">
+      <h2 data-ix="over">upload</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="/about" data-ix="over">
+      <img class="imgnav" src="images/Dialog-Box-About-256.png" alt="53e23cdac9ce004b0496114e_Dialog-Box-About-256.png" data-ix="over">
+      <h2 data-ix="over">about</h2>
+    </a>
+  </div>
+  <!-- end of another navigation codes -->
+</div>

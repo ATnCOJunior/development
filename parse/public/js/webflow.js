@@ -8,7 +8,7 @@
  * ----------------------------------------------------------------------
  */
 var Webflow = { w: Webflow };
-Webflow.init = function () {
+Webflow.init = function() {
   'use strict';
 
   var $ = window.$;
@@ -21,6 +21,7 @@ Webflow.init = function () {
   var domready = false;
   var tram = window.tram;
   var Modernizr = window.Modernizr;
+  var noop = function() {};
   tram.config.hideBackface = false;
   tram.config.keepInherited = true;
 
@@ -29,7 +30,7 @@ Webflow.init = function () {
    * @param  {string} name
    * @param  {function} factory
    */
-  api.define = function (name, factory) {
+  api.define = function(name, factory) {
     var module = modules[name] = factory($, _);
     if (!module) return;
     // If running in Webflow app, subscribe to design/preview events
@@ -53,7 +54,7 @@ Webflow.init = function () {
    * @param  {string} name
    * @return {object}
    */
-  api.require = function (name) {
+  api.require = function(name) {
     return modules[name];
   };
 
@@ -61,7 +62,7 @@ Webflow.init = function () {
    * Webflow.push() - Add a ready handler into secondary queue
    * @param {function} ready  Callback to invoke on domready
    */
-  api.push = function (ready) {
+  api.push = function(ready) {
     // If domready has already happened, invoke handler
     if (domready) {
       $.isFunction(ready) && ready();
@@ -76,7 +77,7 @@ Webflow.init = function () {
    * @param {string} mode [optional]
    * @return {boolean}
    */
-  api.env = function (mode) {
+  api.env = function(mode) {
     var designFlag = window.__wf_design;
     var inApp = typeof designFlag != 'undefined';
     if (!mode) return inApp;
@@ -108,8 +109,8 @@ Webflow.init = function () {
     // Set up throttled method (using custom frame-based _.throttle)
     var handlers = [];
     var proxy = {};
-    proxy.up = _.throttle(function (evt) {
-      _.each(handlers, function (h) { h(evt); });
+    proxy.up = _.throttle(function(evt) {
+      _.each(handlers, function(h) { h(evt); });
     });
 
     // Bind events to target
@@ -119,7 +120,7 @@ Webflow.init = function () {
      * Add an event handler
      * @param  {function} handler
      */
-    proxy.on = function (handler) {
+    proxy.on = function(handler) {
       if (typeof handler != 'function') return;
       if (_.contains(handlers, handler)) return;
       handlers.push(handler);
@@ -129,16 +130,26 @@ Webflow.init = function () {
      * Remove an event handler
      * @param  {function} handler
      */
-    proxy.off = function (handler) {
-      handlers = _.filter(handlers, function (h) {
+    proxy.off = function(handler) {
+      handlers = _.filter(handlers, function(h) {
         return h !== handler;
       });
     };
     return proxy;
   }
 
+  // Provide optional IX events to components
+  api.ixEvents = function() {
+    var ix = api.require('ix');
+    return (ix && ix.events) || {
+      reset: noop,
+      intro: noop,
+      outro: noop
+    };
+  };
+
   // Webflow.location() - Wrap window.location in api
-  api.location = function (url) {
+  api.location = function(url) {
     window.location = url;
   };
 
@@ -149,18 +160,18 @@ Webflow.init = function () {
     // Trigger redraw for specific elements
     var Event = window.Event;
     var redraw = new Event('__wf_redraw');
-    api.app.redrawElement = function (i, el) { el.dispatchEvent(redraw); };
+    api.app.redrawElement = function(i, el) { el.dispatchEvent(redraw); };
 
     // Webflow.location - Re-route location change to trigger an event
-    api.location = function (url) {
+    api.location = function(url) {
       window.dispatchEvent(new CustomEvent('__wf_location', { detail: url }));
     };
   }
 
   // Webflow.ready() - Call primary and secondary handlers
-  api.ready = function () {
+  api.ready = function() {
     domready = true;
-    $.each(primary.concat(secondary), function (index, value) {
+    $.each(primary.concat(secondary), function(index, value) {
       $.isFunction(value) && value();
     });
     // Trigger resize
@@ -168,7 +179,7 @@ Webflow.init = function () {
   };
 
   // Webflow.destroy() - Trigger a cleanup event for all modules
-  api.destroy = function () {
+  api.destroy = function() {
     $win.triggerHandler('__wf_destroy');
   };
 
@@ -336,12 +347,12 @@ Webflow.init = function () {
     // browser animation frame - using tram's requestAnimationFrame polyfill.
     _.throttle = function(func) {
       var wait, args, context;
-      return function () {
+      return function() {
         if (wait) return;
         wait = true;
         args = arguments;
         context = this;
-        tram.frame(function () {
+        tram.frame(function() {
           wait = false;
           func.apply(context, args);
         });
@@ -451,7 +462,7 @@ Webflow.init();
  * ----------------------------------------------------------------------
  * Webflow: Interactions
  */
-Webflow.define('ix', function ($, _) {
+Webflow.define('ix', function($, _) {
   'use strict';
 
   var api = {};
@@ -466,6 +477,7 @@ Webflow.define('ix', function ($, _) {
   var transNone = 'none 0s ease 0s';
   var introEvent = 'w-ix-intro' + namespace;
   var outroEvent = 'w-ix-outro' + namespace;
+  var fallbackProps = /width|height/;
   var eventQueue = [];
   var $subs = $();
   var config = {};
@@ -475,19 +487,27 @@ Webflow.define('ix', function ($, _) {
   var unique = 0;
   var store;
 
+  // Component types and proxy selectors
+  var components = {
+    tabs: '.w-tab-link, .w-tab-pane',
+    dropdown: '.w-dropdown',
+    slider: '.w-slide',
+    navbar: '.w-nav'
+  };
+
   // -----------------------------------
   // Module methods
 
-  api.init = function (list) {
-    setTimeout(function () { init(list); }, 1);
+  api.init = function(list) {
+    setTimeout(function() { init(list); }, 1);
   };
 
-  api.preview = function () {
+  api.preview = function() {
     designer = false;
-    setTimeout(function () { init(window.__wf_ix); }, 1);
+    setTimeout(function() { init(window.__wf_ix); }, 1);
   };
 
-  api.design = function () {
+  api.design = function() {
     designer = true;
     $subs.each(teardown);
     Webflow.scroll.off(scroll);
@@ -510,7 +530,7 @@ Webflow.define('ix', function ($, _) {
 
     // Map all interactions to a hash using slug as key.
     config = {};
-    _.each(list, function (item) {
+    _.each(list, function(item) {
       config[item.slug] = item.value;
     });
 
@@ -542,13 +562,12 @@ Webflow.define('ix', function ($, _) {
     var triggers = ix.triggers;
     if (!triggers) return;
     var state = store[id] || (store[id] = {});
-    var $proxy;
 
     // Set initial styles, unless we detect an iOS device + any non-iOS triggers
     var setStyles = !(ios && _.any(triggers, isNonIOS));
     if (setStyles) api.style($el, ix.style);
 
-    _.each(triggers, function (trigger) {
+    _.each(triggers, function(trigger) {
       var type = trigger.type;
       var stepsB = trigger.stepsB && trigger.stepsB.length;
 
@@ -566,7 +585,7 @@ Webflow.define('ix', function ($, _) {
         if (trigger.siblings) stateKey += ':siblings';
         if (trigger.selector) stateKey += ':' + trigger.selector;
 
-        $el.on('click' + namespace, function (evt) {
+        $el.on('click' + namespace, function(evt) {
           if ($el.attr('href') === '#') evt.preventDefault();
 
           run(trigger, $el, { group: state[stateKey] ? 'B' : 'A' });
@@ -583,15 +602,10 @@ Webflow.define('ix', function ($, _) {
         return;
       }
 
-      if (type == 'tabs') {
-        $proxy = $el.closest('.w-tab-link, .w-tab-pane');
-        $proxy.on(introEvent, runA).on(outroEvent, runB);
-        $subs = $subs.add($proxy);
-        return;
-      }
-
-      if (type == 'slider') {
-        $proxy = $el.closest('.w-slide');
+      // Check for a component proxy selector
+      var proxy = components[type];
+      if (proxy) {
+        var $proxy = $el.closest(proxy);
         $proxy.on(introEvent, runA).on(outroEvent, runB);
         $subs = $subs.add($proxy);
         return;
@@ -739,7 +753,9 @@ Webflow.define('ix', function ($, _) {
     if (transitions) {
       transitions = transitions.split(',');
       for (var i = 0; i < transitions.length; i++) {
-        _tram[addMethod](transitions[i]);
+        var transition = transitions[i];
+        var options = fallbackProps.test(transition) ? { fallback: true } : null;
+        _tram[addMethod](transition, options);
       }
     }
 
@@ -755,7 +771,7 @@ Webflow.define('ix', function ($, _) {
 
       // If we have started, wrap set() in then() and reset queue
       if (meta.start) {
-        _tram.then(function () {
+        _tram.then(function() {
           var queue = this.queue;
           this.set(clean);
           if (clean.display) {
@@ -792,7 +808,7 @@ Webflow.define('ix', function ($, _) {
 
         // If we've already started, we need to wrap it in a then()
         if (meta.start) {
-          _tram.then(function () {
+          _tram.then(function() {
             var queue = this.queue;
             this.set({ display: display }).redraw();
             Webflow.redraw.up();
@@ -852,15 +868,15 @@ Webflow.define('ix', function ($, _) {
 
   // Events used by other webflow modules
   var events = {
-    reset: function (i, el) {
+    reset: function(i, el) {
       el.__wf_intro = null;
     },
-    intro: function (i, el) {
+    intro: function(i, el) {
       if (el.__wf_intro) return;
       el.__wf_intro = true;
       $(el).triggerHandler(introEvent);
     },
-    outro: function (i, el) {
+    outro: function(i, el) {
       if (!el.__wf_intro) return;
       el.__wf_intro = null;
       $(el).triggerHandler(outroEvent);
@@ -880,8 +896,8 @@ Webflow.define('ix', function ($, _) {
 
   // Replace events with async methods prior to init
   function asyncEvents() {
-    _.each(events, function (func, name) {
-      api.events[name] = function (i, el) {
+    _.each(events, function(func, name) {
+      api.events[name] = function(i, el) {
         eventQueue.push([func, el]);
       };
     });
@@ -896,7 +912,7 @@ Webflow.define('ix', function ($, _) {
  * ----------------------------------------------------------------------
  * Webflow: Touch events
  */
-Webflow.define('touch', function ($, _) {
+Webflow.define('touch', function($, _) {
   'use strict';
 
   var api = {};
@@ -908,7 +924,7 @@ Webflow.define('touch', function ($, _) {
     $.event.special.tap = { bindType: 'click', delegateType: 'click' };
   }
 
-  api.init = function (el) {
+  api.init = function(el) {
     if (fallback) return null;
     el = typeof el === 'string' ? $(el).get(0) : el;
     return el ? new Touch(el) : null;
@@ -1031,7 +1047,7 @@ Webflow.define('touch', function ($, _) {
  * ----------------------------------------------------------------------
  * Webflow: Forms
  */
-Webflow.define('forms', function ($, _) {
+Webflow.define('forms', function($, _) {
   'use strict';
 
   var api = {};
@@ -1049,7 +1065,7 @@ Webflow.define('forms', function ($, _) {
   // MailChimp domains: list-manage.com + mirrors
   var chimpRegex = /list-manage[1-9]?.com/i;
 
-  api.ready = function () {
+  api.ready = function() {
     // Init forms
     init();
 
@@ -1057,7 +1073,7 @@ Webflow.define('forms', function ($, _) {
     if (!listening) addListeners();
   };
 
-  api.preview = api.design = function () {
+  api.preview = api.design = function() {
     init();
   };
 
@@ -1209,10 +1225,10 @@ Webflow.define('forms', function ($, _) {
       data: payload,
       dataType: 'json',
       crossDomain: true
-    }).done(function () {
+    }).done(function() {
       data.success = true;
       afterSubmit(data);
-    }).fail(function () {
+    }).fail(function() {
       afterSubmit(data);
     });
   }
@@ -1241,7 +1257,7 @@ Webflow.define('forms', function ($, _) {
 
     // Use special format for MailChimp params
     var fullName;
-    _.each(payload, function (value, key) {
+    _.each(payload, function(value, key) {
       if (emailField.test(key)) payload.EMAIL = value;
       if (/^((full[ _-]?)?name)$/i.test(key)) fullName = value;
       if (/^(first[ _-]?name)$/i.test(key)) payload.FNAME = value;
@@ -1267,11 +1283,11 @@ Webflow.define('forms', function ($, _) {
       url: url,
       data: payload,
       dataType: 'jsonp'
-    }).done(function (resp) {
+    }).done(function(resp) {
       data.success = (resp.result == 'success' || /already/.test(resp.msg));
       if (!data.success) console.info('MailChimp error: ' + resp.msg);
       afterSubmit(data);
-    }).fail(function () {
+    }).fail(function() {
       afterSubmit(data);
     });
   }
@@ -1305,7 +1321,7 @@ Webflow.define('forms', function ($, _) {
     data.evt = null;
   }
 
-  var disconnected = _.debounce(function () {
+  var disconnected = _.debounce(function() {
     alert('Oops! This page has a form that is powered by Webflow, but important code was removed that is required to make the form work. Please contact support@webflow.com to fix this issue.');
   }, 100);
 
@@ -1316,7 +1332,7 @@ Webflow.define('forms', function ($, _) {
  * ----------------------------------------------------------------------
  * Webflow: Maps widget
  */
-Webflow.define('maps', function ($, _) {
+Webflow.define('maps', function($, _) {
   'use strict';
 
   var api = {};
@@ -1328,12 +1344,12 @@ Webflow.define('maps', function ($, _) {
   // -----------------------------------
   // Module methods
 
-  api.ready = function () {
+  api.ready = function() {
     // Init Maps on the front-end
     if (!Webflow.env()) initMaps();
   };
 
-  api.preview = function () {
+  api.preview = function() {
     // Update active map nodes
     $maps = $doc.find(namespace);
     // Listen for resize events
@@ -1344,7 +1360,7 @@ Webflow.define('maps', function ($, _) {
     }
   };
 
-  api.design = function (evt) {
+  api.design = function(evt) {
     // Update active map nodes
     $maps = $doc.find(namespace);
     // Stop listening for resize events
@@ -1377,7 +1393,7 @@ Webflow.define('maps', function ($, _) {
     }
 
     function mapsLoaded() {
-      window._wf_maps_loaded = function () {};
+      window._wf_maps_loaded = function() {};
       google = window.google;
       $maps.each(renderMap);
       removeListeners();
@@ -1467,7 +1483,7 @@ Webflow.define('maps', function ($, _) {
     state.marker.setMap(state.map);
 
     // Set map position and offset
-    state.setMapPosition = function () {
+    state.setMapPosition = function() {
       state.map.setCenter(state.latLngObj);
       var offsetX = 0;
       var offsetY = 0;
@@ -1483,7 +1499,7 @@ Webflow.define('maps', function ($, _) {
     };
 
     // Fix position after first tiles have loaded
-    google.maps.event.addListener(state.map, 'tilesloaded', function () {
+    google.maps.event.addListener(state.map, 'tilesloaded', function() {
       google.maps.event.clearListeners(state.map, 'tilesloaded');
       state.setMapPosition();
     });
@@ -1532,14 +1548,14 @@ Webflow.define('maps', function ($, _) {
  * ----------------------------------------------------------------------
  * Webflow: Google+ widget
  */
-Webflow.define('gplus', function ($) {
+Webflow.define('gplus', function($) {
   'use strict';
 
   var $doc = $(document);
   var api = {};
   var loaded;
 
-  api.ready = function () {
+  api.ready = function() {
     // Load Google+ API on the front-end
     if (!Webflow.env() && !loaded) init();
   };
@@ -1560,7 +1576,7 @@ Webflow.define('gplus', function ($) {
  * ----------------------------------------------------------------------
  * Webflow: Smooth scroll
  */
-Webflow.define('scroll', function ($) {
+Webflow.define('scroll', function($) {
   'use strict';
 
   var $doc = $(document);
@@ -1684,7 +1700,7 @@ Webflow.define('scroll', function ($) {
  * ----------------------------------------------------------------------
  * Webflow: Auto-select links to current page or section
  */
-Webflow.define('links', function ($, _) {
+Webflow.define('links', function($, _) {
   'use strict';
 
   var api = {};
@@ -1755,7 +1771,7 @@ Webflow.define('links', function ($, _) {
     var viewHeight = $win.height();
 
     // Check each anchor for a section in view
-    _.each(anchors, function (anchor) {
+    _.each(anchors, function(anchor) {
       var $link = anchor.link;
       var $section = anchor.sec;
       var top = $section.offset().top;
@@ -1785,7 +1801,7 @@ Webflow.define('links', function ($, _) {
  * ----------------------------------------------------------------------
  * Webflow: Slider component
  */
-Webflow.define('slider', function ($, _) {
+Webflow.define('slider', function($, _) {
   'use strict';
 
   var api = {};
@@ -1796,29 +1812,28 @@ Webflow.define('slider', function ($, _) {
   var inApp = Webflow.env();
   var namespace = '.w-slider';
   var dot = '<div class="w-slider-dot" data-wf-ignore />';
-  var ix = Webflow.require('ix');
-  ix = ix && ix.events;
+  var ix = Webflow.ixEvents();
   var fallback;
   var redraw;
 
   // -----------------------------------
   // Module methods
 
-  api.ready = function () {
+  api.ready = function() {
     init();
   };
 
-  api.design = function () {
+  api.design = function() {
     designer = true;
     init();
   };
 
-  api.preview = function () {
+  api.preview = function() {
     designer = false;
     init();
   };
 
-  api.redraw = function () {
+  api.redraw = function() {
     redraw = true;
     init();
   };
@@ -1832,7 +1847,7 @@ Webflow.define('slider', function ($, _) {
     // Find all sliders on the page
     $sliders = $doc.find(namespace);
     if (!$sliders.length) return;
-    $sliders.each(build);
+    $sliders.filter(':visible').each(build);
     redraw = null;
     if (fallback) return;
 
@@ -1852,7 +1867,7 @@ Webflow.define('slider', function ($, _) {
   }
 
   function renderAll() {
-    $sliders.each(render);
+    $sliders.filter(':visible').each(render);
   }
 
   function build(i, el) {
@@ -1871,7 +1886,7 @@ Webflow.define('slider', function ($, _) {
     data.right = $el.children('.w-slider-arrow-right');
     data.nav = $el.children('.w-slider-nav');
     data.slides = data.mask.children('.w-slide');
-    if (ix) data.slides.each(ix.reset);
+    data.slides.each(ix.reset);
     if (redraw) data.maskWidth = 0;
 
     // Disable in old browsers
@@ -1955,7 +1970,7 @@ Webflow.define('slider', function ($, _) {
       config.timerMax = +data.el.attr('data-autoplay-limit');
       // Disable timer on first touch or mouse down
       var touchEvents = 'mousedown' + namespace + ' touchstart' + namespace;
-      if (!designer) data.el.off(touchEvents).one(touchEvents, function () {
+      if (!designer) data.el.off(touchEvents).one(touchEvents, function() {
         stopTimer(data);
       });
     }
@@ -1969,13 +1984,13 @@ Webflow.define('slider', function ($, _) {
   }
 
   function previous(data) {
-    return function (evt) {
+    return function(evt) {
       change(data, { index: data.index - 1, vector: -1 });
     };
   }
 
   function next(data) {
-    return function (evt) {
+    return function(evt) {
       change(data, { index: data.index + 1, vector: 1 });
     };
   }
@@ -1986,8 +2001,8 @@ Webflow.define('slider', function ($, _) {
     if (value === data.slides.length) {
       init(); layout(data); // Rebuild and find new slides
     }
-    _.each(data.anchors, function (anchor, index) {
-      $(anchor.els).each(function (i, el) {
+    _.each(data.anchors, function(anchor, index) {
+      $(anchor.els).each(function(i, el) {
         if ($(el).index() === value) found = index;
       });
     });
@@ -1999,7 +2014,7 @@ Webflow.define('slider', function ($, _) {
     var config = data.config;
     var timerMax = config.timerMax;
     if (timerMax && data.timerCount++ > timerMax) return;
-    data.timerId = window.setTimeout(function () {
+    data.timerId = window.setTimeout(function() {
       if (data.timerId == null || designer) return;
       next(data)();
       startTimer(data);
@@ -2012,7 +2027,7 @@ Webflow.define('slider', function ($, _) {
   }
 
   function handler(data) {
-    return function (evt, options) {
+    return function(evt, options) {
       options = options || {};
 
       // Designer settings
@@ -2095,7 +2110,7 @@ Webflow.define('slider', function ($, _) {
     var slideRule = 'transform ' + duration + 'ms ' + easing;
 
     // Trigger IX events
-    if (!designer && ix) {
+    if (!designer) {
       targets.each(ix.intro);
       others.each(ix.outro);
     }
@@ -2202,7 +2217,7 @@ Webflow.define('slider', function ($, _) {
     var anchor = 0;
     var width = 0;
     data.anchors = [{ els: [], x: 0, width: 0 }];
-    data.slides.each(function (i, el) {
+    data.slides.each(function(i, el) {
       if (anchor - offset > data.maskWidth - data.config.edge) {
         pages++;
         offset += data.maskWidth;
@@ -2258,7 +2273,7 @@ Webflow.define('slider', function ($, _) {
 
   function slidesChanged(data) {
     var slidesWidth = 0;
-    data.slides.each(function (i, el) {
+    data.slides.each(function(i, el) {
       slidesWidth += $(el).outerWidth(true);
     });
     if (data.slidesWidth !== slidesWidth) {
@@ -2895,7 +2910,7 @@ Webflow.define('lightbox', function ($, _) {
  * ----------------------------------------------------------------------
  * Webflow: Navbar component
  */
-Webflow.define('navbar', function ($, _) {
+Webflow.define('navbar', function($, _) {
   'use strict';
 
   var api = {};
@@ -2911,6 +2926,7 @@ Webflow.define('navbar', function ($, _) {
   var buttonOpen = 'w--open';
   var menuOpen = 'w--nav-menu-open';
   var linkOpen = 'w--nav-link-open';
+  var ix = Webflow.ixEvents();
 
   // -----------------------------------
   // Module methods
@@ -3001,10 +3017,12 @@ Webflow.define('navbar', function ($, _) {
     var old = data.config || {};
 
     // Set config options from data attributes
-    config.animation = data.el.attr('data-animation') || 'default';
+    var animation = config.animation = data.el.attr('data-animation') || 'default';
+    config.animOver = /^over/.test(animation);
+    config.animDirect = /left$/.test(animation) ? -1 : 1;
 
     // Re-open menu if the animation type changed
-    if (old.animation != config.animation) {
+    if (old.animation != animation) {
       data.open && _.defer(reopen, data);
     }
 
@@ -3021,14 +3039,14 @@ Webflow.define('navbar', function ($, _) {
   }
 
   function handler(data) {
-    return function (evt, options) {
+    return function(evt, options) {
       options = options || {};
       var winWidth = $win.width();
       configure(data);
       options.open === true && open(data, true);
       options.open === false && close(data, true);
       // Reopen if media query changed after setting
-      data.open && _.defer(function () {
+      data.open && _.defer(function() {
         if (winWidth != $win.width()) reopen(data);
       });
     };
@@ -3046,13 +3064,13 @@ Webflow.define('navbar', function ($, _) {
   }
 
   function toggle(data) {
-    return _.debounce(function (evt) {
+    return _.debounce(function(evt) {
       data.open ? close(data) : open(data);
     });
   }
 
   function navigate(data) {
-    return function (evt) {
+    return function(evt) {
       var link = $(this);
       var href = link.attr('href');
 
@@ -3070,7 +3088,7 @@ Webflow.define('navbar', function ($, _) {
     if (data.outside) $doc.off('tap' + namespace, data.outside);
 
     // Close menu when tapped outside
-    return _.debounce(function (evt) {
+    return _.debounce(function(evt) {
       if (!data.open) return;
       var menu = $(evt.target).closest('.w-nav-menu');
       if (!data.menu.is(menu)) {
@@ -3091,10 +3109,9 @@ Webflow.define('navbar', function ($, _) {
       data.links.each(updateEachMax);
       data.dropdowns.each(updateEachMax);
     }
-    // If currently open and in overlay mode, update height to match body
-    if (data.open && /^over/.test(data.config.animation)) {
-      updateDocHeight(data);
-      updateMenuHeight(data);
+    // If currently open, update height to match body
+    if (data.open) {
+      setOverlayHeight(data);
     }
   }
 
@@ -3103,7 +3120,7 @@ Webflow.define('navbar', function ($, _) {
     // Set max-width of each element to match container
     var containMax = data.container.css(maxWidth);
     if (containMax == 'none') containMax = '';
-    return function (i, link) {
+    return function(i, link) {
       link = $(link);
       link.css(maxWidth, '');
       // Don't set the max-width if an upstream value exists
@@ -3120,21 +3137,16 @@ Webflow.define('navbar', function ($, _) {
     var config = data.config;
     var animation = config.animation;
     if (animation == 'none' || !tram.support.transform) immediate = true;
-    var animOver = /^over/.test(animation);
-    var bodyHeight = updateDocHeight(data);
+    var bodyHeight = setOverlayHeight(data);
     var menuHeight = data.menu.outerHeight(true);
     var menuWidth = data.menu.outerWidth(true);
     var navHeight = data.el.height();
-    var direction = /left$/.test(animation) ? -1 : 1;
-    resize(0, data.el[0]);
+    var navbarEl = data.el[0];
+    resize(0, navbarEl);
+    ix.intro(0, navbarEl);
 
     // Listen for tap outside events
     if (!designer) $doc.on('tap' + namespace, data.outside);
-
-    // Update menu height for Over state
-    if (animOver) {
-      bodyHeight = updateMenuHeight(data);
-    }
 
     // No transition for immediate
     if (immediate) return;
@@ -3147,11 +3159,11 @@ Webflow.define('navbar', function ($, _) {
     }
 
     // Over left/right
-    if (animOver) {
+    if (config.animOver) {
       tram(data.menu)
         .add(transConfig)
-        .set({ x: direction * menuWidth, height: bodyHeight }).start({ x: 0 });
-      data.overlay && data.overlay.css({ width: menuWidth, height: bodyHeight });
+        .set({ x: config.animDirect * menuWidth, height: bodyHeight }).start({ x: 0 });
+        data.overlay && data.overlay.width(menuWidth);
       return;
     }
 
@@ -3162,25 +3174,26 @@ Webflow.define('navbar', function ($, _) {
       .set({ y: -offsetY }).start({ y: 0 });
   }
 
-  function updateDocHeight(data) {
-    return data.bodyHeight = data.config.docHeight ? $doc.height() : $body.height();
-  }
-
-  function updateMenuHeight(data) {
-    var newMenuHeight = data.bodyHeight;
-    var navFixed = data.el.css('position') == 'fixed';
-    if (!navFixed) newMenuHeight -= data.el.offset().top;
-    data.menu.height(newMenuHeight);
-    data.overlay && data.overlay.height(newMenuHeight);
-    return newMenuHeight;
+  function setOverlayHeight(data) {
+    var config = data.config;
+    var bodyHeight = config.docHeight ? $doc.height() : $body.height();
+    if (config.animOver) {
+      data.menu.height(bodyHeight);
+    } else if (data.el.css('position') != 'fixed') {
+      bodyHeight -= data.el.height();
+    }
+    data.overlay && data.overlay.height(bodyHeight);
+    return bodyHeight;
   }
 
   function close(data, immediate) {
+    if (!data.open) return;
     data.open = false;
     data.button.removeClass(buttonOpen);
     var config = data.config;
     if (config.animation == 'none' || !tram.support.transform) immediate = true;
     var animation = config.animation;
+    ix.outro(0, data.el[0]);
 
     // Stop listening for tap outside events
     $doc.off('tap' + namespace, data.outside);
@@ -3195,14 +3208,12 @@ Webflow.define('navbar', function ($, _) {
     var menuHeight = data.menu.outerHeight(true);
     var menuWidth = data.menu.outerWidth(true);
     var navHeight = data.el.height();
-    var direction = /left$/.test(animation) ? -1 : 1;
-    var animOver = /^over/.test(animation);
 
     // Over left/right
-    if (animOver) {
+    if (config.animOver) {
       tram(data.menu)
         .add(transConfig)
-        .start({ x: menuWidth * direction }).then(complete);
+        .start({ x: menuWidth * config.animDirect }).then(complete);
       return;
     }
 
@@ -3235,7 +3246,7 @@ Webflow.define('navbar', function ($, _) {
  * ----------------------------------------------------------------------
  * Webflow: Dropdown component
  */
-Webflow.define('dropdown', function ($, _) {
+Webflow.define('dropdown', function($, _) {
   'use strict';
 
   var api = {};
@@ -3245,7 +3256,9 @@ Webflow.define('dropdown', function ($, _) {
   var designer;
   var inApp = Webflow.env();
   var namespace = '.w-dropdown';
-  var dropdownOpen = 'w--dropdown-open';
+  var stateOpen = 'w--open';
+  var closeEvent = 'w-close' + namespace;
+  var ix = Webflow.ixEvents();
 
   // -----------------------------------
   // Module methods
@@ -3269,10 +3282,11 @@ Webflow.define('dropdown', function ($, _) {
     // Store state in data
     var data = $.data(el, namespace);
     if (!data) data = $.data(el, namespace, { open: false, el: $el, config: {} });
-    data.list = $el.find('.w-dropdown-list');
-    data.toggle = $el.find('.w-dropdown-toggle');
-    data.links = data.list.find('.w-dropdown-link');
+    data.list = $el.children('.w-dropdown-list');
+    data.toggle = $el.children('.w-dropdown-toggle');
+    data.links = data.list.children('.w-dropdown-link');
     data.outside = outside(data);
+    data.complete = complete(data);
 
     // Remove old events
     $el.off(namespace);
@@ -3281,44 +3295,92 @@ Webflow.define('dropdown', function ($, _) {
     // Set config from data attributes
     configure(data);
 
-    if (data.nav) {
-      data.nav.off(namespace);
-    }
+    if (data.nav) data.nav.off(namespace);
     data.nav = $el.closest('.w-nav');
-    data.nav.on('w-close' + namespace, close.bind(null, data));
+    data.nav.on(closeEvent, handler(data));
 
     // Add events based on mode
     if (designer) {
       $el.on('setting' + namespace, handler(data));
     } else {
       data.toggle.on('tap' + namespace, toggle(data));
+      $el.on(closeEvent, handler(data));
+      // Close in preview mode
+      inApp && close(data);
     }
   }
 
   function configure(data) {
-    var config = {};
-
-    var easing = data.el.attr('data-easing') || 'ease';
-    var easing2 = data.el.attr('data-easing2') || 'ease';
-
-    var duration = data.el.attr('data-duration');
-    duration = duration != null ? +duration : 400;
-
-    config.immediate = duration < 1;
-    config.open = 'height ' + duration + 'ms ' + easing;
-    config.close = 'height ' + duration + 'ms ' + easing2;
-
-    // Store config in data
-    data.config = config;
+    data.config = {
+      hover: +data.el.attr('data-hover'),
+      delay: +data.el.attr('data-delay') || 0
+    };
   }
 
   function handler(data) {
-    return function (evt, options) {
+    return function(evt, options) {
       options = options || {};
-      configure(data);
-      options.open === true && open(data, true);
-      options.open === false && close(data, true);
+
+      if (evt.type == 'w-close') {
+        return close(data);
+      }
+
+      if (evt.type == 'setting') {
+        configure(data);
+        options.open === true && open(data, true);
+        options.open === false && close(data, true);
+        return;
+      }
     };
+  }
+
+  function toggle(data) {
+    return _.debounce(function(evt) {
+      data.open ? close(data) : open(data);
+    });
+  }
+
+  function open(data, immediate) {
+    if (data.open) return;
+    closeOthers(data);
+    data.open = true;
+    data.list.addClass(stateOpen);
+    data.toggle.addClass(stateOpen);
+    ix.intro(0, data.el[0]);
+
+    // Listen for tap outside events
+    if (!designer) $doc.on('tap' + namespace, data.outside);
+
+    // Clear previous delay
+    window.clearTimeout(data.delayId);
+  }
+
+  function close(data, immediate) {
+    if (!data.open) return;
+    data.open = false;
+    var config = data.config;
+    ix.outro(0, data.el[0]);
+
+    // Stop listening for tap outside events
+    $doc.off('tap' + namespace, data.outside);
+
+    // Clear previous delay
+    window.clearTimeout(data.delayId);
+
+    // Skip delay during immediate
+    if (!config.delay || immediate) return data.complete();
+
+    // Optionally wait for delay before close
+    data.delayId = window.setTimeout(data.complete, config.delay);
+  }
+
+  function closeOthers(data) {
+    var self = data.el[0];
+    $dropdowns.each(function(i, other) {
+      var $other = $(other);
+      if ($other.is(self) || $other.has(self).length) return;
+      $other.triggerHandler(closeEvent);
+    });
   }
 
   function outside(data) {
@@ -3326,67 +3388,21 @@ Webflow.define('dropdown', function ($, _) {
     if (data.outside) $doc.off('tap' + namespace, data.outside);
 
     // Close menu when tapped outside
-    return _.debounce(function (evt) {
+    return _.debounce(function(evt) {
       if (!data.open) return;
-      var dropdown = $(evt.target).closest(namespace);
-      if (!data.el.is(dropdown)) {
+      var $target = $(evt.target);
+      if ($target.closest('.w-dropdown-toggle').length) return;
+      if (!data.el.is($target.closest(namespace))) {
         close(data);
       }
     });
   }
 
-  function toggle(data) {
-    return _.debounce(function (evt) {
-      data.open ? close(data) : open(data);
-    });
-  }
-
-  function open(data, immediate) {
-    if (data.open) return;
-    data.open = true;
-    data.el.addClass(dropdownOpen);
-    var config = data.config;
-
-    // Listen for tap outside events
-    if (!designer) $doc.on('tap' + namespace, data.outside);
-
-    // No transition for immediate
-    if (config.immediate || immediate) {
-      tram(data.list).set({ height: 'auto' });
-      return;
-    }
-
-    // Wait for CSS display, then transition height
-    tram(data.list)
-      .add(config.open)
-      .set({ height: 0 })
-      .wait(1)
-      .then({ height: 'auto' });
-  }
-
-  function close(data, immediate) {
-    data.open = false;
-    var config = data.config;
-
-    // Stop listening for tap outside events
-    $doc.off('tap' + namespace, data.outside);
-
-    // Stop transition and reset for immediate
-    if (config.immediate || immediate) {
-      tram(data.list).stop();
-      complete();
-      return;
-    }
-
-    // Transition height closed
-    tram(data.list)
-      .add(config.close)
-      .start({ height: 0 })
-      .then(complete);
-
-    function complete() {
-      data.el.removeClass(dropdownOpen);
-    }
+  function complete(data) {
+    return function() {
+      data.list.removeClass(stateOpen);
+      data.toggle.removeClass(stateOpen);
+    };
   }
 
   // Export module
@@ -3396,7 +3412,7 @@ Webflow.define('dropdown', function ($, _) {
  * ----------------------------------------------------------------------
  * Webflow: Tabs component
  */
-Webflow.define('tabs', function ($, _) {
+Webflow.define('tabs', function($, _) {
   'use strict';
 
   var api = {};
@@ -3412,7 +3428,7 @@ Webflow.define('tabs', function ($, _) {
   var namespace = '.w-tabs';
   var linkCurrent = 'w--current';
   var tabActive = 'w--tab-active';
-  var ix = Webflow.require('ix').events;
+  var ix = Webflow.ixEvents();
 
   // -----------------------------------
   // Module methods
@@ -3481,7 +3497,7 @@ Webflow.define('tabs', function ($, _) {
   }
 
   function linkSelect(data) {
-    return function (evt) {
+    return function(evt) {
       var tab = evt.currentTarget.getAttribute(tabAttr);
       tab && changeTab(data, { tab: tab });
     };
@@ -3499,7 +3515,7 @@ Webflow.define('tabs', function ($, _) {
     data.current = tab;
 
     // Select the current link
-    data.links.each(function (i, el) {
+    data.links.each(function(i, el) {
       var $el = $(el);
       if (el.getAttribute(tabAttr) === tab) $el.addClass(linkCurrent).each(ix.intro);
       else if ($el.hasClass(linkCurrent)) $el.removeClass(linkCurrent).each(ix.outro);
@@ -3508,7 +3524,7 @@ Webflow.define('tabs', function ($, _) {
     // Find the new tab panes and keep track of previous
     var targets = [];
     var previous = [];
-    data.panes.each(function (i, el) {
+    data.panes.each(function(i, el) {
       var $el = $(el);
       if (el.getAttribute(tabAttr) === tab) {
         targets.push(el);
@@ -3570,5 +3586,12 @@ Webflow.define('tabs', function ($, _) {
  */
 Webflow.require('ix').init([
   {"slug":"hover","name":"hover","value":{"style":{},"triggers":[{"type":"hover","loopA":true,"stepsA":[{"wait":500,"transition":"transform 500ms ease 0ms","rotate":"-20deg"}],"stepsB":[{"transition":"transform 500ms ease 0ms","rotate":"0deg"}]}]}},
-  {"slug":"over","name":"over","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}}
+  {"slug":"over","name":"over","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}},
+  {"slug":"click-show","name":"click show","value":{"style":{},"triggers":[{"type":"click","selector":".infobox","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-hide","name":"click hide","value":{"style":{},"triggers":[{"type":"click","selector":".infobox","stepsA":[{"title":"Infobox Show","display":"none","opacity":1,"height":"600px","wait":500,"transition":"opacity 500ms ease 0ms, height 500ms ease-in 0ms"}],"stepsB":[]}]}},
+  {"slug":"click-show-current","name":"click show current","value":{"style":{},"triggers":[{"type":"click","selector":".currentinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-show-pending","name":"click show pending","value":{"style":{},"triggers":[{"type":"click","selector":".pendinginfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-show-rejected","name":"click show rejected","value":{"style":{},"triggers":[{"type":"click","selector":".rejectedinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-show-expired","name":"click show expired","value":{"style":{},"triggers":[{"type":"click","selector":".expiredinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-hide-info","name":"click hide info","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"title":"Infobox Show","display":"none","opacity":1,"height":"600px","wait":500,"transition":"opacity 500ms ease 0ms, height 500ms ease-in 0ms"}],"stepsB":[]}]}}
 ]);

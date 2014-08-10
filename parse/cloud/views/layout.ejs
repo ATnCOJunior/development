@@ -1,18 +1,22 @@
 <html data-wf-site="53d0fce04156486e385c75ee">
 <head>
+  <% if (locals.title) { %>
+    <title>atncoJR - <%= title %></title>
+  <% } else { %>
+    <title>atncoJR</title>
+  <% } %>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="/javascripts/backbone.js"></script>
+  <script src="https://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+  <script type="text/javascript" src="/javascripts/main.js"></script>
   <meta charset="utf-8">
-  <title>atncoJR - merchant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/webflow.css">
   <link rel="stylesheet" type="text/css" href="css/atncojr.webflow.css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/underscore.js"></script>
-  <script type="text/javascript" src="javascripts/backbone.js"></script>
-  <script type="text/javascript" src="javascripts/parse.js"></script>
-  <script type="text/javascript" src="javascripts/main.js"></script>
   <script>
     WebFont.load({
       google: {
@@ -33,8 +37,8 @@
     </div>
 
 
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
- 
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </body>
 </html>

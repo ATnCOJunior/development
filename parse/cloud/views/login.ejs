@@ -1,125 +1,49 @@
-<div class="w-row bod">
-    <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav login">
-      <a class="w-inline-block nav-img" href="/">
-        <img class="logo" src="images/chef3.png" id="home" alt="53d10a5465325541683a71da_chef3.png" data-ix="over">
-      </a>
-    </div>
-    <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main">
-      <div class="head">
-        <h1 id="dining">customer</h1>
-        <div class="box fb">
-          <a class="w-clearfix w-inline-block fblogin" href="user.html">
-            <img class="image fblogin" src="images/Facebook-256.png" alt="53d204ec40c81555798414af_Facebook-256.png" data-ix="over">
-          </a>
-        </div>
-      </div>
-      <div class="head">
-        <h1 id="dining">merchant</h1>
-        <div class="box into">
-          <div class="w-row">
-            <div class="w-col w-col-6 box login _1">
-              <div class="w-form reg">
-                <form action="/signup" method="post" id="wf-form-reg" name="wf-form-reg" data-name="reg">
-                  <label for="username">Username:</label>
-                  <input class="w-input" id="email" type="text" name="username" data-name="Email" required="required">
-                  <label for="password">Password:</label>
-                  <input class="w-input" id="password" type="password" name="password" data-name="password" required="required">
-                  <input class="w-button" type="submit" value="REGISTER" data-wait="Please wait...">
-                </form>
-                <!-- <div class="w-form-done go">
-                  <p>Thank you! Your submission has been received!</p>
-                </div>
-                <div class="w-form-fail go">
-                  <p>Oops! Something went wrong &nbsp;:(</p>
-                </div> -->
-              </div>
-            </div>
-            <div class="w-col w-col-6 box login _2">
-              <div class="w-form reg">
-                <form action="/login" method="post" id="wf-form-reg" name="wf-form-reg" data-name="reg">
-                  <label for="email-2">Username:</label>
-                  <input class="w-input" id="email-2" type="text" name="username" data-name="Email 2" required="required">
-                  <label for="password-2">Password:</label>
-                  <input class="w-input" id="password-2" type="password" name="password" data-name="Password 2" required="required">
-                  <input class="w-button" type="submit" value="LOGIN" data-wait="Please wait...">
-                </form>
-<!--                 <div class="w-form-done go">
-                  <p>Thank you! Your submission has been received!</p>
-                </div>
-                <div class="w-form-fail go">
-                  <p>Oops! Something went wrong &nbsp;:(</p>
-                </div> -->
-              </div>
-            </div>
+<div class="top">
+    <a class="w-inline-block link" href="index.html">
+      <img class="centertop" src="images/Chef-Cap-256.png" alt="53e23ddab0bc15262a404c20_Chef-Cap-256.png">
+    </a>
+  </div>
+  <div class="login">
+    <div class="w-row">
+      <div class="w-col w-col-5">
+        <h1>LOGIN</h1>
+        <div class="w-form">
+          <form id="email-form" action="/login" method="post" name="email-form" data-name="Email Form">
+            <label class="label" for="name">Email</label>
+            <input class="w-input" id="name" type="text" placeholder="Enter your username" name="username" data-name="username" required="required" autofocus="autofocus">
+            <label class="label" for="Password">Password</label>
+            <input class="w-input" id="password" type="password" name="password" data-name="password" required="required" autofocus="autofocus">
+            <input class="w-button go" type="submit" value="login" data-wait="Please wait...">
+          </form>
+          <div class="w-form-done">
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail">
+            <p>Oops! Something went wrong while submitting the form :(</p>
           </div>
         </div>
       </div>
-      <div class="head"><a class="w-inline-block nav-img" href="#"><h6>admin</h6></a>
+      <div class="w-col w-col-2">
+        <div>
+          <br>&nbsp;</div>
       </div>
-    </div>
-  </div>
-
-
-<!-- 
-<div class="w-row div">
-  <div class="w-col w-col-4 user" data-ix="hover-user">
-    <div class="w-container container">
-      <div class="user-login facebook">
-        <div class="text" id="user-login">facebook login</div>
-        <img class="img" src="images/facebook.png" width="40" alt="53b62c71e05702c711d00d66_facebook.png">
-      </div>
-    </div>
-  </div>
-  <div class="w-col w-col-4 merchant" data-ix="hover-merchant">
-    <div class="w-container container">
-      <div class="merchant-login normal">
-        <div class="text" id="merchant-login">merchant login</div>
-        <div class="text error" id="merchant-login">- error? –</div>
-      </div>
-      <div class="w-form merchant-login">
-        <form action="/login" method="post" id="email-form" name="email-form" data-name="Email Form">
-          <label for="merchant-id">ID:</label>
-          <input class="w-input" id="merchant-id" type="text" placeholder="Enter your ID" name="username" data-name="merchant ID" required="required">
-          <label for="password-2">Password</label>
-          <input class="w-input" id="password-2" type="password" placeholder="Enter your password" name="password" data-name="Password 2" required="required">
-          <input class="w-button" type="submit" value="Submit" data-wait="Please wait...">
-        </form>
-        <div class="w-form-done">
-          <p>Thank you! Your submission has been received!</p>
-        </div>
-        <div class="w-form-fail">
-          <p>Oops! Something went wrong while submitting the form :(</p>
+      <div class="w-col w-col-5">
+        <h1>REGISTER</h1>
+        <div class="w-form">
+          <form id="email-form-2" action="/signup" method="post" name="email-form-2" data-name="Email Form 2">
+            <label class="label" for="name-2">Email</label>
+            <input class="w-input" id="username" type="text" placeholder="Enter your email address" name="name" data-name="Name 2" required="required" autofocus="autofocus">
+            <label class="label" for="email-2">Password</label>
+            <input class="w-input" id="password" type="password" name="email" data-name="Email 2" required="required" autofocus="autofocus">
+            <input class="w-button go" type="submit" value="register" data-wait="Please wait...">
+          </form>
+          <div class="w-form-done">
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail">
+            <p>Oops! Something went wrong while submitting the form :(</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="w-col w-col-4 merchant register">
-    <div class="w-container container">
-      <div class="merchant-login normal">
-        <div class="text" id="merchant-login">merchant registration</div>
-        <div class="text error" id="merchant-login">- error? –</div>
-      </div>
-      <div class="w-form merchant-login">
-        <form action="/signup" method="POST" id="email-form" name="email-form" data-name="Email Form">
-          
-          <label for="merchant-id">ID:</label>
-          <input class="w-input" id="new-merchant-id" type="text" placeholder="Enter your ID" name="username" data-name="username" required="required">
-          
-          <label for="merchant_password">Password</label>
-          <input class="w-input" id="new-merchant-password" type="password" placeholder="Enter your password" name="password" data-name="password" required="required">
-          
-          <label for="merchant-company">Company</label>
-          <input class="w-input" id="new-merchant-company" type="text" placeholder="Enter your company" name="company" data-name="company" required="required">
-          
-          <input class="w-button" type="submit" value="Register" data-wait="Please wait...">
-        </form>
-        <div class="w-form-done">
-          <p>Thank you! Your submission has been received!</p>
-        </div>
-        <div class="w-form-fail">
-          <p>Oops! Something went wrong while submitting the form :(</p>
-        </div>
-      </div>
-  </div>
-</div>
-</div> -->
