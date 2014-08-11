@@ -6,7 +6,7 @@ Uploader = Backbone.View.extend({
     "change input[type=file]": "upload",
     "click .upload": "showFile"
   },
-  
+
   initialize: function() {
     var self = this;
     this.fileUploadControl = this.$el.find("input[type=file]")[0];
@@ -19,7 +19,7 @@ Uploader = Backbone.View.extend({
 
   upload: function() {
     var self = this;
-    
+
     if (this.fileUploadControl.files.length > 0) {
       this.$(".upload").html("Uploading <img src='/images/spinner.gif' />");
       var file = this.fileUploadControl.files[0];
@@ -38,7 +38,11 @@ Uploader = Backbone.View.extend({
           },
           title: self.$("[name=title]").val()
         }, function(data) {
-          window.location.href = "/i/" + data.id;
+          if (data.error) {
+            console.log(data.error);
+          } else {
+            window.location.href = "/i/" + data.id;
+          }
         });
       });
     } else {
@@ -51,7 +55,6 @@ Uploader = Backbone.View.extend({
 
 
 
-
 $(function() {
   // Make all of special links magically post the form
   // when it has a particular data-action associated
@@ -60,4 +63,63 @@ $(function() {
     el.closest("form").submit();
     return false;
   });
+
+  $('.like').click(function(e) {
+    var metadataId = e.currentTarget.getAttribute('metadataid');
+
+    $.ajax({
+      type: "POST",
+      url: "https://api.parse.com/1/functions/likeImage",
+      headers: {
+        "X-Parse-Application-Id": "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3",
+        "X-Parse-REST-API-Key": "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj"
+      },
+      data: {
+        metadataId: metadataId
+      }
+    }).done(function(msg) {
+      console.log("Data Saved");
+    });
+  });
+
+  $('.share').click(function(e) {
+    var metadataId = e.currentTarget.getAttribute('metadataid');
+
+    $.ajax({
+      type: "POST",
+      url: "https://api.parse.com/1/functions/shareImage",
+      headers: {
+        "X-Parse-Application-Id": "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3",
+        "X-Parse-REST-API-Key": "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj"
+      },
+      data: {
+        metadataId: metadataId
+      }
+    }).done(function(msg) {
+      console.log("Data Saved");
+    });
+  });
 });
+
+function login() {
+  Parse.FacebookUtils.logIn("public_profile, email, user_friends", {
+    success: function(user) {
+      window.location.href = "https://the-central-market.parseapp.com/user";
+    },
+    error: function(user, error) {
+      console.log(JSON.stringify(error, null, " "));
+      alert("User cancelled the facebook login or did not fully authorize");
+    }
+  });
+};
+
+function logout() {
+  Parse.FacebookUtils.logOut();
+}
+
+
+function checkPermissions() {
+  FB.api('/me/permissions', function(response) {
+    console.log(response);
+  });
+}

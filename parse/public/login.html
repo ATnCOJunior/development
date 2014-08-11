@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+</head>
+<body>
+
+  <a href="javascript:void" onclick="login()">LOG IN</a>
+  <!--fb button-->
+  <div id="fb-root"></div>
+  <!--//basic permissions that are needed for the app-->
+</body>
+
+<script>
+
+Parse.initialize("RuNUq0kD2Ei6Yud1U901YcWzvN04OClvKvYyOSIs", "tnB9EbrBdfYhEFwlgs5irmnt1OFf2UNJFjiXg9s8");
+Parse.FacebookUtils.init({
+  appId: '639663216116031',
+  status: true,
+  xfbml: true,
+  version: 'v2.0'
+});
+
+if (FB.getUserID()) {
+  window.location.href = "https://the-central-market.parseapp.com/user";
+}
+
+function login() {
+  Parse.FacebookUtils.logIn("public_profile, email, user_friends", {
+    success: function(user) {
+      window.location = "https://the-central-market.parseapp.com/user";
+    },
+    error: function(user, error) {
+      console.log(JSON.stringify(error, null, " "));
+      alert("User cancelled the facebook login or did not fully authorize");
+    }
+  });
+};
+
+</script>
+
+</html>

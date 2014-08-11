@@ -60,6 +60,25 @@ app.get('/', function(req, res) {
   // });
 });
 
+
+app.get('/user', function(req, res) {
+  var query = new Parse.Query(Image);
+  query.include("imageMetadata");
+  query.equalTo("approval", "1");
+  query.descending("createdAt");
+  query.limit(7);
+
+  query.find({
+    success: function(objects) {
+      res.render('user', {
+        images: objects,
+        user: Parse.User.current()
+      });
+    }
+  });
+});
+
+
 app.get('/latest', function(req, res) {
   // Get the ending images to show
   var query = new Parse.Query(Image);
@@ -100,7 +119,9 @@ app.get('/trending', function(req, res) {
   });
 });
 
-app.get('/upload'), function(req, res) {
+
+app.get('/upload'),
+function(req, res) {
   res.redirect('upload');
 }
 
@@ -132,7 +153,7 @@ app.get('/merchant', function(req, res) {
 
 // Admin endpoint
 app.get('/admin', function(req, res) {
-  if (Parse.User.current() && Parse.User.current().get('username')=="admin") {
+  if (Parse.User.current() && Parse.User.current().get('username') == "admin") {
     // Get the latest images to show
     var query = new Parse.Query(Image);
     query.include("imageMetadata");

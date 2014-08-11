@@ -12,7 +12,7 @@ var Image = Parse.Object.extend({
 module.exports = function() {
   var express = require('express');
   var app = express();
-  
+
   app.locals._ = require('underscore');
 
   // Creates a new image
@@ -21,7 +21,7 @@ module.exports = function() {
       var image = new Image();
       image.set("sizeOriginal", req.body.file);
       image.set("title", req.body.title);
-      image.set("approval", 0)
+      image.set("approval", "0")
 
       // Set up the ACL so everyone can read the image
       // but only the owner can have write access
@@ -35,12 +35,18 @@ module.exports = function() {
 
       // Save the image and return some info about it via json
       image.save().then(function(image) {
-        res.json({ id: image.id });
+        res.json({
+          id: image.id
+        });
       }, function(error) {
-        res.json({ error: error });
+        res.json({
+          error: error
+        });
       });
     } else {
-      res.json({ error: 'No file uploaded!' });
+      res.json({
+        error: 'No file uploaded!'
+      });
     }
   });
 
@@ -49,7 +55,7 @@ module.exports = function() {
     var query = new Parse.Query(Image);
 
     query.descending("createdAt");
-    
+
     query.find().then(function(objects) {
       res.render('image/list', {
         images: objects,
@@ -64,7 +70,7 @@ module.exports = function() {
 
     query.descending("createdAt");
     query.equalTo("user", Parse.User.current());
-    
+
     query.find().then(function(objects) {
       res.render('image/list', {
         images: objects,
@@ -81,13 +87,13 @@ module.exports = function() {
     var query = new Parse.Query(Image);
     query.equalTo("objectId", id);
     query.include("imageMetadata");
-    
+
     query.find().then(function(objects) {
       if (objects.length === 0) {
         res.send("Image not found");
       } else {
         var image = objects[0];
-        image.set("approval")=1;
+        image.set("approval", "1");
         // Update metadata on image (adds a view)
         Parse.Cloud.run('viewImage', {
           metadataId: image.get("imageMetadata").id
@@ -115,7 +121,7 @@ module.exports = function() {
     var query = new Parse.Query(Image);
     query.equalTo("objectId", id);
     query.include("imageMetadata");
-    
+
     query.find().then(function(objects) {
       if (objects.length === 0) {
         res.send("Image not found");

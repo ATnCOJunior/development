@@ -74,3 +74,33 @@ Parse.Cloud.define("viewImage", function(request, response) {
     response.error(error);
   });
 });
+
+// Does all the work to update metadata about an image upon a view
+Parse.Cloud.define("likeImage", function(request, response) {
+  // Use the master key to prevent clients from tampering with view count
+  Parse.Cloud.useMasterKey();
+  var object = new ImageMetadata;
+  object.id = request.params.metadataId;
+
+  object.increment("likes");
+  object.save().then(function() {
+    response.success();
+  }, function(error) {
+    response.error(error);
+  });
+});
+
+// Does all the work to update metadata about an image upon a view
+Parse.Cloud.define("shareImage", function(request, response) {
+  // Use the master key to prevent clients from tampering with view count
+  Parse.Cloud.useMasterKey();
+  var object = new ImageMetadata;
+  object.id = request.params.metadataId;
+
+  object.increment("shares");
+  object.save().then(function() {
+    response.success();
+  }, function(error) {
+    response.error(error);
+  });
+});
