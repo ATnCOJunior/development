@@ -99,7 +99,62 @@ $(function() {
       console.log("Data Saved");
     });
   });
+
+
+  $('.adsimg, .imgadmin').click(function(event) {
+    $('#popup-image').attr("src", event.target.src);
+  });
+
+
+
+  $('.approve').click(function(event) {
+    var metadataId = event.currentTarget.getAttribute('metadataid');
+    $.ajax({
+      type: "POST",
+      url: "https://the-central-market.parseapp.com/i/" + metadataId + "/approve",
+      headers: {
+        "X-Parse-Application-Id": "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3",
+        "X-Parse-REST-API-Key": "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj"
+      },
+      data: {
+        metadataId: metadataId
+      }
+    }).done(function(msg) {
+      console.log("Image Approve");
+    });
+    //Do POST to /:id/approve
+  });
+
+  $('.reject').click(function(event) {
+    var metadataId = event.currentTarget.getAttribute('metadataid');
+    $.ajax({
+      type: "POST",
+      url: "https://the-central-market.parseapp.com/i/" + metadataId + "/reject",
+      headers: {
+        "X-Parse-Application-Id": "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3",
+        "X-Parse-REST-API-Key": "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj"
+      },
+      data: {
+        metadataId: metadataId
+      }
+    }).done(function(msg) {
+      console.log("Image Reject");
+    });
+    //Do POST to /:id/reject
+  });
+
+  //Button in popup
+  $('#approve-button').click(function(event) {
+    //Do POST to /:id/approve
+  });
+
+  //Button in popup
+  $('#reject-button').click(function(event) {
+    //Do POST to /:id/reject
+  });
+
 });
+
 
 function login() {
   Parse.FacebookUtils.logIn("public_profile, email, user_friends", {

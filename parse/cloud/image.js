@@ -94,19 +94,61 @@ module.exports = function() {
       } else {
         var image = objects[0];
         image.set("approval", "1");
+
+        res.redirect('/admin');
+
         // Update metadata on image (adds a view)
-        Parse.Cloud.run('viewImage', {
-          metadataId: image.get("imageMetadata").id
-        }).then(function() {
-          // Render the template to show one image
-          res.render('image/show', {
-            image: image,
-            size: 'sizeNormal',
-            title: image.title()
-          });
-        }, function(error) {
-          res.send("Error: " + error);
-        });
+        
+        // Parse.Cloud.run('viewImage', {
+        //   metadataId: image.get("imageMetadata").id
+        // }).then(function() {
+        //   // Render the template to show one image
+        //   res.render('image/show', {
+        //     image: image,
+        //     size: 'sizeNormal',
+        //     title: image.title()
+        //   });
+        // }, function(error) {
+        //   res.send("Error: " + error);
+        // });
+      }
+    }, function(error) {
+      res.send("Image not found");
+    });
+  });
+
+  //Shows one image
+  app.post('/:id/reject', function(req, res) {
+    var id = req.params.id;
+
+    // Build the query to find an image by id
+    var query = new Parse.Query(Image);
+    query.equalTo("objectId", id);
+    query.include("imageMetadata");
+
+    query.find().then(function(objects) {
+      if (objects.length === 0) {
+        res.send("Image not found");
+      } else {
+        var image = objects[0];
+        image.set("approval", "-1");
+
+        res.redirect('/admin');
+
+        // Update metadata on image (adds a view)
+        
+        // Parse.Cloud.run('viewImage', {
+        //   metadataId: image.get("imageMetadata").id
+        // }).then(function() {
+        //   // Render the template to show one image
+        //   res.render('image/show', {
+        //     image: image,
+        //     size: 'sizeNormal',
+        //     title: image.title()
+        //   });
+        // }, function(error) {
+        //   res.send("Error: " + error);
+        // });
       }
     }, function(error) {
       res.send("Image not found");

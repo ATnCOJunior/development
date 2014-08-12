@@ -59,7 +59,7 @@
       <% _(images).each(function(image) { 
         if (image.get("approval")=="0"){%>
         <div class="image" data-ix="click-show-pending">
-          <img id="pending" class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
+          <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
         </div>
         <% }}); %>
       </div>
@@ -238,7 +238,7 @@
     <div class="pendinginfo" data-ix="click-hide-info">
       <div class="w-row inforow">
         <div class="w-col w-col-6 info">
-          <img class="nav-img" src="app/web/images/drink.jpg" width="208">
+          <img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
         </div>
         <div class="w-col w-col-6 info">
           <h1>Pending Promotion</h1>

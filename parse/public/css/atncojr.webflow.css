@@ -500,6 +500,12 @@ p {
   .share {
     width: 50%;
   }
+  .approve {
+    width: 50%;
+  }
+  .reject {
+    width: 50%;
+  }
   .imgnav {
     width: 100%;
     margin-bottom: 20px;
