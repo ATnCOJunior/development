@@ -3,31 +3,31 @@
   <!-- start of navigation codes -->
   <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
     <a class="w-inline-block nav-img" href="#" data-ix="over">
-      <img class="imgnav" src="images/Shape13-256.png" alt="53e2411bc9ce004b0496129b_Shape13-256.png">
+      <img class="imgnav" src="images/Shape13-256.png" >
       <h2>new</h2>
     </a>
     <a class="w-inline-block nav-img" href="#top" data-ix="over">
-      <img class="imgnav" src="images/Shape-Lightning-256.png" alt="53e24152b0bc15262a404d1a_Shape-Lightning-256.png">
+      <img class="imgnav" src="images/Shape-Lightning-256.png" >
       <h2>trending</h2>
     </a>
     <a class="w-inline-block nav-img" href="#top" data-ix="over">
-      <img class="imgnav" src="images/Race-Flag-256.png" alt="53e24167b0bc15262a404d1d_Race-Flag-256.png">
+      <img class="imgnav" src="images/Race-Flag-256.png" >
       <h2>ending</h2>
     </a>
     <a class="w-inline-block nav-img" href="#cafe" data-ix="over">
-      <img class="imgnav" src="images/Beverage-Coffee-01-256.png" alt="53e24194c9ce004b049612c4_Beverage-Coffee-01-256.png">
+      <img class="imgnav" src="images/Beverage-Coffee-01-256.png" >
       <h2>cafe</h2>
     </a>
     <a class="w-inline-block nav-img" href="#bars" data-ix="over">
-      <img class="imgnav" src="images/Beverage-Juice-02-256.png" alt="53e24185e62dd0272abc9d88_Beverage-Juice-02-256.png">
+      <img class="imgnav" src="images/Beverage-Juice-02-256.png" >
       <h2>bar</h2>
     </a>
     <a class="w-inline-block nav-img" href="#dining" data-ix="over">
-      <img class="imgnav" src="images/Cutlery-Fork-Knife-256.png" alt="53e241e5c9ce004b049612c9_Cutlery-Fork-Knife-256.png">
+      <img class="imgnav" src="images/Cutlery-Fork-Knife-256.png">
       <h2>dining</h2>
     </a>
     <a class="w-inline-block nav-img" onclick="logout()" data-ix="over">
-      <img class="imgnav" src="images/Out-256.png" alt="53e23c61c9ce004b04961144_Media-Stop-256.png">
+      <img class="imgnav" src="images/Out-256.png" >
       <h2>logout</h2>
     </a>
 
@@ -40,22 +40,27 @@
   <div class="w-col w-col-11 w-col-small-11 w-col-tiny-11 main">
     <div class="middletop">
       <a class="w-inline-block link" >
-        <img class="centertop" src="images/Chef-Cap-256.png" alt="53e23ddab0bc15262a404c20_Chef-Cap-256.png">
+        <img class="centertop" src="images/Chef-Cap-256.png">
       </a>
     </div>
 
-      <!-- start of top listing --> 
+    <!-- start of top listing --> 
     <div class="w-clearfix head">
       <h1 id="top">-</h1>
       <% _(images).each(function(image) { %>
       <div class="w-clearfix image bloc">
-        <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" alt="<%= image.get('sizeNormal').url() %>" data-ix="click-show">
-        <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-          <h4 class="count">like</h4>
-        </div>
-        <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-          <h4 class="count" data-ix="over">share</h4>
-        </div>
+        <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
+
+        <a class="like">
+          <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+            <h4 class="count">like</h4>
+          </div>
+        </a>
+        <a class="share">
+          <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+            <h4 class="count" data-ix="over">share</h4>
+          </div>
+        </a>
       </div>
       <% }); %>
     </div>
@@ -67,13 +72,18 @@
       <% _(images).each(function(image) { 
         if (image.get("category")=="cafe"){%>
         <div class="w-clearfix image bloc">
-          <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" alt="<%= image.get('sizeNormal').url() %>" data-ix="click-show">
-          <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-            <h4 class="count" data-ix="over">share</h4>
-          </div>
+          <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
+
+          <a class="like">
+            <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count">like</h4>
+            </div>
+          </a>
+          <a class="share">
+            <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count" data-ix="over">share</h4>
+            </div>
+          </a>
         </div>
         <% }}); %>
       </div>
@@ -86,13 +96,18 @@
         <% _(images).each(function(image) { 
           if (image.get("category")=="bar"){%>
           <div class="w-clearfix image bloc" >
-            <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" alt="<%= image.get('sizeNormal').url() %>" data-ix="click-show">
-            <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-              <h4 class="count">like</h4>
-            </div>
-            <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-              <h4 class="count" data-ix="over">share</h4>
-            </div>
+            <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
+
+            <a class="like">
+              <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+                <h4 class="count">like</h4>
+              </div>
+            </a>
+            <a class="share">
+              <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+                <h4 class="count" data-ix="over">share</h4>
+              </div>
+            </a>
           </div>
           <% }}); %>
         </div>
@@ -104,13 +119,18 @@
           <% _(images).each(function(image) { 
             if (image.get("category")=="dining"){%>
             <div class="w-clearfix image bloc">
-              <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" alt="<%= image.get('sizeNormal').url() %>" data-ix="click-show">
-              <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-                <h4 class="count">like</h4>
-              </div>
-              <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-                <h4 class="count" data-ix="over">share</h4>
-              </div>
+              <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480"  data-ix="click-show">
+
+              <a class="like">
+                <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+                  <h4 class="count">like</h4>
+                </div>
+              </a>
+              <a class="share">
+                <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+                  <h4 class="count" data-ix="over">share</h4>
+                </div>
+              </a>
             </div>
             <% }}); %>
           </div>
@@ -120,27 +140,26 @@
           <div class="infobox" id="info" data-ix="click-hide">
             <div class="w-row inforow" id="infobox">
               <div class="w-col w-col-6">
-                <img id="popup-image" class="adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" alt="53e084a62c60de6924047b9c_10547598_796038173770249_6562118821213318215_n.jpg"
-                data-ix="click-show">
+                <img id="popup-image" class="adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" data-ix="click-show">
               </div>
               <div class="w-col w-col-6 info">
                 <h1>Promotion Details</h1>
                 <h4>--COMPANY NAME--<br>Promotion Description<br>Promotion Duration<br>Promotion Location</h4>
                 <div class="w-container infoactive">
-                  <a class="w-inline-block infoicon" href="#bars" data-ix="over">
-                    <img class="infoimg" src="images/Shape-Heart-256.png" alt="53e3387a623986d72445d126_Shape-Heart-256.png">
+                  <a class="w-inline-block infoicon like" href="#bars" data-ix="over">
+                    <img class="infoimg" src="images/Shape-Heart-256.png">
                     <h2>like</h2>
                   </a>
-                  <a class="w-inline-block infoicon" href="#bars" data-ix="over">
-                    <img class="infoimg" src="images/Shape12-256.png" alt="53e338a5623986d72445d133_Shape12-256.png">
+                  <a class="w-inline-block infoicon share" href="#bars" data-ix="over">
+                    <img class="infoimg" src="images/Shape12-256.png">
                     <h2>share</h2>
                   </a>
                   <a class="w-inline-block infoicon" href="#bars" data-ix="over">
-                    <img class="infoimg" src="images/Shape-Diamond-256.png" alt="53e36678623986d72445d59a_Shape-Diamond-256.png">
+                    <img class="infoimg" src="images/Shape-Diamond-256.png">
                     <h2>favourite</h2>
                   </a>
                   <a class="w-inline-block infoicon" href="#bars" data-ix="over">
-                    <img class="infoimg" src="images/Shape-Spade-256.png" alt="53e33844179eab193e62ec91_Shape-Spade-256.png">
+                    <img class="infoimg" src="images/Shape-Spade-256.png">
                     <h2>visit us</h2>
                   </a>
                 </div>
