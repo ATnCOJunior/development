@@ -6,6 +6,7 @@ module.exports = function(){
 
   // Renders the signup page
   app.get('/signup', function(req, res) {
+  	console.log("wrong one");
     res.render('signup');
   });
 
@@ -14,7 +15,9 @@ module.exports = function(){
     var username = req.body.username;
     var password = req.body.password;
     var company = req.body.company;
-
+	console.log("Username:"+username);
+	console.log("password:"+password);
+	console.log("company:"+company);
     var user = new Parse.User();
     user.set('username', username);
     user.set('password', password);
@@ -24,6 +27,7 @@ module.exports = function(){
       res.redirect('/');
     }, function(error) {
       // Show the error message and let the user try again
+      console.log("error");
       res.render('login', { flash: error.message });
     });
   });

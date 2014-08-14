@@ -26,7 +26,7 @@ app.use(parseExpressCookieSession({
   fetchUser: true,
   key: 'image.sess',
   cookie: {
-    maxAge: 3600000 * 24 * 30
+    maxAge: 300000
   }
 }));
 
@@ -35,6 +35,18 @@ app.use(parseExpressCookieSession({
 app.locals._ = require('underscore');
 
 var Image = Parse.Object.extend("Image");
+
+app.get('/show', function(req, res) {
+  var query = new Parse.Query("Image");
+  query.equalTo("objectId", "U7kbDK6C8g");
+  query.find({
+    success: function(objects) {
+      res.render('show', {
+         image : objects[0].get("sizeNormal")
+      });
+    }
+  });
+});
 
 // Homepage endpoint
 app.get('/', function(req, res) {
@@ -60,7 +72,6 @@ app.get('/', function(req, res) {
   // });
 });
 
-
 app.get('/user', function(req, res) {
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
@@ -77,7 +88,6 @@ app.get('/user', function(req, res) {
     }
   });
 });
-
 
 app.get('/latest', function(req, res) {
   // Get the ending images to show
@@ -119,9 +129,7 @@ app.get('/trending', function(req, res) {
   });
 });
 
-
-app.get('/upload'),
-function(req, res) {
+app.get('/upload'), function(req, res) {
   res.redirect('upload');
 }
 
@@ -153,7 +161,7 @@ app.get('/merchant', function(req, res) {
 
 // Admin endpoint
 app.get('/admin', function(req, res) {
-  if (Parse.User.current() && Parse.User.current().get('username') == "admin") {
+  if (Parse.User.current() && Parse.User.current().get('username')=="admin") {
     // Get the latest images to show
     var query = new Parse.Query(Image);
     query.include("imageMetadata");

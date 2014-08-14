@@ -12,16 +12,21 @@ var Image = Parse.Object.extend({
 module.exports = function() {
   var express = require('express');
   var app = express();
-
+  
   app.locals._ = require('underscore');
 
   // Creates a new image
   app.post('/', function(req, res) {
     if (req.body.file) {
       var image = new Image();
+      console.log("Printing req.body.category: " + req.body.category);
+      var requestObject = req.body;
+      console.log("Printing requestObject:" + requestObject);
+      console.log("Printing JSON:" + JSON.stringify(requestObject));
       image.set("sizeOriginal", req.body.file);
       image.set("title", req.body.title);
-      image.set("approval", "0")
+      image.set("approval", 0);
+      image.set("category", req.body.category);
 
       // Set up the ACL so everyone can read the image
       // but only the owner can have write access
@@ -35,18 +40,12 @@ module.exports = function() {
 
       // Save the image and return some info about it via json
       image.save().then(function(image) {
-        res.json({
-          id: image.id
-        });
+        res.json({ id: image.id });
       }, function(error) {
-        res.json({
-          error: error
-        });
+        res.json({ error: error });
       });
     } else {
-      res.json({
-        error: 'No file uploaded!'
-      });
+      res.json({ error: 'No file uploaded!' });
     }
   });
 
@@ -55,7 +54,7 @@ module.exports = function() {
     var query = new Parse.Query(Image);
 
     query.descending("createdAt");
-
+    
     query.find().then(function(objects) {
       res.render('image/list', {
         images: objects,
@@ -70,7 +69,7 @@ module.exports = function() {
 
     query.descending("createdAt");
     query.equalTo("user", Parse.User.current());
-
+    
     query.find().then(function(objects) {
       res.render('image/list', {
         images: objects,
@@ -87,68 +86,26 @@ module.exports = function() {
     var query = new Parse.Query(Image);
     query.equalTo("objectId", id);
     query.include("imageMetadata");
-
+    
     query.find().then(function(objects) {
       if (objects.length === 0) {
         res.send("Image not found");
       } else {
         var image = objects[0];
-        image.set("approval", "1");
-
-        res.redirect('/admin');
-
+        image.set("approval")=1;
         // Update metadata on image (adds a view)
-        
-        // Parse.Cloud.run('viewImage', {
-        //   metadataId: image.get("imageMetadata").id
-        // }).then(function() {
-        //   // Render the template to show one image
-        //   res.render('image/show', {
-        //     image: image,
-        //     size: 'sizeNormal',
-        //     title: image.title()
-        //   });
-        // }, function(error) {
-        //   res.send("Error: " + error);
-        // });
-      }
-    }, function(error) {
-      res.send("Image not found");
-    });
-  });
-
-  //Shows one image
-  app.post('/:id/reject', function(req, res) {
-    var id = req.params.id;
-
-    // Build the query to find an image by id
-    var query = new Parse.Query(Image);
-    query.equalTo("objectId", id);
-    query.include("imageMetadata");
-
-    query.find().then(function(objects) {
-      if (objects.length === 0) {
-        res.send("Image not found");
-      } else {
-        var image = objects[0];
-        image.set("approval", "-1");
-
-        res.redirect('/admin');
-
-        // Update metadata on image (adds a view)
-        
-        // Parse.Cloud.run('viewImage', {
-        //   metadataId: image.get("imageMetadata").id
-        // }).then(function() {
-        //   // Render the template to show one image
-        //   res.render('image/show', {
-        //     image: image,
-        //     size: 'sizeNormal',
-        //     title: image.title()
-        //   });
-        // }, function(error) {
-        //   res.send("Error: " + error);
-        // });
+        Parse.Cloud.run('viewImage', {
+          metadataId: image.get("imageMetadata").id
+        }).then(function() {
+          // Render the template to show one image
+          res.render('image/show', {
+            image: image,
+            size: 'sizeNormal',
+            title: image.title()
+          });
+        }, function(error) {
+          res.send("Error: " + error);
+        });
       }
     }, function(error) {
       res.send("Image not found");
@@ -158,12 +115,12 @@ module.exports = function() {
   //Shows one image
   app.get('/:id', function(req, res) {
     var id = req.params.id;
-
+    console.log("/:id");
     // Build the query to find an image by id
     var query = new Parse.Query(Image);
     query.equalTo("objectId", id);
     query.include("imageMetadata");
-
+    
     query.find().then(function(objects) {
       if (objects.length === 0) {
         res.send("Image not found");

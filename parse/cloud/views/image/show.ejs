@@ -14,7 +14,7 @@
   <div class="outer">
     <div class="image">
       <h1><%= image.title() %></h1>
-      <a href="<%= image.get('sizeNormal').url() %>">
+      <a href="<%= image.get('sizeOriginal').url() %>">
         <img src="<%= image.get(size).url() %>" />
       </a>
     </div>
@@ -37,7 +37,7 @@
 
 <!-- 
 <div class="right_panel">
-  <input value="<%= image.get('sizeNormal').url() %>" />
+  <input value="<%= image.get('sizeOriginal').url() %>" />
   <p>Full size image url</p>
 
   <input value="<%= image.get('sizeNormal').url() %>" />
@@ -52,7 +52,7 @@
   <div class="outer">
     <div class="image">
       <h1><%= image.title() %></h1>
-      <a href="<%= image.get('sizeNormal').url() %>">
+      <a href="<%= image.get('sizeOriginal').url() %>">
         <img src="<%= image.get(size).url() %>" />
       </a>
     </div>
