@@ -24,12 +24,22 @@ function FacebookMod(facebookId) {
 			success: function(user) {
 
 				if (!user.existed()){ //sign up as new user
-                    self.currentUserInfo();
-					window.location.href = "/user";
+                    self.currentUserInfo(function(status) {
+						if (status) {
+							window.location.href = "/user";
+						} else {
+							alert("Login Failed");
+							window.location.href = "/";
+						}
+					});
 					
 				} else { //response is null or have error
-					self.currentUserInfo();
-					window.location.href = "/user"
+					if (status) {
+						window.location.href = "/user";
+					} else {
+						alert("Login Failed");
+						window.location.href = "/";
+					}
 				}					
 
 			},
@@ -40,23 +50,20 @@ function FacebookMod(facebookId) {
 		});
 	}, 
 	
-	this.currentUserInfo = function() {
+	this.currentUserInfo = function(callback) {
 		var self = this;
 		FB.api('/me', function(userInfo){
 			FB.api('/me/picture', function(imageURL){
 				userInfo.data = imageURL.data;
 				
-				FB.api('me/permissions', function(permissionList) {
-					console.log(JSON.stringify(permissionList));
+				self.insertUser(Parse.User.current(), userInfo, function(status) {
+					callback(status);
 				});
-				
-				self.insertUser(Parse.User.current(), userInfo);
 			});
-		
 		});
 	},
 	
-	this.insertUser = function(user, userInfo) {
+	this.insertUser = function(user, userInfo, callback) {
 	
 		user.save(null, {
 			success: function(user) {
@@ -70,6 +77,10 @@ function FacebookMod(facebookId) {
 				user.set('points', 0);
 				
 				user.save();
+				callback(true);
+			}, 
+			error: function (user, error) {
+				callback(false);
 			}
 		});
 	},
