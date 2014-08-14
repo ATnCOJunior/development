@@ -20,18 +20,16 @@ function FacebookMod(facebookId) {
 	this.login = function() {
 		this.init();
 		var self = this;
-		Parse.FacebookUtils.logIn("public_profile, email, user_friends", {
+		Parse.FacebookUtils.logIn("public_profile, email, user_friends, publish_actions", {
 			success: function(user) {
-				console.log(JSON.stringify(user));	
-				
+
 				if (!user.existed()){ //sign up as new user
-				
                     self.currentUserInfo();
-					//user.set
+					window.location.href = "/user";
 					
 				} else { //response is null or have error
 					self.currentUserInfo();
-					//window.location.href = "/user";
+					window.location.href = "/user"
 				}					
 
 			},
@@ -47,6 +45,11 @@ function FacebookMod(facebookId) {
 		FB.api('/me', function(userInfo){
 			FB.api('/me/picture', function(imageURL){
 				userInfo.data = imageURL.data;
+				
+				FB.api('me/permissions', function(permissionList) {
+					console.log(JSON.stringify(permissionList));
+				});
+				
 				self.insertUser(Parse.User.current(), userInfo);
 			});
 		
@@ -54,9 +57,7 @@ function FacebookMod(facebookId) {
 	},
 	
 	this.insertUser = function(user, userInfo) {
-		console.log(userInfo);
-		console.log("insertUser" + user.get("username"));
-		
+	
 		user.save(null, {
 			success: function(user) {
 				user.set("emailaddress", userInfo.email);
