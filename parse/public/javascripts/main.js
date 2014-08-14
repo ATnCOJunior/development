@@ -1,6 +1,6 @@
-var appid = "dZDzsJP9gXfCgZyTD4oYq2lJ107NipEBnhDNm8ao";
-var jsKey = "zTMtXXzOtVIt8S417svqxZDS6FdqQL1sxWVVekCg";
-var restAPIKey = "pLl71HB63Mp4c8t1xXVXWMkxSIgPMazgR5XpGAmz";
+var appid = "XVfNr8pF9uaLF64Zb46pZq8vdTVQNa7d2AQpnLDA";
+var jsKey = "RzxNcEmNu58TsTaWMNw67XR1jujfhZbELJLhH735";
+var restAPIKey = "Yv8NZPtgtkeoXrcbrlgbp9UXGDlFMSNoKYMouQcw";
 var facebookMod = new FacebookMod("616634265075181");
 
 $(function() {
