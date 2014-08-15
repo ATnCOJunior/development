@@ -9,12 +9,15 @@ var SMALL_WIDTH = 110;
 // Resize image into various sizes before saving
 Parse.Cloud.beforeSave("Image", function(req, res) {
   var original = req.object.get('sizeOriginal');
-
+  console.log("beforeSave:"+req.object);
   Parse.Promise.as().then(function() {
+    var im = new ImageMetadata;
     // Create an image metadata object on creation
-    if (req.object.isNew()) {
-      var im = new ImageMetadata;
+    if (req.object.isNew() && req.object.get('imageMetadata') == undefined) {
       im.set("views", 0);
+      return im.save();
+    }else{
+      im = req.object.get('imageMetadata');
       return im.save();
     }
   }).then(function(im) {
@@ -33,9 +36,9 @@ Parse.Cloud.beforeSave("Image", function(req, res) {
     }
 
     // Don't set blank titles
-    if (req.object.get("title").length === 0) {
-      req.object.unset("title");
-    }
+    // if (req.object.get("title").length === 0) {
+    //   req.object.unset("title");
+    // }
 
     // Resize to a normal "show" page image size  
     return resizeImageKey({
@@ -68,6 +71,65 @@ Parse.Cloud.define("viewImage", function(request, response) {
   object.id = request.params.metadataId;
 
   object.increment("views");
+  object.save().then(function() {
+    response.success();
+  }, function(error) {
+    response.error(error);
+  });
+});
+
+// Does all the work to update metadata about an image upon a view
+Parse.Cloud.define("likeImage", function(request, response) {
+  // Use the master key to prevent clients from tampering with view count
+  Parse.Cloud.useMasterKey();
+  var object = new ImageMetadata;
+  object.id = request.params.metadataId;
+
+  object.increment("likes");
+  object.save().then(function() {
+    response.success();
+  }, function(error) {
+    response.error(error);
+  });
+});
+
+// Does all the work to update metadata about an image upon a view
+Parse.Cloud.define("shareImage", function(request, response) {
+  // Use the master key to prevent clients from tampering with view count
+  Parse.Cloud.useMasterKey();
+  var object = new ImageMetadata;
+  object.id = request.params.metadataId;
+
+  object.increment("shares");
+  object.save().then(function() {
+    response.success();
+  }, function(error) {
+    response.error(error);
+  });
+});
+
+// Does all the work to update metadata about an image upon a view
+Parse.Cloud.define("approveImage", function(request, response) {
+  // Use the master key to prevent clients from tampering with view count
+  Parse.Cloud.useMasterKey();
+  var object = new ImageMetadata;
+  object.id = request.params.metadataId;
+
+  object.set("approval", "1");
+  object.save().then(function() {
+    response.success();
+  }, function(error) {
+    response.error(error);
+  });
+});
+
+Parse.Cloud.define("rejectImage", function(request, response) {
+  // Use the master key to prevent clients from tampering with view count
+  Parse.Cloud.useMasterKey();
+  var object = new ImageMetadata;
+  object.id = request.params.metadataId;
+
+  object.set("approval", "-1");
   object.save().then(function() {
     response.success();
   }, function(error) {

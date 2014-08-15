@@ -1,52 +1,43 @@
 <div class="w-row bod">
-
-  <!-- disallow user from directly accessing this page -->
-  <% if (!Parse.User.current()) { %>
-  res.render("home")
-  <% }; %>
-
   <!-- start of navigation codes -->
   <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
     <a class="w-inline-block nav-img" href="#current" data-ix="over">
-      <img class="imgnav" src="images/Media-Play-256.png" >
+      <img class="imgnav" src="images/Media-Play-256.png" alt="53e23c27b0bc15262a404bc8_Media-Play-256.png">
       <h2 data-ix="over">current</h2>
     </a>
     <a class="w-inline-block nav-img" href="#pending" data-ix="over">
-      <img class="imgnav" src="images/Media-Pause-256.png" >
+      <img class="imgnav" src="images/Media-Pause-256.png" alt="53e23c3ae62dd0272abc9d07_Media-Pause-256.png">
       <h2 data-ix="over">pending</h2>
     </a>
     <a class="w-inline-block nav-img" href="#declined" data-ix="over">
-      <img class="imgnav" src="images/Media-End-256.png" >
+      <img class="imgnav" src="images/Media-End-256.png" alt="53e23c52b0bc15262a404bcf_Media-End-256.png">
       <h2 data-ix="over">rejected</h2>
     </a>
     <a class="w-inline-block nav-img" href="#expired" data-ix="over">
-      <img class="imgnav" src="images/Media-Stop-256.png" >
+      <img class="imgnav" src="images/Media-Stop-256.png" alt="53e23c61c9ce004b04961144_Media-Stop-256.png">
       <h2 data-ix="over">expired</h2>
     </a>
-    <a class="w-inline-block nav-img" href="#expired" data-ix="over">
-      <img class="imgnav" src="images/Out-256.png" >
+    <a class="w-inline-block nav-img" href="/logout" data-ix="over">
+      <img class="imgnav" src="images/Out-256.png" alt="53e23c61c9ce004b04961144_Media-Stop-256.png">
       <h2 data-ix="over">logout</h2>
     </a>
   </div>
   <!-- end of navigation codes -->
 
   <!-- start of main body codes -->
-
-
-
   <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main-merchant">
    <div class="middletop">
     <a class="w-inline-block link" >
-      <img class="centertop" src="images/Chef-Cap-256.png">
+      <img class="centertop" src="images/Chef-Cap-256.png" alt="53e23ddab0bc15262a404c20_Chef-Cap-256.png">
     </a>
   </div>
   <!-- start of current listing - showing images with approval setting 1 -->
   <div class="w-clearfix head">
     <h1 id="current">CURRENT</h1>
     <% _(images).each(function(image) { 
-      if (image.get("approval")=="1"){%>
+      if (image.get("imageMetadata").get("approval")=="1"){%>
       <div class="image" data-ix="click-show-current">
-        <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" data-ix="over">
+        <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
       </div>
       <% }}); %>
     </div>
@@ -57,9 +48,9 @@
     <div class="w-clearfix head">
       <h1 id="pending">PENDING</h1>
       <% _(images).each(function(image) { 
-        if (image.get("approval")=="0"){%>
+        if (image.get("imageMetadata").get("approval")=="0"){%>
         <div class="image" data-ix="click-show-pending">
-          <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" data-ix="over">
+          <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
         </div>
         <% }}); %>
       </div>
@@ -69,9 +60,9 @@
       <div class="w-clearfix head">
         <h1 id="declined">REJECTED</h1>
         <% _(images).each(function(image) { 
-          if (image.get("approval")=="-1"){%>
+          if (image.get("imageMetadata").get("approval")=="-1"){%>
           <div class="image" data-ix="click-show-pending">
-            <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" data-ix="over">
+            <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
           </div>
           <% }}); %>
         </div>
@@ -81,9 +72,9 @@
         <div class="w-clearfix head">
           <h1 id="expired">EXPIRED</h1>
           <% _(images).each(function(image) { 
-            if (image.get("approval")=="2"){%>
+            if (image.get("imageMetadata").get("approval")=="2"){%>
             <div class="image" data-ix="click-show-expired">
-              <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" data-ix="over">
+              <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
             </div>
             <% }}); %>
           </div>
@@ -94,7 +85,7 @@
             <h1 id="pay">PAYMENT</h1>
             <div class="payment">
               <div class="w-container payment-embed">
-                <img src="images/payflow-iframe-1.png">
+                <img src="images/payflow-iframe-1.png" alt="53e5cb1e8300c9c1489b8eae_payflow-iframe-1.png">
               </div>
             </div>
           </div>
@@ -105,17 +96,17 @@
             <h1 id="profile">PROFILE</h1>
             <div class="profile">
               <div class="w-form">
-                <form id="wf-form-upload" name="wf-form-upload" data-name="upload">
+                <form action="/update" method="post" id="wf-form-upload" name="wf-form-upload" data-name="upload">
                   <label for="company-name">Company Name</label>
-                  <input class="w-input field" id="company-name" type="text" name="company-name" data-name="company name" required="required" autofocus="autofocus">
+                  <input class="w-input field" id="company-name" type="text" name="company-name" value="<%=Parse.User.current().get("company")%>" data-name="company name" required="required" autofocus="autofocus">
                   <label for="email">Email</label>
-                  <input class="w-input" id="email" type="email" name="email" data-name="email" required="required" autofocus="autofocus">
+                  <input class="w-input" id="email" type="email" name="email" value="<%=Parse.User.current().get("email")%>" data-name="email" required="required" autofocus="autofocus">
                   <label for="site">Website</label>
-                  <input class="w-input" id="site" type="email" name="site" data-name="site" required="required" autofocus="autofocus">
+                  <input class="w-input" id="site" type="text" name="website" value="<%=Parse.User.current().get("website")%>" data-name="site" required="required" autofocus="autofocus">
                   <label for="social-media-Site">Social Media Site</label>
-                  <input class="w-input" id="social-media-Site" type="email" name="social-media-Site" data-name="social media Site" required="required" autofocus="autofocus">
+                  <input class="w-input" id="social-media-Site" type="text" name="social-media-Site" value="<%=Parse.User.current().get("social")%>" data-name="social media Site" required="required" autofocus="autofocus">
                   <label for="description">Company Description</label>
-                  <textarea class="w-input" id="description" name="description" data-name="description" required="required" autofocus="autofocus"></textarea>
+                  <input class="w-input" id="description" type="text" name="desc" value="<%=Parse.User.current().get("desc")%>" data-name="description" required="required" autofocus="autofocus"></input>
                   <input class="w-button" type="submit" value="update" data-wait="Please wait..." data-ix="over">
                 </form>
                 <div class="w-form-done msg upload">
@@ -172,11 +163,11 @@
                   <label for="category">Category</label>
                   <input class="w-input" id="category" type="text" placeholder="What is your promotion category/ keyword" name="category" data-name="category" required="required" autofocus="autofocus">
                   <label for="expiry">Expiry date</label>
-                  <input class="w-input" id="expiry" type="email" placeholder="Please enter your promotion validity period in DDMMYYY" name="Expiry" data-name="Expiry" required="required" autofocus="autofocus">
+                  <input class="w-input" id="expiry" type="date" placeholder="Please enter your promotion validity period in DDMMYYY" name="expiry" data-name="Expiry" required="required" autofocus="autofocus">
                   <label for="Location">Label</label>
-                  <input class="w-input" id="Location" type="text" placeholder="Please provide location information or URL to your direction page" name="Location" required="required" autofocus="autofocus" data-name="Location">
+                  <input class="w-input" id="Location" type="text" placeholder="Please provide location information or URL to your direction page" name="location" required="required" autofocus="autofocus" data-name="Location">
                   <label for="details">Promotion details</label>
-                  <textarea class="w-input" id="details" placeholder="Please provide more information about your promotion" name="details" data-name="details" required="required" autofocus="autofocus"></textarea>
+                  <textarea class="w-input" id="details" placeholder="Please provide more information about your promotion" name="desc" data-name="details" required="required" autofocus="autofocus"></textarea>
                   <input type="file" />
                   <a href="#"></a>
                   <!-- <input class="w-button" type="submit" value="upload" data-wait="Please wait..." data-ix="over"> -->
@@ -293,19 +284,19 @@
           <h5>Points per share: 4</h5>
           <div class="w-container infoactive">
             <a class="w-inline-block infoicon" href="#">
-              <img class="infoimg" src="images/Shape-Heart-256.png" >
+              <img class="infoimg" src="images/Shape-Heart-256.png" alt="Heart-256.png">
               <h2>likes<br>###</h2>
             </a>
             <a class="w-inline-block infoicon" href="#">
-              <img class="infoimg" src="images/Shape12-256.png" >
+              <img class="infoimg" src="images/Shape12-256.png" alt="share.png">
               <h2>shares<br>###</h2>
             </a>
             <a class="w-inline-block infoicon" href="#">
-              <img class="infoimg" src="images/Shape-Diamond-256.png" >
+              <img class="infoimg" src="images/Shape-Diamond-256.png" alt="Diamond-256.png">
               <h2>favourites<br>###</h2>
             </a>
             <a class="w-inline-block infoicon" href="#">
-              <img class="infoimg" src="images/Shape-Spade-256.png" >
+              <img class="infoimg" src="images/Shape-Spade-256.png" alt="Spade-256.png">
               <h2>visits<br>###</h2>
             </a>
           </div>
@@ -319,23 +310,23 @@
   <!-- start of another navigation codes -->
   <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
     <a class="w-inline-block nav-img" href="#pay" data-ix="over">
-      <img class="imgnav" src="images/Cash-256.png">
+      <img class="imgnav" src="images/Cash-256.png" alt="53e23aedb0bc15262a404b8f_Cash-256.png">
       <h2 data-ix="over">payment</h2>
     </a>
     <a class="w-inline-block nav-img" href="#profile" data-ix="over">
-      <img class="imgnav" src="images/User-Profile-256.png">
+      <img class="imgnav" src="images/User-Profile-256.png" alt="53e23a632e905e4a0425fbce_User-Profile-256.png">
       <h2 data-ix="over">profile</h2>
     </a>
     <a class="w-inline-block nav-img" href="#reports" data-ix="over">
-      <img class="imgnav" src="images/Bar-Chart-256.png">
+      <img class="imgnav" src="images/Bar-Chart-256.png" alt="53e23a4e2e905e4a0425fbcb_Bar-Chart-256.png">
       <h2 data-ix="over">reports</h2>
     </a>
     <a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
-      <img class="imgnav" src="images/Upload-256-2.png">
+      <img class="imgnav" src="images/Upload-256-2.png" alt="53e23975e62dd0272abc9ca6_Upload-256-2.png">
       <h2 data-ix="over">upload</h2>
     </a>
     <a class="w-inline-block nav-img" href="/about" data-ix="over">
-      <img class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
+      <img class="imgnav" src="images/Dialog-Box-About-256.png" alt="53e23cdac9ce004b0496114e_Dialog-Box-About-256.png" data-ix="over">
       <h2 data-ix="over">about</h2>
     </a>
   </div>

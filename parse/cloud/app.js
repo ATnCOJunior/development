@@ -26,58 +26,49 @@ app.use(parseExpressCookieSession({
   fetchUser: true,
   key: 'image.sess',
   cookie: {
-    maxAge: 300000
+    maxAge: 3600000 * 24 * 30
   }
 }));
 
 // Views
 
+
+
 app.locals._ = require('underscore');
 
+var ImageMetadata = Parse.Object.extend("ImageMetadata");
 var Image = Parse.Object.extend("Image");
-
-app.get('/show', function(req, res) {
-  var query = new Parse.Query("Image");
-  query.equalTo("objectId", "U7kbDK6C8g");
-  query.find({
-    success: function(objects) {
-      res.render('show', {
-         image : objects[0].get("sizeNormal")
-      });
-    }
-  });
-});
 
 // Homepage endpoint
 app.get('/', function(req, res) {
-  // Get the latest images to show
+  var innerQuery = new Parse.Query(ImageMetadata);
+  innerQuery.equalTo("approval", "1");
+
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
-  query.equalTo("approval", "1");
+  query.matchesQuery("imageMetadata", innerQuery);
   query.descending("createdAt");
-  query.limit(7);
-
   query.find({
     success: function(objects) {
+      var metaObjects = [];
+      for (i =0; i < objects.length; i++){
+
+        metaObjects.push(objects[i].get("imageMetadata"));
+      }
       res.render('home', {
-        images: objects
+        images: objects,
+        metaObjects: metaObjects
       });
     }
   });
-
-  // query.find().then(function(objects) {
-  //   res.render('home', {
-  //     images: objects
-  //   });
-  // });
 });
+
 
 app.get('/user', function(req, res) {
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
   query.equalTo("approval", "1");
   query.descending("createdAt");
-  query.limit(7);
 
   query.find({
     success: function(objects) {
@@ -89,50 +80,6 @@ app.get('/user', function(req, res) {
   });
 });
 
-app.get('/latest', function(req, res) {
-  // Get the ending images to show
-  var query = new Parse.Query(Image);
-
-  query.equalTo("approval", "1");
-  query.descending("createdAt");
-  query.limit(7);
-
-  query.find({
-    success: function(objects) {
-      res.render('home', {
-        images: objects
-      });
-    }
-  });
-
-  // query.find().then(function(objects) {
-  //   res.render('home', {
-  //     images: objects
-  //   });
-  // });
-});
-
-app.get('/trending', function(req, res) {
-  // Get the trending images to show
-  var query = new Parse.Query(Image);
-  query.include("imageMetadata");
-  query.equalTo("approval", "1");
-  query.descending("view");
-  query.limit(7);
-
-  query.find({
-    success: function(objects) {
-      res.render('home', {
-        images: objects
-      });
-    }
-  });
-});
-
-app.get('/upload'), function(req, res) {
-  res.redirect('upload');
-}
-
 // Merchant endpoint
 app.get('/merchant', function(req, res) {
   if (!Parse.User.current()) {
@@ -141,10 +88,9 @@ app.get('/merchant', function(req, res) {
 
   // Get the latest images to show
   var query = new Parse.Query(Image);
-  query.include("imageMetadata");
   query.equalTo("user", Parse.User.current());
+  query.include("imageMetadata");
   query.descending("createdAt");
-  query.limit(7);
 
   query.find({
     success: function(objects) {
@@ -153,20 +99,19 @@ app.get('/merchant', function(req, res) {
       });
     }
   });
+});
 
   // query.find().then(function(objects) {
   //   res.render('merchant', { images: objects });
   // });
-});
 
 // Admin endpoint
 app.get('/admin', function(req, res) {
-  if (Parse.User.current() && Parse.User.current().get('username')=="admin") {
+  if (Parse.User.current() && Parse.User.current().get('username') == "admin") {
     // Get the latest images to show
     var query = new Parse.Query(Image);
     query.include("imageMetadata");
     query.descending("createdAt");
-    query.limit(7);
 
     query.find().then(function(objects) {
       res.render('admin', {

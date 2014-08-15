@@ -4,9 +4,28 @@ module.exports = function(){
   var express = require('express');
   var app = express();
 
+  // Updates the user's profile info
+  app.post('/update', function(req, res) {
+    var user = Parse.User.current();
+
+    user.save({
+      company: req.body.company,
+      email: req.body.email,
+      website: req.body.website,
+      social: req.body.social,
+      desc: req.body.desc
+    }, {
+      success: function(user) {
+        res.redirect("/merchant");
+      },
+      error: function(user, error) {
+        res.redirect("/merchant", error);
+      }
+    });
+  });
+
   // Renders the signup page
   app.get('/signup', function(req, res) {
-  	console.log("wrong one");
     res.render('signup');
   });
 
@@ -15,19 +34,20 @@ module.exports = function(){
     var username = req.body.username;
     var password = req.body.password;
     var company = req.body.company;
-	console.log("Username:"+username);
-	console.log("password:"+password);
-	console.log("company:"+company);
+    var email = req.body.email;
+    var website = req.body.website;
+    var social = req.body.social;
+    var desc = req.body.desc;
+
     var user = new Parse.User();
     user.set('username', username);
     user.set('password', password);
-    user.set('company', company);
+    // user.set('company', company);
     
     user.signUp().then(function(user) {
       res.redirect('/');
     }, function(error) {
       // Show the error message and let the user try again
-      console.log("error");
       res.render('login', { flash: error.message });
     });
   });
@@ -51,6 +71,10 @@ module.exports = function(){
     });
   });
 
+  app.get('/logout', function(req, res) {
+    Parse.User.logOut();
+    res.redirect('/');
+  });
   // Logs out the user
   app.post('/logout', function(req, res) {
     Parse.User.logOut();
