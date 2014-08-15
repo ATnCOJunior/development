@@ -110,6 +110,10 @@ $(function() {
     $('#popup-image').attr("src", event.target.src);
   });
 
+  $('.adsimage').click(function(event) {
+    $('#companyName').text(event.target.alt);
+  });
+
   $('.approve').click(function(event) {
     var metadataId = event.currentTarget.getAttribute('metadataid');
     $.ajax({
