@@ -1,3 +1,14 @@
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=639663216116031&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="w-row bod">
 
   <!-- start of navigation codes -->
@@ -26,8 +37,8 @@
       <img class="imgnav" src="images/Cutlery-Fork-Knife-256.png" alt="DINING">
       <h2>dining</h2>
     </a>
-    <a class="w-inline-block nav-img" onclick="logout()" data-ix="over">
-      <img class="imgnav" src="images/Out-256.png" alt="LOGOUT">
+    <a class="w-inline-block nav-img" onclick="facebookMod.logout()" data-ix="over">
+      <img class="imgnav" src="images/Out-256.png" >
       <h2>logout</h2>
     </a>
 
@@ -56,7 +67,6 @@
   </div>
   <!-- end of another navigation codes -->
 
-  
   <!-- start of main body codes -->
   <div class="w-col w-col-11 w-col-small-11 w-col-tiny-11 main">
     <div class="middletop">
@@ -70,14 +80,19 @@
     <div class="w-clearfix head">
       <h1 id="top">-</h1>
       <% _(images).each(function(image) { %>
-      <div class="w-clearfix image bloc" data-ix="click-show">
-        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS>" data-ix="over">
-        <div class="like" data-ix="over">
-          <h4 class="count">like</h4>
-        </div>
-        <div class="share" data-ix="over">
-          <h4 class="count">share</h4>
-        </div>
+      <div class="w-clearfix image bloc">
+        <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
+
+        <a class="like">
+          <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+            <h4 class="count">like</h4>
+          </div>
+        </a>
+        <a class="share">
+          <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+            <h4 class="count" data-ix="over">share</h4>
+          </div>
+        </a>
       </div>
       <% }); %>
     </div>
@@ -87,19 +102,27 @@
     <div class="w-clearfix head">
       <h1 id="cafe">CAFE</h1>
       <% _(images).each(function(image) { 
-        var imageMetadata = image.get('imageMetadata');
-        if (imageMetadata.get("category")==="cafe"){%>
-        <div class="w-clearfix image bloc" data-ix="click-show">
-          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="over">
-          <div class="like" data-ix="over">
-            <h4 class="count">like</h4>x
+        if (image.get("category")=="cafe"){%>
+        <div class="w-clearfix image bloc">
+          <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
+
+
+          <div class="like"  id="OMG" data-ix="over" metadataId="<%= image.get("imageMetadata").id %>">
+            <h4 class="count">like
+              <div class="fb-like"  data-href="https://13aug.parseapp.com/images/10488385_796036830437050_8365621372246261421_n.jpg" data-layout="button" data-action="like" data-show-faces="false" data-share="false">
+              </div>
+            </h4>
           </div>
-          <div class="share" data-ix="over">
-            <h4 class="count">share</h4>
+          <div class="share" data-ix="over" metadataId="<%= image.get("imageMetadata").id %>">
+            <h4 class="count" data-ix="over">share
+              <div class="fb-share-button" onclick="facebookMod.feed('#')">
+              </div>
+            </h4>
           </div>
+
         </div>
-        <% }
-      }); %>
+      </div>
+      <% }}); %>
     </div>
     <!-- end of cafe listing -->
 
@@ -112,70 +135,88 @@
         if (imageMetadata.get("category")==="bar"){%>
         <div class="w-clearfix image bloc" data-ix="click-show">
           <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="over">
-          <div class="like" data-ix="over">
-            <h4 class="count">like</h4>
-          </div>
-          <div class="share" data-ix="over">
-            <h4 class="count">share</h4>
-          </div>
+
+          <a class="like">
+            <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count">like</h4>
+            </div>
+          </a>
+          <a class="share">
+            <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count" data-ix="over">share</h4>
+            </div>
+          </a>
         </div>
         <% }}); %>
       </div>
-      <!-- end of top listing -->
+    </div>
+    <!-- end of bar listing -->
 
-      <!-- start of dining listing -->
-      <div class="w-clearfix head">
-        <h1 id="dining">DINING</h1>
-        <% _(images).each(function(image) { 
-          var imageMetadata = image.get('imageMetadata');
-          if (imageMetadata.get("category")==="dining"){%>
-          <div class="w-clearfix image bloc" data-ix="click-show">
-            <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="over">
-            <div class="like" data-ix="over">
+    <!-- start of dining listing -->
+    <div class="w-clearfix head">
+      <h1 id="dining">DINING</h1>
+      <% _(images).each(function(image) { 
+        var imageMetadata = image.get('imageMetadata');
+        if (imageMetadata.get("category")==="dining"){%>
+        <div class="w-clearfix image bloc" data-ix="click-show">
+          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="over">
+          <a class="like">
+            <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
               <h4 class="count">like</h4>
             </div>
-            <div class="share" data-ix="over">
-              <h4 class="count">share</h4>
+          </a>
+          <a class="share">
+            <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count" data-ix="over">share</h4>
             </div>
-          </div>
-          <% }}); %>
+          </a>
         </div>
-        <!-- end of dining listing -->
-
-        <!-- start of infobox codes -->
-        <div class="infobox" id="info" data-ix="click-hide">
-          <div class="w-row inforow" id="infobox">
-            <div class="w-col w-col-6">
-              <img id="popup-image" class="adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" 
-              data-ix="click-show">
-            </div>
-            <div class="w-col w-col-6 info">
-              <h1>Promotion Details</h1>
-              <h4>--COMPANY NAME--<br>Promotion Description<br>Promotion Duration<br>Promotion Location</h4>
-              <div class="w-container infoactive">
-                <a class="w-inline-block infoicon" href="/like" data-ix="over">
-                  <img class="infoimg" src="images/Shape-Heart-256.png">
-                  <h2>like</h2>
-                </a>
-                <a class="w-inline-block infoicon" href="/share" data-ix="over">
-                  <img class="infoimg" src="images/Shape12-256.png">
-                  <h2>share</h2>
-                </a>
-                <a class="w-inline-block infoicon" href="/fav" data-ix="over">
-                  <img class="infoimg" src="images/Shape-Diamond-256.png">
-                  <h2>favourite</h2>
-                </a>
-                <a class="w-inline-block infoicon" href="/visit" data-ix="over">
-                  <img class="infoimg" src="images/Shape-Spade-256.png">
-                  <h2>visit us</h2>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end of infobox codes -->
-
+        <% }}); %>
       </div>
-      <!-- end of main body codes -->
-
     </div>
+    <!-- end of dining listing -->
+
+        
+    <!-- start of infobox codes -->
+      <div class="infobox" id="info" data-ix="click-hide">
+        <div class="w-row inforow" id="infobox">
+          <div class="w-col w-col-6">
+            <img class="popup-image adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" 
+            data-ix="click-show">
+          </div>
+          <div class="w-col w-col-6 info">
+
+            <h1>Promotion Details</h1>
+
+            <h4>by: </h4>
+            <h4 class="companyName">--COMPANY NAME--</h4>
+            <br><h4>Description: </h4><h4 class="promoInfo">Description</h4>
+            <br><h4>Valid until: </h4><h4 class="expiry">Expiry</h4>
+            <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
+
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="/like" data-ix="over">
+              <img class="infoimg" src="images/Shape-Heart-256.png">
+              <h2>like</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="/share" data-ix="over">
+              <img class="infoimg" src="images/Shape12-256.png">
+              <h2>share</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="/fav" data-ix="over">
+              <img class="infoimg" src="images/Shape-Diamond-256.png">
+              <h2>favourite</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="/visit" data-ix="over">
+              <img class="infoimg" src="images/Shape-Spade-256.png">
+              <h2>visit us</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    <!-- end of infobox codes -->
+
+  </div>
+  <!-- end of main body codes -->
+</div>
+
