@@ -52,11 +52,19 @@ $(function() {
   });
 
 
-  $('.adsimg, .imgadmin').click(function(event) {
-    $('#popup-image').attr("src", event.target.src);
+  $('.adsimage').click(function(event) {
+    $('.popup-image').attr("src", event.target.src);
   });
 
 
+  $('.adsimage').click(function(event) {
+    var str = event.target.alt;
+    var parts = str.split(",");
+      $('.companyName').text(parts[0]);
+      $('.promoInfo').text(parts[1]);
+      $('.expiry').text(parts[2]);
+      $('.site').text(parts[3]);
+  });
 
   $('.approve').click(function(event) {
     var metadataId = event.currentTarget.getAttribute('metadataid');

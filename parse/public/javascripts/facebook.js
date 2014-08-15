@@ -1,3 +1,4 @@
+
 //In order to authenticate your app, you must pass the authorization code 
 //and your app secret to the Graph API token endpoint at 
 //https://graph.facebook.com/oauth/access_token 
@@ -181,5 +182,3 @@ function FacebookMod(facebookId) {
 
 
 };
-	
-

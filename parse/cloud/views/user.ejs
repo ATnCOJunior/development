@@ -1,13 +1,11 @@
 <div id="fb-root"></div>
 <script>
+
 $(document).ready(function(){
 	facebookMod.getUserInfo(function(resp) {
 		$("#lastName").html(resp.lastName);
 		$("#profileImage").attr("src", resp.imageURL);
 		$("#fullName").html(resp.fullName);
-		$("#email").html(resp.email);
-		$("#gender").html(resp.gender);
-		$("#linkToFb").attr("href", resp.facebookLink);
 		$("#points").html(resp.points);
 	});
 });
@@ -87,7 +85,7 @@ $(document).ready(function(){
       <p>THIS IS USER EJS</p>
       <h1 id="cafe">CAFE</h1>
       <div class="w-clearfix image bloc" data-ix="over">
-        <img class="nav-img" src="images/10488385_796036830437050_8365621372246261421_n.jpg" width="320" alt="53e08472aba9f4867d01bdff_10488385_796036830437050_8365621372246261421_n.jpg"
+        <img class="nav-img" src="https://13aug.parseapp.com/images/10488385_796036830437050_8365621372246261421_n.jpg" width="320" alt="53e08472aba9f4867d01bdff_10488385_796036830437050_8365621372246261421_n.jpg"
         data-ix="click-show">
         <div class="like"  id="OMG" data-ix="over">
           <h4 class="count">
@@ -211,27 +209,32 @@ $(document).ready(function(){
           <h2 data-ix="over"><label id="lastName">Username</label></h2><!--last name-->
         </a>
         <a class="w-inline-block nav-img" href="#pay" data-ix="over">
-          <img id="profileImage" class="imgnav" src="images/Cash-256.png">
+          <img id="profileImage" class="imgnav" src="images/Facebook-256.png">
           <h2 data-ix="over">Profile Photo</h2>
         </a>
+
         <a class="w-inline-block nav-img" href="#profile" data-ix="over">
           <img class="imgnav" src="images/User-Profile-256.png">
-          <h2 data-ix="over"><label id="fullName">Name</label></h2><!--fullName-->
+          <h2 data-ix="over"><label id="fullName">Profile</label></h2><!--fullName-->
         </a>
         <a class="w-inline-block nav-img" href="#reports" data-ix="over">
-          <img class="imgnav" src="images/Bar-Chart-256.png">
-          <h2 data-ix="over"><label id="email">Email Address</label></h2>
+          <img class="imgnav" src="images/Money-Bag-256.png">
+          <h2 data-ix="over">cashout</h2>
         </a>
         <a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
-          <img class="imgnav" src="images/Upload-256-2.png">
-          <h2 data-ix="over"><label id="gender">Gender</label></h2>
+          <img class="imgnav" src="images/Bookmark-256.png">
+          <h2 data-ix="over">favourite</h2>
+        </a>
+        <a class="w-inline-block nav-img" href="/about" data-ix="over">
+          <img class="imgnav" src="images/Message-Mail-256.png" data-ix="over">
+          <h2 data-ix="over">mailbox</h2>
         </a>
         <a class="w-inline-block nav-img" href="/about" data-ix="over">
           <img class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
-          <h2 data-ix="over"><a style="color:white" id="linkToFb" href="#">My Facebook Link<a></h2>
+          <h2 data-ix="over">about</h2>
         </a>
-        <a class="w-inline-block nav-img" href="/about" data-ix="over">
-          <img class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
+		<hr></hr>
+		<a class="w-inline-block nav-img" href="/about" data-ix="over">
           <h2 data-ix="over">Points: <label id="points">0</label></h2>
         </a>
       </div>
