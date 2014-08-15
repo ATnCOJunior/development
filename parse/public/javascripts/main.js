@@ -3,7 +3,6 @@ var jsKey = "IhkupUEOukPUx8pHGAk5qSa8rGAWiW9ZiaxfC1IU";
 var restAPIKey = "JoEBg1fjF2AnEzrReZOWw0Du6FU9H4BdiNTs2lMS";
 var facebookMod = new FacebookMod("661965090552510");
 
-
 $(function() {
   // Facebook Function Initiation
   Parse.initialize(appid, jsKey);
