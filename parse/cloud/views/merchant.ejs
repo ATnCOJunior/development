@@ -1,34 +1,10 @@
 <div class="w-row bod">
-  <!-- start of navigation codes -->
-  <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
-    <a class="w-inline-block nav-img" href="#current" data-ix="over">
-      <img class="imgnav" src="images/Media-Play-256.png" alt="53e23c27b0bc15262a404bc8_Media-Play-256.png">
-      <h2 data-ix="over">current</h2>
-    </a>
-    <a class="w-inline-block nav-img" href="#pending" data-ix="over">
-      <img class="imgnav" src="images/Media-Pause-256.png" alt="53e23c3ae62dd0272abc9d07_Media-Pause-256.png">
-      <h2 data-ix="over">pending</h2>
-    </a>
-    <a class="w-inline-block nav-img" href="#declined" data-ix="over">
-      <img class="imgnav" src="images/Media-End-256.png" alt="53e23c52b0bc15262a404bcf_Media-End-256.png">
-      <h2 data-ix="over">rejected</h2>
-    </a>
-    <a class="w-inline-block nav-img" href="#expired" data-ix="over">
-      <img class="imgnav" src="images/Media-Stop-256.png" alt="53e23c61c9ce004b04961144_Media-Stop-256.png">
-      <h2 data-ix="over">expired</h2>
-    </a>
-    <a class="w-inline-block nav-img" href="/logout" data-ix="over">
-      <img class="imgnav" src="images/Out-256.png" alt="53e23c61c9ce004b04961144_Media-Stop-256.png">
-      <h2 data-ix="over">logout</h2>
-    </a>
-  </div>
-  <!-- end of navigation codes -->
 
   <!-- start of main body codes -->
   <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main-merchant">
    <div class="middletop">
     <a class="w-inline-block link" >
-      <img class="centertop" src="images/Chef-Cap-256.png" alt="53e23ddab0bc15262a404c20_Chef-Cap-256.png">
+      <img class="centertop" src="images/Chef-Cap-256.png" alt="LOGO">
     </a>
   </div>
   <!-- start of current listing - showing images with approval setting 1 -->
@@ -37,7 +13,7 @@
     <% _(images).each(function(image) { 
       if (image.get("imageMetadata").get("approval")=="1"){%>
       <div class="image" data-ix="click-show-current">
-        <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="CURRENT" data-ix="over">
       </div>
       <% }}); %>
     </div>
@@ -50,7 +26,7 @@
       <% _(images).each(function(image) { 
         if (image.get("imageMetadata").get("approval")=="0"){%>
         <div class="image" data-ix="click-show-pending">
-          <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
+          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="PENDING" data-ix="over">
         </div>
         <% }}); %>
       </div>
@@ -62,7 +38,7 @@
         <% _(images).each(function(image) { 
           if (image.get("imageMetadata").get("approval")=="-1"){%>
           <div class="image" data-ix="click-show-pending">
-            <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
+            <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="REJECTED" data-ix="over">
           </div>
           <% }}); %>
         </div>
@@ -74,22 +50,11 @@
           <% _(images).each(function(image) { 
             if (image.get("imageMetadata").get("approval")=="2"){%>
             <div class="image" data-ix="click-show-expired">
-              <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%= image.get('sizeNormal').url() %>" data-ix="over">
+              <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="EXPIRED" data-ix="over">
             </div>
             <% }}); %>
           </div>
           <!-- end of expired listing -->
-
-          <!-- start of payment codes -->
-          <div class="head">
-            <h1 id="pay">PAYMENT</h1>
-            <div class="payment">
-              <div class="w-container payment-embed">
-                <img src="images/payflow-iframe-1.png" alt="53e5cb1e8300c9c1489b8eae_payflow-iframe-1.png">
-              </div>
-            </div>
-          </div>
-          <!-- end of payment codes -->
 
           <!-- start of profile codes -->
           <div class="head">
@@ -119,38 +84,6 @@
             </div>
           </div>
           <!-- end of profile codes -->
-
-          <!-- start of report code -->
-          <div class="head">
-            <h1 id="reports">REPORTS</h1>
-            <div class="report">
-              <div class="w-form selection">
-                <form id="wf-form-Selection" name="wf-form-Selection" data-name="Selection">
-                  <select class="w-select" id="field" name="field" required="required">
-                    <option value="">Select an ad for its report...</option>
-                    <option value="First">First Choice</option>
-                    <option value="Second">Second Choice</option>
-                    <option value="Third">Third Choice</option>
-                  </select>
-                </form>
-                <div class="w-form-done msg">
-                  <p>Thank you! Your submission has been received!</p>
-                </div>
-                <div class="w-form-fail msg">
-                  <p>Oops! Something went wrong while submitting the form :(</p>
-                </div>
-              </div>
-              <div class="w-container reportbox">
-                <div class="w-embed w-iframe embed-chart">
-                  <iframe width="800" height="400" align="middle" src="https://embed.chartblocks.com/1.0/?c=53e5b2f5c9a61d59065c27c5&amp;t=ec87462c5ee0859" frameborder="0"></iframe>
-                </div>
-              </div>
-              <div class="background">
-                <div>&nbsp;</div>
-              </div>
-            </div>
-          </div>
-          <!-- end of report codes -->
 
           <!-- start of upload codes -->
           <div class="head">
@@ -186,6 +119,49 @@
     </div>
 
     <!-- end of upload codes -->
+          <!-- start of report code -->
+          <div class="head">
+            <h1 id="reports">REPORTS</h1>
+            <div class="report">
+              <div class="w-form selection">
+                <form id="wf-form-Selection" name="wf-form-Selection" data-name="Selection">
+                  <select class="w-select" id="field" name="field" required="required">
+                    <option value="">Select an ad for its report...</option>
+                    <option value="First">First Choice</option>
+                    <option value="Second">Second Choice</option>
+                    <option value="Third">Third Choice</option>
+                  </select>
+                </form>
+                <div class="w-form-done msg">
+                  <p>Thank you! Your submission has been received!</p>
+                </div>
+                <div class="w-form-fail msg">
+                  <p>Oops! Something went wrong while submitting the form :(</p>
+                </div>
+              </div>
+              <div class="w-container reportbox">
+                <div class="w-embed w-iframe embed-chart">
+                  <iframe width="800" height="400" align="middle" src="https://embed.chartblocks.com/1.0/?c=53e5b2f5c9a61d59065c27c5&amp;t=ec87462c5ee0859" frameborder="0"></iframe>
+                </div>
+              </div>
+              <div class="background">
+                <div>&nbsp;</div>
+              </div>
+            </div>
+          </div>
+          <!-- end of report codes -->
+
+          <!-- start of payment codes -->
+          <div class="head">
+            <h1 id="pay">PAYMENT</h1>
+            <div class="payment">
+              <div class="w-container payment-embed">
+                <img src="images/payflow-iframe-1.png" alt="PAYMENT">
+              </div>
+            </div>
+          </div>
+          <!-- end of payment codes -->
+
 
 
     <!-- START OF INFO CODES -->
@@ -193,7 +169,7 @@
     <div class="currentinfo" data-ix="click-hide-info">
       <div class="w-row inforow">
         <div class="w-col w-col-6 info">
-          <img class="nav-img" src="app/web/images/drink.jpg" width="208">
+          <img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
         </div>
         <div class="w-col w-col-6 info">
           <h1>Current Promotion</h1>
@@ -253,7 +229,7 @@
     <div class="rejectedinfo" data-ix="click-hide-info">
       <div class="w-row inforow">
         <div class="w-col w-col-6 info">
-          <img class="nav-img" src="√" width="208">
+          <img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
         </div>
         <div class="w-col w-col-6 info">
           <h1>Rejected Promotion</h1>
@@ -273,7 +249,7 @@
     <div class="expiredinfo" data-ix="click-hide-info">
       <div class="w-row inforow">
         <div class="w-col w-col-6 info">
-          <img class="nav-img" src="app/web/images/drink.jpg" width="208">
+          <img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
         </div>
         <div class="w-col w-col-6 info">
           <h1>Expired Promotion</h1>
@@ -307,26 +283,50 @@
   </div>
   <!-- end of main body codes -->
 
+  <!-- start of navigation codes -->
+  <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
+    <a class="w-inline-block nav-img" href="#current" data-ix="over">
+      <img class="imgnav" src="images/Media-Play-256.png" alt="CURRENT">
+      <h2 data-ix="over">current</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#pending" data-ix="over">
+      <img class="imgnav" src="images/Media-Pause-256.png" alt="PENDING">
+      <h2 data-ix="over">pending</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#declined" data-ix="over">
+      <img class="imgnav" src="images/Media-End-256.png" alt="REJECTED">
+      <h2 data-ix="over">rejected</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#expired" data-ix="over">
+      <img class="imgnav" src="images/Media-Stop-256.png" alt="EXPIRED">
+      <h2 data-ix="over">expired</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="/logout" data-ix="over">
+      <img class="imgnav" src="images/Out-256.png" alt="LOGOUT">
+      <h2 data-ix="over">logout</h2>
+    </a>
+  </div>
+  <!-- end of navigation codes -->
   <!-- start of another navigation codes -->
   <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
-    <a class="w-inline-block nav-img" href="#pay" data-ix="over">
-      <img class="imgnav" src="images/Cash-256.png" alt="53e23aedb0bc15262a404b8f_Cash-256.png">
-      <h2 data-ix="over">payment</h2>
-    </a>
     <a class="w-inline-block nav-img" href="#profile" data-ix="over">
-      <img class="imgnav" src="images/User-Profile-256.png" alt="53e23a632e905e4a0425fbce_User-Profile-256.png">
+      <img class="imgnav" src="images/User-Profile-256.png" alt="PROFILE">
       <h2 data-ix="over">profile</h2>
     </a>
-    <a class="w-inline-block nav-img" href="#reports" data-ix="over">
-      <img class="imgnav" src="images/Bar-Chart-256.png" alt="53e23a4e2e905e4a0425fbcb_Bar-Chart-256.png">
-      <h2 data-ix="over">reports</h2>
-    </a>
     <a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
-      <img class="imgnav" src="images/Upload-256-2.png" alt="53e23975e62dd0272abc9ca6_Upload-256-2.png">
+      <img class="imgnav" src="images/Upload-256-2.png" alt="UPLOAD">
       <h2 data-ix="over">upload</h2>
     </a>
+    <a class="w-inline-block nav-img" href="#reports" data-ix="over">
+      <img class="imgnav" src="images/Bar-Chart-256.png" alt="REPORTS">
+      <h2 data-ix="over">reports</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#pay" data-ix="over">
+      <img class="imgnav" src="images/Cash-256.png" alt="PAYMENT">
+      <h2 data-ix="over">payment</h2>
+    </a>
     <a class="w-inline-block nav-img" href="/about" data-ix="over">
-      <img class="imgnav" src="images/Dialog-Box-About-256.png" alt="53e23cdac9ce004b0496114e_Dialog-Box-About-256.png" data-ix="over">
+      <img class="imgnav" src="images/Dialog-Box-About-256.png" alt="ABOUT" data-ix="over">
       <h2 data-ix="over">about</h2>
     </a>
   </div>

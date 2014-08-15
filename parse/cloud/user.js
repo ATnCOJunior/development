@@ -63,7 +63,7 @@ module.exports = function(){
       if (Parse.User.current().get('username')=="admin"){
         res.redirect('/admin');
       }else{
-        res.redirect('/merchant');
+        res.redirect('/merchant#profile');
       }
     }, function(error) {
       // Show the error message and let the user try again

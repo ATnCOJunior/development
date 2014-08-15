@@ -3,53 +3,33 @@ start of main body codes -->
 
   <div class="middletop">
     <a class="w-inline-block link" >
-      <img class="centertop" src="images/Chef-Cap-256.png" alt="53e23ddab0bc15262a404c20_Chef-Cap-256.png">
+      <img class="centertop" src="images/Chef-Cap-256.png">
     </a>
   </div>
 
   <div class="w-clearfix head pendads">
     <h1 class="adminh1" id="ads">PENDING ADS</h1>
-
     <% _(images).each(function(image) { 
-      if (image.get("imageMetadata").get("approval")=="0") {
-        %>
-        <div class="w-clearfix image" data-ix="click-show-pending">
-          <img class="imgadmin" src="<%= image.get('sizeNormal').url() %>" width="372">
+      var imageMetadata = image.get('imageMetadata');
+      if (imageMetadata.get("approval")=="0") {%>
+      <div class="w-clearfix image" data-ix="click-show">
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" data-ix="over">
+        <div class="approve">
           <form action="/i/<%=image.id%>/approve" method="post">
-            <input type="submit" value="approve" class="count">  
+            <h4> <input type="submit" value="approve" class="count"> </h4>
           </form>
+        </div>
+        <div class="reject">
           <form action="/i/<%=image.id%>/reject" method="post">
-            <input type="submit" value="reject" class="count">  
+            <h4> <input type="submit" value="reject" class="count"> </h4> 
+            <h4> <input type="text" placeholder="reasons for ads rejection" name="reject_info" required><br></h4>
           </form>
-        </div>
-        <% 
-      }
-    }); %>
-
-    <div class="pendinginfo" data-ix="click-hide-info">
-      <div class="w-row inforow">
-        <div class="w-col w-col-6 info">
-          <img id="popup-image" class="nav-img" src="images/10533753_786254331394684_4262681625243092472_n.jpg" width="372" >
-        </div>
-        <div class="w-col w-col-6 info">
-          <h1>Pending Promotion</h1>
-          <h4>Promotion Details<br>DING TAI FUNG<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
-          <h5>Expiry Date: DDMMYYYY<br>
-            <br>Category: CAFE</h5>
-            <div class="w-container infoactive">
-              <a class="w-inline-block infoicon" href="#">
-                <img id="approve-button" class="infoimg" src="images/Submit-01-256.png">
-                <h2>approve</h2>
-              </a>
-              <a class="w-inline-block infoicon" href="#">
-                <img id="reject-button" class="infoimg" src="images/Delete-256.png">
-                <h2>reject</h2>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
-    </div>
+      <% 
+    }
+  }); %>
+   <!--  
     <div class="head">
       <h1 class="adminh1" id="reports">REPORTS</h1>
       <div class="report">
@@ -89,9 +69,35 @@ start of main body codes -->
         <div class="w-container data">
         </div>
       </div>
-    </div>
+    </div>-->
   </div>  
-</div>
+
+  <div class="infobox" id="info" data-ix="click-hide">
+    <div class="w-row inforow" id="infobox">
+      <div class="w-col w-col-6">
+        <img id="popup-image" class="adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" data-ix="click-show">
+
+      </div>
+      <div class="w-col w-col-6 info">
+        <h1>Pending Promotion</h1>
+        <h4>Promotion Details<br>DING TAI FUNG<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
+        <h5>Expiry Date: DDMMYYYY<br>
+          <br>Category: CAFE</h5>
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="#">
+              <img id="approve-button" class="infoimg" src="images/Submit-01-256.png">
+              <h2>approve</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img id="reject-button" class="infoimg" src="images/Delete-256.png">
+              <h2>reject</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
 <!-- end of main body codes -->
 
 
@@ -99,13 +105,13 @@ start of main body codes -->
 <!-- start of nav right codes -->
 <div class="w-col w-col-1 navright">
   <a class="w-inline-block nav-img text" href="#merchants">
-    <h2 class="admin" data-ix="hover">merchants</h2>
+    <h2 class="admin" data-ix="hover">merchants data</h2>
   </a>
   <a class="w-inline-block nav-img text" href="#users">
-    <h2 class="admin" data-ix="hover">users</h2>
+    <h2 class="admin" data-ix="hover">customers data</h2>
   </a>
   <a class="w-inline-block nav-img text" href="#pops">
-    <h2 class="admin" data-ix="hover">popularity</h2>
+    <h2 class="admin" data-ix="hover">mailbox</h2>
   </a>
 </div>
 <!-- end of nav right codes -->
@@ -113,19 +119,19 @@ start of main body codes -->
 <!-- left side navigation codes -->
 <div class="w-col w-col-1 nav">
   <a class="w-inline-block nav-img text" href="#ads">
-    <h2 class="admin" data-ix="hover">ads</h2>
+    <h2 class="admin" data-ix="hover">ads approval</h2>
   </a>
   <a class="w-inline-block nav-img text" href="#reports">
-    <h2 class="admin" data-ix="hover">reports</h2>
+    <h2 class="admin" data-ix="hover">vip ads</h2>
   </a>
   <a class="w-inline-block nav-img text" href="#redeem">
-    <h2 class="admin" data-ix="hover">redemption</h2>
+    <h2 class="admin" data-ix="hover">cashout history</h2>
   </a>
   <a class="w-inline-block nav-img text" href="#pay">
-    <h2 class="admin" data-ix="hover">payment</h2>
+    <h2 class="admin" data-ix="hover">payment history</h2>
   </a>
   <a class="w-inline-block nav-img text" href="/logout">
     <h2 class="admin" data-ix="over">logout</h2>
   </a>
 </div>
-<!-- end of left side navigation codes
+<!-- end of left side navigation codes -->

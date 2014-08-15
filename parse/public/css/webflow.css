@@ -268,7 +268,7 @@ textarea.w-select {
   clear: both;
 }
 .w-row .w-row {
-  margin-left: 0;
+  margin-left: 50;
   margin-right: 0;
 }
 .w-col {

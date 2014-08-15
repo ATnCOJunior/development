@@ -106,11 +106,9 @@ $(function() {
   });
 
 
-  $('.adsimg, .imgadmin').click(function(event) {
+  $('.adsimage').click(function(event) {
     $('#popup-image').attr("src", event.target.src);
   });
-
-
 
   $('.approve').click(function(event) {
     var metadataId = event.currentTarget.getAttribute('metadataid');
