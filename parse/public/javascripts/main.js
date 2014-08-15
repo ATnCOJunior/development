@@ -65,7 +65,7 @@ $(function() {
       $('.expiry').text(parts[2]);
       $('.site').text(parts[3]);
   });
-e
+
   $('.approve').click(function(event) {
     var metadataId = event.currentTarget.getAttribute('metadataid');
     $.ajax({
@@ -170,4 +170,8 @@ Uploader = Backbone.View.extend({
 
     return false;
   }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> FETCH_HEAD
