@@ -2,15 +2,15 @@
 
   <!-- start of navigation codes -->
   <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
-    <a class="w-inline-block nav-img" href="#" data-ix="over">
+    <a class="w-inline-block nav-img" href="/new" data-ix="over">
       <img class="imgnav" src="images/Shape13-256.png" alt="NEW">
       <h2>new</h2>
     </a>
-    <a class="w-inline-block nav-img" href="#top" data-ix="over">
+    <a class="w-inline-block nav-img" href="/user-trending" data-ix="over">
       <img class="imgnav" src="images/Shape-Lightning-256.png" alt="TRENDING">
       <h2>trending</h2>
     </a>
-    <a class="w-inline-block nav-img" href="#top" data-ix="over">
+    <a class="w-inline-block nav-img" href="/user-ending" data-ix="over">
       <img class="imgnav" src="images/Race-Flag-256.png" alt="ENDING">
       <h2>ending</h2>
     </a>
@@ -18,7 +18,7 @@
       <img class="imgnav" src="images/Beverage-Coffee-01-256.png" alt="CAFE">
       <h2>cafe</h2>
     </a>
-    <a class="w-inline-block nav-img" href="#bars" data-ix="over">
+    <a class="w-inline-block nav-img" href="#bar" data-ix="over">
       <img class="imgnav" src="images/Beverage-Juice-02-256.png" alt="BAR">
       <h2>bar</h2>
     </a>
@@ -33,6 +33,7 @@
 
   </div>
   <!-- end of navigation codes -->
+
   <!-- start of another navigation codes -->
   <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
 
@@ -69,13 +70,13 @@
     <div class="w-clearfix head">
       <h1 id="top">-</h1>
       <% _(images).each(function(image) { %>
-      <div class="w-clearfix image bloc">
-        <img class="imghome" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS>" data-ix="click-show over">
+      <div class="w-clearfix image bloc" data-ix="click-show">
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS>" data-ix="over">
         <div class="like" data-ix="over">
           <h4 class="count">like</h4>
         </div>
         <div class="share" data-ix="over">
-          <h4 class="count" data-ix="over">share</h4>
+          <h4 class="count">share</h4>
         </div>
       </div>
       <% }); %>
@@ -88,13 +89,13 @@
       <% _(images).each(function(image) { 
         var imageMetadata = image.get('imageMetadata');
         if (imageMetadata.get("category")==="cafe"){%>
-        <div class="w-clearfix image bloc">
-          <img class="imghome" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="click-show over">
+        <div class="w-clearfix image bloc" data-ix="click-show">
+          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="over">
           <div class="like" data-ix="over">
             <h4 class="count">like</h4>x
           </div>
           <div class="share" data-ix="over">
-            <h4 class="count" data-ix="over">share</h4>
+            <h4 class="count">share</h4>
           </div>
         </div>
         <% }
@@ -109,13 +110,13 @@
       <% _(images).each(function(image) { 
         var imageMetadata = image.get('imageMetadata');
         if (imageMetadata.get("category")==="bar"){%>
-        <div class="w-clearfix image bloc">
-          <img class="imghome" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="click-show over">
+        <div class="w-clearfix image bloc" data-ix="click-show">
+          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="over">
           <div class="like" data-ix="over">
             <h4 class="count">like</h4>
           </div>
           <div class="share" data-ix="over">
-            <h4 class="count" data-ix="over">share</h4>
+            <h4 class="count">share</h4>
           </div>
         </div>
         <% }}); %>
@@ -128,13 +129,13 @@
         <% _(images).each(function(image) { 
           var imageMetadata = image.get('imageMetadata');
           if (imageMetadata.get("category")==="dining"){%>
-          <div class="w-clearfix image bloc">
-            <img class="imghome" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="click-show over">
+          <div class="w-clearfix image bloc" data-ix="click-show">
+            <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" alt="ADS" data-ix="over">
             <div class="like" data-ix="over">
               <h4 class="count">like</h4>
             </div>
             <div class="share" data-ix="over">
-              <h4 class="count" data-ix="over">share</h4>
+              <h4 class="count">share</h4>
             </div>
           </div>
           <% }}); %>
@@ -178,4 +179,3 @@
       <!-- end of main body codes -->
 
     </div>
-    

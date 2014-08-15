@@ -63,18 +63,121 @@ app.get('/', function(req, res) {
   });
 });
 
+// Additional Homepage endpoint
+app.get('/trending', function(req, res) {
+  var innerQuery = new Parse.Query(ImageMetadata);
+  innerQuery.equalTo("approval", "1");
 
-app.get('/user', function(req, res) {
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
-  query.equalTo("approval", "1");
-  query.descending("createdAt");
-
+  query.matchesQuery("imageMetadata", innerQuery);
+  query.descending("views");
   query.find({
     success: function(objects) {
+      var metaObjects = [];
+      for (i =0; i < objects.length; i++){
+
+        metaObjects.push(objects[i].get("imageMetadata"));
+      }
+      res.render('home', {
+        images: objects,
+        metaObjects: metaObjects
+      });
+    }
+  });
+});
+
+// Additional Homepage endpoint
+app.get('/ending', function(req, res) {
+  var innerQuery = new Parse.Query(ImageMetadata);
+  innerQuery.equalTo("approval", "1");
+
+  var query = new Parse.Query(Image);
+  query.include("imageMetadata");
+  query.matchesQuery("imageMetadata", innerQuery);
+  query.ascending("expiry");
+  query.find({
+    success: function(objects) {
+      var metaObjects = [];
+      for (i =0; i < objects.length; i++){
+
+        metaObjects.push(objects[i].get("imageMetadata"));
+      }
+      res.render('home', {
+        images: objects,
+        metaObjects: metaObjects
+      });
+    }
+  });
+});
+
+// User endpoint
+app.get('/user', function(req, res) {
+  var innerQuery = new Parse.Query(ImageMetadata);
+  innerQuery.equalTo("approval", "1");
+
+  var query = new Parse.Query(Image);
+  query.include("imageMetadata");
+  query.matchesQuery("imageMetadata", innerQuery);
+  query.descending("createdAt");
+  query.find({
+    success: function(objects) {
+      var metaObjects = [];
+      for (i =0; i < objects.length; i++){
+
+        metaObjects.push(objects[i].get("imageMetadata"));
+      }
       res.render('user', {
         images: objects,
-        user: Parse.User.current()
+        metaObjects: metaObjects
+      });
+    }
+  });
+});
+
+// Additional User endpoint
+app.get('/user-trending', function(req, res) {
+  var innerQuery = new Parse.Query(ImageMetadata);
+  innerQuery.equalTo("approval", "1");
+
+  var query = new Parse.Query(Image);
+  query.include("imageMetadata");
+  query.matchesQuery("imageMetadata", innerQuery);
+  query.descending("views");
+  query.find({
+    success: function(objects) {
+      var metaObjects = [];
+      for (i =0; i < objects.length; i++){
+
+        metaObjects.push(objects[i].get("imageMetadata"));
+      }
+      res.render('user', {
+        images: objects,
+        metaObjects: metaObjects
+      });
+    }
+  });
+});
+
+// Additional User endpoint
+app.get('/user-ending', function(req, res) {
+  var innerQuery = new Parse.Query(ImageMetadata);
+  innerQuery.equalTo("approval", "1");
+
+  var query = new Parse.Query(Image);
+  query.include("imageMetadata");
+  query.matchesQuery("imageMetadata", innerQuery);
+  query.ascending("expiry");
+  query.find({
+    success: function(objects) {
+      var metaObjects = [];
+      for (i =0; i < objects.length; i++){
+
+        metaObjects.push(objects[i].get("imageMetadata"));
+      }
+      res.render('user', {
+        images: objects,
+        metaObjects: metaObjects
       });
     }
   });
