@@ -133,7 +133,15 @@ function FacebookMod(facebookId) {
 		this.init();
 		var user = Parse.User.current();
 
-		var json = { lastName: user.get("lastName") };
+		var json = { 
+			lastName: user.get("lastName"),
+			imageURL: user.get("profilePhotoUrl"),
+			fullName: user.get("fullName"),
+			email: user.get("emailaddress"),
+			gender: user.get("gender"),
+			facebookLink: user.get("linkToFb"),
+			points: user.get("points")
+		};
 		
 		callback(json);
 	},
@@ -145,11 +153,11 @@ function FacebookMod(facebookId) {
 
 	this.feed = function(link){
 		alert(link);
-
+		
 		FB.ui(
 		{
 		    method: 'share',
-		    href: link,
+		    href: link
 		},
 		function(response) {
 			if (response && !response.error_code) {
@@ -162,7 +170,7 @@ function FacebookMod(facebookId) {
 		  }
 		);
 			alert("FB.ui is being entered!");
-	}
+	},
 	
 
     function checkPermissions() {

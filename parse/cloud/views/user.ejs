@@ -1,12 +1,17 @@
 <div id="fb-root"></div>
 <script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=639663216116031&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+$(document).ready(function(){
+	facebookMod.getUserInfo(function(resp) {
+		$("#lastName").html(resp.lastName);
+		$("#profileImage").attr("src", resp.imageURL);
+		$("#fullName").html(resp.fullName);
+		$("#email").html(resp.email);
+		$("#gender").html(resp.gender);
+		$("#linkToFb").attr("href", resp.facebookLink);
+		$("#points").html(resp.points);
+	});
+});
+
 </script>
 
 <div class="w-row bod">
@@ -202,32 +207,32 @@
       <!-- start of another navigation codes -->
       <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
         <a class="w-inline-block nav-img" href="/about" data-ix="over">
-          <img id="lastName" class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
-          <h2 data-ix="over">Username</h2><!--last name-->
+          <img class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
+          <h2 data-ix="over"><label id="lastName">Username</label></h2><!--last name-->
         </a>
         <a class="w-inline-block nav-img" href="#pay" data-ix="over">
-          <img class="imgnav" src="images/Cash-256.png">
+          <img id="profileImage" class="imgnav" src="images/Cash-256.png">
           <h2 data-ix="over">Profile Photo</h2>
         </a>
         <a class="w-inline-block nav-img" href="#profile" data-ix="over">
           <img class="imgnav" src="images/User-Profile-256.png">
-          <h2 data-ix="over">Name</h2><!--fullName-->
+          <h2 data-ix="over"><label id="fullName">Name</label></h2><!--fullName-->
         </a>
         <a class="w-inline-block nav-img" href="#reports" data-ix="over">
           <img class="imgnav" src="images/Bar-Chart-256.png">
-          <h2 data-ix="over">Email Address</h2>
+          <h2 data-ix="over"><label id="email">Email Address</label></h2>
         </a>
         <a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
           <img class="imgnav" src="images/Upload-256-2.png">
-          <h2 data-ix="over">Gender</h2>
+          <h2 data-ix="over"><label id="gender">Gender</label></h2>
         </a>
         <a class="w-inline-block nav-img" href="/about" data-ix="over">
           <img class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
-          <h2 data-ix="over">My Facebook Link</h2>
+          <h2 data-ix="over"><a style="color:white" id="linkToFb" href="#">My Facebook Link<a></h2>
         </a>
         <a class="w-inline-block nav-img" href="/about" data-ix="over">
           <img class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
-          <h2 data-ix="over">Points</h2>
+          <h2 data-ix="over">Points: <label id="points">0</label></h2>
         </a>
       </div>
       <!-- end of another navigation codes -->
