@@ -111,7 +111,21 @@ $(function() {
   });
 
   $('.adsimage').click(function(event) {
-    $('#companyName').text(event.target.alt);
+    var str = event.target.alt;
+    var parts = str.split(",");
+    if (parts[0] == "user"){
+      $('#companyName').text(parts[1]);
+      $('#promoInfo').text(parts[2]);
+      $('#expiry').text(parts[3]);
+      $('#site').text(parts[4]);
+    }else if (parts[0] == "merchant-current"){
+      $('#promoInfo').text(parts[1]);
+      $('#category').text(parts[2]);
+      $('#expiry').text(parts[3]);
+      $('#site').text(parts[4]);
+    };
+
+
   });
 
   $('.approve').click(function(event) {

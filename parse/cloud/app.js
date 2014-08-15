@@ -46,6 +46,7 @@ app.get('/', function(req, res) {
 
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
+  query.include("user");
   query.matchesQuery("imageMetadata", innerQuery);
   query.descending("createdAt");
   query.find({
@@ -70,6 +71,7 @@ app.get('/trending', function(req, res) {
 
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
+  query.include("user");
   query.matchesQuery("imageMetadata", innerQuery);
   query.descending("views");
   query.find({
@@ -94,6 +96,7 @@ app.get('/ending', function(req, res) {
 
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
+  query.include("user");
   query.matchesQuery("imageMetadata", innerQuery);
   query.ascending("expiry");
   query.find({
@@ -118,6 +121,7 @@ app.get('/user', function(req, res) {
 
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
+  query.include("user");
   query.matchesQuery("imageMetadata", innerQuery);
   query.descending("createdAt");
   query.find({
@@ -142,6 +146,7 @@ app.get('/user-trending', function(req, res) {
 
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
+  query.include("user");
   query.matchesQuery("imageMetadata", innerQuery);
   query.descending("views");
   query.find({
@@ -166,6 +171,7 @@ app.get('/user-ending', function(req, res) {
 
   var query = new Parse.Query(Image);
   query.include("imageMetadata");
+  query.include("user");
   query.matchesQuery("imageMetadata", innerQuery);
   query.ascending("expiry");
   query.find({
@@ -193,6 +199,7 @@ app.get('/merchant', function(req, res) {
   var query = new Parse.Query(Image);
   query.equalTo("user", Parse.User.current());
   query.include("imageMetadata");
+  query.include("user");
   query.descending("createdAt");
 
   query.find({
@@ -214,6 +221,7 @@ app.get('/admin', function(req, res) {
     // Get the latest images to show
     var query = new Parse.Query(Image);
     query.include("imageMetadata");
+    query.include("user");
     query.descending("createdAt");
 
     query.find().then(function(objects) {

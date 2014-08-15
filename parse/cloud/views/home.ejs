@@ -54,11 +54,10 @@
       <% _(images).each(function(image) { %>
       <div class="w-clearfix image bloc" data-ix="click-show">
         <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-         alt="<%= image.get("title")+", "
-            +image.get("category")+", "
-            +image.get("location")+", "
-            +image.get("desc")+", "
-            +image.get("expiry") %>" 
+            alt="<%= image.get("user").get("company")+","
+            +image.get("imageMetadata").get("desc")+","
+            +image.get("imageMetadata").get("expiry")+","
+            +image.get("imageMetadata").get("location") %>" 
         data-ix="over">
         <div class="like" data-ix="over">
           <h4 class="count">like</h4>
@@ -75,15 +74,15 @@
     <div class="w-clearfix head">
       <h1 id="cafe">CAFE</h1>
       <% _(images).each(function(image) { 
+        var user = image.get("user");
         var imageMetadata = image.get('imageMetadata');
         if (imageMetadata.get("category")==="cafe"){%>
         <div class="w-clearfix image bloc" data-ix="click-show">
           <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-           alt="<%= image.get("title")+", "
-            +image.get("category")+", "
-            +image.get("location")+", "
-            +image.get("desc")+", "
-            +image.get("expiry") %>" 
+            alt="<%= user.get("company")+","
+            +image.get("imageMetadata").get("desc")+","
+            +image.get("imageMetadata").get("expiry")+","
+            +image.get("imageMetadata").get("location") %>" 
           data-ix="over">
           <div class="like" data-ix="over">
             <h4 class="count">like</h4>x
@@ -102,15 +101,15 @@
     <div class="w-clearfix head">
       <h1 id="bar">BAR</h1>
       <% _(images).each(function(image) { 
+        var user = image.get("user");
         var imageMetadata = image.get('imageMetadata');
         if (imageMetadata.get("category")==="bar"){%>
         <div class="w-clearfix image bloc" data-ix="click-show">
           <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-           alt="<%= image.get("title")+", "
-            +image.get("category")+", "
-            +image.get("location")+", "
-            +image.get("desc")+", "
-            +image.get("expiry") %>"  
+            alt="<%= user.get("company")+","
+            +image.get("imageMetadata").get("desc")+","
+            +image.get("imageMetadata").get("expiry")+","
+            +image.get("imageMetadata").get("location") %>" 
           data-ix="over">
           <div class="like" data-ix="over">
             <h4 class="count">like</h4>
@@ -127,15 +126,15 @@
       <div class="w-clearfix head">
         <h1 id="dining">DINING</h1>
         <% _(images).each(function(image) { 
+          var user = image.get("user");
           var imageMetadata = image.get('imageMetadata');
           if (imageMetadata.get("category")==="dining"){%>
           <div class="w-clearfix image bloc" data-ix="click-show">
             <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-            alt="<%= image.get("title")+", "
-            +image.get("category")+", "
-            +image.get("location")+", "
-            +image.get("desc")+", "
-            +image.get("expiry") %>" 
+            alt="user,<%=user.get("company")+","
+            +image.get("imageMetadata").get("desc")+","
+            +image.get("imageMetadata").get("expiry")+","
+            +image.get("imageMetadata").get("location")%>" 
             data-ix="over">
             <div class="like" data-ix="over">
               <h4 class="count">like</h4>
@@ -159,16 +158,10 @@
 
               <h1>Promotion Details</h1>
 
-              <h4 id="companyName">--COMPANY NAME--<br>
-              </h4>
-              <h4 id="promoInfo">
-                Promotion Description<br>
-              </h4>
-              <h4 id="expiry">
-                Promotion Expiry Date<br>
-              </h4 id="site">
-              Promotion Location
-            </h4>
+              <h4>by: </h4><h4 id="companyName">--COMPANY NAME--</h4>
+              <br><h4>Description: </h4><h4 id="promoInfo">Description</h4>
+              <br><h4>Expires: </h4><h4 id="expiry">Expiry</h4>
+              <br><h4>Map: </h4><h4 id="site">Locaiton</h4>
 
             <div class="w-container infoactive">
               <a class="w-inline-block infoicon" href="/like" data-ix="over">

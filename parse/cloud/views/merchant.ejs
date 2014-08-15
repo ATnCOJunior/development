@@ -1,331 +1,332 @@
 <div class="w-row bod">
 
-	<!-- start of main body codes -->
-	<div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main-merchant">
-		<div class="middletop">
-			<a class="w-inline-block link" >
-				<img class="centertop" src="images/Chef-Cap-256.png" alt="LOGO">
-			</a>
-		</div>
-		<!-- start of current listing - showing images with approval setting 1 -->
-		<div class="w-clearfix head">
-			<h1 id="current">CURRENT</h1>
-			<% _(images).each(function(image) { 
-			if (image.get("imageMetadata").get("approval")=="1"){%>
-			<div class="image" data-ix="click-show-current">
-				<img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="CURRENT" data-ix="over">
-			</div>
-		</div>
-		<!-- end of current listing -->
+  <!-- start of main body codes -->
+  <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main-merchant">
+   <div class="middletop">
+    <a class="w-inline-block link" >
+      <img class="centertop" src="images/Chef-Cap-256.png" alt="LOGO">
+    </a>
+  </div>
+  <!-- start of current listing - showing images with approval setting 1 -->
+  <div class="w-clearfix head">
+    <h1 id="current">CURRENT</h1>
+    <% _(images).each(function(image) { 
+      if (image.get("imageMetadata").get("approval")=="1"){%>
+      <div class="image" data-ix="click-show-current">
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="<%="merchant-current,"+image.get("imageMetadata").get("desc")+","+image.get("imageMetadata").get("category")+","+image.get("imageMetadata").get("expiry")+","+image.get("imageMetadata").get("location") %>" data-ix="over">
+      </div>
+      <% }}); %>
+    </div>
 
-		<!-- start of pending listing - showing images with approval setting 0 -->
-		<div class="w-clearfix head">
-			<h1 id="pending">PENDING</h1>
-			<% _(images).each(function(image) { 
-			if (image.get("imageMetadata").get("approval")=="0"){%>
-			<div class="image" data-ix="click-show-pending">
-				<img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="PENDING" data-ix="over">
-			</div>
-		</div>
-		<!-- end of pending listing -->    
+    <!-- end of current listing -->
 
-		<!-- start of rejected listing - showing images with approval setting -1 -->
-		<div class="w-clearfix head">
-			<h1 id="declined">REJECTED</h1>
-			<% _(images).each(function(image) { 
-			if (image.get("imageMetadata").get("approval")=="-1"){%>
-			<div class="image" data-ix="click-show-pending">
-				<img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="REJECTED" data-ix="over">
-			</div>
-		</div>
-		<!-- end of rejected listing -->
+    <!-- start of pending listing - showing images with approval setting 0 -->
+    <div class="w-clearfix head">
+      <h1 id="pending">PENDING</h1>
+      <% _(images).each(function(image) { 
+        if (image.get("imageMetadata").get("approval")=="0"){%>
+        <div class="image" data-ix="click-show-pending">
+          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="PENDING" data-ix="over">
+        </div>
+        <% }}); %>
+      </div>
+      <!-- end of pending listing -->    
 
-		<!-- start of expired listing - showing images with approval setting 2 -->
-		<div class="w-clearfix head">
-			<h1 id="expired">EXPIRED</h1>
-			<% _(images).each(function(image) { 
-			if (image.get("imageMetadata").get("approval")=="2"){%>
-			<div class="image" data-ix="click-show-expired">
-				<img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="EXPIRED" data-ix="over">
-			</div>
-		</div>
-		<!-- end of expired listing -->
+      <!-- start of rejected listing - showing images with approval setting -1 -->
+      <div class="w-clearfix head">
+        <h1 id="declined">REJECTED</h1>
+        <% _(images).each(function(image) { 
+          if (image.get("imageMetadata").get("approval")=="-1"){%>
+          <div class="image" data-ix="click-show-pending">
+            <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="REJECTED" data-ix="over">
+          </div>
+          <% }}); %>
+        </div>
+        <!-- end of rejected listing -->
 
-		<!-- start of profile codes -->
-		<div class="head">
-			<h1 id="profile">PROFILE</h1>
-			<div class="profile">
-				<div class="w-form">
-					<form action="/update" method="post" id="wf-form-upload" name="wf-form-upload" data-name="upload">
-						<label for="company-name">Company Name</label>
-						<input class="w-input field" id="company-name" type="text" name="company-name" value="<%=Parse.User.current().get("company")%>" data-name="company name" required="required" autofocus="autofocus">
-						<label for="email">Email</label>
-						<input class="w-input" id="email" type="email" name="email" value="<%=Parse.User.current().get("email")%>" data-name="email" required="required" autofocus="autofocus">
-						<label for="site">Website</label>
-						<input class="w-input" id="site" type="text" name="website" value="<%=Parse.User.current().get("website")%>" data-name="site" required="required" autofocus="autofocus">
-						<label for="social-media-Site">Social Media Site</label>
-						<input class="w-input" id="social-media-Site" type="text" name="social-media-Site" value="<%=Parse.User.current().get("social")%>" data-name="social media Site" required="required" autofocus="autofocus">
-						<label for="description">Company Description</label>
-						<input class="w-input" id="description" type="text" name="desc" value="<%=Parse.User.current().get("desc")%>" data-name="description" required="required" autofocus="autofocus"></input>
-						<input class="w-button" type="submit" value="update" data-wait="Please wait..." data-ix="over">
-					</form>
-					<div class="w-form-done msg upload">
-						<p>Thank you! Your submission has been received!</p>
-					</div>
-					<div class="w-form-fail msg upload">
-						<p>Oops! Something went wrong while submitting the form :(</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- end of profile codes -->
+        <!-- start of expired listing - showing images with approval setting 2 -->
+        <div class="w-clearfix head">
+          <h1 id="expired">EXPIRED</h1>
+          <% _(images).each(function(image) { 
+            if (image.get("imageMetadata").get("approval")=="2"){%>
+            <div class="image" data-ix="click-show-expired">
+              <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" alt="EXPIRED" data-ix="over">
+            </div>
+            <% }}); %>
+          </div>
+          <!-- end of expired listing -->
 
-		<!-- start of upload codes -->
-		<div class="head">
-			<h1 id="upload-section">UPLOAD</h1>
-			<div class="upload">
-				<div class="w-form">
-					<form id="upload" name="wf-form-upload" data-name="upload">
-						<label for="title">Title</label>
-						<input class="w-input" id="upload-title" type="text" placeholder="Please enter the title of your promotion" name="title" data-name="title" required="required" autofocus="autofocus">
-						<label for="category">Category</label>
-						<input class="w-input" id="category" type="text" placeholder="What is your promotion category/ keyword" name="category" data-name="category" required="required" autofocus="autofocus">
-						<label for="expiry">Expiry date</label>
-						<input class="w-input" id="expiry" type="date" placeholder="Please enter your promotion validity period in DDMMYYY" name="expiry" data-name="Expiry" required="required" autofocus="autofocus">
-						<label for="Location">Label</label>
-						<input class="w-input" id="Location" type="text" placeholder="Please provide location information or URL to your direction page" name="location" required="required" autofocus="autofocus" data-name="Location">
-						<label for="details">Promotion details</label>
-						<textarea class="w-input" id="details" placeholder="Please provide more information about your promotion" name="desc" data-name="details" required="required" autofocus="autofocus"></textarea>
-						<input type="file" />
-						<a href="#"></a>
-						<input class="w-button" type="submit" value="upload" data-wait="Please wait..." data-ix="over">
-					</form>
-					<script type="text/javascript">
-					new Uploader({ el: "#upload" });
-					</script>
-					<div class="w-form-done msg upload">
-						<p>Thank you! Your submission has been received!</p>
-					</div>
-					<div class="w-form-fail msg upload">
-						<p>Oops! Something went wrong while submitting the form :(</p>
-					</div> 
-				</div>
-			</div>
-		</div>
-		<!-- end of upload codes -->
+          <!-- start of profile codes -->
+          <div class="head">
+            <h1 id="profile">PROFILE</h1>
+            <div class="profile">
+              <div class="w-form">
+                <form action="/update" method="post" id="wf-form-upload" name="wf-form-upload" data-name="upload">
+                  <label for="company-name">Company Name</label>
+                  <input class="w-input field" id="company-name" type="text" name="company-name" value="<%=Parse.User.current().get("company")%>" data-name="company name" required="required" autofocus="autofocus">
+                  <label for="email">Email</label>
+                  <input class="w-input" id="email" type="email" name="email" value="<%=Parse.User.current().get("email")%>" data-name="email" required="required" autofocus="autofocus">
+                  <label for="site">Website</label>
+                  <input class="w-input" id="site" type="text" name="website" value="<%=Parse.User.current().get("website")%>" data-name="site" required="required" autofocus="autofocus">
+                  <label for="social-media-Site">Social Media Site</label>
+                  <input class="w-input" id="social-media-Site" type="text" name="social-media-Site" value="<%=Parse.User.current().get("social")%>" data-name="social media Site" required="required" autofocus="autofocus">
+                  <label for="description">Company Description</label>
+                  <input class="w-input" id="description" type="text" name="desc" value="<%=Parse.User.current().get("desc")%>" data-name="description" required="required" autofocus="autofocus"></input>
+                  <input class="w-button" type="submit" value="update" data-wait="Please wait..." data-ix="over">
+                </form>
+                <div class="w-form-done msg upload">
+                  <p>Thank you! Your submission has been received!</p>
+                </div>
+                <div class="w-form-fail msg upload">
+                  <p>Oops! Something went wrong while submitting the form :(</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end of profile codes -->
 
-		<!-- start of report code -->
-		<div class="head">
-			<h1 id="reports">REPORTS</h1>
-			<div class="report">
-				<div class="w-form selection">
-					<form id="wf-form-Selection" name="wf-form-Selection" data-name="Selection">
-						<select class="w-select" id="field" name="field" required="required">
-							<option value="">Select an ad for its report...</option>
-							<option value="First">First Choice</option>
-							<option value="Second">Second Choice</option>
-							<option value="Third">Third Choice</option>
-						</select>
-					</form>
-					<div class="w-form-done msg">
-						<p>Thank you! Your submission has been received!</p>
-					</div>
-					<div class="w-form-fail msg">
-						<p>Oops! Something went wrong while submitting the form :(</p>
-					</div>
-				</div>
-				<div class="w-container reportbox">
-					<div class="w-embed w-iframe embed-chart">
-						<iframe width="800" height="400" align="middle" src="https://embed.chartblocks.com/1.0/?c=53e5b2f5c9a61d59065c27c5t=ec87462c5ee0859" frameborder="0"></iframe>
-					</div>
-				</div>
-				<div class="background">
-				</div>
-			</div>
-		</div>
-		<!-- end of report codes -->
+          <!-- start of upload codes -->
+          <div class="head">
+            <h1 id="upload-section">UPLOAD</h1>
+            <div class="upload">
+              <div class="w-form">
+                <form id="upload" name="wf-form-upload" data-name="upload">
+                  <label for="title">Title</label>
+                  <input class="w-input" id="upload-title" type="text" placeholder="Please enter the title of your promotion" name="title" data-name="title" required="required" autofocus="autofocus">
+                  <label for="category">Category</label>
+                  <input class="w-input" id="category" type="text" placeholder="What is your promotion category/ keyword" name="category" data-name="category" required="required" autofocus="autofocus">
+                  <label for="expiry">Expiry date</label>
+                  <input class="w-input" id="expiry" type="date" placeholder="Please enter your promotion validity period in DDMMYYY" name="expiry" data-name="Expiry" required="required" autofocus="autofocus">
+                  <label for="Location">Label</label>
+                  <input class="w-input" id="Location" type="text" placeholder="Please provide location information or URL to your direction page" name="location" required="required" autofocus="autofocus" data-name="Location">
+                  <label for="details">Promotion details</label>
+                  <textarea class="w-input" id="details" placeholder="Please provide more information about your promotion" name="desc" data-name="details" required="required" autofocus="autofocus"></textarea>
+                  <input type="file" />
+                  <a href="#"></a>
+                  <!-- <input class="w-button" type="submit" value="upload" data-wait="Please wait..." data-ix="over"> -->
+                </form>
+                <script type="text/javascript">
+                new Uploader({ el: "#upload" });
+                </script>
+          <!-- <div class="w-form-done msg upload">
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail msg upload">
+            <p>Oops! Something went wrong while submitting the form :(</p>
+          </div> -->
+        </div>
+      </div>
+    </div>
 
-		<!-- start of payment codes -->
-		<div class="head">
-			<h1 id="pay">PAYMENT</h1>
-			<div class="payment">
-				<div class="w-container payment-embed">
-					<img src="images/payflow-iframe-1.png" alt="PAYMENT">
-				</div>
-			</div>
-		</div>
-		<!-- end of payment codes -->
+    <!-- end of upload codes -->
+          <!-- start of report code -->
+          <div class="head">
+            <h1 id="reports">REPORTS</h1>
+            <div class="report">
+              <div class="w-form selection">
+                <form id="wf-form-Selection" name="wf-form-Selection" data-name="Selection">
+                  <select class="w-select" id="field" name="field" required="required">
+                    <option value="">Select an ad for its report...</option>
+                    <option value="First">First Choice</option>
+                    <option value="Second">Second Choice</option>
+                    <option value="Third">Third Choice</option>
+                  </select>
+                </form>
+                <div class="w-form-done msg">
+                  <p>Thank you! Your submission has been received!</p>
+                </div>
+                <div class="w-form-fail msg">
+                  <p>Oops! Something went wrong while submitting the form :(</p>
+                </div>
+              </div>
+              <div class="w-container reportbox">
+                <div class="w-embed w-iframe embed-chart">
+                  <iframe width="800" height="400" align="middle" src="https://embed.chartblocks.com/1.0/?c=53e5b2f5c9a61d59065c27c5&amp;t=ec87462c5ee0859" frameborder="0"></iframe>
+                </div>
+              </div>
+              <div class="background">
+                <div>&nbsp;</div>
+              </div>
+            </div>
+          </div>
+          <!-- end of report codes -->
+
+          <!-- start of payment codes -->
+          <div class="head">
+            <h1 id="pay">PAYMENT</h1>
+            <div class="payment">
+              <div class="w-container payment-embed">
+                <img src="images/payflow-iframe-1.png" alt="PAYMENT">
+              </div>
+            </div>
+          </div>
+          <!-- end of payment codes -->
 
 
-		<!-- START OF INFO CODES -->
-		<!-- start of current info -->
-		<div class="currentinfo" data-ix="click-hide-info">
-			<div class="w-row inforow">
-				<div class="w-col w-col-6 info">
-					<img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
-				</div>
-				<div class="w-col w-col-6 info">
-					<h1>Current Promotion</h1>
-					<h4>ICE-CREAM WAFFLES<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
-					<h5>Expiry Date: DDMMYYYY</h5>
-					<h5>Category: CAFE</h5>
-					<h5>Points per like: 1</h5>
-					<h5>Points per share: 4</h5>
-					<div class="w-container infoactive">
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape-Heart-256.png">
-							<h2>likes<br>###</h2>
-						</a>
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape12-256.png">
-							<h2>shares<br>###</h2>
-						</a>
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape-Diamond-256.png">
-							<h2>favourites<br>###</h2>
-						</a>
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape-Spade-256.png">
-							<h2>visits<br>###</h2>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- end of current info -->
+    <!-- START OF INFO CODES -->
+    <!-- start of current info -->
+    <div class="currentinfo" data-ix="click-hide-info">
+      <div class="w-row inforow">
+        <div class="w-col w-col-6 info">
+          <img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
+        </div>
+        <div class="w-col w-col-6 info">
+          <h1>Current Promotion</h1>
+          <br><h4>Description: </h4><h4 id="promoInfo">Description</h4>
+          <br><h4>Category: </h4><h4 id="category">Category</h4>
+          <br><h4>Expires: </h4><h4 id="expiry">Expiry</h4>
+          <br><h4>Map: </h4><h4 id="site">Locaiton</h4>
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Heart-256.png">
+              <h2>likes<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape12-256.png">
+              <h2>shares<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Diamond-256.png">
+              <h2>favourites<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Spade-256.png">
+              <h2>visits<br>###</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of current info -->
 
-		<!-- start of pending info -->
-		<div class="pendinginfo" data-ix="click-hide-info">
-			<div class="w-row inforow">
-				<div class="w-col w-col-6 info">
-					<img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
-				</div>
-				<div class="w-col w-col-6 info">
-					<h1>Pending Promotion</h1>
-					<h4>PROMOTION TITLE<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
-					<h5>Expiry Date: DDMMYYYY</h5>
-					<h5>Category: CAFE</h5>
-					<h5>Points per like: 1</h5>
-					<h5>Points per share: 4</h5>
-					<div class="w-container infoactive">
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape69-256.png">
-							<h2>edit</h2>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- end of pending info -->
+    <!-- start of pending info -->
+    <div class="pendinginfo" data-ix="click-hide-info">
+      <div class="w-row inforow">
+        <div class="w-col w-col-6 info">
+          <img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
+        </div>
+        <div class="w-col w-col-6 info">
+          <h1>Pending Promotion</h1>
+          <h4>PROMOTION TITLE<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
+          <h5>Expiry Date: DDMMYYYY</h5>
+          <h5>Category: CAFE</h5>
+          <h5>Points per like: 1</h5>
+          <h5>Points per share: 4</h5>
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape69-256.png">
+              <h2>edit</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of pending info -->
 
-		<!-- start of rejected info -->
-		<div class="rejectedinfo" data-ix="click-hide-info">
-			<div class="w-row inforow">
-				<div class="w-col w-col-6 info">
-					<img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
-				</div>
-				<div class="w-col w-col-6 info">
-					<h1>Rejected Promotion</h1>
-					<h4>PROMOTION TITLE<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
-					<h5>Expiry Date: DDMMYYYY</h5>
-					<h5>Category: CAFE</h5>
-					<h5>Points per like: 1</h5>
-					<h5>Points per share: 4</h5>
-					<div class="divider"></div>
-					<h4><br>DETAILS OF REJECTION<br><br>image resolution too low<br>inappropriate content</h4>
-				</div>
-			</div>
-		</div>
-		<!-- end of rejected info -->
+    <!-- start of rejected info -->
+    <div class="rejectedinfo" data-ix="click-hide-info">
+      <div class="w-row inforow">
+        <div class="w-col w-col-6 info">
+          <img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
+        </div>
+        <div class="w-col w-col-6 info">
+          <h1>Rejected Promotion</h1>
+          <h4>PROMOTION TITLE<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
+          <h5>Expiry Date: DDMMYYYY</h5>
+          <h5>Category: CAFE</h5>
+          <h5>Points per like: 1</h5>
+          <h5>Points per share: 4</h5>
+          <div class="divider"></div>
+          <h4><br>DETAILS OF REJECTION<br><br>image resolution too low<br>inappropriate content</h4>
+        </div>
+      </div>
+    </div>
+    <!-- end of rejected info -->
 
-		<!-- start of expired info -->
-		<div class="expiredinfo" data-ix="click-hide-info">
-			<div class="w-row inforow">
-				<div class="w-col w-col-6 info">
-					<img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
-				</div>
-				<div class="w-col w-col-6 info">
-					<h1>Expired Promotion</h1>
-					<h4>ICE-CREAM WAFFLES<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
-					<h5>Expiry Date: DDMMYYYY</h5>
-					<h5>Category: CAFE</h5>
-					<h5>Points per like: 1</h5>
-					<h5>Points per share: 4</h5>
-					<div class="w-container infoactive">
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape-Heart-256.png" alt="Heart-256.png">
-							<h2>likes<br>###</h2>
-						</a>
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape12-256.png" alt="share.png">
-							<h2>shares<br>###</h2>
-						</a>
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape-Diamond-256.png" alt="Diamond-256.png">
-							<h2>favourites<br>###</h2>
-						</a>
-						<a class="w-inline-block infoicon" href="#">
-							<img class="infoimg" src="images/Shape-Spade-256.png" alt="Spade-256.png">
-							<h2>visits<br>###</h2>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- end of expired info -->
-		<!-- END OF INFO CODES -->
+    <!-- start of expired info -->
+    <div class="expiredinfo" data-ix="click-hide-info">
+      <div class="w-row inforow">
+        <div class="w-col w-col-6 info">
+          <img id="popup-image" class="nav-img" src="app/web/images/drink.jpg" width="208">
+        </div>
+        <div class="w-col w-col-6 info">
+          <h1>Expired Promotion</h1>
+          <h4>ICE-CREAM WAFFLES<br>1-for-1 deals<br>monday to friday<br>2pm - 5pm</h4>
+          <h5>Expiry Date: DDMMYYYY</h5>
+          <h5>Category: CAFE</h5>
+          <h5>Points per like: 1</h5>
+          <h5>Points per share: 4</h5>
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Heart-256.png" alt="Heart-256.png">
+              <h2>likes<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape12-256.png" alt="share.png">
+              <h2>shares<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Diamond-256.png" alt="Diamond-256.png">
+              <h2>favourites<br>###</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="#">
+              <img class="infoimg" src="images/Shape-Spade-256.png" alt="Spade-256.png">
+              <h2>visits<br>###</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of expired info -->
+  </div>
+  <!-- end of main body codes -->
 
-	</div>
-
-	<!-- end of main body codes -->
-
-	<!-- start of navigation codes -->
-	<div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
-		<a class="w-inline-block nav-img" href="#current" data-ix="over">
-			<img class="imgnav" src="images/Media-Play-256.png" alt="CURRENT">
-			<h2 data-ix="over">current</h2>
-		</a>
-		<a class="w-inline-block nav-img" href="#pending" data-ix="over">
-			<img class="imgnav" src="images/Media-Pause-256.png" alt="PENDING">
-			<h2 data-ix="over">pending</h2>
-		</a>
-		<a class="w-inline-block nav-img" href="#declined" data-ix="over">
-			<img class="imgnav" src="images/Media-End-256.png" alt="REJECTED">
-			<h2 data-ix="over">rejected</h2>
-		</a>
-		<a class="w-inline-block nav-img" href="#expired" data-ix="over">
-			<img class="imgnav" src="images/Media-Stop-256.png" alt="EXPIRED">
-			<h2 data-ix="over">expired</h2>
-		</a>
-		<a class="w-inline-block nav-img" href="/logout" data-ix="over">
-			<img class="imgnav" src="images/Out-256.png" alt="LOGOUT">
-			<h2 data-ix="over">logout</h2>
-		</a>
-	</div>
-	<!-- end of navigation codes -->
-
-	<!-- start of another navigation codes -->
-	<div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
-		<a class="w-inline-block nav-img" href="#profile" data-ix="over">
-			<img class="imgnav" src="images/User-Profile-256.png" alt="PROFILE">
-			<h2 data-ix="over">profile</h2>
-		</a>
-		<a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
-			<img class="imgnav" src="images/Upload-256-2.png" alt="UPLOAD">
-			<h2 data-ix="over">upload</h2>
-		</a>
-		<a class="w-inline-block nav-img" href="#reports" data-ix="over">
-			<img class="imgnav" src="images/Bar-Chart-256.png" alt="REPORTS">
-			<h2 data-ix="over">reports</h2>
-		</a>
-		<a class="w-inline-block nav-img" href="#pay" data-ix="over">
-			<img class="imgnav" src="images/Cash-256.png" alt="PAYMENT">
-			<h2 data-ix="over">payment</h2>
-		</a>
-		<a class="w-inline-block nav-img" href="/about" data-ix="over">
-			<img class="imgnav" src="images/Dialog-Box-About-256.png" alt="ABOUT" data-ix="over">
-			<h2 data-ix="over">about</h2>
-		</a>
-	</div>
-	<!-- end of another navigation codes -->
+  <!-- start of navigation codes -->
+  <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
+    <a class="w-inline-block nav-img" href="#current" data-ix="over">
+      <img class="imgnav" src="images/Media-Play-256.png" alt="CURRENT">
+      <h2 data-ix="over">current</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#pending" data-ix="over">
+      <img class="imgnav" src="images/Media-Pause-256.png" alt="PENDING">
+      <h2 data-ix="over">pending</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#declined" data-ix="over">
+      <img class="imgnav" src="images/Media-End-256.png" alt="REJECTED">
+      <h2 data-ix="over">rejected</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#expired" data-ix="over">
+      <img class="imgnav" src="images/Media-Stop-256.png" alt="EXPIRED">
+      <h2 data-ix="over">expired</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="/logout" data-ix="over">
+      <img class="imgnav" src="images/Out-256.png" alt="LOGOUT">
+      <h2 data-ix="over">logout</h2>
+    </a>
+  </div>
+  <!-- end of navigation codes -->
+  <!-- start of another navigation codes -->
+  <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
+    <a class="w-inline-block nav-img" href="#profile" data-ix="over">
+      <img class="imgnav" src="images/User-Profile-256.png" alt="PROFILE">
+      <h2 data-ix="over">profile</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
+      <img class="imgnav" src="images/Upload-256-2.png" alt="UPLOAD">
+      <h2 data-ix="over">upload</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#reports" data-ix="over">
+      <img class="imgnav" src="images/Bar-Chart-256.png" alt="REPORTS">
+      <h2 data-ix="over">reports</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#pay" data-ix="over">
+      <img class="imgnav" src="images/Cash-256.png" alt="PAYMENT">
+      <h2 data-ix="over">payment</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="/about" data-ix="over">
+      <img class="imgnav" src="images/Dialog-Box-About-256.png" alt="ABOUT" data-ix="over">
+      <h2 data-ix="over">about</h2>
+    </a>
+  </div>
+  <!-- end of another navigation codes -->
 </div>
