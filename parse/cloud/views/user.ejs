@@ -66,7 +66,7 @@ $(document).ready(function(){
 
     <!-- start of top listing --> 
     <div class="w-clearfix head">
-      <h1 id="top">-</h1>
+      <h1 id="top"></h1>
       <% _(images).each(function(image) { %>
       <div class="w-clearfix image bloc">
         <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
