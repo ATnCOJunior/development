@@ -47,9 +47,7 @@ module.exports = function() {
 
       // Save the image and return some info about it via json
       image.save().then(function(image) {
-        res.json({
-          id: image.id
-        });
+        res.redirect('/merchant#pending');
       }, function(error) {
         res.json({
           error: error
