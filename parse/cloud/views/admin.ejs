@@ -12,18 +12,27 @@
     <% _(images).each(function(image) { 
       var imageMetadata = image.get('imageMetadata');
       if (imageMetadata.get("approval")=="0") {%>
-      <div class="w-clearfix image" data-ix="click-show">
-        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" data-ix="over">
-        <div class="approve">
+      <div class="w-clearfix image">
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
+
+          alt="<%= imageMetadata.get("desc")+","
+            +imageMetadata.get("expiry")+","
+            +imageMetadata.get("location") %>" 
+
+          data-ix="click-show">
+
+        <div data-ix="over">
           <form action="/i/<%=image.id%>/approve" method="post">
             <h4> <input type="submit" value="approve" class="count"> </h4>
           </form>
         </div>
-        <div class="reject">
+       
+        <div >
           <form action="/i/<%=image.id%>/reject" method="post">
-            <h4> <input type="submit" value="reject" class="count"> </h4> 
+            <h4><input type="submit" value="reject" class="count" data-ix="over"></h4>
+            <h4><input type="text" placeholder="reasons for ads rejection" name="reject_info" required></h4><br>
           </form>
-          <h4> <input type="text" placeholder="reasons for ads rejection" name="reject_info" required><br></h4>
+          
         </div>
       </div>
       <% }}); %>
@@ -70,12 +79,13 @@
      </div>
    </div>   -->
 
-   <div class="infobox" id="info" data-ix="click-hide">
+
+   <div class="infobox" id="info" data-ix="click-hide-info">
     <div class="w-row inforow" id="infobox">
       <div class="w-col w-col-6">
         <img class="popup-image  adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" data-ix="click-show">
-
       </div>
+
       <div class="w-col w-col-6 info">
         <h1>Pending Promotion</h1>
         
@@ -84,22 +94,21 @@
         <br><h4>Expires: </h4><h4 class="expiry">Expiry</h4>
         <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
 
-        <h5>Expiry Date: DDMMYYYY<br>
-          <br>Category: CAFE</h5>
-          <div class="w-container infoactive">
-            <a class="w-inline-block infoicon" href="#">
-              <img id="approve-button" class="infoimg" src="images/Submit-01-256.png">
-              <h2>approve</h2>
-            </a>
-            <a class="w-inline-block infoicon" href="#">
-              <img id="reject-button" class="infoimg" src="images/Delete-256.png">
-              <h2>reject</h2>
-            </a>
-          </div>
+        <div class="w-container infoactive">
+          <a class="w-inline-block infoicon" href="#">
+            <img id="approve-button" class="infoimg" src="images/Submit-01-256.png">
+            <h2>approve</h2>
+          </a>
+          <a class="w-inline-block infoicon" href="#">
+            <img id="reject-button" class="infoimg" src="images/Delete-256.png">
+            <h2>reject</h2>
+          </a>
         </div>
+
       </div>
     </div>
   </div>
+</div>
   
   <!--  end of main body codes -->
 
