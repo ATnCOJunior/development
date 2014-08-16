@@ -14,6 +14,11 @@
       <img class="imgnav" src="images/Race-Flag-256.png" alt="ENDING">
       <h2>ending</h2>
     </a>
+
+
+    <hr></hr>
+
+
     <a class="w-inline-block nav-img" href="#cafe" data-ix="over">
       <img class="imgnav" src="images/Beverage-Coffee-01-256.png" alt="CAFE">
       <h2>cafe</h2>
@@ -26,6 +31,10 @@
       <img class="imgnav" src="images/Cutlery-Fork-Knife-256.png" alt="DINING">
       <h2>dining</h2>
     </a>
+
+
+    <hr></hr>
+
 
     <a class="w-inline-block nav-img" onclick="facebookMod.login()" data-ix="over">
       <img class="imgnav" src="images/Facebook-256.png" width="128" alt="USER LOGIN">
@@ -50,7 +59,7 @@
     <!-- start of top listing --> 
 
     <div class="w-clearfix head">
-      <h1 id="top">-</h1>
+      <h1 id="top"></h1>
       <% _(images).each(function(image) { %>
       <div class="w-clearfix image bloc" data-ix="click-show">
         <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
