@@ -1,7 +1,8 @@
 var appid = "p7MiFGIkEjP4bP6L6KGhWmLzU7wKHzRdCx7fTyAe";
 var jsKey = "IhkupUEOukPUx8pHGAk5qSa8rGAWiW9ZiaxfC1IU";
 var restAPIKey = "JoEBg1fjF2AnEzrReZOWw0Du6FU9H4BdiNTs2lMS";
-var facebookMod = new FacebookMod("661965090552510");
+// var facebookMod = new FacebookMod("661965090552510");
+var facebookMod = new FacebookMod("639663216116031");
 
 $(function() {
   // Facebook Function Initiation

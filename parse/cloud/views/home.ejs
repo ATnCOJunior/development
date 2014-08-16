@@ -118,76 +118,76 @@
             <h4 class="count">share</h4>
           </div>
         </div>
-        <% }}); %>
-      </div>
-      <!-- end of top listing -->
-
-      <!-- start of dining listing -->
-      <div class="w-clearfix head">
-        <h1 id="dining">DINING</h1>
-        <% _(images).each(function(image) { 
-          var user = image.get("user");
-          var imageMetadata = image.get('imageMetadata');
-          if (imageMetadata.get("category")==="dining"){%>
-          <div class="w-clearfix image bloc" data-ix="click-show">
-            <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-            alt="user,<%=user.get("company")+","
-            +image.get("imageMetadata").get("desc")+","
-            +image.get("imageMetadata").get("expiry")+","
-            +image.get("imageMetadata").get("location")%>" 
-            data-ix="over">
-            <div class="like" data-ix="over">
-              <h4 class="count">like</h4>
-            </div>
-            <div class="share" data-ix="over">
-              <h4 class="count">share</h4>
-            </div>
-          </div>
-          <% }}); %>
-        </div>
-        <!-- end of dining listing -->
-
-        <!-- start of infobox codes -->
-        <div class="infobox" id="info" data-ix="click-hide">
-          <div class="w-row inforow" id="infobox">
-            <div class="w-col w-col-6">
-              <img class="popup-image adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" 
-              data-ix="click-show">
-            </div>
-            <div class="w-col w-col-6 info">
-
-              <h1>Promotion Details</h1>
-
-              <h4>by: </h4>
-              <h4 class="companyName">--COMPANY NAME--</h4>
-              <br><h4>Description: </h4><h4 class="promoInfo">Description</h4>
-              <br><h4>Valid until: </h4><h4 class="expiry">Expiry</h4>
-              <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
-
-            <div class="w-container infoactive">
-              <a class="w-inline-block infoicon" href="/like" data-ix="over">
-                <img class="infoimg" src="images/Shape-Heart-256.png">
-                <h2>like</h2>
-              </a>
-              <a class="w-inline-block infoicon" href="/share" data-ix="over">
-                <img class="infoimg" src="images/Shape12-256.png">
-                <h2>share</h2>
-              </a>
-              <a class="w-inline-block infoicon" href="/fav" data-ix="over">
-                <img class="infoimg" src="images/Shape-Diamond-256.png">
-                <h2>favourite</h2>
-              </a>
-              <a class="w-inline-block infoicon" href="/visit" data-ix="over">
-                <img class="infoimg" src="images/Shape-Spade-256.png">
-                <h2>visit us</h2>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end of infobox codes -->
-
+      <% }}); %>
     </div>
-    <!-- end of main body codes -->
+    <!-- end of top listing -->
 
+    <!-- start of dining listing -->
+    <div class="w-clearfix head">
+      <h1 id="dining">DINING</h1>
+      <% _(images).each(function(image) { 
+        var user = image.get("user");
+        var imageMetadata = image.get('imageMetadata');
+        if (imageMetadata.get("category")==="dining"){%>
+        <div class="w-clearfix image bloc" data-ix="click-show">
+          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
+          alt="user,<%=user.get("company")+","
+          +image.get("imageMetadata").get("desc")+","
+          +image.get("imageMetadata").get("expiry")+","
+          +image.get("imageMetadata").get("location")%>" 
+          data-ix="over">
+          <div class="like" data-ix="over">
+            <h4 class="count">like</h4>
+          </div>
+          <div class="share" data-ix="over">
+            <h4 class="count">share</h4>
+          </div>
+        </div>
+      <% }}); %>
+    </div>
+    <!-- end of dining listing -->
+
+    <!-- start of infobox codes -->
+    <div class="infobox" id="info" data-ix="click-hide-info">
+      <div class="w-row inforow" id="infobox">
+        <div class="w-col w-col-6">
+          <img class="popup-image adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" 
+          data-ix="click-show">
+        </div>
+        <div class="w-col w-col-6 info">
+
+          <h1>Promotion Details</h1>
+
+          <h4>by: </h4>
+          <h4 class="companyName">--COMPANY NAME--</h4>
+          <br><h4>Description: </h4><h4 class="promoInfo">Description</h4>
+          <br><h4>Valid until: </h4><h4 class="expiry">Expiry</h4>
+          <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
+
+        <div class="w-container infoactive">
+          <a class="w-inline-block infoicon" href="/like" data-ix="over">
+            <img class="infoimg" src="images/Shape-Heart-256.png">
+            <h2>like</h2>
+          </a>
+          <a class="w-inline-block infoicon" href="/share" data-ix="over">
+            <img class="infoimg" src="images/Shape12-256.png">
+            <h2>share</h2>
+          </a>
+          <a class="w-inline-block infoicon" href="/fav" data-ix="over">
+            <img class="infoimg" src="images/Shape-Diamond-256.png">
+            <h2>favourite</h2>
+          </a>
+          <a class="w-inline-block infoicon" href="/visit" data-ix="over">
+            <img class="infoimg" src="images/Shape-Spade-256.png">
+            <h2>visit us</h2>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- end of infobox codes -->
+
+</div>
+<!-- end of main body codes -->
+
+</div>

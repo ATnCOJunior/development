@@ -936,14 +936,13 @@ Webflow.define('touch', function($, _) {
     var useTouch = false;
     var thresholdX = Math.min(Math.round(window.innerWidth * 0.04), 40);
     var startX, startY, lastX;
-    var _move = _.throttle(move);
 
     el.addEventListener('touchstart', start, false);
-    el.addEventListener('touchmove', _move, false);
+    el.addEventListener('touchmove', move, false);
     el.addEventListener('touchend', end, false);
     el.addEventListener('touchcancel', cancel, false);
     el.addEventListener('mousedown', start, false);
-    el.addEventListener('mousemove', _move, false);
+    el.addEventListener('mousemove', move, false);
     el.addEventListener('mouseup', end, false);
     el.addEventListener('mouseout', cancel, false);
 
@@ -1017,11 +1016,11 @@ Webflow.define('touch', function($, _) {
 
     function destroy() {
       el.removeEventListener('touchstart', start, false);
-      el.removeEventListener('touchmove', _move, false);
+      el.removeEventListener('touchmove', move, false);
       el.removeEventListener('touchend', end, false);
       el.removeEventListener('touchcancel', cancel, false);
       el.removeEventListener('mousedown', start, false);
-      el.removeEventListener('mousemove', _move, false);
+      el.removeEventListener('mousemove', move, false);
       el.removeEventListener('mouseup', end, false);
       el.removeEventListener('mouseout', cancel, false);
       el = null;
@@ -2297,30 +2296,22 @@ var lightbox = (function (window, document, $, tram, undefined) {
   var namespace = 'w-lightbox';
   var prefix = namespace + '-';
   var prefixRegex = /(^|\s+)/g;
-  var matchMedia = window.matchMedia || function (media) {
-    // IE9 polyfill
-    return {
-      matches: window.styleMedia.matchMedium(media)
-    };
-  };
-  var pixelRatio = window.devicePixelRatio || 1;
-  var breakpoint = '(min-width: 1025px)';
-  
+
   // Array of objects describing items to be displayed.
   var items = [];
-  
+
   // Index of the currently displayed item.
   var currentIndex;
 
   // Object holding references to jQuery wrapped nodes.
   var $refs;
-  
+
   // Instance of Spinner
   var spinner;
 
   function lightbox(thing, index) {
     items = isArray(thing) ? thing : [thing];
-    
+
     if (!$refs) {
       lightbox.build();
     }
@@ -2331,10 +2322,10 @@ var lightbox = (function (window, document, $, tram, undefined) {
       items.forEach(function (item) {
         var $thumbnail = dom('thumbnail');
         var $item = dom('item').append($thumbnail);
-        
+
         $refs.items = $refs.items.add($item);
-        
-        loadImage(item.url, function ($image) {
+
+        loadImage(item.thumbnailUrl || item.url, function ($image) {
           if ($image.prop('width') > $image.prop('height')) {
             addClass($image, 'wide');
           }
@@ -2348,7 +2339,7 @@ var lightbox = (function (window, document, $, tram, undefined) {
       $refs.strip.empty().append($refs.items);
       addClass($refs.content, 'group');
     }
-    
+
     tram(
       // Focus the lightbox to receive keyboard events.
       removeClass($refs.lightbox, 'hide').focus()
@@ -2358,7 +2349,7 @@ var lightbox = (function (window, document, $, tram, undefined) {
 
     // Prevent document from scrolling while lightbox is active.
     addClass($refs.html, 'noscroll');
-    
+
     return lightbox.show(index || 0);
   }
 
@@ -2374,55 +2365,47 @@ var lightbox = (function (window, document, $, tram, undefined) {
       // Empty jQuery object can be used to build new ones using `.add`.
       empty: $()
     };
-    
+
     $refs.arrowLeft = dom('control left inactive');
     $refs.arrowRight = dom('control right inactive');
     $refs.close = dom('control close');
-    $refs.controls = $refs.empty.add($refs.arrowLeft).add($refs.arrowRight).add($refs.close);
 
     $refs.spinner = dom('spinner');
     $refs.strip = dom('strip');
-    
+
     spinner = new Spinner($refs.spinner, prefixed('hide'));
-    
+
     $refs.content = dom('content')
-      .append($refs.spinner, $refs.controls);
+      .append($refs.spinner, $refs.arrowLeft, $refs.arrowRight, $refs.close);
 
     $refs.container = dom('container')
       .append($refs.content, $refs.strip);
-    
+
     $refs.lightbox = dom('backdrop hide')
       .append($refs.container);
-    
+
       // We are delegating events for performance reasons and also
       // to not have to reattach handlers when images change.
       $refs.strip.on('tap', selector('item'), itemTapHandler);
       $refs.content
         .on('swipe', swipeHandler)
-        .on('tap', selector('left'), preventDefaultAnd(lightbox.prev))
-        .on('tap', selector('right'), preventDefaultAnd(lightbox.next))
-        .on('tap', selector('close'), preventDefaultAnd(lightbox.hide))
-        .on('tap', selector('image, caption'), toggleControlsOr(lightbox.next));
-      $refs.container.on(
-        'tap', selector('view, strip'), toggleControlsOr(lightbox.hide)
-      )
+        .on('tap', selector('left'), handlerPrev)
+        .on('tap', selector('right'), handlerNext)
+        .on('tap', selector('close'), handlerHide)
+        .on('tap', selector('image, caption'), handlerNext);
+      $refs.container
+        .on('tap', selector('view, strip'), handlerHide)
         // Prevent images from being dragged around.
         .on('dragstart', selector('img'), preventDefault);
       $refs.lightbox
         .on('keydown', keyHandler)
-        // While visible, prevent lightbox from loosing focus to other nodes.
-        // IE looses focus without letting us know.
-        .on('focusin', focusThis)
-        // Unfortunately setTimeout is needed because of a 14 year old
-        // Firefox bug (https://bugzilla.mozilla.org/show_bug.cgi?id=53579#c4).
-        .on('blur', function () {
-          setTimeout(focusThis.bind(this), 0);
-        });
+        // IE loses focus to inner nodes without letting us know.
+        .on('focusin', focusThis);
 
     // The `tabindex` attribute is needed to enable non-input elements
     // to receive keyboard events.
     $('body').append($refs.lightbox.prop('tabIndex', 0));
-    
+
     return lightbox;
   };
 
@@ -2433,12 +2416,12 @@ var lightbox = (function (window, document, $, tram, undefined) {
     if (!$refs) {
       return;
     }
-    
+
     // Event handlers are also removed.
     $refs.lightbox.remove();
     $refs = undefined;
   };
-  
+
   /**
    * Show a specific item.
    */
@@ -2463,47 +2446,70 @@ var lightbox = (function (window, document, $, tram, undefined) {
       if (index != currentIndex) {
         return;
       }
-      
+
       var $figure = dom('figure', 'figure').append(addClass($image, 'image'));
       var $frame = dom('frame').append($figure);
       var $newView = dom('view').append($frame);
+      var $html, isIframe;
 
       if (item.html) {
-        $figure.append(addClass($(item.html), 'embed'));
+        $html = $(item.html);
+        isIframe = $html.is('iframe');
+
+        if (isIframe) {
+          $html.on('load', transitionToNewView);
+        }
+
+        $figure.append(addClass($html, 'embed'));
       }
-      
+
       if (item.caption) {
         $figure.append(dom('caption', 'figcaption').text(item.caption));
       }
-            
-      spinner.hide();
-      
-      toggleClass($refs.arrowLeft, 'inactive', index <= 0);
-      toggleClass($refs.arrowRight, 'inactive', index >= items.length - 1);
-      
-      $refs.spinner.before($newView);
-      
-      if ($refs.view) {
-        tram($refs.view)
-          .add('opacity .3s')
-          .start({opacity: 0})
-          .then(remover($refs.view));
 
-        tram($newView)
-          .add('opacity .3s')
-          .add('transform .3s')
-          .set({opacity: 0, x: index > previousIndex ? '80px' : '-80px'})
-          .start({opacity: 1, x: 0});
+      $refs.spinner.before($newView);
+
+      if (!isIframe) {
+        transitionToNewView();
       }
 
-      $refs.view = $newView;
+      function transitionToNewView() {
+        spinner.hide();
 
-      if ($refs.items) {
-        // Mark proper thumbnail as active
-        addClass(removeClass($refs.items, 'active').eq(index), 'active');
+        if (index != currentIndex) {
+          $newView.remove();
+          return;
+        }
+
+
+        toggleClass($refs.arrowLeft, 'inactive', index <= 0);
+        toggleClass($refs.arrowRight, 'inactive', index >= items.length - 1);
+
+        if ($refs.view) {
+          tram($refs.view)
+            .add('opacity .3s')
+            .start({opacity: 0})
+            .then(remover($refs.view));
+
+          tram($newView)
+            .add('opacity .3s')
+            .add('transform .3s')
+            .set({x: index > previousIndex ? '80px' : '-80px'})
+            .start({opacity: 1, x: 0});
+        }
+        else {
+          $newView.css('opacity', 1);
+        }
+
+        $refs.view = $newView;
+
+        if ($refs.items) {
+          // Mark proper thumbnail as active
+          addClass(removeClass($refs.items, 'active').eq(index), 'active');
+        }
       }
     });
-    
+
     return lightbox;
   };
 
@@ -2515,23 +2521,23 @@ var lightbox = (function (window, document, $, tram, undefined) {
       .add('opacity .3s')
       .start({opacity: 0})
       .then(hideLightbox);
-    
+
     return lightbox;
   };
-  
+
   lightbox.prev = function () {
     if (currentIndex > 0) {
       lightbox.show(currentIndex - 1);
     }
   };
-  
+
   lightbox.next = function () {
     if (currentIndex < items.length - 1) {
       lightbox.show(currentIndex + 1);
     }
   };
 
-  function toggleControlsOr(callback) {
+  function createHandler(action) {
     return function (event) {
       // We only care about events triggered directly on the bound selectors.
       if (this != event.target) {
@@ -2541,14 +2547,13 @@ var lightbox = (function (window, document, $, tram, undefined) {
       event.stopPropagation();
       event.preventDefault();
 
-      if (matchMedia(breakpoint).matches) {
-        callback();
-      }
-      else {
-        toggleClass($refs.controls, 'visible');
-      }
+      action();
     };
   }
+
+  var handlerPrev = createHandler(lightbox.prev);
+  var handlerNext = createHandler(lightbox.next);
+  var handlerHide = createHandler(lightbox.hide);
 
   var itemTapHandler = function(event) {
     var index = $(this).index();
@@ -2569,35 +2574,27 @@ var lightbox = (function (window, document, $, tram, undefined) {
     }
   };
 
-  function preventDefaultAnd(action) {
-    return function (event) {
-      // Prevents click events and zooming.
-      event.preventDefault();
-      action();
-    };
-  }
-
   var focusThis = function () {
     this.focus();
   };
 
-  function preventDefault(event) {    
+  function preventDefault(event) {
     event.preventDefault();
   }
-  
+
   function keyHandler(event) {
     var keyCode = event.keyCode;
-    
+
     // [esc]
     if (keyCode == 27) {
       lightbox.hide();
     }
-    
+
     // [◀]
     else if (keyCode == 37) {
       lightbox.prev();
     }
-    
+
     // [▶]
     else if (keyCode == 39) {
       lightbox.next();
@@ -2612,23 +2609,22 @@ var lightbox = (function (window, document, $, tram, undefined) {
 
     // Reset some stuff
     removeClass($refs.content, 'group');
-    removeClass($refs.controls, 'visible');
     addClass($refs.arrowLeft, 'inactive');
     addClass($refs.arrowRight, 'inactive');
 
     currentIndex = $refs.view = undefined;
   }
-  
+
   function loadImage(url, callback) {
     var $image = dom('img', 'img');
-    
+
     $image.one('load', function () {
       callback($image);
     });
-    
+
     // Start loading image.
     $image.attr('src', url);
-    
+
     return $image;
   }
 
@@ -2637,20 +2633,20 @@ var lightbox = (function (window, document, $, tram, undefined) {
       $element.remove();
     };
   }
-  
+
   /**
    * Spinner
    */
   function Spinner($spinner, className, delay) {
     this.$element = $spinner;
     this.className = className;
-    this.delay = delay || 200;    
+    this.delay = delay || 200;
     this.hide();
   }
-  
+
   Spinner.prototype.show = function () {
     var spinner = this;
-    
+
     // Bail if we are already showing the spinner.
     if (spinner.timeoutId) {
       return;
@@ -2661,7 +2657,7 @@ var lightbox = (function (window, document, $, tram, undefined) {
       delete spinner.timeoutId;
     }, spinner.delay);
   };
-  
+
   Spinner.prototype.hide = function () {
     var spinner = this;
     if (spinner.timeoutId) {
@@ -2672,11 +2668,11 @@ var lightbox = (function (window, document, $, tram, undefined) {
 
     spinner.$element.addClass(spinner.className);
   };
-  
+
   function prefixed(string, isSelector) {
     return string.replace(prefixRegex, (isSelector ? ' .' : ' ') + prefix);
   }
-  
+
   function selector(string) {
     return prefixed(string, true);
   }
@@ -2776,6 +2772,25 @@ var lightbox = (function (window, document, $, tram, undefined) {
         '}' +
         '.w-lightbox-thumbnail {' +
           'height:' + (0.1 * vh) + 'px' +
+        '}' +
+        '@media (min-width: 768px) {' +
+          '.w-lightbox-content, .w-lightbox-view, .w-lightbox-view:before {' +
+            'height:' + (0.96 * vh) + 'px' +
+          '}' +
+          '.w-lightbox-content {' +
+            'margin-top:' + (0.02 * vh) + 'px' +
+          '}' +
+          '.w-lightbox-group, .w-lightbox-group .w-lightbox-view, .w-lightbox-group .w-lightbox-view:before {' +
+            'height:' + (0.84 * vh) + 'px' +
+          '}' +
+          '.w-lightbox-image {' +
+            'max-width:' + (0.96 * vw) + 'px;' +
+            'max-height:' + (0.96 * vh) + 'px' +
+          '}' +
+          '.w-lightbox-group .w-lightbox-image {' +
+            'max-width:' + (0.823 * vw) + 'px;' +
+            'max-height:' + (0.84 * vh) + 'px' +
+          '}' +
         '}';
 
       styleNode.textContent = content;
@@ -2854,38 +2869,35 @@ Webflow.define('lightbox', function ($, _) {
 
   function configure(data) {
     var json = data.el.children('.w-json').html();
-    var groupId, group;
+    var groupName, groupItems;
 
     if (!json) {
-      data.images = [];
+      data.items = [];
       return;
     }
-    
+
     try {
       json = JSON.parse(json);
-      data.mode = json.mode;
 
-      if (json.mode == 'video') {
-        data.embed = json.embed;
+      supportOldLightboxJson(json);
+
+      groupName = json.group;
+
+      if (groupName) {
+        groupItems = groups[groupName];
+        if (!groupItems) {
+          groupItems = groups[groupName] = [];
+        }
+
+        data.items = groupItems;
+
+        if (json.items.length) {
+          data.index = groupItems.length;
+          groupItems.push.apply(groupItems, json.items);
+        }
       }
       else {
-        groupId = json.groupId;
-        if (groupId) {
-          group = groups[groupId];
-          if (!group) {
-            group = groups[groupId] = [];
-          }
-
-          data.images = group;
-
-          if (json.images.length) {
-            data.index = group.length;
-            group.push.apply(group, json.images);
-          }
-        }
-        else {
-          data.images = json.images;
-        }
+        data.items = json.items;
       }
     }
     catch (e) {
@@ -2895,12 +2907,26 @@ Webflow.define('lightbox', function ($, _) {
 
   function tapHandler(data) {
     return function () {
-      if (data.mode == 'video') {
-        data.embed && lightbox(data.embed);
-      } else {
-        data.images.length && lightbox(data.images, data.index || 0);
-      }
+      data.items.length && lightbox(data.items, data.index || 0);
     };
+  }
+
+  function supportOldLightboxJson(data) {
+    if (data.images) {
+      data.images.forEach(function (item) {
+        item.type = 'image';
+      });
+      data.items = data.images;
+    }
+
+    if (data.embed) {
+      data.embed.type = 'video';
+      data.items = [data.embed];
+    }
+
+    if (data.groupId) {
+      data.group = data.groupId;
+    }
   }
 
   // Export module
@@ -3587,11 +3613,14 @@ Webflow.define('tabs', function($, _) {
 Webflow.require('ix').init([
   {"slug":"hover","name":"hover","value":{"style":{},"triggers":[{"type":"hover","loopA":true,"stepsA":[{"wait":500,"transition":"transform 500ms ease 0ms","rotate":"-20deg"}],"stepsB":[{"transition":"transform 500ms ease 0ms","rotate":"0deg"}]}]}},
   {"slug":"over","name":"over","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}},
-  {"slug":"click-show","name":"click show","value":{"style":{},"triggers":[{"type":"click","selector":".infobox","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
-  {"slug":"click-hide","name":"click hide","value":{"style":{},"triggers":[{"type":"click","selector":".infobox","stepsA":[{"title":"Infobox Show","display":"none","opacity":1,"height":"600px","wait":500,"transition":"opacity 500ms ease 0ms, height 500ms ease-in 0ms"}],"stepsB":[]}]}},
+  {"slug":"click-show","name":"click show","value":{"style":{},"triggers":[{"type":"click","selector":".infobox","stepsA":[{"title":"Infobox Show","display":"block","height":"auto","group":"A","trigger":{"modelType":"MacroTrigger","macro":{"modelType":"Macro","guid":"a2810244-0931-1a68-4f38-e87af85bd0e9","style":{"modelType":"MacroStyle"}}}}],"stepsB":[],"macro":{"modelType":"Macro","guid":"a2810244-0931-1a68-4f38-e87af85bd0e9","style":{"modelType":"MacroStyle"}}}]}},
   {"slug":"click-show-current","name":"click show current","value":{"style":{},"triggers":[{"type":"click","selector":".currentinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
   {"slug":"click-show-pending","name":"click show pending","value":{"style":{},"triggers":[{"type":"click","selector":".pendinginfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
   {"slug":"click-show-rejected","name":"click show rejected","value":{"style":{},"triggers":[{"type":"click","selector":".rejectedinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
   {"slug":"click-show-expired","name":"click show expired","value":{"style":{},"triggers":[{"type":"click","selector":".expiredinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
-  {"slug":"click-hide-info","name":"click hide info","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"title":"Infobox Show","display":"none","opacity":1,"height":"600px","wait":500,"transition":"opacity 500ms ease 0ms, height 500ms ease-in 0ms"}],"stepsB":[]}]}}
+  {"slug":"click-hide-info","name":"click hide info","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"title":"Infobox Show","display":"none","opacity":1,"height":"600px","wait":500,"transition":"opacity 500ms ease 0ms, height 500ms ease-in 0ms"}],"stepsB":[]}]}},
+  {"slug":"click-show-fb-profile","name":"click show fb profile","value":{"style":{},"triggers":[{"type":"click","selector":".fbuserprofile","stepsA":[{"title":"Infobox Show","display":"block","height":"auto","group":"A","trigger":{"modelType":"MacroTrigger","macro":{"modelType":"Macro","guid":"ce1a264e-01ac-da38-4499-6e573cd022b2","style":{"modelType":"MacroStyle"}}}}],"stepsB":[],"macro":{"modelType":"Macro","guid":"ce1a264e-01ac-da38-4499-6e573cd022b2","style":{"modelType":"MacroStyle"}}}]}},
+  {"slug":"click-show-cash-out","name":"click show cash out","value":{"style":{},"triggers":[{"type":"click","selector":".cashout","stepsA":[{"title":"Infobox Show","display":"block","height":"auto","group":"A","trigger":{"modelType":"MacroTrigger","macro":{"modelType":"Macro","guid":"b01268fa-cae6-3679-c9dd-41b390d5663e","style":{"modelType":"MacroStyle"}}}}],"stepsB":[],"macro":{"modelType":"Macro","guid":"b01268fa-cae6-3679-c9dd-41b390d5663e","style":{"modelType":"MacroStyle"}}}]}},
+  {"slug":"click-show-favourite","name":"click show favourite","value":{"style":{},"triggers":[{"type":"click","selector":".favourites","stepsA":[{"title":"Infobox Show","display":"block","height":"auto","group":"A","trigger":{"modelType":"MacroTrigger","macro":{"modelType":"Macro","guid":"7e011904-a572-8a1e-6a05-2906b290e85d","style":{"modelType":"MacroStyle"}}}}],"stepsB":[],"macro":{"modelType":"Macro","guid":"7e011904-a572-8a1e-6a05-2906b290e85d","style":{"modelType":"MacroStyle"}}}]}},
+  {"slug":"click-show-mailbox","name":"click show mailbox","value":{"style":{},"triggers":[{"type":"click","selector":".mailbox","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}}
 ]);

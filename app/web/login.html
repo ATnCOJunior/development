@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Tue Aug 05 2014 09:30:01 GMT+0000 (UTC) -->
-<html data-wf-site="53d0fce04156486e385c75ee">
+<!-- Last Published: Sat Aug 16 2014 05:02:34 GMT+0000 (UTC) -->
+<html data-wf-site="53d0fce04156486e385c75ee" data-wf-page="53e5e4058300c9c1489b8f1b">
 <head>
   <meta charset="utf-8">
   <title>atncoJR - login</title>
@@ -22,67 +22,56 @@
   <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/placeholder/favicon.ico">
 </head>
 <body>
-  <div class="w-row bod">
-    <div class="w-col w-col-2 w-col-small-2 w-col-tiny-2 nav login">
-      <a class="w-inline-block nav-img" href="index.html">
-        <img class="logo" src="images/chef3.png" id="home" alt="53d10a5465325541683a71da_chef3.png" data-ix="over">
-      </a>
-    </div>
-    <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main">
-      <div class="head">
-        <h1 id="dining">customer</h1>
-        <div class="box fb">
-          <a class="w-clearfix w-inline-block fblogin" href="user.html" data-ix="over">
-            <img class="image fblogin" src="images/Facebook-256.png" alt="53d204ec40c81555798414af_Facebook-256.png" data-ix="over">
-          </a>
-        </div>
-      </div>
-      <div class="head">
-        <h1 id="dining">merchant</h1>
-        <div class="box into">
-          <div class="w-row">
-            <div class="w-col w-col-6 box login _1">
-              <div class="w-form reg">
-                <form id="wf-form-reg" name="wf-form-reg" data-name="reg">
-                  <label for="email">Email Address:</label>
-                  <input class="w-input" id="email" type="email" name="email" data-name="Email" required="required">
-                  <label for="password">Password:</label>
-                  <input class="w-input" id="password" type="email" name="password" data-name="password" required="required">
-                  <input class="w-button" type="submit" value="REGISTER" data-wait="Please wait..."><a class="w-inline-block nav-img" href="merchant.html" data-ix="over"><h6>go</h6></a>
-                </form>
-                <div class="w-form-done go">
-                  <p>Thank you! Your submission has been received!</p>
-                </div>
-                <div class="w-form-fail go">
-                  <p>Oops! Something went wrong &nbsp;:(</p>
-                </div>
-              </div>
-            </div>
-            <div class="w-col w-col-6 box login _2">
-              <div class="w-form reg">
-                <form id="wf-form-reg" name="wf-form-reg" data-name="reg">
-                  <label for="email-2">Email Address:</label>
-                  <input class="w-input" id="email-2" type="email" name="email-2" data-name="Email 2" required="required">
-                  <label for="password-2">Password:</label>
-                  <input class="w-input" id="password-2" type="email" name="password-2" data-name="Password 2" required="required">
-                  <input class="w-button" type="submit" value="LOGIN" data-wait="Please wait..."><a class="w-inline-block nav-img" href="merchant.html" data-ix="over"><h6>go</h6></a>
-                </form>
-                <div class="w-form-done go">
-                  <p>Thank you! Your submission has been received!</p>
-                </div>
-                <div class="w-form-fail go">
-                  <p>Oops! Something went wrong &nbsp;:(</p>
-                </div>
-              </div>
-            </div>
+  <div class="top">
+    <a class="w-inline-block link" href="index.html">
+      <img class="centertop" src="images/Chef-Cap-256.png" alt="53e23ddab0bc15262a404c20_Chef-Cap-256.png">
+    </a>
+  </div>
+  <div class="login">
+    <div class="w-row">
+      <div class="w-col w-col-5">
+        <h1>LOGIN</h1>
+        <div class="w-form">
+          <form id="email-form" name="email-form" data-name="Email Form">
+            <label class="label" for="name">Email</label>
+            <input class="w-input" id="name" type="text" placeholder="Enter your email address" name="name" data-name="Name" required="required" autofocus="autofocus">
+            <label class="label" for="Password">Password</label>
+            <input class="w-input" id="Password" type="email" name="Password" data-name="Password" required="required" autofocus="autofocus">
+            <input class="w-button go" type="submit" value="login" data-wait="Please wait...">
+          </form>
+          <div class="w-form-done">
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail">
+            <p>Oops! Something went wrong while submitting the form :(</p>
           </div>
         </div>
       </div>
-      <div class="head"><a class="w-inline-block nav-img" href="admin.html" data-ix="over"><h6>admin</h6></a>
+      <div class="w-col w-col-2">
+        <div>
+          <br>&nbsp;</div>
+      </div>
+      <div class="w-col w-col-5">
+        <h1>REGISTER</h1>
+        <div class="w-form">
+          <form id="email-form-2" name="email-form-2" data-name="Email Form 2">
+            <label class="label" for="name-2">Email</label>
+            <input class="w-input" id="name-2" type="text" placeholder="Enter your email address" name="name" data-name="Name 2" required="required" autofocus="autofocus">
+            <label class="label" for="email-2">Password</label>
+            <input class="w-input" id="email-2" type="email" name="email" data-name="Email 2" required="required" autofocus="autofocus">
+            <input class="w-button go" type="submit" value="register" data-wait="Please wait...">
+          </form>
+          <div class="w-form-done">
+            <p>Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail">
+            <p>Oops! Something went wrong while submitting the form :(</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </body>

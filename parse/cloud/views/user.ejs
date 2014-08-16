@@ -28,6 +28,7 @@ $(document).ready(function(){
       <img class="imgnav" src="images/Race-Flag-256.png" >
       <h2>ending</h2>
     </a>
+    <hr></hr>
     <a class="w-inline-block nav-img" href="#cafe" data-ix="over">
       <img class="imgnav" src="images/Beverage-Coffee-01-256.png" >
       <h2>cafe</h2>
@@ -63,15 +64,15 @@ $(document).ready(function(){
       <h1 id="top">-</h1>
       <% _(images).each(function(image) { %>
       <div class="w-clearfix image bloc">
-        <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
 
         <a class="like">
-          <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+          <div metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
             <h4 class="count">like</h4>
           </div>
         </a>
         <a class="share">
-          <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+          <div metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
             <h4 class="count" data-ix="over">share</h4>
           </div>
         </a>
@@ -82,160 +83,272 @@ $(document).ready(function(){
 
     <!-- start of cafe listing -->
     <div class="w-clearfix head">
-      <p>THIS IS USER EJS</p>
       <h1 id="cafe">CAFE</h1>
-      <div class="w-clearfix image bloc" data-ix="over">
-        <img class="nav-img" src="https://13aug.parseapp.com/images/10488385_796036830437050_8365621372246261421_n.jpg" width="320" alt="53e08472aba9f4867d01bdff_10488385_796036830437050_8365621372246261421_n.jpg"
-        data-ix="click-show">
+      <div class="w-clearfix image bloc">
+        <img class="nav-img" src="https://13aug.parseapp.com/images/10488385_796036830437050_8365621372246261421_n.jpg" width="320" alt="alt.jpg"
+        data-ix="click-show" data-ix="over">
         <div class="like"  id="OMG" data-ix="over">
           <h4 class="count">
-          <div class="fb-like"  data-href="https://13aug.parseapp.com/images/10488385_796036830437050_8365621372246261421_n.jpg" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div></h4>
+            <div class="fb-like"  data-href="https://13aug.parseapp.com/images/10488385_796036830437050_8365621372246261421_n.jpg" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div></h4>
+          </div>
+          <div class="share" data-ix="over">
+            <h4 class="count" data-ix="over"><div class="fb-share-button" onclick="facebookMod.feed('#')"></div></h4>
+          </div>
         </div>
-        <div class="share" data-ix="over">
-          <h4 class="count" data-ix="over"><div class="fb-share-button" onclick="facebookMod.feed('#')"></div></h4>
-        </div>
-      </div>
 
-      <% _(images).each(function(image) { 
-        if (image.get("category")=="cafe"){%>
-        <div class="w-clearfix image bloc">
-          <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
-
-          <a class="like">
-            <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-              <h4 class="count">like</h4>
-            </div>
-          </a>
-          <a class="share">
-            <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-              <h4 class="count" data-ix="over">share</h4>
-            </div>
-          </a>
-        </div>
-      <% }}); %>
-    </div>
-      <!-- end of cafe listing -->
-
-
-      <!-- start of bar listing -->
-      <div class="w-clearfix head">
-        <h1 id="bar">BAR</h1>
         <% _(images).each(function(image) { 
-          if (image.get("category")=="bar"){%>
-          <div class="w-clearfix image bloc" >
-            <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
+          if (image.get("category")=="cafe"){%>
+          <div class="w-clearfix image bloc">
+            <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
 
             <a class="like">
-              <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <div metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
                 <h4 class="count">like</h4>
               </div>
             </a>
             <a class="share">
-              <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <div metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
                 <h4 class="count" data-ix="over">share</h4>
               </div>
             </a>
           </div>
           <% }}); %>
         </div>
-        <!-- end of top listing -->
+        <!-- end of cafe listing -->
 
-        <!-- start of dining listing -->
-        <div class="w-clearfix head">
-          <h1 id="dining">DINING</h1>
-          <% _(images).each(function(image) { 
-            if (image.get("category")=="dining"){%>
-            <div class="w-clearfix image bloc">
-              <img class="adsimg" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480"  data-ix="click-show">
 
-              <a class="like">
-                <div class="like" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-                  <h4 class="count">like</h4>
-                </div>
-              </a>
-              <a class="share">
-                <div class="share" metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
-                  <h4 class="count" data-ix="over">share</h4>
-                </div>
-              </a>
+    <!-- start of bar listing -->
+    <div class="w-clearfix head">
+      <h1 id="bar">BAR</h1>
+      <% _(images).each(function(image) { 
+        if (image.get("category")=="bar"){%>
+        <div class="w-clearfix image bloc" >
+          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480" data-ix="click-show">
+
+          <a class="like">
+            <div metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count">like</h4>
             </div>
-            <% }}); %>
-          </div>
-          <!-- end of dining listing -->
-
-          <!-- start of infobox codes -->
-          <div class="infobox" id="info" data-ix="click-hide">
-            <div class="w-row inforow" id="infobox">
-              <div class="w-col w-col-6">
-                <img id="popup-image" class="adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" data-ix="click-show">
-              </div>
-              <div class="w-col w-col-6 info">
-                <h1>Promotion Details</h1>
-                <h4>--COMPANY NAME--<br>Promotion Description<br>Promotion Duration<br>Promotion Location</h4>
-                <div class="w-container infoactive">
-                  <a class="w-inline-block infoicon like" href="#bars" data-ix="over">
-                    <img class="infoimg" src="images/Shape-Heart-256.png">
-                    <h2>like</h2>
-                  </a>
-                  <a class="w-inline-block infoicon share" href="#bars" data-ix="over">
-                    <img class="infoimg" src="images/Shape12-256.png">
-                    <h2>share</h2>
-                  </a>
-                  <a class="w-inline-block infoicon" href="#bars" data-ix="over">
-                    <img class="infoimg" src="images/Shape-Diamond-256.png">
-                    <h2>favourite</h2>
-                  </a>
-                  <a class="w-inline-block infoicon" href="#bars" data-ix="over">
-                    <img class="infoimg" src="images/Shape-Spade-256.png">
-                    <h2>visit us</h2>
-                  </a>
-                </div>
-              </div>
+          </a>
+          <a class="share">
+            <div metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count" data-ix="over">share</h4>
             </div>
-          </div>
-          <!-- end of infobox codes -->
-
+          </a>
         </div>
-        <!-- end of main body codes -->
+        <% }}); %>
+      </div>
+      <!-- end of top listing -->
 
+    <!-- start of dining listing -->
+    <div class="w-clearfix head">
+      <h1 id="dining">DINING</h1>
+      <% _(images).each(function(image) { 
+        if (image.get("category")=="dining"){%>
+        <div class="w-clearfix image bloc">
+          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" data-ix="over" width="480"  data-ix="click-show">
+
+          <a class="like">
+            <div metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count">like</h4>
+            </div>
+          </a>
+          <a class="share">
+            <div metadataId="<%= image.get("imageMetadata").id %>" data-ix="over">
+              <h4 class="count" data-ix="over">share</h4>
+            </div>
+          </a>
+        </div>
+        <% }}); %>
+      </div>
+      <!-- end of dining listing -->
+
+      
+
+
+    <!-- start of infobox codes -->
+    <div class="infobox" id="info" data-ix="click-hide-info">
+      <div class="w-row inforow" id="infobox">
+        <div class="w-col w-col-6">
+          <img class="popup-image adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" 
+          data-ix="click-show">
+        </div>
+        <div class="w-col w-col-6 info">
+
+          <h1>Promotion Details</h1>
+
+          <h4>by: </h4>
+          <h4 class="companyName">--COMPANY NAME--</h4>
+          <br><h4>Description: </h4><h4 class="promoInfo">Description</h4>
+          <br><h4>Valid until: </h4><h4 class="expiry">Expiry</h4>
+          <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
+
+          <div class="w-container infoactive">
+            <a class="w-inline-block infoicon" href="/like" data-ix="over">
+              <img class="infoimg" src="images/Shape-Heart-256.png">
+              <h2>like</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="/share" data-ix="over">
+              <img class="infoimg" src="images/Shape12-256.png">
+              <h2>share</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="/fav" data-ix="over">
+              <img class="infoimg" src="images/Shape-Diamond-256.png">
+              <h2>favourite</h2>
+            </a>
+            <a class="w-inline-block infoicon" href="/visit" data-ix="over">
+              <img class="infoimg" src="images/Shape-Spade-256.png">
+              <h2>visit us</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of infobox codes -->
+</div>
+
+<!-- start of user profile infobox codes -->
+    <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main-merchant">
+      <div class="fbuserprofile" data-ix="click-hide-info">
+        <div class="w-row">
+          <div class="w-col w-col-6">
+            <img class="fbdpic" src="images/1.png" width="100%" >
+          </div>
+          <div class="w-col w-col-6">
+            <div class="w-container user-point-count">
+              <img class="money" src="images/1408173985_9.png" width="65" >
+              <div class="fb-text">&nbsp;####</div>
+            </div>
+            <div class="w-container username">
+              <div class="fb-text">username</div>
+            </div>
+            <div class="w-container email-address">
+              <div class="fb-text">bank account number</div>
+            </div>
+            <div class="w-container gender">
+              <div class="fb-text">email</div>
+            </div>
+            <div class="w-container fblink">
+              <div class="fb-text">gender</div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- end of user profile infobox codes -->
+
+
+<!-- start of cashout info box codes -->
+      <div class="cashout" data-ix="click-hide-info">
+        <div class="w-container">
+          <img class="cashimg" src="images/46569.png" width="100" png>
+          <h6>CASH OUT NOW!</h6>
+        </div>
+        <div class="w-container">
+          <div class="w-row">
+            <div class="w-col w-col-6">
+              <div class="cashtext">like</div>
+            </div>
+            <div class="w-col w-col-6">
+              <div class="cashtext">share</div>
+            </div>
+          </div>
+          <div class="w-row">
+            <div class="w-col w-col-6">
+              <div class="cashtext points">####</div>
+            </div>
+            <div class="w-col w-col-6">
+              <div class="cashtext points">####</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-container">
+          <div class="w-row mathsbar">
+            <div class="w-col w-col-6 left">
+              <div class="cashtext">x2</div>
+            </div>
+            <div class="w-col w-col-6">
+              <div class="cashtext">x5</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-container">
+          <img class="cashimg" src="images/money-bag-xxl.png">
+          <div class="cashtext points">####</div><a class="button" href="#">confirm</a>
+        </div>
       </div>
 
+<!-- end of cashout infobox codes -->
 
-      <!-- insert right panel user public profile data here-->
-      <!-- start of another navigation codes -->
-      <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
-        <a class="w-inline-block nav-img" href="/about" data-ix="over">
-          <img class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
-          <h2 data-ix="over"><label id="lastName">Username</label></h2><!--last name-->
-        </a>
-        <a class="w-inline-block nav-img" href="#pay" data-ix="over">
-          <img id="profileImage" class="imgnav" src="images/Facebook-256.png">
-          <h2 data-ix="over">Profile Photo</h2>
-        </a>
 
-        <a class="w-inline-block nav-img" href="#profile" data-ix="over">
-          <img class="imgnav" src="images/User-Profile-256.png">
-          <h2 data-ix="over"><label id="fullName">Profile</label></h2><!--fullName-->
-        </a>
-        <a class="w-inline-block nav-img" href="#reports" data-ix="over">
-          <img class="imgnav" src="images/Money-Bag-256.png">
-          <h2 data-ix="over">cashout</h2>
-        </a>
-        <a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
-          <img class="imgnav" src="images/Bookmark-256.png">
-          <h2 data-ix="over">favourite</h2>
-        </a>
-        <a class="w-inline-block nav-img" href="/about" data-ix="over">
-          <img class="imgnav" src="images/Message-Mail-256.png" data-ix="over">
-          <h2 data-ix="over">mailbox</h2>
-        </a>
-        <a class="w-inline-block nav-img" href="/about" data-ix="over">
-          <img class="imgnav" src="images/Dialog-Box-About-256.png" data-ix="over">
-          <h2 data-ix="over">about</h2>
-        </a>
-		<hr></hr>
-		<a class="w-inline-block nav-img" href="/about" data-ix="over">
-          <h2 data-ix="over">Points: <label id="points">0</label></h2>
-        </a>
+<!-- start of favourite ads infobox codes -->
+      <div class="favourites" data-ix="click-hide-info">
+        <div class="w-container">
+          <h6 class="message">my favourite promotions</h6>
+          
+        </div>
       </div>
-      <!-- end of another navigation codes -->
+
+<!-- end of favourite ads infobox codes -->
+
+<!-- start of mailbox infobox codes -->
+      <div class="mailbox" data-ix="click-hide-info">
+        <div class="w-container">
+          <h6 class="inbox">inbox</h6>
+        </div>
+        <div class="w-container">
+          <ul class="list">
+            <li class="unread">
+              <div class="inboxmsg">unread message&nbsp;</div>
+              <div class="inboxmsg">your favourite promo: “yoguru and free toppings"&nbsp;is expiring in 7 days!&nbsp;</div>
+              <div class="inboxmsg">your favourite promo: “7 cupcakes and giftbox" is expiring in 7 days!</div>
+              <div class="inboxmsg">check out your updated piggy bank!</div>
+              <div class="inboxmsg">your favourite promo: “buffet dining 1-4-1” is expiring in 7 days!</div>
+            </li>
+            <li class="read">
+              <div class="inboxmsg">your favourite promo: “happy hours at harry's” is expiring in 7 days!</div>
+              <div class="inboxmsg">congratulation! you have cash out $10.90!&nbsp;</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<!-- end of mailbox infobox codes -->
+
+<!-- end of main body codes -->
+
+
+
+  </div>
+
+
+<!-- insert right panel user public profile data here-->
+<!-- start of another navigation codes -->
+
+<div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
+    <a class="w-inline-block nav-img" data-ix="click-show-fb-profile">
+      <img class="imgnav" src="images/Facebook-256.png" data-ix="over">
+      <h2 data-ix="over"><label id="lastName">profile</label></h2><!--last name-->
+    </a>
+    <a class="w-inline-block nav-img">
+      <img class="imgnav" src="images/Money-Deposit-256.png" data-ix="over">
+      <h2 data-ix="over"><label id="points">###</label></h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#" data-ix="click-show-cash-out">
+      <img class="imgnav" src="images/Money-Bag-256.png"  data-ix="over">
+      <h2 data-ix="over">cashout</h2>
+    </a>
+    <a class="w-inline-block nav-img" data-ix="click-show-favourite">
+      <img class="imgnav" src="images/Bookmark-256.png" data-ix="over">
+      <h2 data-ix="over">favourites</h2>
+    </a>
+    <a class="w-inline-block nav-img" data-ix="click-show-mailbox">
+      <img class="imgnav" src="images/Message-Mail-256.png" data-ix="over">
+      <h2 data-ix="over">mailbox</h2>
+    </a>
+    <a class="w-inline-block nav-img" href="#" data-ix="over">
+      <img class="imgnav" src="images/Dialog-Box-About-256.png"data-ix="over">
+      <h2 data-ix="over">about</h2>
+    </a>
+  </div>
+
+<!-- end of another navigation codes -->

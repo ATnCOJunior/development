@@ -12,8 +12,8 @@
     <% _(images).each(function(image) { 
       var imageMetadata = image.get('imageMetadata');
       if (imageMetadata.get("approval")=="0") {%>
-      <div class="w-clearfix image">
-        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" data-ix="click-show" data-ix="over">
+      <div class="w-clearfix image" data-ix="click-show">
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" data-ix="over">
         <div class="approve">
           <form action="/i/<%=image.id%>/approve" method="post">
             <h4> <input type="submit" value="approve" class="count"> </h4>
@@ -70,7 +70,7 @@
      </div>
    </div>   -->
 
-   <div class="infobox" id="info" data-ix="click-hide">
+   <div class="infobox" id="info" data-ix="click-hide-info">
     <div class="w-row inforow" id="infobox">
       <div class="w-col w-col-6">
         <img class="popup-image  adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" data-ix="click-show">
