@@ -144,7 +144,7 @@ function FacebookMod(facebookId) {
 			facebookLink: user.get("linkToFb"),
 			points: user.get("points")
 		};
-		
+
 		callback(json);
 	},
 	

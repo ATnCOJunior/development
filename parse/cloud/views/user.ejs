@@ -12,9 +12,10 @@ $(document).ready(function(){
   facebookMod.getUserInfo(function(resp) {
     $("#fullName").html(resp.fullName);
     $("#profileImage").attr("src", resp.imageURL);
-	$("#username").html(resp.username);
-	$("#email").html(resp.email);
-	$("#gender").html(resp.gender);
+    $("#bigProfileImage").attr("src", resp.imageURL);
+  	$("#username").html(resp.username);
+  	$("#email").html(resp.email);
+  	$("#gender").html(resp.gender);
     $("#points").html(resp.points);
   });
 });
@@ -196,7 +197,7 @@ $(document).ready(function(){
   <div class="fbuserprofile" data-ix="click-hide-info">
     <div class="w-row">
       <div class="w-col w-col-6">
-        <img class="fbdpic" src="images/1.png" width="100%" >
+        <!-- <img class="fbdpic" id="bigProfileImage" src="images/1.png" width="100%" > -->
       </div>
       <div class="w-col w-col-6">
         <div class="w-container user-point-count">
@@ -352,7 +353,7 @@ $(document).ready(function(){
   </a>
   <a class="w-inline-block nav-img">
     <img class="imgnav" src="images/Money-Deposit-256.png" data-ix="over">
-    <h2 data-ix="over">###</h2>
+    <h2 id="points" data-ix="over">###</h2>
   </a>
   <a class="w-inline-block nav-img" href="#" data-ix="click-show-cash-out">
     <img class="imgnav" src="images/Money-Bag-256.png"  data-ix="over">
