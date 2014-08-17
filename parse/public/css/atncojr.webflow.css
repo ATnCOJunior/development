@@ -586,6 +586,16 @@ p {
   line-height: 80px;
   text-align: left;
 }
+
+.fb-subtext {
+	width: 300px;
+	font-family: Exo, sans-serif;
+	color: ivory;
+	font-size: 14px;
+	text-align: left;
+	position: relative;
+	bottom: 20px;
+}
 .fbdpic {
   display: block;
   width: 100%;

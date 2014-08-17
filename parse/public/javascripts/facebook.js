@@ -138,6 +138,7 @@ function FacebookMod(facebookId) {
 			lastName: user.get("lastName"),
 			imageURL: user.get("profilePhotoUrl"),
 			fullName: user.get("fullName"),
+			username: user.get("username"),
 			email: user.get("emailaddress"),
 			gender: user.get("gender"),
 			facebookLink: user.get("linkToFb"),

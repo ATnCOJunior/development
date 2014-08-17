@@ -10,9 +10,11 @@
 
 $(document).ready(function(){
   facebookMod.getUserInfo(function(resp) {
-    $("#lastName").html(resp.lastName);
-    $("#profileImage").attr("src", resp.imageURL);
     $("#fullName").html(resp.fullName);
+    $("#profileImage").attr("src", resp.imageURL);
+	$("#username").html(resp.username);
+	$("#email").html(resp.email);
+	$("#gender").html(resp.gender);
     $("#points").html(resp.points);
   });
 });
@@ -198,20 +200,23 @@ $(document).ready(function(){
       </div>
       <div class="w-col w-col-6">
         <div class="w-container user-point-count">
-          <img class="money" src="images/1.png" width="65" >
-          <div class="fb-text">&nbsp;####</div>
+          <img style="margin-right:10px;" class="money" id="profileImage" src="images/1.png" width="65" >
+          <div id="fullName" class="fb-text">####</div>
         </div>
         <div class="w-container username">
           <div class="fb-text">username</div>
+		  <div id="username" class="fb-subtext">####</div>
         </div>
         <div class="w-container email-address">
           <div class="fb-text">bank account number</div>
         </div>
         <div class="w-container gender">
           <div class="fb-text">email</div>
+		  <div id="email" class="fb-subtext">####</div>
         </div>
         <div class="w-container fblink">
           <div class="fb-text">gender</div>
+		  <div id="gender" class="fb-subtext">####</div>
         </div>
       </div>
     </div>
@@ -343,11 +348,11 @@ $(document).ready(function(){
 <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
   <a class="w-inline-block nav-img" data-ix="click-show-fb-profile">
     <img class="imgnav" src="images/Facebook-256.png" data-ix="over">
-    <h2 data-ix="over"><label id="lastName">profile</label></h2><!--last name-->
+    <h2 data-ix="over">profile</h2><!--last name-->
   </a>
   <a class="w-inline-block nav-img">
     <img class="imgnav" src="images/Money-Deposit-256.png" data-ix="over">
-    <h2 data-ix="over"><label id="points">###</label></h2>
+    <h2 data-ix="over">###</h2>
   </a>
   <a class="w-inline-block nav-img" href="#" data-ix="click-show-cash-out">
     <img class="imgnav" src="images/Money-Bag-256.png"  data-ix="over">
