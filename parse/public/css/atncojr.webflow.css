@@ -7,6 +7,21 @@ body {
   line-height: 20px;
 }
 
+.fb_edge_widget_with_comment 
+span.fb_edge_comment_widget 
+iframe.fb_ltr 
+.fb_iframe_widget iframe 
+.fb-like 
+.fb_iframe_widget
+.form
+._56zz ._56z-
+.uiGrid ._51mz .pluginConnectButtonLayoutRoot
+{
+    display: block;
+    z-index: 3;
+}
+
+
 input[type=text] {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -314,8 +329,9 @@ p {
   bottom: 0px;
   display: none;
   height: 100%;
-  padding-top: 100px;
-  padding-left: 100px;
+  padding-top: 40px;
+  padding-left: 150px;
+  padding-right: 100px;
   background-color: rgba(0, 0, 0, 0.90);
   overflow:  auto;
 }
@@ -540,6 +556,7 @@ p {
 .adsimg {
   width: 100%;
   padding-bottom: 100px;
+  padding-top: 100px;
 }
 .adsimage {
   width: 100%;

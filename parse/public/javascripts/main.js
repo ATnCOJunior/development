@@ -60,7 +60,7 @@ $(function() {
 
   $('.adsimage').click(function(event) {
     var str = event.target.alt;
-    var parts = str.split(",");
+    var parts = str.split("|||");
       $('.companyName').text(parts[0]);
       $('.promoInfo').text(parts[1]);
       $('.expiry').text(parts[2]);

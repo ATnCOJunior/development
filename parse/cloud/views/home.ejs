@@ -74,9 +74,9 @@
       <% _(images).each(function(image) { %>
       <div class="w-clearfix image bloc" data-ix="click-show">
         <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-            alt="<%= image.get("user").get("company")+","
-            +image.get("imageMetadata").get("desc")+","
-            +image.get("imageMetadata").get("expiry")+","
+            alt="<%= image.get("user").get("company")+"|||"
+            +image.get("imageMetadata").get("desc")+"|||"
+            +image.get("imageMetadata").get("expiry")+"|||"
             +image.get("imageMetadata").get("location") %>" 
         data-ix="over">
         <div class="like" data-ix="over">
@@ -100,9 +100,9 @@
         if (imageMetadata.get("category")==="cafe"){%>
         <div class="w-clearfix image bloc" data-ix="click-show">
           <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-            alt="<%= user.get("company")+","
-            +image.get("imageMetadata").get("desc")+","
-            +image.get("imageMetadata").get("expiry")+","
+            alt="<%= user.get("company")+"|||"
+            +image.get("imageMetadata").get("desc")+"|||"
+            +image.get("imageMetadata").get("expiry")+"|||"
             +image.get("imageMetadata").get("location") %>" 
           data-ix="over">
           <div class="like" data-ix="over">
@@ -127,9 +127,9 @@
         if (imageMetadata.get("category")==="bar"){%>
         <div class="w-clearfix image bloc" data-ix="click-show">
           <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-            alt="<%= user.get("company")+","
-            +imageMetadata.get("desc")+","
-            +imageMetadata.get("expiry")+","
+            alt="<%= user.get("company")+"|||"
+            +imageMetadata.get("desc")+"|||"
+            +imageMetadata.get("expiry")+"|||"
             +imageMetadata.get("location") %>" 
           data-ix="over">
           <div class="like" data-ix="over">
@@ -152,9 +152,9 @@
         if (imageMetadata.get("category")==="dining"){%>
         <div class="w-clearfix image bloc" data-ix="click-show">
           <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-          alt="user,<%=user.get("company")+","
-          +image.get("imageMetadata").get("desc")+","
-          +image.get("imageMetadata").get("expiry")+","
+          alt="user,<%=user.get("company")+"|||"
+          +image.get("imageMetadata").get("desc")+"|||"
+          +image.get("imageMetadata").get("expiry")+"|||"
           +image.get("imageMetadata").get("location")%>" 
           data-ix="over">
           <div class="like" data-ix="over">

@@ -3586,16 +3586,45 @@ Webflow.define('lightbox', function ($, _) {
  * Webflow: Interactions: Init
  */
 Webflow.require('ix').init([
-  {"slug":"hover","name":"hover","value":{"style":{},"triggers":[{"type":"hover","loopA":true,"stepsA":[{"wait":500,"transition":"transform 500ms ease 0ms","rotate":"-20deg"}],"stepsB":[{"transition":"transform 500ms ease 0ms","rotate":"0deg"}]}]}},
-  {"slug":"over","name":"over","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],"stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}},
+  {"slug":"hover","name":"hover","value": {"style":{},"triggers":[{"type":"hover","loopA":true,
+  "stepsA":[{"wait":500,"transition":"transform 500ms ease 0ms","rotate":"-20deg"}],
+  "stepsB":[{"transition":"transform 500ms ease 0ms","rotate":"0deg"}]}]}},
+  {"slug":"over","name":"over","value":{"style":{},"triggers":[{"type":"hover",
+  "stepsA":[{"opacity":0.5,"transition":"opacity 500ms ease 0ms"}],
+  "stepsB":[{"opacity":1,"transition":"opacity 500ms ease 0ms"}]}]}},
   {"slug":"click-show","name":"click show","value":{"style":{},"triggers":[{"type":"click","selector":".infobox","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
-  {"slug":"click-show-current","name":"click show current","value":{"style":{},"triggers":[{"type":"click","selector":".currentinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
-  {"slug":"click-show-pending","name":"click show pending","value":{"style":{},"triggers":[{"type":"click","selector":".pendinginfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
-  {"slug":"click-show-rejected","name":"click show rejected","value":{"style":{},"triggers":[{"type":"click","selector":".rejectedinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
-  {"slug":"click-show-expired","name":"click show expired","value":{"style":{},"triggers":[{"type":"click","selector":".expiredinfo","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
-  {"slug":"click-hide-info","name":"click hide info","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"title":"Infobox Show","display":"none","opacity":1,"height":"600px","wait":500,"transition":"opacity 500ms ease 0ms, height 500ms ease-in 0ms"}],"stepsB":[]}]}},
-  {"slug":"click-show-fb-profile","name":"click show fb profile","value":{"style":{},"triggers":[{"type":"click","selector":".fbuserprofile","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[{"display":"none"}]}]}},
-  {"slug":"click-show-cash-out","name":"click show cash out","value":{"style":{},"triggers":[{"type":"click","selector":".cashout","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[{"display":"none"}]}]}},
-  {"slug":"click-show-favourite","name":"click show favourite","value":{"style":{},"triggers":[{"type":"click","selector":".favourites","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[{"display":"none"}]}]}},
-  {"slug":"click-show-mailbox","name":"click show mailbox","value":{"style":{},"triggers":[{"type":"click","selector":".mailbox","stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[{"display":"none"}]}]}}
+  
+  {"slug":"click-show-current","name":"click show current","value":{
+    "style":{},"triggers":[{"type":"click","selector":".currentinfo",
+    "stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-show-pending","name":"click show pending","value":{
+    "style":{},"triggers":[{"type":"click","selector":".pendinginfo",
+    "stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-show-rejected","name":"click show rejected","value":{
+    "style":{},"triggers":[{"type":"click","selector":".rejectedinfo",
+    "stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-show-expired","name":"click show expired","value":{
+    "style":{},"triggers":[{"type":"click","selector":".expiredinfo",
+    "stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],"stepsB":[]}]}},
+  {"slug":"click-hide-info","name":"click hide info","value":{
+    "style":{"height":"0px"},"triggers":[{"type":"click",
+    "stepsA":[{"title":"Infobox Show","display":"none","opacity":1,
+    "height":"600px","wait":500,"transition":"opacity 500ms ease 0ms, height 500ms ease-in 0ms"}],"stepsB":[]}]}},
+  
+  {"slug":"click-show-fb-profile","name":"click show fb profile","value":{
+    "style":{},"triggers":[{"type":"click","selector":".fbuserprofile",
+    "stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],
+    "stepsB":[{"display":"none","height":"0px","transition":"height 500ms ease 0ms"}]}]}},
+  {"slug":"click-show-cash-out","name":"click show cash out","value":{
+    "style":{},"triggers":[{"type":"click","selector":".cashout",
+    "stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],
+    "stepsB":[{"display":"none","height":"0px","transition":"height 500ms ease 0ms"}]}]}},
+  {"slug":"click-show-favourite","name":"click show favourite","value":{
+    "style":{},"triggers":[{"type":"click","selector":".favourites",
+    "stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],
+    "stepsB":[{"display":"none","height":"0px","transition":"height 500ms ease 0ms"}]}]}},
+  {"slug":"click-show-mailbox","name":"click show mailbox","value":{
+    "style":{},"triggers":[{"type":"click","selector":".mailbox",
+    "stepsA":[{"title":"Infobox Show","display":"block","height":"auto"}],
+    "stepsB":[{"display":"none","height":"0px","transition":"height 500ms ease 0ms"}]}]}}
 ]);
