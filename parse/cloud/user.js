@@ -33,11 +33,11 @@ module.exports = function(){
   app.post('/signup', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    var company = req.body.company;
-    var email = req.body.email;
-    var website = req.body.website;
-    var social = req.body.social;
-    var desc = req.body.desc;
+    // var company = req.body.company;
+    // var email = req.body.email;
+    // var website = req.body.website;
+    // var social = req.body.social;
+    // var desc = req.body.desc;
 
     var user = new Parse.User();
     user.set('username', username);
@@ -45,7 +45,7 @@ module.exports = function(){
     // user.set('company', company);
     
     user.signUp().then(function(user) {
-      res.redirect('/');
+      res.redirect('/merchant');
     }, function(error) {
       // Show the error message and let the user try again
       res.render('login', { flash: error.message });
