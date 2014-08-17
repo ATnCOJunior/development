@@ -1,3 +1,14 @@
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=639663216116031&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="w-row bod">
 
   <!-- start of navigation codes -->
@@ -69,10 +80,11 @@
             +image.get("imageMetadata").get("location") %>" 
         data-ix="over">
         <div class="like" data-ix="over">
-          <h4 class="count">like</h4>
+          <!-- <h4 class="count"><div class="fb-like" data-href="<%=image.get('sizeOriginal').url()%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div></h4> -->
+          <h4 class="count"><div class="fb-like" data-href="/i/<%=image.id%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div></h4>
         </div>
         <div class="share" data-ix="over">
-          <h4 class="count">share</h4>
+          <h4 class="count"><div class="fb-share-button" data-href="<%=image.get('sizeOriginal').url()%>" data-width="250"></div></h4>
         </div>
       </div>
       <% }); %>
@@ -94,10 +106,10 @@
             +image.get("imageMetadata").get("location") %>" 
           data-ix="over">
           <div class="like" data-ix="over">
-            <h4 class="count">like</h4>x
+            <h4 class="count"><div class="fb-like" data-href="<%=image.get('sizeOriginal').url()%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div></h4>
           </div>
           <div class="share" data-ix="over">
-            <h4 class="count">share</h4>
+            <h4 class="count"><div class="fb-share-button" data-href="<%=image.get('sizeOriginal').url()%>" data-width="250"></div></h4>
           </div>
         </div>
         <% }
@@ -121,10 +133,10 @@
             +imageMetadata.get("location") %>" 
           data-ix="over">
           <div class="like" data-ix="over">
-            <h4 class="count">like</h4>
+            <h4 class="count"><div class="fb-like" data-href="<%=image.get('sizeOriginal').url()%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div></h4>
           </div>
           <div class="share" data-ix="over">
-            <h4 class="count">share</h4>
+            <h4 class="count"><div class="fb-share-button" data-href="<%=image.get('sizeOriginal').url()%>" data-width="250"></div></h4>
           </div>
         </div>
       <% }}); %>
@@ -146,10 +158,10 @@
           +image.get("imageMetadata").get("location")%>" 
           data-ix="over">
           <div class="like" data-ix="over">
-            <h4 class="count">like</h4>
+            <h4 class="count"><div class="fb-like" data-href="<%=image.get('sizeOriginal').url()%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div></h4>
           </div>
           <div class="share" data-ix="over">
-            <h4 class="count">share</h4>
+            <h4 class="count"><div class="fb-share-button" data-href="<%=image.get('sizeOriginal').url()%>" data-width="250"></div></h4>
           </div>
         </div>
       <% }}); %>

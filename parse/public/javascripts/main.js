@@ -1,13 +1,13 @@
-var appid = "p7MiFGIkEjP4bP6L6KGhWmLzU7wKHzRdCx7fTyAe";
-var jsKey = "IhkupUEOukPUx8pHGAk5qSa8rGAWiW9ZiaxfC1IU";
-var restAPIKey = "JoEBg1fjF2AnEzrReZOWw0Du6FU9H4BdiNTs2lMS";
+var appid = "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3";
+var jsKey = "rOvhJctAZsQkZVkPv7nsvV4XvJ2bz00E8qm7I67A";
+var restAPIKey = "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj";
 // var facebookMod = new FacebookMod("661965090552510");
 var facebookMod = new FacebookMod("639663216116031");
 
 $(function() {
   // Facebook Function Initiation
   Parse.initialize(appid, jsKey);
-
+  console.log("deployed to pengho parse acct!");
   // Make all of special links magically post the form
   // when it has a particular data-action associated
   $("a[data-action='post']").click(function(e) {
@@ -161,7 +161,7 @@ Uploader = Backbone.View.extend({
           if (data.error) {
             console.log(data.error);
           } else {
-            window.location.href = "https://thefoodiemarket.parseapp.com/merchant#pending";
+            window.location.reload();
           }
         });
       });
