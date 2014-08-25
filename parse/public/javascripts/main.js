@@ -1,8 +1,16 @@
-var appid = "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3";
-var jsKey = "rOvhJctAZsQkZVkPv7nsvV4XvJ2bz00E8qm7I67A";
-var restAPIKey = "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj";
-// var facebookMod = new FacebookMod("661965090552510");
-var facebookMod = new FacebookMod("639663216116031");
+//for deployment
+// var appid = "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3";
+// var jsKey = "rOvhJctAZsQkZVkPv7nsvV4XvJ2bz00E8qm7I67A";
+// var restAPIKey = "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj";
+
+//for dev
+var appid = "n1z14zFUHMK01hZWLLFRs81fsbbLmUUdndvnuetB";
+var jsKey = "xOwM1WsUwddJBoJZOeXZEY3HXNl4KbShZXK5qkLh";
+var restAPIKey = "mrPxxmjU2CjBUYPDttDrM46o1sq4xaBF0IwiBs88";
+
+
+//var facebookMod = new FacebookMod("639663216116031"); //deployment
+var facebookMod = new FacebookMod("683418888407130"); //dev
 
 $(function() {
   // Facebook Function Initiation

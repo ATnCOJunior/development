@@ -21,7 +21,10 @@ app.use(express.bodyParser()); // Middleware for reading request body
 app.use(express.methodOverride());
 
 // Use Session Variables
-app.use(express.cookieParser('asxP7Y1RX470f7cHlQ7VVk3LWYuPNynpVuxtU7mV'));
+
+//puts app's masterkey
+//app.use(express.cookieParser('asxP7Y1RX470f7cHlQ7VVk3LWYuPNynpVuxtU7mV')); //deployment
+app.use(express.cookieParser('Ooj1bqRPg7ENuoQQ6kkbsFPFNAJM42tm0mSLPFbx')); //dev
 app.use(parseExpressCookieSession({
   fetchUser: true,
   key: 'image.sess',
