@@ -5,7 +5,11 @@
             "masterKey": "asxP7Y1RX470f7cHlQ7VVk3LWYuPNynpVuxtU7mV"
         }, 
         "_default": {
-            "link": "The JR Central Market"
+            "link": "dev"
+        }, 
+        "dev": {
+            "applicationId": "n1z14zFUHMK01hZWLLFRs81fsbbLmUUdndvnuetB", 
+            "masterKey": "Ooj1bqRPg7ENuoQQ6kkbsFPFNAJM42tm0mSLPFbx"
         }
     }, 
     "global": {

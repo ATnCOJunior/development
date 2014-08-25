@@ -23,7 +23,6 @@ iframe.fb_ltr
     z-index: 3;
 }
 
-
 input[type=text] {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -331,9 +330,8 @@ p {
   bottom: 0px;
   display: none;
   height: 100%;
-  padding-top: 40px;
-  padding-left: 150px;
-  padding-right: 100px;
+  padding-top: 100px;
+  padding-left: 100px;
   background-color: rgba(0, 0, 0, 0.90);
   overflow:  auto;
 }
@@ -558,7 +556,6 @@ p {
 .adsimg {
   width: 100%;
   padding-bottom: 100px;
-  padding-top: 100px;
 }
 .adsimage {
   width: 100%;
@@ -604,6 +601,16 @@ p {
   font-size: 20px;
   line-height: 80px;
   text-align: left;
+}
+
+.fb-subtext {
+	width: 300px;
+	font-family: Exo, sans-serif;
+	color: ivory;
+	font-size: 14px;
+	text-align: left;
+	position: relative;
+	bottom: 20px;
 }
 .fbdpic {
   display: block;
