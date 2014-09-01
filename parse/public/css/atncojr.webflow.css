@@ -19,8 +19,8 @@ iframe.fb_ltr
 ._5sdw img .sp_plugin-button .sx_plugin-button_bigthumb
 .uiGrid ._51mz .pluginConnectButtonLayoutRoot
 {
-    display: block;
-    z-index: 3;
+  display: block;
+  z-index: 3;
 }
 
 input[type=text] {
@@ -110,7 +110,7 @@ label{
   font-size: 14px;
   line-height: 30px;
   font-weight: 200;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 h2 {
@@ -237,8 +237,7 @@ p {
   overflow-x: visible;
   overflow-y: visible;
   width: 20%;
-  margin-right: auto;
-  margin-left: 45px;
+  margin-left: 35px;
   padding-top: 25px;
   padding-bottom: 25px;
   float: left;
@@ -522,7 +521,7 @@ p {
   background-color: #34495e;
 }
 .login {
-  margin: auto 200px;
+  margin: auto 100px;
   font-family: Exo, sans-serif;
   color: white;
   font-weight: 400;
@@ -540,8 +539,8 @@ p {
   display: block;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 100px;
-  padding-bottom: 40px;
+  /*padding-top: 100px;*/
+  /*padding-bottom: 40px;*/
   text-align: center;
 }
 .middletop {
@@ -770,12 +769,23 @@ p {
     padding-right: 0px;
     padding-left: 0px;
   }
-  .image {
-    width: 50%;
-    height: auto;
-    margin-right: auto;
-    margin-left: auto;
-  }
+.image {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: block;
+  overflow-x: visible;
+  overflow-y: visible;
+  width: 0%;
+  margin-left: 35px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  float: left;
+  clear: none;
+  text-align: left;
+}
   .image.bloc {
     width: 45%;
     margin-left: 25px;
@@ -790,6 +800,12 @@ p {
   }
   .head.pendads {
     margin-left: auto;
+  }
+  .login {
+    margin: 40px;
+    font-family: Exo, sans-serif;
+    color: white;
+    font-weight: 400;
   }
   .like {
     width: 50%;
@@ -850,6 +866,12 @@ p {
   .main {
     padding-right: 0px;
     padding-left: 0px;
+  }
+  .login {
+    margin: 40px;
+    font-family: Exo, sans-serif;
+    color: white;
+    font-weight: 400;
   }
   .image {
     width: 45%;
@@ -916,6 +938,12 @@ p {
   }
   .logo.home {
     width: 100%;
+  }
+  .login {
+    margin: 40px;
+    font-family: Exo, sans-serif;
+    color: white;
+    font-weight: 400;
   }
   .main {
     position: absolute;

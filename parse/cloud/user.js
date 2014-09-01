@@ -33,16 +33,20 @@ module.exports = function(){
   app.post('/signup', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    // var company = req.body.company;
-    // var email = req.body.email;
-    // var website = req.body.website;
-    // var social = req.body.social;
-    // var desc = req.body.desc;
+    var company = req.body.company;
+    var email = req.body.email;
+    var website = req.body.website;
+    var social = req.body.social;
+    var desc = req.body.desc;
 
     var user = new Parse.User();
     user.set('username', username);
     user.set('password', password);
-    // user.set('company', company);
+    user.set('company', company);
+    user.set('email', email);
+    user.set('website', website);
+    user.set('social', social);
+    user.set('desc', desc);
     
     user.signUp().then(function(user) {
       res.redirect('/merchant');
