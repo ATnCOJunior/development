@@ -1,365 +1,347 @@
-<div class="w-row bod">
 
-  <!-- start of main body codes -->
-  <div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main-merchant">
-   <div class="middletop">
-    <a class="w-inline-block link" >
-      <img class="centertop" src="images/Chef-Cap-256.png" alt="LOGO">
-    </a>
-  </div>
-  <!-- start of current listing - showing images with approval setting 1 -->
-  <div class="w-clearfix head">
-    <h1 id="current">CURRENT</h1>
-    <% _(images).each(function(image) { 
+        <div id="page-wrapper" class="page-loading">
+            <!-- Preloader -->
+            <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+            <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
+            <div class="preloader">
+                <div class="inner">
+                    <!-- Animation spinner for all modern browsers -->
+                    <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
+
+                    <!-- Text for IE9 -->
+                    <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+                </div>
+            </div>
+            <!-- END Preloader -->
+
+            <!-- Page Container -->
+            <!-- In the PHP version you can set the following options from inc/config file -->
+            <!--
+                Available #page-container classes:
+
+                'sidebar-visible-lg-mini'                       main sidebar condensed - Mini Navigation (> 991px)
+                'sidebar-visible-lg-full'                       main sidebar full - Full Navigation (> 991px)
+
+                'sidebar-alt-visible-lg'                        alternative sidebar visible by default (> 991px) (You can add it along with another class)
+
+                'header-fixed-top'                              has to be added only if the class 'navbar-fixed-top' was added on header.navbar
+                'header-fixed-bottom'                           has to be added only if the class 'navbar-fixed-bottom' was added on header.navbar
+
+                'fixed-width'                                   for a fixed width layout (can only be used with a static header/main sidebar layout)
+            -->
+            <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+                <!-- Alternative Sidebar -->
+                <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+                    <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+                    <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll-alt">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Color Themes -->
+                            <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
+<!--                            <div class="sidebar-section">
+                                <h2 class="text-light">Colors</h2>
+                                <ul class="sidebar-themes clearfix">
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                 
+                                </ul>
+                            </div> -->
+                            <!-- END Color Themes -->
+
+                            <!-- Profile -->
+                            <div class="sidebar-section">
+                                <h2 class="text-light">Profile</h2>
+                                <form action="index.html" method="post" class="form-control-borderless" onsubmit="return false;">
+                                    <div class="form-group">
+                                        <label for="side-profile-name">Company Name</label>
+                                        <input type="text" name="company" class="form-control" value="John Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-email">Email</label>
+                                        <input type="email" name="email" class="form-control" value="john.doe@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-password">Website URL</label>
+                                        <input type="password" name="website" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-password-confirm">Social Media Site</label>
+                                        <input type="password" name="social" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-password-confirm">Description</label>
+                                        <input type="password"  name="desc" class="form-control">
+                                    </div>
+                                    <div class="form-group remove-margin">
+                                        <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- END Profile -->
+
+                            
+                        </div>
+                        <!-- END Sidebar Content -->
+                    </div>
+                    <!-- END Wrapper for scrolling functionality -->
+                </div>
+                <!-- END Alternative Sidebar -->
+
+                <!-- Main Sidebar -->
+                <div id="sidebar">
+                    <!-- Sidebar Brand -->
+                    <div id="sidebar-brand" class="themed-background">
+                        <a href="index.html" class="sidebar-title">
+                            <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+                        </a>
+                    </div>
+                    <!-- END Sidebar Brand -->
+
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Sidebar Navigation -->
+                            <ul class="sidebar-nav">
+                                
+                                <li class="sidebar-separator">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </li>
+                                
+                                <li>
+                                    <a href=""><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
+                                </li>
+
+                                <li>
+                                    <a href=""><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Payment</span></a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-group sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="">Customer</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Merchant</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+
+                            </ul>
+                            <!-- END Sidebar Navigation -->
+                        </div>
+                        <!-- END Sidebar Content -->
+                    </div>
+                    <!-- END Wrapper for scrolling functionality -->
+
+                    <!-- Sidebar Extra Info -->
+                    <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+                        <div class="text-center">
+                            <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
+                        </div>
+                    </div>
+                    <!-- END Sidebar Extra Info -->
+                </div>
+                <!-- END Main Sidebar -->
+
+                <!-- Main Container -->
+                <div id="main-container">
+                    <!-- Header -->
+                    <!-- In the PHP version you can set the following options from inc/config file -->
+                    <!--
+                        Available header.navbar classes:
+
+                        'navbar-default'            for the default light header
+                        'navbar-inverse'            for an alternative dark header
+
+                        'navbar-fixed-top'          for a top fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar())
+                            'header-fixed-top'      has to be added on #page-container only if the class 'navbar-fixed-top' was added
+
+                        'navbar-fixed-bottom'       for a bottom fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar()))
+                            'header-fixed-bottom'   has to be added on #page-container only if the class 'navbar-fixed-bottom' was added
+                    -->
+                    <header class="navbar navbar-inverse navbar-fixed-top">
+                        <!-- Left Header Navigation -->
+                        <ul class="nav navbar-nav-custom">
+                            <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>ADS</strong></a>
+                            </li>
+                            <!-- END Header Link -->
+                        </ul>
+                        <!-- END Left Header Navigation -->
+
+                        <!-- Right Header Navigation -->
+                        <ul class="nav navbar-nav-custom pull-right">
+                            <!-- Search Form -->
+                            <li>
+                                <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
+                                    <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
+                                </form>
+                            </li>
+                            <!-- END Search Form -->
+
+                            <!-- Alternative Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+                                    <i class="gi gi-settings"></i>
+                                </a>
+                            </li>
+                            <!-- END Alternative Sidebar Toggle Button -->
+
+                            <!-- User Dropdown -->
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="img/placeholders/avatars/avatar9.jpg" alt="avatar">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-header">
+                                        <strong>USER</strong>
+                                    </li>
+                                    <li>
+                                        <a href="page_app_email.html">
+                                            <i class="fa fa-inbox fa-fw pull-right"></i>
+                                            Inbox
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="page_app_social.html">
+                                            <i class="fa fa-pencil-square fa-fw pull-right"></i>
+                                            Profile
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                            <!-- END User Dropdown -->
+                        </ul>
+                        <!-- END Right Header Navigation -->
+                    </header>
+                    <!-- END Header -->
+
+                    <!-- Page content -->
+                    <div id="page-content">
+                        <!-- Search Results Header -->
+                        <div class="content-header">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <div class="header-section">
+                                        <form action="page_ready_search_results.html" method="post" onsubmit="return false;">
+                                            <div class="form-group">
+                                                <select id="search-categories" name="search-categories" class="select-chosen" data-placeholder="Choose categories.." style="width: 250px;" >
+                                                    
+                                                    <option value="current">Current</option>
+                                                    <option value="pending">Pending</option>
+                                                    <option value="pending">Rejected</option>
+                                                    <option value="expired">Expired</option>
+                                                </select>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-effect-ripple btn-effect-ripple btn-primary">Search Database</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Search Results Header -->
+
+                        <!-- Search Results Block -->
+                        <div class="block">
+                            <!-- Search Styles Title -->
+                            <!-- <div class="block-title">
+                                <ul class="nav nav-tabs" data-toggle="tabs">
+                                    <li class="active"><a href="#search-tab-images">Images</a></li>
+                                    <li><a href="#search-tab-users">Users</a></li>
+                                    <li><a href="#search-tab-sites">Sites</a></li>
+                                    <li><a href="#search-tab-files">Files</a></li>
+                                </ul>
+                            </div> -->
+                            <!-- END Search Styles Title -->
+
+                            <!-- Search Results Content -->
+                            <div class="tab-content">
+                                <!-- Images Results -->
+                                <div class="tab-pane active" id="search-tab-images">
+                                    <div class="row gallery">
+                                        <div class="col-sm-4">
+                                            <div class="gallery-image-container animation-fadeInQuick">
+                                                <% _(images).each(function(image) { 
       var imageMetadata = image.get('imageMetadata');
-      if (imageMetadata.get("approval")=="1"){%>
-      <div class="image" data-ix="click-show-current">
-        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" 
-        alt="<%=
-        imageMetadata.get('desc')+','+
-        imageMetadata.get('category')+','+
-        imageMetadata.get('expiry')+','+
-        imageMetadata.get('location') %>"
-        data-ix="over">
-      </div>
-    <% }}); %>
-  </div>
+      if (imageMetadata.get("approval")=="0") {%>
+      <div class="w-clearfix image">
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
 
-  <!-- end of current listing -->
+          alt="<%= imageMetadata.get("desc")+"|||"
+            +imageMetadata.get("expiry")+"|||"
+            +imageMetadata.get("location") %>" 
 
-  <!-- start of pending listing - showing images with approval setting 0 -->
-  <div class="w-clearfix head">
-    <h1 id="pending">PENDING</h1>
-    <% _(images).each(function(image) { 
-      var imageMetadata = image.get('imageMetadata');
-      if (imageMetadata.get("approval")=="0"){%>
-      <div class="image" data-ix="click-show-pending">
-        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" 
-        alt="<%=
-        imageMetadata.get('desc')+','+
-        imageMetadata.get('category')+','+
-        imageMetadata.get('expiry')+','+
-        imageMetadata.get('location') %>"
-        data-ix="over">
-      </div>
-    <% }}); %>
-  </div>
-  <!-- end of pending listing -->    
+          data-ix="click-show">
 
- <!-- start of rejected listing - showing images with approval setting -1 -->
-    <div class="w-clearfix head">
-      <h1 id="declined">REJECTED</h1>
-      <% _(images).each(function(image) { 
-        var imageMetadata = image.get('imageMetadata');
-        if (imageMetadata.get("approval")=="-1"){%>
-        <div class="image" data-ix="click-show-rejected">
-          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208" 
-          alt="<%=
-          imageMetadata.get('desc')+','+
-          imageMetadata.get('category')+','+
-          imageMetadata.get('expiry')+','+
-          imageMetadata.get('location') %>"
-          data-ix="over">
-        </div>
-      <% }}); %>
-    </div>
-  <!-- end of rejected listing -->
-
-    <!-- start of expired listing - showing images with approval setting 2 -->
-    <div class="w-clearfix head">
-      <h1 id="expired">EXPIRED</h1>
-      <% _(images).each(function(image) { 
-        var imageMetadata = image.get('imageMetadata');
-        if (imageMetadata.get("approval")=="2"){%>
-        <div class="image" data-ix="click-show-expired">
-          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="208"
-          alt="<%=
-          imageMetadata.get('desc')+','+
-          imageMetadata.get('category')+','+
-          imageMetadata.get('expiry')+','+
-          imageMetadata.get('location') %>"
-          data-ix="over">
-        </div>
-      <% }}); %>
-    </div>
-    <!-- end of expired listing -->
-
-    <!-- start of profile codes -->
-    <div class="head">
-      <h1 id="profile">PROFILE</h1>
-      <div class="profile">
-        <div class="w-form">
-          <form action="/update" method="post" id="wf-form-upload" name="wf-form-upload" data-name="upload">
-            <label for="company-name">Company Name</label>
-            <input class="w-input field" id="company-name" type="text" name="company" value="<%=Parse.User.current().get("company")%>" data-name="company name" required="required" autofocus="autofocus">
-            <label for="email">Email</label>
-            <input class="w-input" id="email" type="email" name="email" value="<%=Parse.User.current().get("email")%>" data-name="email" required="required" autofocus="autofocus">
-            <label for="site">Website</label>
-            <input class="w-input" id="site" type="text" name="website" value="<%=Parse.User.current().get("website")%>" data-name="site" required="required" autofocus="autofocus">
-            <label for="social-media-Site">Social Media Site</label>
-            <input class="w-input" id="social-media-Site" type="text" name="social" value="<%=Parse.User.current().get("social")%>" data-name="social media Site" required="required" autofocus="autofocus">
-            <label for="description">Company Description</label>
-            <input class="w-input" id="description" type="text" name="desc" value="<%=Parse.User.current().get("desc")%>" data-name="description" required="required" autofocus="autofocus"></input>
-            <input class="w-button" type="submit" value="update" data-wait="Please wait..." data-ix="over">
+        <div data-ix="over">
+          <form action="/i/<%=image.id%>/approve" method="post">
+            <h4> <input type="submit" value="approve" class="count"> </h4>
           </form>
-          <div class="w-form-done msg upload">
-            <p>Thank you! Your submission has been received!</p>
-          </div>
-          <div class="w-form-fail msg upload">
-            <p>Oops! Something went wrong while submitting the form :(</p>
-          </div>
+        </div>
+       
+        <div >
+          <form action="/i/<%=image.id%>/reject" method="post">
+            <h4><input type="submit" value="reject" class="count" data-ix="over"></h4>
+            <h4><input type="text" placeholder="reasons for ads rejection" name="reject_info" required></h4><br>
+          </form>
+          
         </div>
       </div>
-    </div>
-    <!-- end of profile codes -->
+      <% }}); %>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <!-- END Images Results -->
 
-    <!-- start of upload codes -->
-    <div class="head">
-      <h1 id="upload-section">UPLOAD</h1>
-      <div class="upload">
-        <div class="w-form">
-          <form id="upload" name="wf-form-upload" data-name="upload">
-            <label for="title">Title</label>
-            <input class="w-input" id="upload-title" type="text" placeholder="Please enter the title of your promotion" name="title" data-name="title" required="required" autofocus="autofocus">
-            <label for="category">Category</label>
-            <input class="w-input" id="category" type="text" placeholder="What is your promotion category/ keyword" name="category" data-name="category" required="required" autofocus="autofocus">
-            <label for="expiry">Expiry date</label>
-            <input class="w-input" id="expiry" type="date" placeholder="Please enter your promotion validity period in DDMMYYY" name="expiry" data-name="Expiry" required="required" autofocus="autofocus">
-            <label for="Location">Map</label>
-            <input class="w-input" id="Location" type="text" placeholder="Please provide location information or URL to your direction page" name="location" required="required" autofocus="autofocus" data-name="Location">
-            <label for="details">Promotion details</label>
-            <textarea class="w-input" id="details" placeholder="Please provide more information about your promotion" name="desc" data-name="details" required="required" autofocus="autofocus"></textarea>
-            <input type="file" />
-            <a href="#"></a>
-            <!-- <input class="w-button" type="submit" value="upload" data-wait="Please wait..." data-ix="over"> -->
-          </form>
-          <script type="text/javascript">
-          new Uploader({ el: "#upload" });
-          </script>
-    <!-- <div class="w-form-done msg upload">
-    <p>Thank you! Your submission has been received!</p>
-    </div>
-    <div class="w-form-fail msg upload">
-    <p>Oops! Something went wrong while submitting the form :(</p>
-    </div> -->
-  </div>
-</div>
-</div>
-<!-- end of upload codes -->
+                                
+                            </div>
+                            <!-- END Search Results Content -->
+                        </div>
+                        <!-- END Search Results Block -->
+                    </div>
+                    <!-- END Page Content -->
+                </div>
+                <!-- END Main Container -->
+            </div>
+            <!-- END Page Container -->
+        </div>
+        <!-- END Page Wrapper -->
 
-<!-- start of report code -->
-<div class="head">
-  <h1 id="reports">REPORTS</h1>
-  <div class="report">
-    <div class="w-form selection">
-      <form id="wf-form-Selection" name="wf-form-Selection" data-name="Selection">
-        <select class="w-select" id="field" name="field" required="required">
-          <option value="">Select an ad for its report...</option>
-          <option value="First">First Choice</option>
-          <option value="Second">Second Choice</option>
-          <option value="Third">Third Choice</option>
-        </select>
-      </form>
-      <div class="w-form-done msg">
-        <p>Thank you! Your submission has been received!</p>
-      </div>
-      <div class="w-form-fail msg">
-        <p>Oops! Something went wrong while submitting the form :(</p>
-      </div>
-    </div>
-    <div class="w-container reportbox">
-      <div class="w-embed w-iframe embed-chart">
-        <iframe width="800" height="400" align="middle" src="https://embed.chartblocks.com/1.0/?c=53e5b2f5c9a61d59065c27c5&amp;t=ec87462c5ee0859" frameborder="0"></iframe>
-      </div>
-    </div>
-    <div class="background">
-      <div>&nbsp;</div>
-    </div>
-  </div>
-</div>
-<!-- end of report codes -->
-
-<!-- start of payment codes -->
-<div class="head">
-  <h1 id="pay">PAYMENT</h1>
-  <div class="payment">
-    <div class="w-container payment-embed">
-      <img src="images/payflow-iframe-1.png" alt="PAYMENT">
-    </div>
-  </div>
-</div>
-<!-- end of payment codes -->
-
-
-<!-- START OF INFO CODES -->
-<!-- start of current info -->
-<div class="currentinfo" data-ix="click-hide-info">
-  <div class="w-row inforow">
-    <div class="w-col w-col-6 info">
-      <img class="popup-image nav-img" src="app/web/images/drink.jpg" width="208" data-ix="click-show-current">
-    </div>
-    <div class="w-col w-col-6 info">
-      
-      <h1>Current Promotion</h1>
-      
-      <br><h4>Description: </h4><h4 class="promoInfo">Description</h4>
-      <br><h4>Category: </h4><h4 class="category">Category</h4>
-      <br><h4>Expires: </h4><h4 class="expiry">Expiry</h4>
-      <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
-      <div class="w-container infoactive">
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape-Heart-256.png">
-          <h2>likes<br>###</h2>
-        </a>
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape12-256.png">
-          <h2>shares<br>###</h2>
-        </a>
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape-Diamond-256.png">
-          <h2>favourites<br>###</h2>
-        </a>
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape-Spade-256.png">
-          <h2>visits<br>###</h2>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end of current info -->
-
-<!-- start of pending info -->
-<div class="pendinginfo" data-ix="click-hide-info">
-  <div class="w-row inforow">
-    <div class="w-col w-col-6 info">
-      <img class="popup-image nav-img" src="app/web/images/drink.jpg" width="208" data-ix="click-show-pending">
-    </div>
-    <div class="w-col w-col-6 info">
-      <h1>Pending Promotion</h1>
-
-      <br><h4>Description: </h4><h4 class="promoInfo">Description</h4>
-      <br><h4>Category: </h4><h4 class="category">Category</h4>
-      <br><h4>Expires: </h4><h4 class="expiry">Expiry</h4>
-      <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
-      <div class="w-container infoactive">
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape69-256.png">
-          <h2>edit</h2>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</div>
-<!-- end of pending info -->
-
-<!-- start of rejected info -->
-<div class="rejectedinfo" data-ix="click-hide-info">
-  <div class="w-row inforow">
-    <div class="w-col w-col-6 info">
-      <img class="popup-image nav-img" src="app/web/images/drink.jpg" width="208" data-ix="click-show-rejected">
-    </div>
-    <div class="w-col w-col-6 info">
-      <h1>Rejected Promotion</h1>
-      
-      <h4>Description: </h4><h4 class="promoInfo">Description</h4>
-      <br><h4>Category: </h4><h4 class="category">Category</h4>
-      <br><h4>Expires: </h4><h4 class="expiry">Expiry</h4>
-      <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
-      <div class="divider"></div>
-      
-      <h4><br>DETAILS OF REJECTION<br><br>image resolution too low<br>inappropriate content</h4>
-    </div>
-  </div>
-</div>
-<!-- end of rejected info -->
-
-<!-- start of expired info -->
-<div class="expiredinfo" data-ix="click-hide-info">
-  <div class="w-row inforow">
-    <div class="w-col w-col-6 info">
-      <img class="popup-image nav-img" src="app/web/images/drink.jpg" width="208" data-ix="click-show-expired">
-    </div>
-    <div class="w-col w-col-6 info">
-      <h1>Expired Promotion</h1>
-      
-      <h4>Description: </h4><h4 class="promoInfo">Description</h4>
-      <br><h4>Category: </h4><h4 class="category">Category</h4>
-      <br><h4>Expires: </h4><h4 class="expiry">Expiry</h4>
-      <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
-      
-      <div class="w-container infoactive">
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape-Heart-256.png" alt="Heart-256.png">
-          <h2>likes<br>###</h2>
-        </a>
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape12-256.png" alt="share.png">
-          <h2>shares<br>###</h2>
-        </a>
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape-Diamond-256.png" alt="Diamond-256.png">
-          <h2>favourites<br>###</h2>
-        </a>
-        <a class="w-inline-block infoicon" href="#">
-          <img class="infoimg" src="images/Shape-Spade-256.png" alt="Spade-256.png">
-          <h2>visits<br>###</h2>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end of expired info -->
-</div>
-<!-- end of main body codes -->
-
-<!-- start of navigation codes -->
-<div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
-  <a class="w-inline-block nav-img" href="#current" data-ix="over">
-    <img class="imgnav" src="images/Media-Play-256.png" alt="CURRENT">
-    <h2 data-ix="over">current</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="#pending" data-ix="over">
-    <img class="imgnav" src="images/Media-Pause-256.png" alt="PENDING">
-    <h2 data-ix="over">pending</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="#declined" data-ix="over">
-    <img class="imgnav" src="images/Media-End-256.png" alt="REJECTED">
-    <h2 data-ix="over">rejected</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="#expired" data-ix="over">
-    <img class="imgnav" src="images/Media-Stop-256.png" alt="EXPIRED">
-    <h2 data-ix="over">expired</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="/logout" data-ix="over">
-    <img class="imgnav" src="images/Out-256.png" alt="LOGOUT">
-    <h2 data-ix="over">logout</h2>
-  </a>
-</div>
-<!-- end of navigation codes -->
-<!-- start of another navigation codes -->
-<div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
-  <a class="w-inline-block nav-img" href="#profile" data-ix="over">
-    <img class="imgnav" src="images/User-Profile-256.png" alt="PROFILE">
-    <h2 data-ix="over">profile</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="#upload-section" data-ix="over">
-    <img class="imgnav" src="images/Upload-256-2.png" alt="UPLOAD">
-    <h2 data-ix="over">upload</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="#reports" data-ix="over">
-    <img class="imgnav" src="images/Bar-Chart-256.png" alt="REPORTS">
-    <h2 data-ix="over">reports</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="#pay" data-ix="over">
-    <img class="imgnav" src="images/Cash-256.png" alt="PAYMENT">
-    <h2 data-ix="over">payment</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="/about" data-ix="over">
-    <img class="imgnav" src="images/Dialog-Box-About-256.png" alt="ABOUT" data-ix="over">
-    <h2 data-ix="over">about</h2>
-  </a>
-</div>
-<!-- end of another navigation codes -->
-</div>
