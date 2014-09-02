@@ -1,377 +1,288 @@
-<div id="fb-root"></div>
-<script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=639663216116031&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
 
-$(document).ready(function(){
-  facebookMod.getUserInfo(function(resp) {
-    $("#fullName").html(resp.fullName);
-    $("#profileImage").attr("src", resp.imageURL);
-    $("#bigProfileImage").attr("src", resp.imageURL);
-  	$("#username").html(resp.username);
-  	$("#email").html(resp.email);
-  	$("#gender").html(resp.gender);
-    $("#points").html(resp.points);
-  });
-});
+        <div id="page-wrapper" class="page-loading">
+            <!-- Preloader -->
+            <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+            <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
+            <div class="preloader">
+                <div class="inner">
+                    <!-- Animation spinner for all modern browsers -->
+                    <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
 
-</script>
+                    <!-- Text for IE9 -->
+                    <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+                </div>
+            </div>
+            
+            <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+                <!-- Alternative Sidebar -->
+                <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+                    <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+                    <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
 
-<div class="w-row bod">
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll-alt">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Color Themes -->
+                            <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
+                           <div class="sidebar-section">
+                                <h2 class="text-light">Colors</h2>
+                                <ul class="sidebar-themes clearfix">
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
+                                    </li>
+                                 
+                                </ul>
+                            </div>
+                            <!-- END Color Themes -->
 
-  <!-- start of main body codes -->
+                           <!-- Profile -->
+                            <div class="sidebar-section">
+                                <h2 class="text-light">Profile</h2>
+                                <form action="index.html" method="post" class="form-control-borderless" onsubmit="return false;">
+                                    <div class="form-group">
+                                        <label for="side-profile-name">Gender</label>
+                                        <input type="text" name="" class="form-control" value="John Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-name">Age</label>
+                                        <input type="text" name="" class="form-control" value="John Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-name">Occupation</label>
+                                        <input type="text" name="" class="form-control" value="John Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-name">Paypal Account</label>
+                                        <input type="text" name="" class="form-control" value="John Doe">
+                                    </div>
+                                    <div class="form-group remove-margin">
+                                        <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- END Profile -->
+                        </div>
+                        <!-- END Sidebar Content -->
+                    </div>
+                    <!-- END Wrapper for scrolling functionality -->
+                </div>
+                <!-- END Alternative Sidebar -->
 
-  <div class="w-col w-col-11 w-col-small-11 w-col-tiny-11 main-user">
-    <div class="middletop">
-      <a class="w-inline-block link" >
-        <img class="centertop" src="images/Chef-Cap-256.png" href="/">
-      </a>
-    </div>
+                <!-- Main Sidebar -->
+                <div id="sidebar">
+                    <!-- Sidebar Brand -->
+                    <div id="sidebar-brand" class="themed-background">
+                        <a href="#" class="sidebar-title">
+                            <i class=""></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
+                        </a>
+                    </div>
+                    <!-- END Sidebar Brand -->
 
-    <!-- start of top listing --> 
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll">
+                       <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Sidebar Navigation -->
+                            <ul class="sidebar-nav">
+                                
+                                <li class="sidebar-separator">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </li>
+                                
+                                <li>
+                                    <a href=""><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Cashout</span></a>
+                                </li>
 
-    <div class="w-clearfix head">
-      <h1 id="top"></h1>
-      <% _(images).each(function(image) { %>
-      <div class="w-clearfix image bloc" data-ix="click-show">
-        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-        alt="<%= image.get("user").get("company")+","
-        +image.get("imageMetadata").get("desc")+","
-        +image.get("imageMetadata").get("expiry")+","
-        +image.get("imageMetadata").get("location") %>" 
-        data-ix="over">
-          <div class="like"  id="OMG" data-ix="over">
-            <h4 class="count">
-              <!-- <div class="fb-like" data-href="/i/<%=image.id%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div> -->
-              <div class="fb-like" data-href="/i/<%=image.id%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-            </h4>
-          </div>
-          <div class="share" data-ix="over">
-            <h4 class="count">
-              <div class="fb-share-button" data-href="/i/<%=image.id%>" data-width="250"></div>
-            </h4>
-          </div>
-      </div>
-      <% }); %>
-    </div>
-    <!-- end of top listing --> 
-<!-- start of cafe listing -->
-    <div class="w-clearfix head">
-      <h1 id="cafe">CAFE</h1>
-      <% _(images).each(function(image) { 
-        var user = image.get("user");
-        var imageMetadata = image.get('imageMetadata');
-        if (imageMetadata.get("category")==="cafe"){%>
-        <div class="w-clearfix image bloc" data-ix="click-show">
-          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-            alt="<%= user.get("company")+","
-            +image.get("imageMetadata").get("desc")+","
-            +image.get("imageMetadata").get("expiry")+","
-            +image.get("imageMetadata").get("location") %>" 
-          data-ix="over">
-          <div class="like"  id="OMG" data-ix="over">
-            <h4 class="count">
-              <div class="fb-like" data-href="/i/<%=image.id%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-            </h4>
-          </div>
-          <div class="share" data-ix="over">
-            <h4 class="count">
-              <div class="fb-share-button" data-href="/i/<%=image.id%>" data-width="250"></div>
-            </h4>
-          </div>
-        </div>
-        <% }
-      }); %>
-    </div>
-    <!-- end of cafe listing -->
+                                <li>
+                                    <a href=""><i class="gi gi-bookmark sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Favourites</span></a>
+                                </li>
 
+                                <li>
+                                    <a href=""><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Inbox</span></a>
+                                </li>
 
-    <!-- start of bar listing -->
-    <div class="w-clearfix head">
-      <h1 id="bar">BAR</h1>
-      <% _(images).each(function(image) { 
-        var user = image.get("user");
-        var imageMetadata = image.get('imageMetadata');
-        if (imageMetadata.get("category")==="bar"){%>
-        <div class="w-clearfix image bloc" data-ix="click-show">
-          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-            alt="<%= user.get("company")+","
-            +imageMetadata.get("desc")+","
-            +imageMetadata.get("expiry")+","
+                            </ul>
+                            <!-- END Sidebar Navigation -->
+                        </div>
+                        <!-- END Sidebar Content -->
+                    </div>
+                    <!-- END Wrapper for scrolling functionality -->
+
+                    <!-- Sidebar Extra Info -->
+                    <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+                        <div class="text-center">
+                            <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
+                        </div>
+                    </div>
+                    <!-- END Sidebar Extra Info -->
+                </div>
+                <!-- END Main Sidebar -->
+
+                <!-- Main Container -->
+                <div id="main-container">
+                   
+                    <header class="navbar navbar-inverse navbar-fixed-top">
+                        <!-- Left Header Navigation -->
+                        <ul class="nav navbar-nav-custom">
+                            <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href="#"><strong>Deals for You!</strong></a>
+                            </li>
+                            <!-- END Header Link -->
+                        </ul>
+                        <!-- END Left Header Navigation -->
+
+                        <!-- Right Header Navigation -->
+                        <ul class="nav navbar-nav-custom pull-right">
+                            <!-- Search Form -->
+                            <li>
+                                <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
+                                    <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
+                                </form>
+                            </li>
+                            <!-- END Search Form -->
+
+                            <!-- Alternative Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+                                    <i class="gi gi-settings"></i>
+                                </a>
+                            </li>
+                            <!-- END Alternative Sidebar Toggle Button -->
+
+                            <!-- User Dropdown -->
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="img/placeholders/avatars/avatar9.jpg" alt="avatar">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-header">
+                                        <strong>USER</strong>
+                                    </li>
+                                    <li>
+                                        <a href="/">
+                                            <i class="gi gi-log_out fa fa-inbox fa-fw pull-right"></i>
+                                             Logout
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                </ul>
+                            </li>
+                            <!-- END User Dropdown -->
+                        </ul>
+                        <!-- END Right Header Navigation -->
+                    </header>
+                    <!-- END Header -->
+
+                    <!-- Page content -->
+                    <div id="page-content">
+                        <!-- Search Results Header -->
+                        <div class="content-header">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <div class="header-section">
+                                        <form action="page_ready_search_results.html" method="post" onsubmit="return false;">
+                                            <div class="form-group">
+                                                <select id="search-categories" name="search-categories" class="select-chosen" data-placeholder="Choose categories.." style="width: 250px;" >
+                                                    
+                                                    <option value="current">Cafe</option>
+                                                    <option value="pending">Bars</option>
+                                                    <option value="pending">Dining</option>
+                                                    <option value="expired">New</option>
+                                                    <option value="expired">Trending</option>
+                                                    <option value="expired">Ending</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-effect-ripple btn-effect-ripple btn-primary">Search Database</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Search Results Header -->
+
+                        <!-- Search Results Block -->
+                        <div class="block">
+                            <!-- Search Styles Title -->
+                            <!-- <div class="block-title">
+                                <ul class="nav nav-tabs" data-toggle="tabs">
+                                    <li class="active"><a href="#search-tab-images">Images</a></li>
+                                    <li><a href="#search-tab-users">Users</a></li>
+                                    <li><a href="#search-tab-sites">Sites</a></li>
+                                    <li><a href="#search-tab-files">Files</a></li>
+                                </ul>
+                            </div> -->
+                            <!-- END Search Styles Title -->
+
+                            <!-- Search Results Content -->
+                            <div class="tab-content">
+                                <!-- Images Results -->
+                                <div class="tab-pane active" id="search-tab-images">
+                                    <div class="row gallery">
+                                        <div class="col-sm-4">
+                                            <div class="gallery-image-container animation-fadeInQuick">
+                                                <% _(images).each(function(image) { 
+      var imageMetadata = image.get('imageMetadata');
+      if (imageMetadata.get("approval")=="0") {%>
+        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
+
+          alt="<%= imageMetadata.get("desc")+"|||"
+            +imageMetadata.get("expiry")+"|||"
             +imageMetadata.get("location") %>" 
-          data-ix="over">
-          <div class="like"  id="OMG" data-ix="over">
-            <h4 class="count">
-              <div class="fb-like" data-href="/i/<%=image.id%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-            </h4>
-          </div>
-          <div class="share" data-ix="over">
-            <h4 class="count">
-              <div class="fb-share-button" data-href="/i/<%=image.id%>" data-width="250"></div>
-            </h4>
-          </div>
-        </div>
-      <% }}); %>
-    </div>
-    <!-- end of bar listing -->
 
-    <!-- start of dining listing -->
-    <div class="w-clearfix head">
-      <h1 id="dining">DINING</h1>
-      <% _(images).each(function(image) { 
-        var user = image.get("user");
-        var imageMetadata = image.get('imageMetadata');
-        if (imageMetadata.get("category")==="dining"){%>
-        <div class="w-clearfix image bloc" data-ix="click-show">
-          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="480" 
-          alt="user,<%=user.get("company")+","
-          +image.get("imageMetadata").get("desc")+","
-          +image.get("imageMetadata").get("expiry")+","
-          +image.get("imageMetadata").get("location")%>" 
-          data-ix="over">
-          <div class="like"  id="OMG" data-ix="over">
-            <h4 class="count">
-              <div class="fb-like" data-href="/i/<%=image.id%>" data-width="250" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-            </h4>
-          </div>
-          <div class="share" data-ix="over">
-            <h4 class="count">
-              <div class="fb-share-button" data-href="/i/<%=image.id%>" data-width="250"></div>
-            </h4>
-          </div>
-        </div>
-      <% }}); %>
-    </div>
-    <!-- end of dining listing -->
-   
-
-<!-- START OF INFO CODES -->
-<!-- start of infobox codes -->
-    <div class="infobox" id="info" data-ix="click-hide-info">
-      <div class="w-row inforow" id="infobox">
-        <div class="w-col w-col-6">
-          <img class="popup-image adsimg" src="images/10547598_796038173770249_6562118821213318215_n.jpg" width="320" 
           data-ix="click-show">
+
+       
         </div>
-        <div class="w-col w-col-6 info">
+      <% }}); %>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <!-- END Images Results -->
 
-          <h1>Promotion Details</h1>
-
-          <h4>by: </h4>
-          <h4 class="companyName">--COMPANY NAME--</h4>
-          <br><h4>Description: </h4><h4 class="promoInfo">Description</h4>
-          <br><h4>Valid until: </h4><h4 class="expiry">Expiry</h4>
-          <br><h4>Map: </h4><h4 class="site">Locaiton</h4>
-
-        <div class="w-container infoactive">
-          <a class="w-inline-block infoicon" href="/like" data-ix="over">
-            <img class="infoimg" src="images/Shape-Heart-256.png">
-            <h2>like</h2>
-          </a>
-          <a class="w-inline-block infoicon" href="/share" data-ix="over">
-            <img class="infoimg" src="images/Shape12-256.png">
-            <h2>share</h2>
-          </a>
-          <a class="w-inline-block infoicon" href="/fav" data-ix="over">
-            <img class="infoimg" src="images/Shape-Diamond-256.png">
-            <h2>favourite</h2>
-          </a>
-          <a class="w-inline-block infoicon" href="/visit" data-ix="over">
-            <img class="infoimg" src="images/Shape-Spade-256.png">
-            <h2>visit us</h2>
-          </a>
+                                
+                            </div>
+                            <!-- END Search Results Content -->
+                        </div>
+                        <!-- END Search Results Block -->
+                    </div>
+                    <!-- END Page Content -->
+                </div>
+                <!-- END Main Container -->
+            </div>
+            <!-- END Page Container -->
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- end of infobox codes -->
+        <!-- END Page Wrapper -->
 
-
-<!-- start of user profile infobox codes -->
-<div class="w-col w-col-10 w-col-small-10 w-col-tiny-10 main-merchant">
-  <div class="fbuserprofile" data-ix="click-hide-info">
-    <div class="w-row">
-      <div class="w-col w-col-6">
-        <!-- <img class="fbdpic" id="bigProfileImage" src="images/1.png" width="100%" > -->
-      </div>
-      <div class="w-col w-col-6">
-        <div class="w-container user-point-count">
-          <img style="margin-right:10px;" class="money" id="profileImage" src="images/1.png" width="65" >
-          <div id="fullName" class="fb-text">####</div>
-        </div>
-        <div class="w-container username">
-          <div class="fb-text">username</div>
-		  <div id="username" class="fb-subtext">####</div>
-        </div>
-        <div class="w-container email-address">
-          <div class="fb-text">bank account number</div>
-        </div>
-        <div class="w-container gender">
-          <div class="fb-text">email</div>
-		  <div id="email" class="fb-subtext">####</div>
-        </div>
-        <div class="w-container fblink">
-          <div class="fb-text">gender</div>
-		  <div id="gender" class="fb-subtext">####</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end of user profile infobox codes -->
-
-
-  <!-- start of cashout info box codes -->
-  <div class="cashout" data-ix="click-hide-info">
-    <div class="w-container">
-      <img class="cashimg" src="images/cashout.png" width="100" png>
-      <h6>CASH OUT NOW!</h6>
-    </div>
-    <div class="w-container">
-      <div class="w-row">
-        <div class="w-col w-col-6">
-          <div class="cashtext">like</div>
-        </div>
-        <div class="w-col w-col-6">
-          <div class="cashtext">share</div>
-        </div>
-      </div>
-      <div class="w-row">
-        <div class="w-col w-col-6">
-          <div class="cashtext points">####</div>
-        </div>
-        <div class="w-col w-col-6">
-          <div class="cashtext points">####</div>
-        </div>
-      </div>
-    </div>
-    <div class="w-container">
-      <div class="w-row mathsbar">
-        <div class="w-col w-col-6 left">
-          <div class="cashtext">x2</div>
-        </div>
-        <div class="w-col w-col-6">
-          <div class="cashtext">x5</div>
-        </div>
-      </div>
-    </div>
-    <div class="w-container">
-      <img class="cashimg" src="images/money-bag-xxl.png">
-      <div class="cashtext points">####</div><a class="button" href="#">confirm</a>
-    </div>
-  </div>
-
-  <!-- end of cashout infobox codes -->
-
-
-  <!-- start of favourite ads infobox codes -->
-  <div class="favourites" data-ix="click-hide-info">
-    <div class="w-container">
-      <h6 class="message">my favourite promotions</h6>
-      <img class="adsfav" src="images/ice.jpg" width="200">
-      <img class="adsfav" src="images/141.jpg" width="480" >
-      <img class="adsfav" src="images/hpyhr.jpg" width="480">
-      <img class="adsfav" src="images/siam.jpg" width="480" >
-      <img class="adsfav" src="images/yoguru.jpg" width="480">
-      <img class="adsfav" src="images/lunch.png" width="336">
-      <img class="adsfav" src="images/godiva.png" width="320">
-    </div>
-  </div>
-
-  <!-- end of favourite ads infobox codes -->
-
-  <!-- start of mailbox infobox codes -->
-  <div class="mailbox" data-ix="click-hide-info">
-    <div class="w-container">
-      <h6 class="inbox">inbox</h6>
-    </div>
-    <div class="w-container">
-      <ul class="list">
-        <li class="unread">
-          <div class="inboxmsg">unread message&nbsp;</div>
-          <div class="inboxmsg">your favourite promo: “yoguru and free toppings"&nbsp;is expiring in 7 days!&nbsp;</div>
-          <div class="inboxmsg">your favourite promo: “7 cupcakes and giftbox" is expiring in 7 days!</div>
-          <div class="inboxmsg">check out your updated piggy bank!</div>
-          <div class="inboxmsg">your favourite promo: “buffet dining 1-4-1” is expiring in 7 days!</div>
-        </li>
-        <li class="read">
-          <div class="inboxmsg">your favourite promo: “happy hours at harry's” is expiring in 7 days!</div>
-          <div class="inboxmsg">congratulation! you have cash out $10.90!&nbsp;</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- end of mailbox infobox codes -->
-  <!-- end of infobox codes -->
-</div>
-<!-- end of main body codes -->
-
-<!-- start of navigation codes -->
-  <div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 nav">
-    <a class="w-inline-block nav-img" href="/" data-ix="over">
-      <img class="imgnav" src="images/Shape13-256.png" alt="NEW">
-      <h2>new</h2>
-    </a>
-    <a class="w-inline-block nav-img" href="/trending" data-ix="over">
-      <img class="imgnav" src="images/Shape-Lightning-256.png" alt="TRENDING">
-      <h2>trending</h2>
-    </a>
-    <a class="w-inline-block nav-img" href="/ending" data-ix="over">
-      <img class="imgnav" src="images/Race-Flag-256.png" alt="ENDING">
-      <h2>ending</h2>
-    </a>
-
-
-    <hr></hr>
-
-
-    <a class="w-inline-block nav-img" href="#cafe" data-ix="over">
-      <img class="imgnav" src="images/Beverage-Coffee-01-256.png" alt="CAFE">
-      <h2>cafe</h2>
-    </a>
-    <a class="w-inline-block nav-img" href="#bar" data-ix="over">
-      <img class="imgnav" src="images/Beverage-Juice-02-256.png" alt="BAR">
-      <h2>bar</h2>
-    </a>
-    <a class="w-inline-block nav-img" href="#dining" data-ix="over">
-      <img class="imgnav" src="images/Cutlery-Fork-Knife-256.png" alt="DINING">
-      <h2>dining</h2>
-    </a>
-
-  </div>
-  <!-- end of navigation codes -->
-<!-- start of another navigation codes -->
-
-<div class="w-col w-col-1 w-col-small-1 w-col-tiny-1 navright">
-  <a class="w-inline-block nav-img" data-ix="click-show-fb-profile">
-    <img class="imgnav" src="images/Facebook-256.png" data-ix="over">
-    <h2 data-ix="over">profile</h2><!--last name-->
-  </a>
-  <a class="w-inline-block nav-img">
-    <img class="imgnav" src="images/Money-Deposit-256.png" data-ix="over">
-    <h2 id="points" data-ix="over">###</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="#" data-ix="click-show-cash-out">
-    <img class="imgnav" src="images/Money-Bag-256.png"  data-ix="over">
-    <h2 data-ix="over">cashout</h2>
-  </a>
-  <a class="w-inline-block nav-img" data-ix="click-show-favourite">
-    <img class="imgnav" src="images/Bookmark-256.png" data-ix="over">
-    <h2 data-ix="over">favourites</h2>
-  </a>
-  <a class="w-inline-block nav-img" data-ix="click-show-mailbox">
-    <img class="imgnav" src="images/Message-Mail-256.png" data-ix="over">
-    <h2 data-ix="over">mailbox</h2>
-  </a>
-  <a class="w-inline-block nav-img" href="#" data-ix="over">
-    <img class="imgnav" src="images/Dialog-Box-About-256.png"data-ix="over">
-    <h2 data-ix="over">about</h2>
-  </a>
-</div>
-
-<!-- end of another navigation codes -->
-</div>

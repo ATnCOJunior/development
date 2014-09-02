@@ -12,23 +12,7 @@
                     <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
                 </div>
             </div>
-            <!-- END Preloader -->
-
-            <!-- Page Container -->
-            <!-- In the PHP version you can set the following options from inc/config file -->
-            <!--
-                Available #page-container classes:
-
-                'sidebar-visible-lg-mini'                       main sidebar condensed - Mini Navigation (> 991px)
-                'sidebar-visible-lg-full'                       main sidebar full - Full Navigation (> 991px)
-
-                'sidebar-alt-visible-lg'                        alternative sidebar visible by default (> 991px) (You can add it along with another class)
-
-                'header-fixed-top'                              has to be added only if the class 'navbar-fixed-top' was added on header.navbar
-                'header-fixed-bottom'                           has to be added only if the class 'navbar-fixed-bottom' was added on header.navbar
-
-                'fixed-width'                                   for a fixed width layout (can only be used with a static header/main sidebar layout)
-            -->
+            
             <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
                 <!-- Alternative Sidebar -->
                 <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
@@ -37,12 +21,27 @@
 
                     <!-- Wrapper for scrolling functionality -->
                     <div id="sidebar-scroll-alt">
-                        <!-- Sidebar Content -->
-                        <div class="sidebar-content">
-                            <!-- Color Themes -->
+                        
+                    </div>
+                    <!-- END Wrapper for scrolling functionality -->
+                </div>
+                <!-- END Alternative Sidebar -->
+
+                <!-- Main Sidebar -->
+                <div id="sidebar">
+                    <!-- Sidebar Brand -->
+                    <div id="sidebar-brand" class="themed-background">
+                        <a href="/" class="sidebar-title">
+                            <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+                        </a>
+                    </div>
+                    <!-- END Sidebar Brand -->
+
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll">
+                       <!-- Color Themes -->
                             <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
-<!--                            <div class="sidebar-section">
-                                <h2 class="text-light">Colors</h2>
+                           <div class="sidebar-section">
                                 <ul class="sidebar-themes clearfix">
                                     <li>
                                         <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
@@ -64,94 +63,8 @@
                                     </li>
                                  
                                 </ul>
-                            </div> -->
+                            </div>
                             <!-- END Color Themes -->
-
-                            <!-- Profile -->
-                           <!--  <div class="sidebar-section">
-                                <h2 class="text-light">Profile</h2>
-                                <form action="index.html" method="post" class="form-control-borderless" onsubmit="return false;">
-                                    <div class="form-group">
-                                        <label for="side-profile-name">Company Name</label>
-                                        <input type="text" name="company" class="form-control" value="John Doe">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="side-profile-email">Email</label>
-                                        <input type="email" name="email" class="form-control" value="john.doe@example.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="side-profile-password">Website URL</label>
-                                        <input type="password" name="website" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="side-profile-password-confirm">Social Media Site</label>
-                                        <input type="password" name="social" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="side-profile-password-confirm">Description</label>
-                                        <input type="password"  name="desc" class="form-control">
-                                    </div>
-                                    <div class="form-group remove-margin">
-                                        <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
-                                    </div>
-                                </form>
-                            </div> -->
-                            <!-- END Profile -->
-
-                            
-                        </div>
-                        <!-- END Sidebar Content -->
-                    </div>
-                    <!-- END Wrapper for scrolling functionality -->
-                </div>
-                <!-- END Alternative Sidebar -->
-
-                <!-- Main Sidebar -->
-                <div id="sidebar">
-                    <!-- Sidebar Brand -->
-                    <div id="sidebar-brand" class="themed-background">
-                        <a href="index.html" class="sidebar-title">
-                            <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
-                        </a>
-                    </div>
-                    <!-- END Sidebar Brand -->
-
-                    <!-- Wrapper for scrolling functionality -->
-                    <div id="sidebar-scroll">
-                        <!-- Sidebar Content -->
-                        <div class="sidebar-content">
-                            <!-- Sidebar Navigation -->
-                            <!-- <ul class="sidebar-nav">
-                                
-                                <li class="sidebar-separator">
-                                    <i class="fa fa-ellipsis-h"></i>
-                                </li>
-                                
-                                <li>
-                                    <a href=""><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
-                                </li>
-
-                                <li>
-                                    <a href=""><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Payment</span></a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-group sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
-                                    <ul>
-                                        <li>
-                                            <a href="">Customer</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Merchant</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                
- -->
-                            </ul>
-                            <!-- END Sidebar Navigation -->
-                        </div>
-                        <!-- END Sidebar Content -->
                     </div>
                     <!-- END Wrapper for scrolling functionality -->
 
@@ -167,20 +80,7 @@
 
                 <!-- Main Container -->
                 <div id="main-container">
-                    <!-- Header -->
-                    <!-- In the PHP version you can set the following options from inc/config file -->
-                    <!--
-                        Available header.navbar classes:
-
-                        'navbar-default'            for the default light header
-                        'navbar-inverse'            for an alternative dark header
-
-                        'navbar-fixed-top'          for a top fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar())
-                            'header-fixed-top'      has to be added on #page-container only if the class 'navbar-fixed-top' was added
-
-                        'navbar-fixed-bottom'       for a bottom fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar()))
-                            'header-fixed-bottom'   has to be added on #page-container only if the class 'navbar-fixed-bottom' was added
-                    -->
+                   
                     <header class="navbar navbar-inverse navbar-fixed-top">
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
@@ -195,7 +95,7 @@
 
                             <!-- Header Link -->
                             <li class="hidden-xs animation-fadeInQuick">
-                                <a href=""><strong>ADS</strong></a>
+                                <a href="#"><strong>Deals for You!</strong></a>
                             </li>
                             <!-- END Header Link -->
                         </ul>
@@ -211,14 +111,6 @@
                             </li>
                             <!-- END Search Form -->
 
-                            <!-- Alternative Sidebar Toggle Button -->
-                            <li>
-                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
-                                    <i class="gi gi-settings"></i>
-                                </a>
-                            </li>
-                            <!-- END Alternative Sidebar Toggle Button -->
-
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
@@ -229,9 +121,15 @@
                                         <strong>USER</strong>
                                     </li>
                                     <li>
-                                        <a href="page_app_email.html">
-                                            <i class="fa fa-inbox fa-fw pull-right"></i>
+                                        <a href="/user">
+                                            <i class="gi gi-log_in fa fa-inbox fa-fw pull-right"></i>
                                             Facebook Login
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/user">
+                                            <i class="gi gi-shop fa fa-inbox fa-fw pull-right"></i>
+                                            Merchant?
                                         </a>
                                     </li>
                                     
@@ -254,11 +152,14 @@
                                         <form action="page_ready_search_results.html" method="post" onsubmit="return false;">
                                             <div class="form-group">
                                                 <select id="search-categories" name="search-categories" class="select-chosen" data-placeholder="Choose categories.." style="width: 250px;" >
+                                                
+                                                    <option value="current">Cafe</option>
+                                                    <option value="pending">Bars</option>
+                                                    <option value="pending">Dining</option>
+                                                    <option value="expired">New</option>
+                                                    <option value="expired">Trending</option>
+                                                    <option value="expired">Ending</option>
                                                     
-                                                    <option value="current">Current</option>
-                                                    <option value="pending">Pending</option>
-                                                    <option value="pending">Rejected</option>
-                                                    <option value="expired">Expired</option>
                                                 </select>
                                             </div>
                                             <div class="text-center">
@@ -294,7 +195,6 @@
                                                 <% _(images).each(function(image) { 
       var imageMetadata = image.get('imageMetadata');
       if (imageMetadata.get("approval")=="0") {%>
-      <div class="w-clearfix image">
         <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
 
           alt="<%= imageMetadata.get("desc")+"|||"
@@ -303,20 +203,8 @@
 
           data-ix="click-show">
 
-        <div data-ix="over">
-          <form action="/i/<%=image.id%>/approve" method="post">
-            <h4> <input type="submit" value="approve" class="count"> </h4>
-          </form>
-        </div>
        
-        <div >
-          <form action="/i/<%=image.id%>/reject" method="post">
-            <h4><input type="submit" value="reject" class="count" data-ix="over"></h4>
-            <h4><input type="text" placeholder="reasons for ads rejection" name="reject_info" required></h4><br>
-          </form>
-          
         </div>
-      </div>
       <% }}); %>
                                             </div>
                                         </div>

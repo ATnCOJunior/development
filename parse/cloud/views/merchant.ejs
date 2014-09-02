@@ -12,23 +12,7 @@
                     <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
                 </div>
             </div>
-            <!-- END Preloader -->
-
-            <!-- Page Container -->
-            <!-- In the PHP version you can set the following options from inc/config file -->
-            <!--
-                Available #page-container classes:
-
-                'sidebar-visible-lg-mini'                       main sidebar condensed - Mini Navigation (> 991px)
-                'sidebar-visible-lg-full'                       main sidebar full - Full Navigation (> 991px)
-
-                'sidebar-alt-visible-lg'                        alternative sidebar visible by default (> 991px) (You can add it along with another class)
-
-                'header-fixed-top'                              has to be added only if the class 'navbar-fixed-top' was added on header.navbar
-                'header-fixed-bottom'                           has to be added only if the class 'navbar-fixed-bottom' was added on header.navbar
-
-                'fixed-width'                                   for a fixed width layout (can only be used with a static header/main sidebar layout)
-            -->
+         
             <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
                 <!-- Alternative Sidebar -->
                 <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
@@ -41,7 +25,7 @@
                         <div class="sidebar-content">
                             <!-- Color Themes -->
                             <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
-<!--                            <div class="sidebar-section">
+                           <div class="sidebar-section">
                                 <h2 class="text-light">Colors</h2>
                                 <ul class="sidebar-themes clearfix">
                                     <li>
@@ -64,7 +48,7 @@
                                     </li>
                                  
                                 </ul>
-                            </div> -->
+                            </div>
                             <!-- END Color Themes -->
 
                             <!-- Profile -->
@@ -110,7 +94,7 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="index.html" class="sidebar-title">
+                        <a href="/merchant" class="sidebar-title">
                             <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
                         </a>
                     </div>
@@ -128,15 +112,11 @@
                                 </li>
                                 
                                 <li>
-                                    <a href=""><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
+                                    <a href=""><i class="gi gi-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
                                 </li>
 
                                 <li>
-                                    <a href=""><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Payment</span></a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-group sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
+                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-keynote sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
                                     <ul>
                                         <li>
                                             <a href="">Customer</a>
@@ -146,7 +126,14 @@
                                         </li>
                                     </ul>
                                 </li>
-                                
+
+                                <li>
+                                    <a href=""><i class="gi gi-credit_card sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Payment</span></a>
+                                </li>
+
+                                <li>
+                                    <a href=""><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Inbox</span></a>
+                                </li>
 
                             </ul>
                             <!-- END Sidebar Navigation -->
@@ -167,20 +154,8 @@
 
                 <!-- Main Container -->
                 <div id="main-container">
-                    <!-- Header -->
-                    <!-- In the PHP version you can set the following options from inc/config file -->
-                    <!--
-                        Available header.navbar classes:
+                    
 
-                        'navbar-default'            for the default light header
-                        'navbar-inverse'            for an alternative dark header
-
-                        'navbar-fixed-top'          for a top fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar())
-                            'header-fixed-top'      has to be added on #page-container only if the class 'navbar-fixed-top' was added
-
-                        'navbar-fixed-bottom'       for a bottom fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar()))
-                            'header-fixed-bottom'   has to be added on #page-container only if the class 'navbar-fixed-bottom' was added
-                    -->
                     <header class="navbar navbar-inverse navbar-fixed-top">
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
@@ -195,7 +170,7 @@
 
                             <!-- Header Link -->
                             <li class="hidden-xs animation-fadeInQuick">
-                                <a href=""><strong>ADS</strong></a>
+                                <a href="#"><strong>Merchant Store</strong></a>
                             </li>
                             <!-- END Header Link -->
                         </ul>
@@ -226,20 +201,15 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
-                                        <strong>USER</strong>
+                                        <strong>MERCHANT</strong>
                                     </li>
                                     <li>
-                                        <a href="page_app_email.html">
-                                            <i class="fa fa-inbox fa-fw pull-right"></i>
-                                            Inbox
+                                        <a href="/">
+                                            <i class="gi gi-log_out fa fa-inbox fa-fw pull-right"></i>
+                                             Logout
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="page_app_social.html">
-                                            <i class="fa fa-pencil-square fa-fw pull-right"></i>
-                                            Profile
-                                        </a>
-                                    </li>
+                                    
                                     
                                 </ul>
                             </li>
@@ -299,8 +269,7 @@
                                                 <% _(images).each(function(image) { 
       var imageMetadata = image.get('imageMetadata');
       if (imageMetadata.get("approval")=="0") {%>
-      <div class="w-clearfix image">
-        <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
+       <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
 
           alt="<%= imageMetadata.get("desc")+"|||"
             +imageMetadata.get("expiry")+"|||"
@@ -308,20 +277,7 @@
 
           data-ix="click-show">
 
-        <div data-ix="over">
-          <form action="/i/<%=image.id%>/approve" method="post">
-            <h4> <input type="submit" value="approve" class="count"> </h4>
-          </form>
-        </div>
-       
-        <div >
-          <form action="/i/<%=image.id%>/reject" method="post">
-            <h4><input type="submit" value="reject" class="count" data-ix="over"></h4>
-            <h4><input type="text" placeholder="reasons for ads rejection" name="reject_info" required></h4><br>
-          </form>
-          
-        </div>
-      </div>
+        
       <% }}); %>
                                             </div>
                                         </div>
