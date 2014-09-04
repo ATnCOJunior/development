@@ -33,6 +33,8 @@ app.use(parseExpressCookieSession({
   }
 }));
 
+
+
 // Views
 
 
@@ -235,6 +237,16 @@ app.get('/admin', function(req, res) {
   } else {
     res.redirect('/');
   }
+});
+
+// UPLOAD
+app.get('/upload', function(req, res){
+  res.render('upload');
+});
+
+// INBOX
+app.get('/userInbox', function(req, res){
+  res.render('userInbox');
 });
 
 // User endpoints

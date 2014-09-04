@@ -8,6 +8,50 @@
 
 /*
 =================================================================
+THEME TIMELINE
+=================================================================
+*/
+
+.themed-color-timeline {
+    color: #95a5a6 !important;
+}
+
+.themed-background-timeline {
+    background-color: #95a5a6 !important;
+}
+
+.themed-color-dark-timeline {
+    color: #7f8c8d !important;
+}
+
+.themed-background-dark-timeline {
+    background-color: #7f8c8d !important;
+}
+
+/*
+=================================================================
+THEME TIMELINE READ
+=================================================================
+*/
+
+.themed-color-timeline-read {
+    color: #ecf0f1 !important;
+}
+
+.themed-background-timeline-read {
+    background-color: #ecf0f1 !important;
+}
+
+.themed-color-dark-timeline-read {
+    color: #bdc3c7 !important;
+}
+
+.themed-background-dark-timeline-read {
+    background-color: #bdc3c7 !important;
+}
+
+/*
+=================================================================
 THEME DEFAULT
 =================================================================
 */

@@ -152,29 +152,20 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                        <!-- Search Results Header -->
+                         <!-- Gallery Header -->
                         <div class="content-header">
-                            <div class="row">
-                                <div class="col-sm-6 col-sm-offset-3">
-                                    <div class="header-section">
-                                        <form action="page_ready_search_results.html" method="post" onsubmit="return false;">
-                                            <div class="form-group">
-                                                <select id="search-categories" name="search-categories" class="select-chosen" data-placeholder="Choose categories.." style="width: 250px;" >
-                                                   <!--  <option value="cafe" selected>Cafe</option>
-                                                    <option value="bars">Bars</option>
-                                                    <option value="dining">Dining</option> -->
-                                                    <option value="pending">Pending</option>
-                                                </select>
-                                            </div>
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-effect-ripple btn-effect-ripple btn-primary">GO</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                            <!-- Gallery Filter Links -->
+                            <!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
+                            <!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
+                            <div class="header-section text-center">
+                                <div class="btn-group gallery-filter">
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="pending">Pending</a>
+                                   
                                 </div>
                             </div>
+                            <!-- END Gallery Filter Links -->
                         </div>
-                        <!-- END Search Results Header -->
+                        <!-- END Gallery Header -->
 
                         <!-- Search Results Block -->
                         <div class="block">

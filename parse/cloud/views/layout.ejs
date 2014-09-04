@@ -1,33 +1,23 @@
 <html data-wf-site="53d0fce04156486e385c75ee">
 <head>
-  <title>atncoJR</title>
-  <meta charset="utf-8">
-
-  <!-- <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/webflow.css">
-  <link rel="stylesheet" type="text/css" href="css/atncojr.webflow.css">
-  <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/placeholder/favicon.ico"> 
-  <script src="https://www.parsecdn.com/js/parse-1.2.8.min.js"></script>-->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-  <script>
-  WebFont.load({
-    google: {
-      families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"]
-    }
-  });
-  </script>
-
-  <script type="text/javascript" src="js/modernizr.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-  <!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-  <script src="/javascripts/backbone.js"></script>
-  <script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+  <style type="text/css">.gm-style .gm-style-mtc label,.gm-style .gm-style-mtc div{font-weight:400}
+  </style>
+  <style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}
+  </style>
+  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}
+  </style>
+  <style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}
+  </style>
   
-  <script type="text/javascript" src="/javascripts/facebook.js"></script>
-  <script type="text/javascript" src="/javascripts/main.js"></script>
   <meta charset="utf-8">
+
+  
+  <meta name="description" content="AppUI is a Bootstrap Admin Web App Template created by pixelcave and published on Themeforest">
+  <meta name="author" content="pixelcave">
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
 
   <!-- Icons -->
   <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
@@ -57,18 +47,33 @@
   <link rel="stylesheet" href="css/themes.css">
   <!-- END Stylesheets -->
 
-
+  <!-- Modernizr (browser feature detection library) -->
+  <script src="js/vendor/modernizr-2.8.3.min.js" style=""></script>
+  <style type="text/css">.jqstooltip { width: auto !important; height: auto !important; position: absolute;left: 0px;top: 0px;visibility: hidden;background: #000000;color: white;font-size: 11px;text-align: left;white-space: nowrap;padding: 5px;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}
+  </style>
+  <script type="text/javascript" charset="UTF-8" src="http://maps.gstatic.com/cat_js/maps-api-v3/api/js/18/0/%7Bcommon,map,util,marker%7D.js">
+</script><script type="text/javascript" charset="UTF-8" src="http://maps.gstatic.com/cat_js/maps-api-v3/api/js/18/0/%7Bonion,stats%7D.js">
+</script>
+<script type="text/javascript" charset="UTF-8" src="http://maps.gstatic.com/cat_js/maps-api-v3/api/js/18/0/%7Bcontrols,infowindow%7D.js">
+</script>
+<script type="text/javascript" charset="UTF-8" src="http://maps.gstatic.com/cat_js/maps-api-v3/api/js/18/0/%7Boverlay%7D.js">
+</script>
 </head>
-<body>
-  <div>
-    <% if (locals.flash) { %>
-    <div class="flash"><%= flash %></div>
-    <% } %>
 
-    <%- body %>
-  </div>
 
- <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
+  <body>
+
+
+    <div>
+      <% if (locals.flash) { %>
+      <div class="flash"><%= flash %></div>
+      <% } %>
+
+      <%- body %>
+    </div>
+
+
+        <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
 
@@ -76,10 +81,17 @@
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/app.js"></script>
+        <script src="js/dropzone.js"></script>
+
+        
+        <!-- Load and execute javascript code used only in this page -->
+        <script src="js/pages/readyTimeline.js"></script>
+        <script>$(function(){ ReadyTimeline.init(); });</script>
+        <script src="js/pages/compGallery.js"></script>
 
 
-  <script type="text/javascript" src="js/webflow.js"></script>
-  
-</body>
-</html>
+  </body>
+
+
+  </html>
 

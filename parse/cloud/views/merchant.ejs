@@ -1,184 +1,184 @@
 
-        <div id="page-wrapper" class="page-loading">
-            <!-- Preloader -->
-            <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
-            <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
-            <div class="preloader">
-                <div class="inner">
-                    <!-- Animation spinner for all modern browsers -->
-                    <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
+<div id="page-wrapper" class="page-loading">
+    <!-- Preloader -->
+    <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+    <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
+    <div class="preloader">
+        <div class="inner">
+            <!-- Animation spinner for all modern browsers -->
+            <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
 
-                    <!-- Text for IE9 -->
-                    <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+            <!-- Text for IE9 -->
+            <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+        </div>
+    </div>
+    
+    <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+        <!-- Alternative Sidebar -->
+        <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+            <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+
+            <!-- Wrapper for scrolling functionality -->
+            <div id="sidebar-scroll-alt">
+                <!-- Sidebar Content -->
+                <div class="sidebar-content">
+                    <!-- Color Themes -->
+                    <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
+                    <div class="sidebar-section">
+                        <h2 class="text-light">Colors</h2>
+                        <ul class="sidebar-themes clearfix">
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <!-- END Color Themes -->
+
+                    <!-- Profile -->
+                    <div class="sidebar-section">
+                        <h2 class="text-light">Profile</h2>
+                        <form action="/update" method="post" class="form-control-borderless" onsubmit="return false;">
+                            <div class="form-group">
+                                <label for="side-profile-name">Company Name</label>
+                                <input type="text" name="company" class="form-control" value="<%=Parse.User.current().get("company")%>">
+                            </div>
+                            <div class="form-group">
+                                <label for="side-profile-email">Email</label>
+                                <input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
+                            </div>
+                            <div class="form-group">
+                                <label for="side-profile-password">Website URL</label>
+                                <input type="text" name="website" class="form-control" value="<%=Parse.User.current().get("website")%>">
+                            </div>
+                            <div class="form-group">
+                                <label for="side-profile-password-confirm">Social Media Site</label>
+                                <input type="text" name="social" class="form-control" value="<%=Parse.User.current().get("social")%>">
+                            </div>
+                            <div class="form-group">
+                                <label for="side-profile-password-confirm">Description</label>
+                                <input type="text"  name="desc" class="form-control" value="<%=Parse.User.current().get("desc")%>">
+                            </div>
+                            <div class="form-group remove-margin">
+                                <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- END Profile -->
+
+                    
+                </div>
+                <!-- END Sidebar Content -->
+            </div>
+            <!-- END Wrapper for scrolling functionality -->
+        </div>
+        <!-- END Alternative Sidebar -->
+
+        <!-- Main Sidebar -->
+        <div id="sidebar">
+            <!-- Sidebar Brand -->
+            <div id="sidebar-brand" class="themed-background">
+                <a href="/merchant" class="sidebar-title">
+                    <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+                </a>
+            </div>
+            <!-- END Sidebar Brand -->
+
+            <!-- Wrapper for scrolling functionality -->
+            <div id="sidebar-scroll">
+                <!-- Sidebar Content -->
+                <div class="sidebar-content">
+                    <!-- Sidebar Navigation -->
+                    <ul class="sidebar-nav">
+                        
+                        <li class="sidebar-separator">
+                            <i class="fa fa-ellipsis-h"></i>
+                        </li>
+                        
+                        <li>
+                            <a href="/upload"><i class="gi gi-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-keynote sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
+                            <ul>
+                                <li>
+                                    <a href="">Customer</a>
+                                </li>
+                                <li>
+                                    <a href="">Merchant</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href=""><i class="gi gi-credit_card sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Payment</span></a>
+                        </li>
+
+                        <li>
+                            <a href=""><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Inbox</span></a>
+                        </li>
+
+                    </ul>
+                    <!-- END Sidebar Navigation -->
+                </div>
+                <!-- END Sidebar Content -->
+            </div>
+            <!-- END Wrapper for scrolling functionality -->
+
+            <!-- Sidebar Extra Info -->
+            <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+                <div class="text-center">
+                    <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
                 </div>
             </div>
-         
-            <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
-                <!-- Alternative Sidebar -->
-                <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
-                    <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-                    <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+            <!-- END Sidebar Extra Info -->
+        </div>
+        <!-- END Main Sidebar -->
 
-                    <!-- Wrapper for scrolling functionality -->
-                    <div id="sidebar-scroll-alt">
-                        <!-- Sidebar Content -->
-                        <div class="sidebar-content">
-                            <!-- Color Themes -->
-                            <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
-                           <div class="sidebar-section">
-                                <h2 class="text-light">Colors</h2>
-                                <ul class="sidebar-themes clearfix">
-                                    <li>
-                                        <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
-                                    </li>
-                                 
-                                </ul>
-                            </div>
-                            <!-- END Color Themes -->
+        <!-- Main Container -->
+        <div id="main-container">
+            
 
-                            <!-- Profile -->
-                            <div class="sidebar-section">
-                                <h2 class="text-light">Profile</h2>
-                                <form action="/update" method="post" class="form-control-borderless" onsubmit="return false;">
-                                    <div class="form-group">
-                                        <label for="side-profile-name">Company Name</label>
-                                        <input type="text" name="company" class="form-control" value="<%=Parse.User.current().get("company")%>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="side-profile-email">Email</label>
-                                        <input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="side-profile-password">Website URL</label>
-                                        <input type="text" name="website" class="form-control" value="<%=Parse.User.current().get("website")%>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="side-profile-password-confirm">Social Media Site</label>
-                                        <input type="text" name="social" class="form-control" value="<%=Parse.User.current().get("social")%>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="side-profile-password-confirm">Description</label>
-                                        <input type="text"  name="desc" class="form-control" value="<%=Parse.User.current().get("desc")%>">
-                                    </div>
-                                    <div class="form-group remove-margin">
-                                        <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- END Profile -->
-
-                            
-                        </div>
-                        <!-- END Sidebar Content -->
-                    </div>
-                    <!-- END Wrapper for scrolling functionality -->
-                </div>
-                <!-- END Alternative Sidebar -->
-
-                <!-- Main Sidebar -->
-                <div id="sidebar">
-                    <!-- Sidebar Brand -->
-                    <div id="sidebar-brand" class="themed-background">
-                        <a href="/merchant" class="sidebar-title">
-                            <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+            <header class="navbar navbar-inverse navbar-fixed-top">
+                <!-- Left Header Navigation -->
+                <ul class="nav navbar-nav-custom">
+                    <!-- Main Sidebar Toggle Button -->
+                    <li>
+                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
                         </a>
-                    </div>
-                    <!-- END Sidebar Brand -->
+                    </li>
+                    <!-- END Main Sidebar Toggle Button -->
 
-                    <!-- Wrapper for scrolling functionality -->
-                    <div id="sidebar-scroll">
-                        <!-- Sidebar Content -->
-                        <div class="sidebar-content">
-                            <!-- Sidebar Navigation -->
-                            <ul class="sidebar-nav">
-                                
-                                <li class="sidebar-separator">
-                                    <i class="fa fa-ellipsis-h"></i>
-                                </li>
-                                
-                                <li>
-                                    <a href=""><i class="gi gi-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
-                                </li>
+                    <!-- Header Link -->
+                    <li class="hidden-xs animation-fadeInQuick">
+                        <a href="#"><strong>Merchant Store</strong></a>
+                    </li>
+                    <!-- END Header Link -->
+                </ul>
+                <!-- END Left Header Navigation -->
 
-                                <li>
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-keynote sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
-                                    <ul>
-                                        <li>
-                                            <a href="">Customer</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Merchant</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href=""><i class="gi gi-credit_card sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Payment</span></a>
-                                </li>
-
-                                <li>
-                                    <a href=""><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Inbox</span></a>
-                                </li>
-
-                            </ul>
-                            <!-- END Sidebar Navigation -->
-                        </div>
-                        <!-- END Sidebar Content -->
-                    </div>
-                    <!-- END Wrapper for scrolling functionality -->
-
-                    <!-- Sidebar Extra Info -->
-                    <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-                        <div class="text-center">
-                            <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
-                        </div>
-                    </div>
-                    <!-- END Sidebar Extra Info -->
-                </div>
-                <!-- END Main Sidebar -->
-
-                <!-- Main Container -->
-                <div id="main-container">
-                    
-
-                    <header class="navbar navbar-inverse navbar-fixed-top">
-                        <!-- Left Header Navigation -->
-                        <ul class="nav navbar-nav-custom">
-                            <!-- Main Sidebar Toggle Button -->
-                            <li>
-                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
-                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
-                                </a>
-                            </li>
-                            <!-- END Main Sidebar Toggle Button -->
-
-                            <!-- Header Link -->
-                            <li class="hidden-xs animation-fadeInQuick">
-                                <a href="#"><strong>Merchant Store</strong></a>
-                            </li>
-                            <!-- END Header Link -->
-                        </ul>
-                        <!-- END Left Header Navigation -->
-
-                        <!-- Right Header Navigation -->
-                        <ul class="nav navbar-nav-custom pull-right">
-                            <!-- Search Form -->
+                <!-- Right Header Navigation -->
+                <ul class="nav navbar-nav-custom pull-right">
+                    <!-- Search Form -->
                             <!-- <li>
                                 <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
                                     <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
@@ -206,7 +206,7 @@
                                     <li>
                                         <a href="/">
                                             <i class="gi gi-log_out fa fa-inbox fa-fw pull-right"></i>
-                                             Logout
+                                            Logout
                                         </a>
                                     </li>
                                     
@@ -218,33 +218,26 @@
                         <!-- END Right Header Navigation -->
                     </header>
                     <!-- END Header -->
-
+                    
                     <!-- Page content -->
                     <div id="page-content">
-                        <!-- Search Results Header -->
+                         <!-- Gallery Header -->
                         <div class="content-header">
-                            <div class="row">
-                                <div class="col-sm-6 col-sm-offset-3">
-                                    <div class="header-section">
-                                        <form action="page_ready_search_results.html" method="post" onsubmit="return false;">
-                                            <div class="form-group">
-                                                <select id="search-categories" name="search-categories" class="select-chosen" data-placeholder="Choose categories.." style="width: 250px;" >
-                                                    
-                                                    <option value="current">Current</option>
-                                                    <option value="pending">Pending</option>
-                                                    <option value="pending">Rejected</option>
-                                                    <option value="expired">Expired</option>
-                                                </select>
-                                            </div>
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-effect-ripple btn-effect-ripple btn-primary">GO</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                            <!-- Gallery Filter Links -->
+                            <!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
+                            <!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
+                            <div class="header-section text-center">
+                                <div class="btn-group gallery-filter">
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all">All</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current">Current</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending">Pending</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected">Rejected</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired">Expired</a>
                                 </div>
                             </div>
+                            <!-- END Gallery Filter Links -->
                         </div>
-                        <!-- END Search Results Header -->
+                        <!-- END Gallery Header -->
 
                         <!-- Search Results Block -->
                         <div class="block">
@@ -267,37 +260,37 @@
                                         <div class="col-sm-4">
                                             <div class="gallery-image-container animation-fadeInQuick">
                                                 <% _(images).each(function(image) { 
-      var imageMetadata = image.get('imageMetadata');
-      if (imageMetadata.get("approval")=="0") {%>
-       <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
+                                                  var imageMetadata = image.get('imageMetadata');
+                                                  if (imageMetadata.get("approval")=="0") {%>
+                                                  <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
 
-          alt="<%= imageMetadata.get("desc")+"|||"
-            +imageMetadata.get("expiry")+"|||"
-            +imageMetadata.get("location") %>" 
+                                                  alt="<%= imageMetadata.get("desc")+"|||"
+                                                  +imageMetadata.get("expiry")+"|||"
+                                                  +imageMetadata.get("location") %>" 
 
-          data-ix="click-show">
+                                                  data-ix="click-show">
 
-        
-      <% }}); %>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                                <!-- END Images Results -->
+                                                  
+                                                  <% }}); %>
+                                              </div>
+                                          </div>
+                                          
+                                      </div>
+                                      
+                                  </div>
+                                  <!-- END Images Results -->
 
-                                
-                            </div>
-                            <!-- END Search Results Content -->
-                        </div>
-                        <!-- END Search Results Block -->
-                    </div>
-                    <!-- END Page Content -->
-                </div>
-                <!-- END Main Container -->
-            </div>
-            <!-- END Page Container -->
-        </div>
-        <!-- END Page Wrapper -->
+                                  
+                              </div>
+                              <!-- END Search Results Content -->
+                          </div>
+                          <!-- END Search Results Block -->
+                      </div>
+                      <!-- END Page Content -->
+                  </div>
+                  <!-- END Main Container -->
+              </div>
+              <!-- END Page Container -->
+          </div>
+          <!-- END Page Wrapper -->
 
