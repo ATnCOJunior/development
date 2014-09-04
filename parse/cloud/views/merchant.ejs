@@ -54,7 +54,7 @@
                     <!-- Profile -->
                     <div class="sidebar-section">
                         <h2 class="text-light">Profile</h2>
-                        <form action="/update" method="post" class="form-control-borderless" onsubmit="return false;">
+                        <form action="/update" method="post" class="form-control-borderless" >
                             <div class="form-group">
                                 <label for="side-profile-name">Company Name</label>
                                 <input type="text" name="company" class="form-control" value="<%=Parse.User.current().get("company")%>">
