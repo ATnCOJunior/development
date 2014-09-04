@@ -54,26 +54,26 @@
                             <!-- Profile -->
                             <div class="sidebar-section">
                                 <h2 class="text-light">Profile</h2>
-                                <form action="index.html" method="post" class="form-control-borderless" onsubmit="return false;">
+                                <form action="/update" method="post" class="form-control-borderless" onsubmit="return false;">
                                     <div class="form-group">
                                         <label for="side-profile-name">Company Name</label>
-                                        <input type="text" name="company" class="form-control" value="John Doe">
+                                        <input type="text" name="company" class="form-control" value="<%=Parse.User.current().get("company")%>">
                                     </div>
                                     <div class="form-group">
                                         <label for="side-profile-email">Email</label>
-                                        <input type="email" name="email" class="form-control" value="john.doe@example.com">
+                                        <input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
                                     </div>
                                     <div class="form-group">
                                         <label for="side-profile-password">Website URL</label>
-                                        <input type="password" name="website" class="form-control">
+                                        <input type="text" name="website" class="form-control" value="<%=Parse.User.current().get("website")%>">
                                     </div>
                                     <div class="form-group">
                                         <label for="side-profile-password-confirm">Social Media Site</label>
-                                        <input type="password" name="social" class="form-control">
+                                        <input type="text" name="social" class="form-control" value="<%=Parse.User.current().get("social")%>">
                                     </div>
                                     <div class="form-group">
                                         <label for="side-profile-password-confirm">Description</label>
-                                        <input type="password"  name="desc" class="form-control">
+                                        <input type="text"  name="desc" class="form-control" value="<%=Parse.User.current().get("desc")%>">
                                     </div>
                                     <div class="form-group remove-margin">
                                         <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
