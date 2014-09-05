@@ -16,6 +16,7 @@ var CompGallery = function() {
             galleryFilter.find('a').on('click', function() {
                 // Get its data-category value
                 showCategory = $(this).data('category');
+
                 // Procceed only if the user clicked on an inactive category
                 if ( ! $(this).hasClass('active')) {
                     // Remove active class from all filter links

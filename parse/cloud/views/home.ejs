@@ -77,11 +77,11 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
-                                        <strong>USER</strong>
+                                        <strong>Sign In</strong>
                                     </li>
                                     <li>
-                                        <a href="/login-customer">
-                                            <i class="gi gi-shop fa fa-inbox fa-fw pull-right"></i>
+                                        <a href="/user-login">
+                                            <i class="gi gi-log_in fa fa-inbox fa-fw pull-right"></i>
                                             User?
                                         </a>
                                     </li>
@@ -114,36 +114,61 @@
                                     <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all">All</a>
                                     <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="cafe">Cafe</a>
                                     <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="bars">Bars</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dining">Dining</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dinings">Dining</a>
                                 </div>
                             </div>
                             <!-- END Gallery Filter Links -->
                         </div>
                         <!-- END Gallery Header -->
 
-                        <!-- Gallery Items -->
-                        <!-- Lightbox functionality is based on Magnific Popup plugin (initialized in js/app.js -> uiInit()) -->
-                        <!-- Add the category value for each item in its data-category attribute (for the filter functionality to work) -->
 
-                        <!-- Okay, this part is for retrieval of all images. and all the images, will have a data-category tag in the class: gallery-image-container-->
-                        <div class="row gallery">
-                            <% _(images).each(function(image){
-                                var imageMetadata = image.get('imageMetadata');
-                                if (imageMetadata.get("approval")==1) {%>
-                                <div class="col-sm-3">
-                                   <div class="gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
-                                   
-                                       <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372">
-                                       
-                                       <a href="/i/<%=image.id%>" class="gallery-image-options" data-toggle="lightbox-image" title="Image Info">
-                                            <h2 class="text-light"><strong><%=imageMetadata.get("title")%></strong></h2>
-                                            <i class="fa fa-search-plus fa-3x text-light"></i>
-                                       </a>
-                                   </div>
-                                </div>
-                                <%}});%>
-                        </div>
-                        <!-- END Gallery Items -->
+                        <!-- Search Results Block -->
+                        <div class="block">
+                            <!-- Search Styles Title -->
+                            <!-- <div class="block-title">
+                                <ul class="nav nav-tabs" data-toggle="tabs">
+                                    <li class="active"><a href="#search-tab-images">Images</a></li>
+                                    <li><a href="#search-tab-users">Users</a></li>
+                                    <li><a href="#search-tab-sites">Sites</a></li>
+                                    <li><a href="#search-tab-files">Files</a></li>
+                                </ul>
+                            </div> -->
+                            <!-- END Search Styles Title -->
+
+                            <!-- Search Results Content -->
+                            <div class="tab-content">
+                                <!-- Images Results -->
+                                <div class="tab-pane active" id="search-tab-images">
+                                    <div class="row gallery">
+                                        <div class="col-sm-4">
+                                            <div class="gallery-image-container animation-fadeInQuick">
+                                                <% _(images).each(function(image) { 
+                                                  var imageMetadata = image.get('imageMetadata');
+                                                  if (imageMetadata.get("approval")=="1") {%>
+                                                  <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
+
+                                                  alt="<%= imageMetadata.get("desc")+"|||"
+                                                  +imageMetadata.get("expiry")+"|||"
+                                                  +imageMetadata.get("location") %>" 
+
+                                                  data-ix="click-show">
+
+
+                                              </div>
+                                              <% }}); %>
+                                          </div>
+                                      </div>
+
+                                  </div>
+
+                              </div>
+                              <!-- END Images Results -->
+
+
+                          </div>
+                          <!-- END Search Results Content -->
+                      </div>
+                      <!-- END Search Results Block -->
                   </div>
                   <!-- END Page Content -->
               </div>
@@ -153,39 +178,3 @@
       </div>
       <!-- END Page Wrapper -->
 
-
-
-
-<!--Extra codes for reference-->
-<!--
-    <div class="tab-content">
-         <div class="tab-pane active" id="search-tab-images">
-            <div class="row gallery">
-                <div class="col-sm-4">
-                    <div class="gallery-image-container animation-fadeInQuick">
-                        <% _(images).each(function(image) { 
-                          var imageMetadata = image.get('imageMetadata');
-                          if (imageMetadata.get("approval")=="0") {%>
-                          <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
-
-                          alt="<%= imageMetadata.get("desc")+"|||"
-                          +imageMetadata.get("expiry")+"|||"
-                          +imageMetadata.get("location") %>" 
-
-                          data-ix="click-show">
-
-
-                      </div>
-                      <% }}); %>
-                  </div>
-              </div>
-
-          </div>
-
-      </div>
-      
-
-
-  </div>
-  
-</div>-->

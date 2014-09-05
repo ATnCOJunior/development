@@ -239,6 +239,15 @@ app.get('/admin', function(req, res) {
   }
 });
 
+// USER LOGIN
+app.get('/user-login', function(req, res){
+  res.render('user-login');
+});
+// USER SIGNUP
+app.get('/user-signup', function(req, res){
+  res.render('user-signup');
+});
+
 // UPLOAD
 app.get('/upload', function(req, res){
   res.render('upload');

@@ -4,3 +4,7 @@
 /Parse-Test/nbproject/private/
 /Parse-Test/dist/
 /Parse-Test/build/
+
+*.jpg
+
+*.png
