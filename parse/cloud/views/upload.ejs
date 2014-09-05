@@ -176,7 +176,7 @@
 
                     <!-- Header Link -->
                     <li class="hidden-xs animation-fadeInQuick">
-                        <a href="#"><strong>Merchant Store</strong></a>
+                        <a href="/merchant"><strong>Merchant Store</strong></a>
                     </li>
                     <!-- END Header Link -->
                 </ul>
@@ -227,72 +227,78 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                     <!-- upload Form -->
-                     <div class="col-xs-6 block">
+                       <!-- upload Form -->
+                       <div class="col-xs-6 block">
 
 
                         <!-- Upload Form -->
-                        <form id="upload" action="/upload" method="post" class="form-horizontal">
+                        <form id="upload" action="/upload" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+
                             <div class="form-group">
-                                <div class="col-xs-12">
-                                    <input type="text" name="title" class="form-control" placeholder="Title">
+                                <label class="col-md-3 control-label" for="example-email">Title</label>
+                                <div class="col-md-6">
+                                    <input type="email" id="example-email" name="example-email" class="form-control" placeholder=" Title of this amazing deal...">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-textarea-input">Description</label>
+                                <div class="col-md-9">
+                                    <textarea id="example-textarea-input" name="example-textarea-input" rows="7" class="form-control" placeholder="Tell us more about it..."></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-select">Category</label>
+                                <div class="col-md-6">
+                                    <select id="example-select" name="example-select" class="form-control" size="1">
+
+                                        <option value="1">Cafe</option>
+                                        <option value="2">Bars</option>
+                                        <option value="3">Dining</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-xs-12">
-                                    <input type="text" name="category" class="form-control" placeholder="Category">
-                                </div>
+                                <label class="col-md-3 control-label" for="example-datepicker">Expiry Date</label>
+                                <div class="col-md-5">
+                                   <input type="text" id="example-datepicker3" name="example-datepicker3" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                               </div>
+                           </div>
+
+                        <!--  <div class="form-group form-actions">
+                            <div class="col-md-9 col-md-offset-3">
+                                <button type="submit" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: relative;">Submit</button>
+                                <button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <input type="date" name="expiryDate" class="form-control" placeholder="Expiry Date">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <input  type="text" name="location" class="form-control" placeholder="Please provide the location information">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <input type="text" name="website" class="form-control" placeholder="Promotion Details">
-                                </div>
-                            </div>
-
-
-
-                        </form>
-                        <script type="text/javascript">
-                        new Uploader({ el: "#upload" });
-                        </script>
+                        </div> -->
 
                         <div class="form-group form-actions">
                             <div class="col-md-9 col-md-offset-3">
-                                <button type="submit" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: relative;">Submit</button>
-
+                                <input type="file">
+                                <a href="#"></a>
                             </div>
-                            <!-- END upload Form -->
-                        </div>
-                        <!-- END upload Block -->
+                        </div>  
+                    </form> 
+                    
+                    <script type="text/javascript">
+                    new Uploader({ el: "#upload" });
+                    </script>
 
-
-                    </div>
-                    <!-- END Login Container -->
-
-
-
-
+                    <!-- END upload Form -->
                 </div>
-                <!-- END Page Content -->
+                <!-- END upload Block -->
+
             </div>
-            <!-- END Main Container -->
+            <!-- END Login Container -->
+
         </div>
-        <!-- END Page Container -->
+        <!-- END Page Content -->
     </div>
-    <!-- END Page Wrapper -->
+    <!-- END Main Container -->
+</div>
+<!-- END Page Container -->
+</div>
+<!-- END Page Wrapper -->
 
 
