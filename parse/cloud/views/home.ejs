@@ -1,180 +1,192 @@
 <style type="text/css">
 
 #home-main-container{
-    margin-left: 0px;
-    margin-right: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
 }
 #page-container.sidebar-visible-lg-full header.navbar-fixed-top,
 #page-container.sidebar-visible-lg-full header.navbar-fixed-bottom {
-    left: 0px;
+	left: 0px;
 }
 
 
 </style>
 
 <div id="page-wrapper" class="page-loading">
-    <!-- Preloader -->
-    <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
-    <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
-    <div class="preloader">
-        <div class="inner">
-            <!-- Animation spinner for all modern browsers -->
-            <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
 
-            <!-- Text for IE9 -->
-            <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
-        </div>
-    </div>
 
-    <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
-        <!-- Alternative Sidebar -->
-        <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
-            <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
-
-            <!-- Wrapper for scrolling functionality -->
-            <div id="sidebar-scroll-alt">
-
-            </div>
-            <!-- END Wrapper for scrolling functionality -->
-        </div>
-        <!-- END Alternative Sidebar -->
+	<!-- Preloader -->
+	<!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+	<!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
 
 
 
-        <!-- Main Container -->
-        <div id="home-main-container">
+	<div class="preloader">
+		<div class="inner">
+			<!-- Animation spinner for all modern browsers -->
+			<div class="preloader-spinner themed-background hidden-lt-ie10"></div>
 
-            <header class="navbar navbar-inverse navbar-fixed-top">
-                <!-- Left Header Navigation -->
-                <ul class="nav navbar-nav-custom">
+			<!-- Text for IE9 -->
+			<h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+		</div>
+	</div>
 
-                    <!-- Header Link -->
+	<div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+		<!-- Alternative Sidebar -->
+		<div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+			<!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+			<a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
 
-                    <div id="sidebar-brand" class="themed-background">
-                        <a href="/" class="sidebar-title">
-                            <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
-                        </a>
-                    </div>
-                    <!-- END Header Link -->
-                </ul>
-                <!-- END Left Header Navigation -->
+			<!-- Wrapper for scrolling functionality -->
+			<div id="sidebar-scroll-alt">
 
-                <!-- Right Header Navigation -->
-                <ul class="nav navbar-nav-custom pull-right">
-                    <!-- Search Form -->
+			</div>
+			<!-- END Wrapper for scrolling functionality -->
+		</div>
+		<!-- END Alternative Sidebar -->
+
+
+
+		<!-- Main Container -->
+		<div id="home-main-container">
+
+			<header class="navbar navbar-inverse navbar-fixed-top">
+				<!-- Left Header Navigation -->
+				<ul class="nav navbar-nav-custom">
+
+					<!-- Header Link -->
+
+					<div id="sidebar-brand" class="themed-background">
+						<a href="/" class="sidebar-title">
+							<i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+						</a>
+					</div>
+					<!-- END Header Link -->
+				</ul>
+				<!-- END Left Header Navigation -->
+
+				<!-- Right Header Navigation -->
+				<ul class="nav navbar-nav-custom pull-right">
+					<!-- Search Form -->
 <!--                             <li>
-                                <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
-                                    <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
-                                </form>
-                            </li> -->                            
-                            <!-- END Search Form -->
+								<form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
+									<input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
+								</form>
+							</li> -->                            
+							<!-- END Search Form -->
 
-                            <!-- User Dropdown -->
-                            <li class="dropdown">
-                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="img/placeholders/avatars/avatar9.jpg" alt="avatar">
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-header">
-                                        <strong>Sign In</strong>
-                                    </li>
-                                    <li>
-                                        <a href="/user-login">
-                                            <i class="gi gi-log_in fa fa-inbox fa-fw pull-right"></i>
-                                            User?
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/login">
-                                            <i class="gi gi-shop fa fa-inbox fa-fw pull-right"></i>
-                                            Merchant?
-                                        </a>
-                                    </li>
-                                    
-                                    
-                                </ul>
-                            </li>
-                            <!-- END User Dropdown -->
-                        </ul>
-                        <!-- END Right Header Navigation -->
-                    </header>
-                    <!-- END Header -->
+							<!-- User Dropdown -->
+							<li class="dropdown">
+								<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+									<img src="img/placeholders/avatars/avatar9.jpg" alt="avatar">
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li class="dropdown-header">
+										<strong>Sign In</strong>
+									</li>
+									<li>
+										<a href="/user-login">
+											<i class="gi gi-log_in fa fa-inbox fa-fw pull-right"></i>
+											User?
+										</a>
+									</li>
+									<li>
+										<a href="/login">
+											<i class="gi gi-shop fa fa-inbox fa-fw pull-right"></i>
+											Merchant?
+										</a>
+									</li>
+									
+									
+								</ul>
+							</li>
+							<!-- END User Dropdown -->
+						</ul>
+						<!-- END Right Header Navigation -->
+					</header>
+					<!-- END Header -->
 
-                    <!-- Page content -->
-                    <div id="page-content">
+					<!-- Page content -->
+					<div id="page-content">
 
-                        <!-- Gallery Header -->
-                        <div class="content-header">
-                            <!-- Gallery Filter Links -->
-                            <!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
-                            <!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
-                            <div class="header-section text-center">
-                                <div class="btn-group gallery-filter">
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all">All</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="cafe">Cafe</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="bars">Bars</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dinings">Dining</a>
-                                </div>
-                            </div>
-                            <!-- END Gallery Filter Links -->
-                        </div>
-                        <!-- END Gallery Header -->
-
-
-                        <!-- Search Results Block -->
-                        <div class="block">
-                            <!-- Search Styles Title -->
-                            <!-- <div class="block-title">
-                                <ul class="nav nav-tabs" data-toggle="tabs">
-                                    <li class="active"><a href="#search-tab-images">Images</a></li>
-                                    <li><a href="#search-tab-users">Users</a></li>
-                                    <li><a href="#search-tab-sites">Sites</a></li>
-                                    <li><a href="#search-tab-files">Files</a></li>
-                                </ul>
-                            </div> -->
-                            <!-- END Search Styles Title -->
-
-                            <!-- Search Results Content -->
-                            <div class="tab-content">
-                                <!-- Images Results -->
-                                <div class="tab-pane active" id="search-tab-images">
-                                    <div class="row gallery">
-                                        <div class="col-sm-4">
-                                            <div class="gallery-image-container animation-fadeInQuick">
-                                                <% _(images).each(function(image) { 
-                                                  var imageMetadata = image.get('imageMetadata');
-                                                  if (imageMetadata.get("approval")=="1") {%>
-                                                  <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
-
-                                                  alt="<%= imageMetadata.get("desc")+"|||"
-                                                  +imageMetadata.get("expiry")+"|||"
-                                                  +imageMetadata.get("location") %>" 
-
-                                                  data-ix="click-show">
+						<!-- Gallery Header -->
+						<div class="content-header">
+							<!-- Gallery Filter Links -->
+							<!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
+							<!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
+							<div class="header-section text-center">
+								<div class="btn-group gallery-filter">
+									<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a>
+									<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="cafe" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Cafe</a>
+									<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="bars" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Bars</a>
+									<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
+								</div>
+							</div>
+							<!-- END Gallery Filter Links -->
+						</div>
+						<!-- END Gallery Header -->
 
 
-                                              </div>
-                                              <% }}); %>
-                                          </div>
-                                      </div>
+						<!-- Gallery Items -->
+						<!-- Lightbox functionality is based on Magnific Popup plugin (initialized in js/app.js -> uiInit()) -->
+						<!-- Add the category value for each item in its data-category attribute (for the filter functionality to work) -->
 
-                                  </div>
+						<!-- Okay, this part is for retrieval of all images. and all the images, will have a data-category tag in the class: gallery-image-container-->
+						<div class="row gallery">
+							<% _(images).each(function(image){
+								var imageMetadata = image.get('imageMetadata');
+								if (imageMetadata.get("approval")==1) {%>
+								<div class="col-sm-3">
+									<div class="gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
+									<!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
+										<img src="<%= image.get('sizeNormal').url() %>"
+										alt="<%= imageMetadata.get("desc")+"|||"
+										+imageMetadata.get("expiry")+"|||"
+										+imageMetadata.get("location") %>" 
+										>
+										<a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options" data-toggle="lightbox-image" 
+											title=" 
+											<%= imageMetadata.get("desc") 
+											+ "<br>" 
+											+ imageMetadata.get("expiry") 
+											+ "<br>" 
+											+ imageMetadata.get("location")%>">
 
-                              </div>
-                              <!-- END Images Results -->
+											<h2 class="text-light">
+												<%=imageMetadata.get("title")%>
+											</h2>
+											<i class="fa fa-search-plus fa-3x text-light"></i>
 
+										</a>
+									 <!-- <a href="/i/<%=image.id%>" class="gallery-image-options" data-toggle="lightbox-image" title="Image Info">
+										<h2 class="text-light"><strong><%=imageMetadata.get("title")%></strong></h2>
+										<i class="fa fa-search-plus fa-3x text-light"></i>
+									</a> -->
+								</div>
+								<!-- bookmark like share button -->
+								<div class="modal-footer">
 
-                          </div>
-                          <!-- END Search Results Content -->
-                      </div>
-                      <!-- END Search Results Block -->
-                  </div>
-                  <!-- END Page Content -->
-              </div>
-              <!-- END Main Container -->
-          </div>
-          <!-- END Page Container -->
-      </div>
-      <!-- END Page Wrapper -->
+									<button type="button" class="btn btn-effect-ripple btn-success">
+										<i class="fa fa-bookmark"></i> Bookmark
+									</button>
+									<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+										<i class="fa fa-thumbs-up"></i> Like
+									</button>
+									<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+										<i class="fa fa-share"></i> Share
+									</button>
+								</div>
+								<!-- END bookmark like share button -->
+							</div>
+							<%}});%>
+						</div>
+						<!-- END Gallery Items -->
+					</div>
+					<!-- END Page Content -->
+				</div>
+				<!-- END Main Container -->
+			</div>
+			<!-- END Page Container -->
+		</div>
+		<!-- END Page Wrapper -->
 

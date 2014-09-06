@@ -221,72 +221,82 @@
                     
                     <!-- Page content -->
                     <div id="page-content">
-                         <!-- Gallery Header -->
+
+                        <!-- Gallery Header -->
                         <div class="content-header">
                             <!-- Gallery Filter Links -->
                             <!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
                             <!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
                             <div class="header-section text-center">
                                 <div class="btn-group gallery-filter">
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all">All</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current">Current</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending">Pending</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected">Rejected</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired">Expired</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Current</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Pending</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Rejected</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Expired</a>
                                 </div>
                             </div>
                             <!-- END Gallery Filter Links -->
                         </div>
                         <!-- END Gallery Header -->
 
-                        <!-- Search Results Block -->
-                        <div class="block">
-                            <!-- Search Styles Title -->
-                            <!-- <div class="block-title">
-                                <ul class="nav nav-tabs" data-toggle="tabs">
-                                    <li class="active"><a href="#search-tab-images">Images</a></li>
-                                    <li><a href="#search-tab-users">Users</a></li>
-                                    <li><a href="#search-tab-sites">Sites</a></li>
-                                    <li><a href="#search-tab-files">Files</a></li>
-                                </ul>
-                            </div> -->
-                            <!-- END Search Styles Title -->
 
-                            <!-- Search Results Content -->
-                            <div class="tab-content">
-                                <!-- Images Results -->
-                                <div class="tab-pane active" id="search-tab-images">
-                                    <div class="row gallery">
-                                        <div class="col-sm-4">
-                                            <div class="gallery-image-container animation-fadeInQuick">
-                                                <% _(images).each(function(image) { 
-                                                  var imageMetadata = image.get('imageMetadata');
-                                                  if (imageMetadata.get("approval")=="0") {%>
-                                                  <img class="adsimage" src="<%= image.get('sizeNormal').url() %>" width="372" 
+                        <!-- Gallery Items -->
+                        <!-- Lightbox functionality is based on Magnific Popup plugin (initialized in js/app.js -> uiInit()) -->
+                        <!-- Add the category value for each item in its data-category attribute (for the filter functionality to work) -->
 
-                                                  alt="<%= imageMetadata.get("desc")+"|||"
-                                                  +imageMetadata.get("expiry")+"|||"
-                                                  +imageMetadata.get("location") %>" 
+                        <!-- Okay, this part is for retrieval of all images. and all the images, will have a data-category tag in the class: gallery-image-container-->
+                        <div class="row gallery">
+                            <% _(images).each(function(image){
+                                var imageMetadata = image.get('imageMetadata');
+                                if (imageMetadata.get("approval")==1) {%>
+                                <div class="col-sm-3">
+                                    <div class="gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
+                                    <!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
+                                        <img src="<%= image.get('sizeNormal').url() %>"
+                                        alt="<%= imageMetadata.get("desc")+"|||"
+                                        +imageMetadata.get("expiry")+"|||"
+                                        +imageMetadata.get("location") %>" 
+                                        >
+                                        <a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options" data-toggle="lightbox-image" 
+                                            title=" 
+                                            <%= imageMetadata.get("desc") 
+                                            + "<br>" 
+                                            + imageMetadata.get("expiry") 
+                                            + "<br>" 
+                                            + imageMetadata.get("location")%>">
 
-                                                  data-ix="click-show">
+                                            <h2 class="text-light">
+                                                <%=imageMetadata.get("title")%>
+                                            </h2>
+                                            <i class="fa fa-search-plus fa-3x text-light"></i>
 
-                                                  
-                                                  <% }}); %>
-                                              </div>
-                                          </div>
-                                          
-                                      </div>
-                                      
-                                  </div>
-                                  <!-- END Images Results -->
+                                        </a>
+                                     <!-- <a href="/i/<%=image.id%>" class="gallery-image-options" data-toggle="lightbox-image" title="Image Info">
+                                        <h2 class="text-light"><strong><%=imageMetadata.get("title")%></strong></h2>
+                                        <i class="fa fa-search-plus fa-3x text-light"></i>
+                                    </a> -->
+                                </div>
+                                <!-- bookmark like share button -->
+                                <div class="modal-footer">
 
-                                  
-                              </div>
-                              <!-- END Search Results Content -->
-                          </div>
-                          <!-- END Search Results Block -->
-                      </div>
-                      <!-- END Page Content -->
+                                    <button type="button" class="btn btn-effect-ripple btn-success">
+                                        <i class="fa fa-bookmark"></i> Bookmark
+                                    </button>
+                                    <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+                                        <i class="fa fa-thumbs-up"></i> Like
+                                    </button>
+                                    <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+                                        <i class="fa fa-share"></i> Share
+                                    </button>
+                                </div>
+                                <!-- END bookmark like share button -->
+                            </div>
+                            <%}});%>
+                        </div>
+                        <!-- END Gallery Items -->
+                    </div>
+                    <!-- END Page Content -->
                   </div>
                   <!-- END Main Container -->
               </div>
