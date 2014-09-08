@@ -24,6 +24,9 @@ module.exports = function(){
     });
   });
 
+
+  // MERCHANT FUNCTIONS
+
   // Renders the signup page
   app.get('/signup', function(req, res) {
     res.render('signup');
@@ -47,6 +50,7 @@ module.exports = function(){
     user.set('website', website);
     user.set('social', social);
     user.set('desc', desc);
+    user.set('type', "merchant");
     
     user.signUp().then(function(user) {
       res.redirect('/merchant');
@@ -84,6 +88,76 @@ module.exports = function(){
     Parse.User.logOut();
     res.redirect('/');
   });
+
+  // CUSTOMER FUNCTIONS
+
+  // MERCHANT SIGN-UP FUNCTIONS
+
+  // Renders the signup page
+  app.get('/user-signup', function(req, res) {
+    res.render('user-signup');
+  });
+
+  // Signs up a new user
+  app.post('/user-signup', function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var fullName = firstName + " " + lastName;
+    var gender = req.body.gender;
+    var email = req.body.email;
+    var occupation = req.body.occupation;
+
+    var user = new Parse.User();
+    user.set('username', username);
+    user.set('password', password);
+    user.set('firstName', firstName);
+    user.set('lastName', lastName);
+    user.set('fullName', fullName);
+    user.set('gender', gender);
+    user.set('points', 0);
+    user.set('email', email);
+    user.set('type', "customer");
+    user.set('occupation', occupation);
+    
+    user.signUp().then(function(user) {
+      res.redirect('/user');
+    }, function(error) {
+      // Show the error message and let the user try again
+      res.render('user-login', { flash: error.message });
+    });
+  });
+
+  // Render the login page
+  app.get('/user-login', function(req, res) {
+      res.render('user-login');
+  });
+
+  // Logs in the user
+  app.post('/user-login', function(req, res) {
+    Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
+      if (user.get("type") == "customer") {
+        res.redirect('/user');
+      }else{
+        res.render('login', { flash: "Invalid Username or Password" });
+      }
+    }, function(error) {
+      // Show the error message and let the user try again
+      res.render('login', { flash: error.message });
+    });
+  });
+
+  app.get('/user-logout', function(req, res) {
+    Parse.User.logOut();
+    res.redirect('/');
+  });
+  // Logs out the user
+  app.post('/logout', function(req, res) {
+    Parse.User.logOut();
+    res.redirect('/');
+  });
+
 
   return app;
 }();

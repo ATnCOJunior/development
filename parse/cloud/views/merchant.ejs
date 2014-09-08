@@ -1,3 +1,6 @@
+<% 
+    if(Parse.User)
+%>
 
 <div id="page-wrapper" class="page-loading">
     <!-- Preloader -->
@@ -204,7 +207,7 @@
                                         <strong>MERCHANT</strong>
                                     </li>
                                     <li>
-                                        <a href="/">
+                                        <a href="/logout">
                                             <i class="gi gi-log_out fa fa-inbox fa-fw pull-right"></i>
                                             Logout
                                         </a>
@@ -249,9 +252,19 @@
                         <div class="row gallery">
                             <% _(images).each(function(image){
                                 var imageMetadata = image.get('imageMetadata');
-                                if (imageMetadata.get("approval")==1) {%>
+                                var dataCategory = "";
+                                var status = imageMetadata.get("approval");
+                                if (status=="1") {
+                                    dataCategory = "current";
+                                }else if (status=="0"){
+                                    dataCategory = "pending";
+                                }else if (status=="-1"){
+                                    dataCategory = "rejected";
+                                }else if (status=="2"){
+                                    dataCategory = "expired";
+                                } %>
                                 <div class="col-sm-3">
-                                    <div class="gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
+                                    <div class="gallery-image-container animation-fadeInQuick2" data-category="<%=dataCategory%>"> 
                                     <!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
                                         <img src="<%= image.get('sizeNormal').url() %>"
                                         alt="<%= imageMetadata.get("desc")+"|||"
@@ -292,7 +305,7 @@
                                 </div>
                                 <!-- END bookmark like share button -->
                             </div>
-                            <%}});%>
+                            <%});%>
                         </div>
                         <!-- END Gallery Items -->
                     </div>

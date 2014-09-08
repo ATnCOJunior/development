@@ -121,6 +121,10 @@ app.get('/ending', function(req, res) {
 
 // User endpoint
 app.get('/user', function(req, res) {
+  if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
+    res.redirect('/user-login');
+  }
+
   var innerQuery = new Parse.Query(ImageMetadata);
   innerQuery.equalTo("approval", "1");
 
@@ -196,8 +200,8 @@ app.get('/user-ending', function(req, res) {
 
 // Merchant endpoint
 app.get('/merchant', function(req, res) {
-  if (!Parse.User.current()) {
-    res.redirect('/');
+  if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
+    res.redirect('/login');
   }
 
   // Get the latest images to show

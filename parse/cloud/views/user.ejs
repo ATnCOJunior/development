@@ -185,7 +185,7 @@
                                         <strong>USER</strong>
                                     </li>
                                     <li>
-                                        <a href="/">
+                                        <a href="/user-logout">
                                             <i class="gi gi-log_out fa fa-inbox fa-fw pull-right"></i>
                                             Logout
                                         </a>
@@ -260,7 +260,7 @@
                                 <!-- bookmark like share button -->
                                 <div class="modal-footer">
 
-                                    <button type="button" class="btn btn-effect-ripple btn-success">
+                                    <button type="button" class="btn btn-effect-ripple btn-success" onclick="Parse.User.current().save({bookmarks : bookmarks.push(image.id)});">
                                         <i class="fa fa-bookmark"></i> Bookmark
                                     </button>
                                     <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
