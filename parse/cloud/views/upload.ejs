@@ -118,11 +118,18 @@
                         </li>
 
                         <li>
-                            <a href="/upload"><i class="gi gi-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
+                            <a href="/upload" class=" active">
+                                <i class="fa fa-cloud-upload sidebar-nav-icon"></i>
+                                <span class="sidebar-nav-mini-hide">Upload</span>
+                            </a>
                         </li>
 
                         <li>
-                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-keynote sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
+                            <a href="#" class="sidebar-nav-menu">
+                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-keynote sidebar-nav-icon"></i>
+                                <span class="sidebar-nav-mini-hide">Reports</span>
+                            </a>
                             <ul>
                                 <li>
                                     <a href="">Customer</a>
@@ -134,7 +141,7 @@
                         </li>
 
                         <li>
-                            <a href=""><i class="gi gi-credit_card sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Payment</span></a>
+                            <a href="/transaction-merchant"><i class="gi gi-credit_card sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Payment</span></a>
                         </li>
 
                         <li>
@@ -176,7 +183,7 @@
 
                     <!-- Header Link -->
                     <li class="hidden-xs animation-fadeInQuick">
-                        <a href="/merchant"><strong>Merchant Store</strong></a>
+                        <a><strong>Upload your ads with us!</strong></a>
                     </li>
                     <!-- END Header Link -->
                 </ul>
@@ -203,7 +210,7 @@
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="img/placeholders/avatars/avatar9.jpg" alt="avatar">
+                                    <i class="fa fa-sign-in"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
@@ -237,21 +244,27 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="example-email">Title</label>
                                 <div class="col-md-6">
-                                    <input type="email" id="example-email" name="example-email" class="form-control" placeholder=" Title of this amazing deal...">
+                                    <input type="text" id="example-email" name="title" class="form-control" placeholder=" Title of this amazing deal" required>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="example-textarea-input">Description</label>
                                 <div class="col-md-9">
-                                    <textarea id="example-textarea-input" name="example-textarea-input" rows="7" class="form-control" placeholder="Tell us more about it..."></textarea>
+                                    <textarea id="example-textarea-input" name="desc" rows="7" class="form-control" placeholder="Tell us more about it" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-textarea-input">Location Address</label>
+                                <div class="col-md-9">
+                                    <input type="text" name="location" class="form-control" placeholder=" Address or URL for your location" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="example-select">Category</label>
-                                <div class="col-md-6">
-                                    <select id="example-select" name="example-select" class="form-control" size="1">
-
+                                <div class="col-md-5">
+                                    <select id="example-select" name="category" class="form-control" size="1" required>
+                                        <option value="">Choose a Category</option>
                                         <option value="1">Cafe</option>
                                         <option value="2">Bars</option>
                                         <option value="3">Dining</option>
@@ -260,11 +273,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="example-datepicker">Expiry Date</label>
-                                <div class="col-md-5">
-                                   <input type="text" id="example-datepicker3" name="example-datepicker3" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
-                               </div>
-                           </div>
+                                <label class="col-md-3 control-label" for="example-datepicker">Posting Duration</label>
+                                <div class="col-md-9">
+                                  <input type="text" name="expiry" class="form-control" placeholder="Tell us your posting period (at least 7 days)" required>
+                              </div>
+                          </div>
 
                         <!--  <div class="form-group form-actions">
                             <div class="col-md-9 col-md-offset-3">
@@ -279,16 +292,28 @@
                                 <a href="#"></a>
                             </div>
                         </div>  
-                    </form> 
-                    
-                    <script type="text/javascript">
-                    new Uploader({ el: "#upload" });
-                    </script>
+                        
+                        
+                        <button type="submit" class="btn btn-effect-ripple btn-block btn-rounded btn-success submit" style="text-align:center">
+                            <i class="fa fa-check"></i>
+                            Submit
+                        </button> 
 
+
+                        <script type="text/javascript">
+                        new Uploader({ el: "#upload" });
+                        </script>
+
+                    </form>             
+                    <!-- <form action="page_forms_components.html" class="dropzone dz-clickable">
+                        <div class="dz-default dz-message">
+                            <span>Drop files here to upload</span>
+                        </div>
+                    </form> -->
                     <!-- END upload Form -->
+
                 </div>
                 <!-- END upload Block -->
-
             </div>
             <!-- END Login Container -->
 

@@ -125,8 +125,8 @@ $(function() {
 
 Uploader = Backbone.View.extend({
   events: {
-    "submit": "upload",
-    "change input[type=file]": "upload",
+    "click .submit": "upload",
+    // "change input[type=file]": "upload",
     "click .upload": "showFile"
   },
 
@@ -144,7 +144,7 @@ Uploader = Backbone.View.extend({
     var self = this;
 
     if (this.fileUploadControl.files.length > 0) {
-      this.$(".upload").html("Uploading <img src='/images/spinner.gif' />");
+      this.$("button.submit").html('<i class="fa fa-asterisk fa-2x fa-spin"></i>');
       var file = this.fileUploadControl.files[0];
       var name = "image.jpg";
       var parseFile = new Parse.File(name, file);
@@ -169,7 +169,7 @@ Uploader = Backbone.View.extend({
           if (data.error) {
             console.log(data.error);
           } else {
-            window.location.reload();
+            window.location.href = "https://thefoodiemarket-dev.parseapp.com/merchant";
           }
         });
       });

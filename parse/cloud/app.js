@@ -257,9 +257,31 @@ app.get('/upload', function(req, res){
   res.render('upload');
 });
 
+// TRANSACTION - MERCHANT
+app.get('/transaction-merchant', function(req, res){
+  res.render('transaction-merchant');
+});
+// TRANSACTION - USER
+app.get('/transaction-user', function(req, res){
+  res.render('transaction-user');
+});
+// TRANSACTION - ADMIN_user
+app.get('/transaction-admin_merchant', function(req, res){
+  res.render('transaction-admin_user');
+});
+// TRANSACTION - ADMIN_merchant
+app.get('/transaction-admin_user', function(req, res){
+  res.render('transaction-admin_merchant');
+});
+
 // INBOX
 app.get('/userInbox', function(req, res){
   res.render('userInbox');
+});
+
+// BOOKMARK
+app.get('/bookmark', function(req, res){
+  res.render('bookmark');
 });
 
 // User endpoints

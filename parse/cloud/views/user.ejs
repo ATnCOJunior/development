@@ -88,7 +88,7 @@
         <div id="sidebar">
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
-                <a href="#" class="sidebar-title">
+                <a href="/user" class="sidebar-title">
                     <i class=""></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
                 </a>
             </div>
@@ -96,70 +96,80 @@
 
             <!-- Wrapper for scrolling functionality -->
             <div id="sidebar-scroll">
-             <!-- Sidebar Content -->
-             <div class="sidebar-content">
+               <!-- Sidebar Content -->
+               <div class="sidebar-content">
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
-                    
+
                     <li class="sidebar-separator">
                         <i class="fa fa-ellipsis-h"></i>
                     </li>
                     
                     <li>
-                        <a href=""><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Cashout</span></a>
+                        <a href="/transaction-user">
+                            <i class="fa fa-dollar sidebar-nav-icon"></i>
+                            <span class="sidebar-nav-mini-hide">Cashout</span>
+                        </a>
                     </li>
 
                     <li>
-                        <a href=""><i class="gi gi-bookmark sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Favourites</span></a>
+                        <a href="/bookmark">
+                            <i class="fa fa-bookmark sidebar-nav-icon"></i>
+                            <span class="sidebar-nav-mini-hide">Bookmark</span>
+                        </a>
                     </li>
 
                     <li>
-                        <a href="/userInbox"><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Inbox</span></a>
-                    </li>
-
-                </ul>
-                <!-- END Sidebar Navigation -->
-            </div>
-            <!-- END Sidebar Content -->
-        </div>
-        <!-- END Wrapper for scrolling functionality -->
-
-        <!-- Sidebar Extra Info -->
-        <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-            <div class="text-center">
-                <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
-            </div>
-        </div>
-        <!-- END Sidebar Extra Info -->
-    </div>
-    <!-- END Main Sidebar -->
-
-    <!-- Main Container -->
-    <div id="main-container">
-     
-        <header class="navbar navbar-inverse navbar-fixed-top">
-            <!-- Left Header Navigation -->
-            <ul class="nav navbar-nav-custom">
-                <!-- Main Sidebar Toggle Button -->
-                <li>
-                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                        <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
-                        <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                        <a href="/userInbox">
+                            <i class="fa fa-inbox sidebar-nav-icon"></i>
+                            <span class="sidebar-nav-mini-hide">Inbox</span>
                     </a>
                 </li>
-                <!-- END Main Sidebar Toggle Button -->
 
-                <!-- Header Link -->
-                <li class="hidden-xs animation-fadeInQuick">
-                    <a href="#"><strong>Deals for You!</strong></a>
-                </li>
-                <!-- END Header Link -->
+
             </ul>
-            <!-- END Left Header Navigation -->
+            <!-- END Sidebar Navigation -->
+        </div>
+        <!-- END Sidebar Content -->
+    </div>
+    <!-- END Wrapper for scrolling functionality -->
 
-            <!-- Right Header Navigation -->
-            <ul class="nav navbar-nav-custom pull-right">
-                <!-- Search Form -->
+    <!-- Sidebar Extra Info -->
+    <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+        <div class="text-center">
+            <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
+        </div>
+    </div>
+    <!-- END Sidebar Extra Info -->
+</div>
+<!-- END Main Sidebar -->
+
+<!-- Main Container -->
+<div id="main-container">
+
+    <header class="navbar navbar-inverse navbar-fixed-top">
+        <!-- Left Header Navigation -->
+        <ul class="nav navbar-nav-custom">
+            <!-- Main Sidebar Toggle Button -->
+            <li>
+                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                </a>
+            </li>
+            <!-- END Main Sidebar Toggle Button -->
+
+            <!-- Header Link -->
+            <li class="hidden-xs animation-fadeInQuick">
+                <a><strong>Deals for You!</strong></a>
+            </li>
+            <!-- END Header Link -->
+        </ul>
+        <!-- END Left Header Navigation -->
+
+        <!-- Right Header Navigation -->
+        <ul class="nav navbar-nav-custom pull-right">
+            <!-- Search Form -->
                            <!-- <li>
                                 <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
                                     <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
@@ -178,7 +188,7 @@
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="img/placeholders/avatars/avatar9.jpg" alt="avatar">
+                                    <i class="fa fa-sign-in"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
@@ -232,7 +242,7 @@
                                 if (imageMetadata.get("approval")==1) {%>
                                 <div class="col-sm-3">
                                     <div class="gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
-                                    <!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
+                                        <!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
                                         <img src="<%= image.get('sizeNormal').url() %>"
                                         alt="<%= imageMetadata.get("desc")+"|||"
                                         +imageMetadata.get("expiry")+"|||"
@@ -277,10 +287,10 @@
                         <!-- END Gallery Items -->
                     </div>
                     <!-- END Page Content -->
-              </div>
-              <!-- END Main Container -->
-          </div>
-          <!-- END Page Container -->
-      </div>
-      <!-- END Page Wrapper -->
+                </div>
+                <!-- END Main Container -->
+            </div>
+            <!-- END Page Container -->
+        </div>
+        <!-- END Page Wrapper -->
 
