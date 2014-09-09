@@ -1,7 +1,3 @@
-<% 
-if(Parse.User)
-    %>
-
 <div id="page-wrapper" class="page-loading">
     <!-- Preloader -->
     <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
@@ -274,6 +270,8 @@ if(Parse.User)
                                         <a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options" data-toggle="lightbox-image" 
                                             title=" 
                                             <%= imageMetadata.get("desc") 
+                                            + "<br>" 
+                                            + "Status: " + dataCategory  
                                             + "<br>" 
                                             + imageMetadata.get("expiry") 
                                             + "<br>" 

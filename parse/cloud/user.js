@@ -19,6 +19,7 @@ module.exports = function(){
         res.redirect("/merchant");
       },
       error: function(user, error) {
+        res.set('error', error);
         res.redirect("/merchant", error);
       }
     });

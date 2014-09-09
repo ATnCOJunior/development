@@ -1,3 +1,8 @@
+<script type="text/javascript">
+     window.addEventListener('load', function(){
+         alert('<%=%>');
+     });
+</script>
 
 <div id="page-wrapper" class="page-loading">
     <!-- Preloader -->
@@ -150,7 +155,7 @@
                                 <ul class="dropdown-menu dropdown-menu-right">
 
                                     <li>
-                                        <a href="/">
+                                        <a href="/logout">
                                             <i class="gi gi-log_out fa fa-inbox fa-fw pull-right"></i>
                                             Logout
                                         </a>
@@ -225,10 +230,10 @@
                                 <!-- bookmark like share button -->
                                 <div class="modal-footer">
 
-                                    <button type="button" class="btn btn-effect-ripple btn-success">
+                                    <button onClick="location.href='/i/<%=image.id%>/approve'" type="button" class="btn btn-effect-ripple btn-success">
                                         <i class="fa fa-check-circle"></i> Approve
                                     </button>
-                                    <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+                                    <button onClick="location.href='/i/<%=image.id%>/reject'" type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
                                         <i class="fa fa-times-circle"></i></i> Reject
                                     </button>
                                     

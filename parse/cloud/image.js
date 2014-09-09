@@ -90,7 +90,7 @@ module.exports = function() {
   });
 
 
-  app.post('/:id/approve', function(req, res) {
+  app.get('/:id/approve', function(req, res) {
     var id = req.params.id;
 
     // Build the query to find an image by id
@@ -120,7 +120,7 @@ module.exports = function() {
   });
 
 
-  app.post('/:id/reject', function(req, res) {
+  app.get('/:id/reject', function(req, res) {
     var id = req.params.id;
 
     // Build the query to find an image by id
