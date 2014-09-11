@@ -1098,6 +1098,11 @@ img.full-bg.full-bg-bottom {
 .gallery img, a[data-toggle="lightbox-image"] img {
     max-width: 100%;
 }
+.gallery img, a[data-toggle="lightbox-image"] img {
+   
+    height: 350;
+    margin-top: 20;
+}
 
 a[data-toggle="lightbox-image"],
 a.gallery-link {
@@ -1114,7 +1119,7 @@ a[data-toggle="lightbox-image"]:hover img {
 .gallery-image-container {
     position: relative;
     overflow: hidden;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 
 .gallery-image-options {
