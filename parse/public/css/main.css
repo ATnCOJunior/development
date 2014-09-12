@@ -1100,8 +1100,8 @@ img.full-bg.full-bg-bottom {
 }
 .gallery img, a[data-toggle="lightbox-image"] img {
    
-    height: 350;
-    margin-top: 20;
+    /*height: 350;*/
+    /*margin-top: 20;*/
 }
 
 a[data-toggle="lightbox-image"],
