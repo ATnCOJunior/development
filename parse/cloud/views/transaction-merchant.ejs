@@ -119,7 +119,11 @@ if(Parse.User)
                         </li>
 
                         <li>
-                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-keynote sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
+                            <a href="#" class="sidebar-nav-menu">
+                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="fa fa-pie-chart sidebar-nav-icon"></i>
+                                <span class="sidebar-nav-mini-hide">Reports</span>
+                            </a>
                             <ul>
                                 <li>
                                     <a href="">Customer</a>
@@ -131,14 +135,20 @@ if(Parse.User)
                         </li>
 
                         <li>
-                            <a href="" class="active">
-                                <i class="gi gi-credit_card sidebar-nav-icon"></i>
+                            <a href="#" class="sidebar-nav-menu">
+                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="fa fa-paypal sidebar-nav-icon"></i>
                                 <span class="sidebar-nav-mini-hide">Payment</span>
                             </a>
-                        </li>
-
-                        <li>
-                            <a href=""><i class="gi gi-inbox sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Inbox</span></a>
+                            <ul>
+                                <li>
+                                    <a href="">Unpaid Ads</a>
+                                </li>
+                                <li>
+                                    <a href="">History Payments</a>
+                                </li>
+                            </ul>
+                            
                         </li>
 
                     </ul>
@@ -233,89 +243,57 @@ if(Parse.User)
                         'inner-sidebar-left'      for a left inner sidebar
                         'inner-sidebar-right'     for a right inner sidebar
                     -->
-                    <div id="page-content" class="inner-sidebar-left">
-                        <!-- Inner Sidebar -->
-                        <div id="page-content-sidebar">
-                            <!-- Collapsible Options -->
-                            <a href="javascript:void(0)" class="btn btn-block btn-default visible-xs" data-toggle="collapse" data-target="#media-options">Media Box</a>
-                            <div id="media-options" class="collapse navbar-collapse remove-padding">
-                                <!-- Filter -->
-                                <div class="block-section">
-                                    
-                                    <!-- Filter by Type links -->
-                                    <!-- Custom files functionality is initialized in js/pages/appMedia.js -->
-                                    <!-- Add the category value you want each link in .media-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
-                                    <ul class="nav nav-pills nav-stacked nav-icons media-filter">
-                                        <li class="active">
-                                            <a href="javascript:void(0)" data-category="unpaid">
-                                                <i class="fa fa-times-circle"></i>
-                                                <strong>Unpaid Ads</strong>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" data-category="paid">
-                                                <i class="fa fa-check-circle"></i>
-                                                <strong>History Payments</strong>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <!-- END Filter by Type links -->
-                                </div>
-                                <!-- END Filter -->
+                    <div id="page-content" style="min-height: 553px;">
+                        
+                        <!-- Table Styles Block -->
+                        <div class="block">
+                           
+                            <!-- Table Styles Content -->
+                            <div class="table-responsive">
+                                <!-- Message List -->
+                                <div id="message-list">
 
-                            </div>
-                            <!-- END Collapsible Options -->
-                        </div>
-                        <!-- END Inner Sidebar -->
+                                    <!-- Messages -->
+                                    <div class="block-content-full" >
+                                        <table class="table table-borderless table-striped table-vcenter remove-margin">
+                                            <tbody>
+                                                <!-- Use the first row as a prototype for your column widths -->
+                                                <tr>
+                                                    <td class="td-label td-label-muted text-center" style="width: 5%;">
 
-                        <!-- Media Box Content -->
-                        <!-- Add the category value for each item in its data-category attribute (for the filter functionality to work) -->
-                        <div class="row media-filter-items" data-category="unpaid">
-                            <div class="block overflow-hidden">
-                            <!-- Message List -->
-                            <div id="message-list">
-                             
-                                <!-- Messages -->
-                                <div class="block-content-full" >
-                                    <table class="table table-borderless table-striped table-vcenter remove-margin">
-                                        <tbody>
-                                            <!-- Use the first row as a prototype for your column widths -->
-                                            <tr>
-                                                <td class="td-label td-label-muted text-center" style="width: 5%;">
-                                                    
-                                                </td>
-                                                
-                                                <td>
-                                                    <h4>
-                                                        <a href="javascript:void(0)" class="text-dark"><strong>Please proceed to payment for your ad. </strong></a>
-                                                    </h4>
-                                                    <span class="text-muted">Title: The Best Deal EVER!</span>
-                                                </td>
-                                                <td class="hidden-xs text-center" style="width: 30px;">
-                                                    <i class="fa fa-paperclip fa-2x text-muted"></i>
-                                                </td>
-                                                <td class="hidden-xs text-right text-muted" style="width: 120px;"><em>just now</em></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- END Messages -->
-                            </div>
-                            <!-- END Message List -->
+                                                    </td>
 
-                            <!-- Message View -->
-                            <div id="message-view" class="block-section display-none">
-                                <!-- Title -->
-                                <div class="block-title clearfix">
-                                    
-                                    <div class="block-options pull-left">
-                                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;"><i class="fa fa-chevron-left"></i> Back to Inbox</a>
+                                                    <td>
+                                                        <h4>
+                                                            <a href="javascript:void(0)" class="text-dark"><strong>Please proceed to payment for your ad. </strong></a>
+                                                        </h4>
+                                                        <span class="text-muted">Title: The Best Deal EVER!</span>
+                                                    </td>
+                                                    <td class="hidden-xs text-center" style="width: 30px;">
+                                                        <i class="fa fa-paperclip fa-2x text-muted"></i>
+                                                    </td>
+                                                    <td class="hidden-xs text-right text-muted" style="width: 120px;"><em>just now</em></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                    <!-- END Messages -->
                                 </div>
-                                <!-- END Title -->
+                                <!-- END Message List -->
 
-                                <!-- Message Body -->
-                                <!-- Message -->
+                                <!-- Message View -->
+                                <div id="message-view" class="block-section display-none">
+                                    <!-- Title -->
+                                    <div class="block-title clearfix">
+
+                                        <div class="block-options pull-left">
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;"><i class="fa fa-chevron-left"></i> Back to Inbox</a>
+                                        </div>
+                                    </div>
+                                    <!-- END Title -->
+
+                                    <!-- Message Body -->
+                                    <!-- Message -->
                             <!-- <div class="alert alert-success text-center">
                                 <h2><strong>Thank you for your business <i class="fa fa-smile-o"></i></strong></h2>
                                 <p>We will be happy to work together again in the future!</p>
@@ -376,17 +354,19 @@ if(Parse.User)
                             </div>
                             <!-- END Table -->
                             <button type="button" class="btn btn-lg btn-block btn-danger"><i class="fa fa-cc-paypal"></i>   Pay by Paypal</button>
-                                <!-- END Message Body -->
-                            </div>
-                            <!-- END Message View -->
+                            <!-- END Message Body -->
                         </div>
+                        <!-- END Message View -->
+                            <!-- END Table Styles Content -->
                         </div>
-                        <!-- END Media Box Content -->
+                        <!-- END Table Styles Block -->
+
+
                     </div>
                     <!-- END Page Content -->
+                </div>
+                <!-- END Main Container -->
             </div>
-            <!-- END Main Container -->
+            <!-- END Page Container -->
         </div>
-        <!-- END Page Container -->
-    </div>
-    <!-- END Page Wrapper -->
+        <!-- END Page Wrapper -->
