@@ -259,7 +259,26 @@ app.get('/upload', function(req, res){
 
 // TRANSACTION - MERCHANT
 app.get('/transaction-merchant', function(req, res){
-  res.render('transaction-merchant');
+  if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
+    res.redirect('/login');
+  }
+
+  // Get the latest images to show
+  var query = new Parse.Query(Image);
+  query.equalTo("user", Parse.User.current());
+  query.include("imageMetadata");
+  query.include("user");
+  query.descending("createdAt");
+  // query.equalTo("approval", "2");
+  // query.equalTo("paid", 0);
+
+  query.find({
+    success: function(objects) {
+      res.render('transaction-merchant', {
+        images: objects
+      });
+    }
+  });
 });
 // TRANSACTION - USER
 app.get('/transaction-user', function(req, res){
