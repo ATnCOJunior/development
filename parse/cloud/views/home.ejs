@@ -148,8 +148,10 @@
 								var imageMetadata = image.get('imageMetadata');
 								if (imageMetadata.get("approval")==1) {%>
 								<div class="col-sm-3">
-									<div class="gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
-									<!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
+									
+									<!-- gallery-image-container animation-fadeInQuick2 -->
+									<div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
+
 										<img src="<%= image.get('sizeNormal').url() %>"
 										alt="<%= imageMetadata.get("desc")+"|||"
 										+imageMetadata.get("expiry")+"|||"
@@ -163,6 +165,7 @@
 											+ "<br>" 
 											+ imageMetadata.get("location")%>">
 
+											
 											<h2 class="text-light">
 												<%=imageMetadata.get("title")%>
 											</h2>

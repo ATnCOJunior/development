@@ -241,7 +241,7 @@
                                 var imageMetadata = image.get('imageMetadata');
                                 if (imageMetadata.get("approval")==1) {%>
                                 <div class="col-sm-3">
-                                    <div class="gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
+                                    <div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
                                         <!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
                                         <img src="<%= image.get('sizeNormal').url() %>"
                                         alt="<%= imageMetadata.get("desc")+"|||"

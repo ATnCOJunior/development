@@ -244,10 +244,10 @@ if(Parse.User)
                         'inner-sidebar-right'     for a right inner sidebar
                     -->
                     <div id="page-content" style="min-height: 553px;">
-                        
+
                         <!-- Table Styles Block -->
                         <div class="block">
-                         
+
                             <!-- Table Styles Content -->
                             <div class="table-responsive">
                                 <!-- Message List -->
@@ -319,52 +319,76 @@ if(Parse.User)
                                             <td>
                                                 <h4>Likes</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong>x1</strong></span></td>
-                                            <td class="text-right">$ 3.000,00</td>
-                                            <td class="text-right">$ 3.000,00</td>
+                                            <td class="text-center"><span class="label label-success"><strong>x1000</strong></span></td>
+                                            <td class="text-right">$ 100</td>
+                                            <td class="text-right">$ 100</td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">2</td>
                                             <td>
                                                 <h4>Share</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong>x2</strong></span></td>
-                                            <td class="text-right">$ 1.000,00</td>
-                                            <td class="text-right">$ 2.000,00</td>
+                                            <td class="text-center"><span class="label label-success"><strong>x1000</strong></span></td>
+                                            <td class="text-right">$ 200</td>
+                                            <td class="text-right">$ 200</td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">3</td>
                                             <td>
                                                 <h4>Additional Days</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong>x2</strong></span></td>
-                                            <td class="text-right">$ 2.000,00</td>
-                                            <td class="text-right">$ 4.000,00</td>
+                                            <td class="text-center"><span class="label label-success"><strong>x30</strong></span></td>
+                                            <td class="text-right">$ 300</td>
+                                            <td class="text-right">$ 300</td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" class="text-right"><span class="h4">Subtotal</span></td>
-                                            <td class="text-right"><span class="h4">$ 9.000,00</span></td>
+                                            <td class="text-right"><span class="h4">$600</span></td>
                                         </tr>
                                         <tr class="warning">
                                             <td colspan="4" class="text-right"><span class="h4"><strong>Total Due</strong></span></td>
-                                            <td class="text-right"><span class="h4"><strong>$ 11.250,00</strong></span></td>
+                                            <td class="text-right"><span class="h4"><strong>$ 1600</strong></span></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- END Table -->
-                            <button type="button" class="btn btn-lg btn-block btn-danger"><i class="fa fa-cc-paypal"></i>   Pay by Paypal</button>
-                            <!-- END Message Body -->
-                        </div>
-                        <!-- END Message View -->
-                        <!-- END Table Styles Content -->
-                    </div>
-                    <!-- END Table Styles Block -->
-                </div>
-                    <!-- END Page Content -->
-                </div>
-                <!-- END Main Container -->
-            </div>
-            <!-- END Page Container -->
-        </div>
-        <!-- END Page Wrapper -->
+                            <!-- <button type="button" class="btn btn-lg btn-block btn-danger"><i class="fa fa-cc-paypal"></i>   Make Payment</button> -->
+                            <div class="col-xl-2 text-center">
+
+                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                    <input type="hidden" name="cmd" value="_xclick-subscriptions">
+                                    <input type="hidden" name="business" value="emailhelenshih@gmail.com">
+                                    <input type="hidden" name="lc" value="SG">
+                                    <input type="hidden" name="item_name" value="Ads Posting Subscription">
+                                    <input type="hidden" name="no_note" value="1">
+                                    <input type="hidden" name="src" value="1">
+                                    <input type="hidden" name="a3" value="1600">
+                                    <input type="hidden" name="p3" value="1">
+                                    <input type="hidden" name="t3" value="M">
+                                    <input type="hidden" name="currency_code" value="SGD">
+                                    <input type="hidden" name="bn" value="PP-SubscriptionsBF:AfjVuanB:NonHostedGuest">
+                                    <input type="image" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                                </form>
+
+
+                            </div>
+                            <!-- <form id="checkout" method="post" action="/checkout">
+                              <div id="dropin"></div>
+                              <input type="submit" value="Pay $10">
+                          </form> -->
+                          <!-- END Message Body -->
+                      </div>
+                      <!-- END Message View -->
+                      <!-- END Table Styles Content -->
+                  </div>
+                  <!-- END Table Styles Block -->
+              </div>
+              <!-- END Page Content -->
+          </div>
+          <!-- END Main Container -->
+      </div>
+      <!-- END Page Container -->
+  </div>
+  <!-- END Page Wrapper -->

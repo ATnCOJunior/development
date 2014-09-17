@@ -948,6 +948,7 @@ a.widget-content:active {
 }
 
 .widget-image.widget-image-xs {
+    margin-top: 40px;
     height: 175px;
 }
 
