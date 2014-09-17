@@ -112,24 +112,14 @@
                 <div class="sidebar-content">
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
-
                         <li class="sidebar-separator">
                             <i class="fa fa-ellipsis-h"></i>
                         </li>
-
                         <li>
-                            <a href="/upload" class=" active">
-                                <i class="fa fa-cloud-upload sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Upload</span>
-                            </a>
+                            <a href="/upload"><i class="fa fa-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
                         </li>
-
                         <li>
-                            <a href="#" class="sidebar-nav-menu">
-                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                <i class="fa fa-pie-chart sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Reports</span>
-                            </a>
+                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-pie-chart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
                             <ul>
                                 <li>
                                     <a href="">Customer</a>
@@ -139,7 +129,6 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li>
                             <a href="#" class="sidebar-nav-menu">
                                 <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
@@ -154,9 +143,13 @@
                                     <a href="">History Payments</a>
                                 </li>
                             </ul>
-                            
                         </li>
-
+                        <li>
+                            <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
+                                <i class="fa fa-pencil sidebar-nav-icon"></i>
+                                <span class="sidebar-nav-mini-hide">Feedback</span>
+                            </a>
+                        </li>
                     </ul>
                     <!-- END Sidebar Navigation -->
                 </div>
@@ -243,8 +236,8 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                       <!-- upload Form -->
-                       <div class="col-xs-6 block">
+                     <!-- upload Form -->
+                     <div class="col-xs-6 block">
 
 
                         <!-- Upload Form -->
@@ -303,7 +296,7 @@
                         </div>  
                         
                         
-                        <button type="submit" class="btn btn-effect-ripple btn-block btn-rounded btn-success submit" style="text-align:center">
+                        <button type="submit" class="btn btn-effect-ripple btn-block  btn-success submit" style="text-align:center">
                             <i class="fa fa-check"></i>
                             Submit
                         </button> 
@@ -336,3 +329,39 @@
 <!-- END Page Wrapper -->
 
 
+<!-- Compose Message -->
+<div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title"><strong>Compose Message</strong></h3>
+            </div>
+            <div class="modal-body">
+                <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <option value="Mr.Admin">Mr. Admin</option>
+                                <option value="Ms.Design">Ms. Design</option>
+                                <option value="Dr.DB">Dr. Database</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" data-placeholder="Write your message.."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Compose Message -->
