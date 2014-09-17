@@ -14,6 +14,19 @@ var CompCharts = function() {
     return {
         init: function() {
             /* Mini Line Charts with jquery.sparkline plugin, for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about */
+            $('[data-toggle="counter"]').each(function() {
+            var $this = $(this);
+
+            $this.countTo({
+                speed: 1000,
+                refreshInterval: 25,
+                onComplete: function() {
+                    if ($this.data('after')) {
+                        $this.html($this.html() + $this.data('after'));
+                    }
+                }
+            });
+        });
             var miniChartLineOptions = {
                 type: 'line',
                 width: '120px',
