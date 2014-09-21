@@ -122,7 +122,7 @@ app.get('/ending', function(req, res) {
 // User endpoint
 app.get('/user', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
-    res.redirect('/user-login');
+    res.redirect('/login:user');
   }
 
   var innerQuery = new Parse.Query(ImageMetadata);
@@ -201,7 +201,7 @@ app.get('/user-ending', function(req, res) {
 // Merchant endpoint
 app.get('/merchant', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
-    res.redirect('/login');
+    res.redirect('/login:merchant');
   }
 
   // Get the latest images to show
@@ -244,23 +244,23 @@ app.get('/admin', function(req, res) {
 });
 
 // USER LOGIN
-app.get('/user-login', function(req, res){
-  res.render('user-login');
+app.get('/login:user', function(req, res){
+  res.render('login:user');
 });
 // USER SIGNUP
-app.get('/user-signup', function(req, res){
-  res.render('user-signup');
+app.get('/signup:user', function(req, res){
+  res.render('signup:user');
 });
 
 // UPLOAD
-app.get('/upload', function(req, res){
-  res.render('upload');
+app.get('/merchant:upload', function(req, res){
+  res.render('merchant:upload');
 });
 
 // TRANSACTION - MERCHANT
-app.get('/transaction-merchant', function(req, res){
+app.get('/merchant:transaction', function(req, res){
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
-    res.redirect('/login');
+    res.redirect('/login:merchant');
   }
 
   // Get the latest images to show
@@ -274,33 +274,33 @@ app.get('/transaction-merchant', function(req, res){
 
   query.find({
     success: function(objects) {
-      res.render('transaction-merchant', {
+      res.render('merchant:transaction', {
         images: objects
       });
     }
   });
 });
 // TRANSACTION - USER
-app.get('/transaction-user', function(req, res){
-  res.render('transaction-user');
+app.get('/user:transaction', function(req, res){
+  res.render('user:transaction');
 });
 // TRANSACTION - ADMIN_user
-app.get('/transaction-admin_merchant', function(req, res){
-  res.render('transaction-admin_user');
+app.get('/admin:transaction-merchant', function(req, res){
+  res.render('admin:transaction-merchant');
 });
 // TRANSACTION - ADMIN_merchant
-app.get('/transaction-admin_user', function(req, res){
-  res.render('transaction-admin_merchant');
+app.get('/admin:transaction-user', function(req, res){
+  res.render('admin:transaction-user');
 });
 
 // INBOX
-app.get('/userInbox', function(req, res){
-  res.render('userInbox');
+app.get('/user:inbox', function(req, res){
+  res.render('user:inbox');
 });
 
 // BOOKMARK
-app.get('/bookmark', function(req, res){
-  res.render('bookmark');
+app.get('/user:bookmark', function(req, res){
+  res.render('user:bookmark');
 });
 
 // User endpoints

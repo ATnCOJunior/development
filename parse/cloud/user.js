@@ -29,12 +29,12 @@ module.exports = function(){
   // MERCHANT FUNCTIONS
 
   // Renders the signup page
-  app.get('/signup', function(req, res) {
-    res.render('signup');
+  app.get('/signup:merchant', function(req, res) {
+    res.render('signup:merchant');
   });
 
   // Signs up a new user
-  app.post('/signup', function(req, res) {
+  app.post('/signup:user', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
     var company = req.body.company;
@@ -62,12 +62,12 @@ module.exports = function(){
   });
 
   // Render the login page
-  app.get('/login', function(req, res) {
-      res.render('login');
+  app.get('/login:merchant', function(req, res) {
+      res.render('login:merchant');
   });
 
   // Logs in the user
-  app.post('/login', function(req, res) {
+  app.post('/login:user', function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
       if (Parse.User.current().get('username')=="admin"){
         res.redirect('/admin');
@@ -95,12 +95,12 @@ module.exports = function(){
   // MERCHANT SIGN-UP FUNCTIONS
 
   // Renders the signup page
-  app.get('/user-signup', function(req, res) {
-    res.render('user-signup');
+  app.get('/signup:user', function(req, res) {
+    res.render('signup:user');
   });
 
   // Signs up a new user
-  app.post('/user-signup', function(req, res) {
+  app.post('/signup:user', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
     var firstName = req.body.firstName;
@@ -126,17 +126,17 @@ module.exports = function(){
       res.redirect('/user');
     }, function(error) {
       // Show the error message and let the user try again
-      res.render('user-login', { flash: error.message });
+      res.render('login:user', { flash: error.message });
     });
   });
 
   // Render the login page
-  app.get('/user-login', function(req, res) {
-      res.render('user-login');
+  app.get('/login:user', function(req, res) {
+      res.render('login:user');
   });
 
   // Logs in the user
-  app.post('/user-login', function(req, res) {
+  app.post('/login:user', function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
       if (user.get("type") == "customer") {
         res.redirect('/user');

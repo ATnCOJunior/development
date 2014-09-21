@@ -1120,7 +1120,7 @@ a[data-toggle="lightbox-image"]:hover img {
 .gallery-image-container {
     position: relative;
     overflow: hidden;
-    /*margin-bottom: 20px;*/
+    margin-bottom: 20px;
 }
 
 .gallery-image-options {

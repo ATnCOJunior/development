@@ -13,64 +13,69 @@
                     <div class="block-options pull-right">
                         <a href="/" class="btn btn-effect-ripple btn-primary" data-toggle="tooltip" data-placement="left" title="Back to home page"><i class="fa fa-home"></i></a>
                         
-                        <a href="/login" class="btn btn-effect-ripple btn-primary" data-toggle="tooltip" data-placement="left" title="Back to login"><i class="fa fa-user"></i></a>
+                        <a href="/login:user" class="btn btn-effect-ripple btn-primary" data-toggle="tooltip" data-placement="left" title="Back to login"><i class="fa fa-user"></i></a>
                     </div>
-                    <h2>Register as a Merchant</h2>
+                    <h2>Register as a User</h2>
                 </div>
                 <!-- END Register Title -->
 
                 <!-- Register Form -->
-                <form id="form-register" action="/signup" method="post" class="form-horizontal">
+                <form id="form-register" action="/signup:user" method="post" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input type="text" name="username" class="form-control" placeholder="ID" required>
+                            <input type="text" name="firstName" class="form-control" placeholder="First Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input  type="text" name="lastName" class="form-control" placeholder="Last Name">
+                        </div>
+                    </div>
+            
+                    <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-select">Gender</label>
+                                <div class="col-md-6">
+                                    <select id="example-select" name="gender" class="form-control" size="1">
+
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                    
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" name="email" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" name="occupation" class="form-control" placeholder="Occupation">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" name="username" class="form-control" placeholder="ID">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input type="password" name="password" class="form-control" placeholder="Password" required>
+                            <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>
                     </div>
                    
-					<div class="form-group">
-                        <div class="col-xs-12">
-                            <input type="email" name="email" class="form-control" placeholder="Email" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <input  type="text" name="company" class="form-control" placeholder="Company Name" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <input type="text" name="website" class="form-control" placeholder="Your Website URL" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <input type="text" name="social" class="form-control" placeholder="Social Media Site URL" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <input type="text" name="desc" class="form-control" placeholder="Company Description" required>
-                        </div>
-                    </div>
-
                     <div class="form-group form-actions">
-                        <!-- <div class="col-xs-6">
+                        <div class="col-xs-6">
                             <label class="csscheckbox csscheckbox-primary" data-toggle="tooltip" title="Agree to the terms">
                                 <input type="checkbox" id="register-terms" name="register-terms">
                                 <span></span>
                             </label>
                             <a href="#modal-terms" data-toggle="modal">Terms</a>
-                        </div> -->
+                        </div>
                         <div class="col-xs-6 text-right">
                             <button type="submit" class="btn btn-effect-ripple btn-success"><i class="fa fa-plus"></i> Create Account</button>
                         </div>

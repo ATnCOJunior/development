@@ -113,7 +113,7 @@ if(Parse.User)
                             <i class="fa fa-ellipsis-h"></i>
                         </li>
                         <li>
-                            <a href="/upload"><i class="fa fa-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
+                            <a href="/merchant:upload"><i class="fa fa-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
                         </li>
                         <li>
                             <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-pie-chart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
@@ -134,7 +134,7 @@ if(Parse.User)
                             </a>
                             <ul>
                                 <li>
-                                    <a href="/transaction-merchant">Unpaid Ads</a>
+                                    <a href="/merchant:transaction">Unpaid Ads</a>
                                 </li>
                                 <li>
                                     <a href="">History Payments</a>
@@ -253,33 +253,37 @@ if(Parse.User)
                                     <div class="block-content-full" >
                                         <table class="table table-borderless table-striped table-vcenter remove-margin">
                                             <tbody>
-                                                
-                                            <% _(images).each(function(image){
-                                                var imageMetadata = image.get('imageMetadata');
-                                                var likeCount = imageMetadata.get("likes");
-                                                var shareCount = imageMetadata.get("shares");
-                                                var addCount = imageMetadata.get("addDays")
-                                                %>
 
-                                                <!-- Use the first row as a prototype for your column widths -->
-                                                <tr>
-                                                    <td class="td-label td-label-muted text-center" style="width: 5%;">
+                                                <% _(images).each(function(image){
+                                                    var imageMetadata = image.get('imageMetadata');
+                                                    var likeCount = imageMetadata.get("likes");
+                                                    var shareCount = imageMetadata.get("shares");
+                                                    var addCount = imageMetadata.get("addDays");
+                                                    var title = imageMetadata.get("title");
+                                                    var src = image.get('sizeNormal').url();
+                                                    %>
 
-                                                    </td>
+                                                    <!-- Use the first row as a prototype for your column widths -->
+                                                    <tr>
+                                                        <td class="td-label td-label-muted text-center" style="width: 5%;">
 
-                                                    <td>
-                                                        <h4>
-                                                            <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>"><strong>Please proceed to payment for your ad. </strong></a>
-                                                        </h4>
-                                                        <span class="text-muted">Title: <%=imageMetadata.get("title")%></span>
-                                                    </td>
-                                                    <td class="hidden-xs text-center" style="width: 30px;">
-                                                        <i class="fa fa-paperclip fa-2x text-muted"></i>
-                                                    </td>
-                                                    <td class="hidden-xs text-right text-muted" style="width: 120px;"><em><%=image.get("updatedAt")%></em></td>
-                                                </tr>
+                                                        </td>
 
-                                                <%
+                                                        <td>
+                                                            <h4>
+                                                                <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>" title=" 
+                                                                    <%= src+','+likeCount+','+shareCount+','+addCount+','+title %>"><strong>Title: <%= title %></strong>
+                                                                </a>
+                                                            </h4>
+                                                            <span class="text-muted">Please proceed to payment for your ad. </span>
+                                                        </td>
+                                                        <td class="hidden-xs text-center" style="width: 30px;">
+                                                            <i class="fa fa-paperclip fa-2x text-muted"></i>
+                                                        </td>
+                                                        <td class="hidden-xs text-right text-muted" style="width: 120px;"><em><%=image.get("updatedAt")%></em></td>
+                                                    </tr>
+
+                                                    <%
                                                 });%>
                                             </tbody>
                                         </table>
@@ -309,16 +313,7 @@ if(Parse.User)
 
                             <!-- Table -->
                             <div class="table-responsive">
-
-                                <%
-                                var likeCount = 1000;
-                                var shareCount = 500;
-                                var addCount = 30;
-
-                                %>
-
-
-                                <img src="https://scontent-a-sin.xx.fbcdn.net/hphotos-prn2/v/t1.0-9/10489646_676901545733275_6422407875423130366_n.jpg?oh=0e26883bd6718db90e3f05c8c39874a2&oe=5491225F">
+                                <img id="imagePreview">
                                 <table class="table table-striped table-hover table-borderless table-vcenter">
                                     <thead>
                                         <tr>
@@ -335,35 +330,35 @@ if(Parse.User)
                                             <td>
                                                 <h4>Likes</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong>x<%=likeCount%></strong></span></td>
+                                            <td class="text-center"><span class="label label-success"><strong id="likeCount"></strong></span></td>
                                             <td class="text-right">$ 0.40</td>
-                                            <td class="text-right">$ <%=likeCount*0.4%></td>
+                                            <td class="text-right" id="likeCountSum"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">2</td>
                                             <td>
                                                 <h4>Share</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong>x<%=shareCount%></strong></span></td>
+                                            <td class="text-center"><span class="label label-success"><strong id="shareCount"></strong></span></td>
                                             <td class="text-right">$ 0.80</td>
-                                            <td class="text-right">$ <%=shareCount*0.8%></td>
+                                            <td class="text-right" id="shareCountSum"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">3</td>
                                             <td>
                                                 <h4>Additional Days</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong>x<%=addCount%></strong></span></td>
+                                            <td class="text-center"><span class="label label-success"><strong id="addCount"></strong></span></td>
                                             <td class="text-right">$ 50</td>
-                                            <td class="text-right">$ <%=addCount*50%></td>
+                                            <td class="text-right" id="addCountSum"></td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" class="text-right"><span class="h4">Subtotal</span></td>
-                                            <td class="text-right"><span class="h4">$ <%=likeCount*0.4+shareCount*0.4+addCount*50%></span></td>
+                                            <td class="text-right"><span class="h4" id="subtotal"></span></td>
                                         </tr>
                                         <tr class="warning">
                                             <td colspan="4" class="text-right"><span class="h4"><strong>Total Due</strong></span></td>
-                                            <td class="text-right"><span class="h4"><strong>$ <%=likeCount*0.4+shareCount*0.4+addCount*50%></strong></span></td>
+                                            <td class="text-right"><span class="h4"><strong id="totalDue"></strong></span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -371,23 +366,23 @@ if(Parse.User)
                             <!-- END Table -->
                             <!-- <button type="button" class="btn btn-lg btn-block btn-danger"><i class="fa fa-cc-paypal"></i>   Make Payment</button> -->
                             <div class="col-xl-2 text-center">
-
-                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                    <input type="hidden" name="cmd" value="_xclick-subscriptions">
+                                <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
+                                    <div class="hide" id="errorBox">
+                                    </div>
+                                    <input type="hidden" name="button" value="buynow">
                                     <input type="hidden" name="business" value="emailhelenshih@gmail.com">
-                                    <input type="hidden" name="lc" value="SG">
-                                    <input type="hidden" name="item_name" value="Ads Posting Subscription">
-                                    <input type="hidden" name="no_note" value="1">
-                                    <input type="hidden" name="src" value="1">
-                                    <!-- PH: Dynamic Value Needed -->
-                                    <input type="hidden" name="a3" value="1700">
-                                    <!-- END PH: Dynamic Value Needed -->
-                                    <input type="hidden" name="p3" value="1">
-                                    <input type="hidden" name="t3" value="M">
+                                    <input type="hidden" name="item_name" value="Ads Payment">
+                                    <input type="hidden" name="quantity" value="">
+                                    <input type="hidden" name="amount" id="paypalAmount" value="10">
                                     <input type="hidden" name="currency_code" value="SGD">
-                                    <input type="hidden" name="bn" value="PP-SubscriptionsBF:AfjVuanB:NonHostedGuest">
-                                    <input type="image" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                                    <input type="hidden" name="shipping" value="0">
+                                    <input type="hidden" name="tax" value="0">
+                                    <input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/transaction-merchant/success">
+                                    <input type="hidden" name="cmd" value="_xclick">
+                                    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+                                    <input type="hidden" name="env" value="www">
+                                     <input type="image" style="width: 100%;" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                                    <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
                                 </form>
                             </div>
                             <!-- <form id="checkout" method="post" action="/checkout">
