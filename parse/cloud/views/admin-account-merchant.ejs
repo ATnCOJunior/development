@@ -26,12 +26,53 @@
 			</a>
 
 			<!-- Wrapper for scrolling functionality -->
-			<div id="sidebar-scroll-alt">
+			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 501px;">
+				<div id="sidebar-scroll-alt" style="overflow: hidden; width: auto; height: 501px;">
+					<!-- Sidebar Content -->
+					<div class="sidebar-content">
+						<!-- Profile -->
+						<div class="sidebar-section">
+							<h2 class="text-light">Profile</h2>
+							<form action="/update" method="post" class="form-control-borderless" >
+								<div class="form-group">
+									<label for="side-profile-name">Company Name</label>
+									<input type="text" name="company" class="form-control" value="<%=Parse.User.current().get("company")%>">
+								</div>
+								<div class="form-group">
+									<label for="side-profile-email">Email</label>
+									<input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
+								</div>
+								<div class="form-group">
+									<label for="side-profile-password">Website URL</label>
+									<input type="text" name="website" class="form-control" value="<%=Parse.User.current().get("website")%>">
+								</div>
+								<div class="form-group">
+									<label for="side-profile-password-confirm">Social Media Site</label>
+									<input type="text" name="social" class="form-control" value="<%=Parse.User.current().get("social")%>">
+								</div>
+								<div class="form-group">
+									<label for="side-profile-password-confirm">Description</label>
+									<input type="text"  name="desc" class="form-control" value="<%=Parse.User.current().get("desc")%>">
+								</div>
+								<div class="form-group remove-margin">
+									<button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
+								</div>
+							</form>
+						</div>
+						<!-- END Profile -->
 
+					</div>
+					<!-- END Sidebar Content -->
+				</div>
+				<div class="slimScrollBar" style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 296.691489361702px; background: rgb(255, 255, 255);">
+				</div>
+				<div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 1; z-index: 90; right: 1px; background: rgb(51, 51, 51);">
+				</div>
 			</div>
 			<!-- END Wrapper for scrolling functionality -->
 		</div>
 		<!-- END Alternative Sidebar -->
+
 
 		<!-- Main Sidebar -->
 		<div id="sidebar">
@@ -115,14 +156,6 @@
 							</li>
 						</ul>
 					</li>
-
-				<!-- <li>
-					<a href="">
-						<i class="fa fa-inbox sidebar-nav-icon">
-</i>
-						<span class="sidebar-nav-mini-hide">Inbox</span>
-					</a>
-				</li> -->
 			</ul>
 			<!-- END Sidebar Navigation -->
 		</div>
@@ -193,7 +226,6 @@
 								</a>
 							</li>
 							
-							
 						</ul>
 					</li>
 					<!-- END User Dropdown -->
@@ -202,161 +234,87 @@
 			<!-- END Header -->
 
 			<!-- Page content -->
-			<div id="page-content">
+			<div id="page-content" >
 				
-				<div class="block full">
-					
-					<div class="table-responsive">
-						<div class="dataTables_wrapper form-inline no-footer">
-							<div class="row">
-								<div class="col-sm-6 col-xs-5">
-									<div class="dataTables_length" id="example-datatable_length">
-										<label>
-											<select name="example-datatable_length" aria-controls="example-datatable" class="form-control">
-												<option value="5">5</option>
-												<option value="10">10</option>
-												<option value="20">20</option>
-											</select>
-										</label>
-									</div>
-								</div>
-								<div class="col-sm-6 col-xs-7">
-									<div id="example-datatable_filter" class="dataTables_filter">
-										<label>
-											<div class="input-group">
-												<input type="search" class="form-control" placeholder="Search" aria-controls="example-datatable">
-												<span class="input-group-addon">
-													<i class="fa fa-search">
-													</i>
-												</span>
-											</div>
-										</label>
-									</div>
-								</div>
-							</div>
-							<table id="example-datatable" class="table table-vcenter table-borderless table-hover dataTable no-footer" role="grid" aria-describedby="example-datatable_info">
-								<thead>
-									<tr role="row">
-										<th class="text-center sorting" style="width: 50px;" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="ID: activate to sort column ascending">ID</th>
-										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="User: activate to sort column ascending" style="width: 50px;">Company Name</th>
-										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 80px;">Email</th>
-										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="website: activate to sort column ascending" style="width: 80px;">Website</th>
-										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="Social Media: activate to sort column ascending" style="width: 80px;">Social Media</th>
-										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="width: 300px;">Description</th>
-										
-										<th class="text-center sorting_disabled" style="width: 74px;" rowspan="1" colspan="1" aria-label="">
-											<i class="fa fa-flash">
-											</i>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
+				
+				<div class="block">
+					<!-- Table Styles Title -->
+					<div class="block-title clearfix">
 
-									<tr role="row" class="odd">
-										<td class="text-center">4</td>
-										<td class="">
-											<strong>Maximuax</strong>
-										</td>
-										<td class="">app.user4@example.com</td>
-										<td class="">maximuax.com</td>
-										<td class="">instagram.com/maxix</td>
-										<td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor.</td>
-										
-										<td class="text-center">
-											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
-												<i class="fa fa-pencil">
-												</i>
-											</a>
-											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
-												<i class="fa fa-times">
-												</i>
-											</a>
-										</td>
-									</tr>
-									<tr role="row" class="even">
-										<td class="text-center">2</td>
-										<td class="">
-											<strong>Fish Market</strong>
-										</td>
-										<td class="">app.user4@example.com</td>
-										<td class="">fishmart.com</td>
-										<td class="">instagram.com/fishmarket</td>
-										<td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor.</td>
-										<td class="text-center">
-											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
-												<i class="fa fa-pencil">
-												</i>
-											</a>
-											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
-												<i class="fa fa-times">
-												</i>
-											</a>
-										</td>
-									</tr>
-									<tr role="row" class="odd">
-										<td class="text-center">27</td>
-										<td class="">
-											<strong>Chococolate</strong>
-										</td>
-										<td class="">app.user27@example.com</td>
-										<td class="">chococo.com</td>
-										<td class="">instagram.com/chococo</td>
-										<td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor.</td>
-										<td class="text-center">
-											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
-												<i class="fa fa-pencil">
-												</i>
-											</a>
-											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
-												<i class="fa fa-times">
-												</i>
-											</a>
-										</td>
-									</tr>
-									
-								</tbody>
-							</table>
-							<div class="row">
-								<div class="col-sm-5 hidden-xs">
-									<div class="dataTables_info" id="example-datatable_info" role="status" aria-live="polite">
-										<strong>1</strong>-<strong>10</strong> of <strong>30</strong>
-									</div>
-								</div>
-								<div class="col-sm-7 col-xs-12 clearfix">
-									<div class="dataTables_paginate paging_bootstrap" id="example-datatable_paginate">
-										<ul class="pagination pagination-sm remove-margin">
-											<li class="prev disabled">
-												<a href="javascript:void(0)">
-													<i class="fa fa-chevron-left">
-													</i> </a>
-												</li>
-												<li class="active">
-													<a href="javascript:void(0)">1</a>
-												</li>
-												<li>
-													<a href="javascript:void(0)">2</a>
-												</li>
-												<li>
-													<a href="javascript:void(0)">3</a>
-												</li>
-												<li class="next">
-													<a href="javascript:void(0)"> <i class="fa fa-chevron-right">
-													</i>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+						<!-- END Table Styles Title -->
 
-			</div>
-			<!-- END Page Content -->
-		</div>
-		<!-- END Main Container -->
-	</div>
-	<!-- END Page Container -->
-</div>
-<!-- END Page Wrapper -->
+						<!-- Table Styles Content -->
+						<div class="table-responsive">
+                                <!--
+                                Available Table Classes:
+                                    'table'             - basic table
+                                    'table-bordered'    - table with full borders
+                                    'table-borderless'  - table with no borders
+                                    'table-striped'     - striped table
+                                    'table-condensed'   - table with smaller top and bottom cell padding
+                                    'table-hover'       - rows highlighted on mouse hover
+                                    'table-vcenter'     - middle align content vertically
+                                -->
+                                <table id="general-table" class="table table-vcenter table-hover">
+                                	<thead>
+                                		<tr>
+
+                                			<th class="text-center">ID</th>
+
+                                			<th class="text-center">Company Name</th>
+
+                                			<th class="text-center">Email</th>
+
+                                			<th class="text-center">Websites</th>
+
+                                			<th style="width: 300px;" class="text-center">Description</th>
+
+
+                                			<th class="text-center" style="width: 80px;" rowspan="1" colspan="1" aria-label="">
+                                				<i class="fa fa-flash">
+                                				</i>
+                                			</th>
+                                		</tr>
+                                	</thead>
+                                	<tbody>
+                                		<tr>
+
+                                			<td class="text-center">41</td>
+                                			<td class="">
+                                				<strong>ChococoLate</strong>
+                                			</td>
+                                			<td class="">app.user4@example.com</td>
+                                			<td class="">
+                                				Website: chococolate.com
+                                				<br>
+                                				Social Media Site: instagram.com/chococolate
+                                			</td>
+                                			<td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor.</td>
+
+                                			<td class="text-center">
+                                				<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+                                					<i class="fa fa-pencil">
+                                					</i>
+                                				</a>
+                                				<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
+                                					<i class="fa fa-times">
+                                					</i>
+                                				</a>
+                                			</td>
+                                		</tr>
+
+                                		
+                                		</tbody>
+                                	</table>
+                                </div>
+                                <!-- END Table Styles Content -->
+                            </div>
+
+                        </div>
+                        <!-- END Page Content -->
+                    </div>
+                    <!-- END Main Container -->
+                </div>
+                <!-- END Page Container -->
+            </div>
+            <!-- END Page Wrapper -->

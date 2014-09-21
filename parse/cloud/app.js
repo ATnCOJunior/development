@@ -280,6 +280,10 @@ app.get('/merchant-transaction', function(req, res){
     }
   });
 });
+// TRANSACTION MERCHANT SUCCESS
+app.get('/merchant-transaction-success', function(req, res){
+  res.render('merchant-transaction-success');
+});
 
 
 // TRANSACTION
