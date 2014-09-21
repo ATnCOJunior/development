@@ -280,19 +280,23 @@ app.get('/merchant:transaction', function(req, res){
     }
   });
 });
-// TRANSACTION - USER
+
+
+// TRANSACTION
+// USER
 app.get('/user:transaction', function(req, res){
   res.render('user:transaction');
 });
-// TRANSACTION - ADMIN_user
+// ADMIN_user
 app.get('/admin:transaction-merchant', function(req, res){
   res.render('admin:transaction-merchant');
 });
-// TRANSACTION - ADMIN_merchant
+// ADMIN_merchant
 app.get('/admin:transaction-user', function(req, res){
   res.render('admin:transaction-user');
 });
 
+// USER FEATURE
 // INBOX
 app.get('/user:inbox', function(req, res){
   res.render('user:inbox');
@@ -301,6 +305,24 @@ app.get('/user:inbox', function(req, res){
 // BOOKMARK
 app.get('/user:bookmark', function(req, res){
   res.render('user:bookmark');
+});
+
+// ADMIN FEATURE - ACCOUNT MANAGEMENT
+// ADD MERCHANT
+app.get('/admin:add:merchant', function(req, res){
+  res.render('admin:add:merchant');
+});
+// MERCHANT TABLE
+app.get('/admin:account:merchant', function(req, res){
+  res.render('admin:account:merchant');
+});
+// ADD USER
+app.get('/admin:add:user', function(req, res){
+  res.render('admin:add:user');
+});
+// MERCHANT USER
+app.get('/admin:account:user', function(req, res){
+  res.render('admin:account:user');
 });
 
 // User endpoints

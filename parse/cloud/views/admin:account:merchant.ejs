@@ -1,176 +1,362 @@
 <div id="page-wrapper" class="page-loading">
-    <!-- Preloader -->
-    <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
-    <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
-    <div class="preloader">
-        <div class="inner">
-            <!-- Animation spinner for all modern browsers -->
-            <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
+	<!-- Preloader -->
+	<!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+	<!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
+	<div class="preloader">
+		<div class="inner">
+			<!-- Animation spinner for all modern browsers -->
+			<div class="preloader-spinner themed-background hidden-lt-ie10">
+			</div>
 
-            <!-- Text for IE9 -->
-            <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
-        </div>
-    </div>
-    <!-- END Preloader -->
+			<!-- Text for IE9 -->
+			<h3 class="text-primary visible-lt-ie10">
+				<strong>Loading..</strong>
+			</h3>
+		</div>
+	</div>
+	<!-- END Preloader -->
 
-    <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
-        <!-- Alternative Sidebar -->
-        <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
-            <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+	<div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+		<!-- Alternative Sidebar -->
+		<div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+			<!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+			<a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
+				<i class="fa fa-times">
+				</i>
+			</a>
 
-            <!-- Wrapper for scrolling functionality -->
-            <div id="sidebar-scroll-alt">
+			<!-- Wrapper for scrolling functionality -->
+			<div id="sidebar-scroll-alt">
 
-            </div>
-            <!-- END Wrapper for scrolling functionality -->
-        </div>
-        <!-- END Alternative Sidebar -->
+			</div>
+			<!-- END Wrapper for scrolling functionality -->
+		</div>
+		<!-- END Alternative Sidebar -->
 
-        <!-- Main Sidebar -->
-        <div id="sidebar">
-            <!-- Sidebar Brand -->
-            <div id="sidebar-brand" class="themed-background">
-                <a href="/" class="sidebar-title">
-                    <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
-                </a>
-            </div>
-            <!-- END Sidebar Brand -->
+		<!-- Main Sidebar -->
+		<div id="sidebar">
+			<!-- Sidebar Brand -->
+			<div id="sidebar-brand" class="themed-background">
+				<a href="/" class="sidebar-title">
+					<i class="">
+					</i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
+				</span>
+			</a>
+		</div>
+		<!-- END Sidebar Brand -->
 
-            <!-- Wrapper for scrolling functionality -->
-            <div id="sidebar-scroll">
-                <!-- Sidebar Content -->
-                <div class="sidebar-content">
-                    <!-- Sidebar Navigation -->
-                    <ul class="sidebar-nav">
+		<!-- Wrapper for scrolling functionality -->
+		<div id="sidebar-scroll">
+			<!-- Sidebar Content -->
+			<div class="sidebar-content">
+				<!-- Sidebar Navigation -->
+				<ul class="sidebar-nav">
 
-                        <li class="sidebar-separator">
-                            <i class="fa fa-ellipsis-h"></i>
-                        </li>
+					<li class="sidebar-separator">
+						<i class="fa fa-ellipsis-h">
+						</i>
+					</li>
 
-                        <li>
-                            <a href="" class="active">
-                                <i class="fa fa-eye sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Ads Approval</span>
-                            </a>
-                        </li>
+					<li>
+						<a href="">
+							<i class="fa fa-eye sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Ads Approval</span>
+						</a>
+					</li>
 
-                        <li>
-                            <a href="#" class="sidebar-nav-menu">
-                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                <i class="fa fa-users sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Account Management</span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="">Customer</a>
-                                </li>
-                                <li>
-                                    <a href="">Merchant</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="sidebar-nav-menu">
-                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                <i class="fa fa-dollar sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Transactions</span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="admin:transaction-merchant">Merchant Payment</a>
-                                </li>
-                                <li>
-                                    <a href="admin:transaction-user">Customer Cashout</a>
-                                </li>
-                            </ul>
-                        </li>
+					<li>
+						<a href="#" class="sidebar-nav-menu">
+							<i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
+							</i>
+							<i class="fa fa-users sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Customer Management</span>
+						</a>
+						<ul>
+							<li>
+								<a href="/admin:account:user">Account Table</a>  
+							</li>
+						</ul>
+					</li>
+					<li class="active">
+						<a href="#" class="sidebar-nav-menu">
+							<i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
+							</i>
+							<i class="fa fa-briefcase sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Merchant Management</span>
+						</a>
+						<ul>
+							<li>
+								<a href="/admin:add:merchant">Add a Merchant</a>
+							</li>
+							<li >
+								<a href="/admin:account:merchant">Account Table</a>
+							</li>
+						</ul>
+					</li>
 
-                        <!-- <li>
-                            <a href="">
-                                <i class="fa fa-inbox sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Inbox</span>
-                            </a>
-                        </li> -->
-                    </ul>
-                    <!-- END Sidebar Navigation -->
-                </div>
-                <!-- END Sidebar Content -->
-            </div>
-            <!-- END Wrapper for scrolling functionality -->
 
-            <!-- Sidebar Extra Info -->
-            <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-                <div class="text-center">
-                    <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
-                </div>
-            </div>
-            <!-- END Sidebar Extra Info -->
-        </div>
-        <!-- END Main Sidebar -->
+					<li>
+						<a href="#" class="sidebar-nav-menu">
+							<i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
+							</i>
+							<i class="fa fa-dollar sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Transactions</span>
+						</a>
+						<ul>
+							<li>
+								<a href="admin:transaction-merchant">Merchant Payment</a>
+							</li>
+							<li>
+								<a href="admin:transaction-user">Customer Cashout</a>
+							</li>
+						</ul>
+					</li>
 
-        <!-- Main Container -->
-        <div id="main-container">
+				<!-- <li>
+					<a href="">
+						<i class="fa fa-inbox sidebar-nav-icon">
+</i>
+						<span class="sidebar-nav-mini-hide">Inbox</span>
+					</a>
+				</li> -->
+			</ul>
+			<!-- END Sidebar Navigation -->
+		</div>
+		<!-- END Sidebar Content -->
+	</div>
+	<!-- END Wrapper for scrolling functionality -->
 
-            <header class="navbar navbar-inverse navbar-fixed-top">
-                <!-- Left Header Navigation -->
-                <ul class="nav navbar-nav-custom">
-                    <!-- Main Sidebar Toggle Button -->
+	<!-- Sidebar Extra Info -->
+	<div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+		<div class="text-center">
+			<small>Crafted with <i class="fa fa-heart text-danger">
+			</i> by AT+CO.JR. </small>
+		</div>
+	</div>
+	<!-- END Sidebar Extra Info -->
+</div>
+<!-- END Main Sidebar -->
 
-                    <li>
-                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
-                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
-                        </a>
-                    </li>
-                    <!-- END Main Sidebar Toggle Button -->
+<!-- Main Container -->
+<div id="main-container">
 
-                    <!-- Header Link -->
-                    <li class="hidden-xs animation-fadeInQuick">
-                        <a><strong>Admin Console</strong></a>
-                    </li>
-                    <!-- END Header Link -->
-                </ul>
-                <!-- END Left Header Navigation -->
+	<header class="navbar navbar-inverse navbar-fixed-top">
+		<!-- Left Header Navigation -->
+		<ul class="nav navbar-nav-custom">
+			<!-- Main Sidebar Toggle Button -->
 
-                <!-- Right Header Navigation -->
-                <ul class="nav navbar-nav-custom pull-right">
-                    <!-- Search Form -->
-                            <!-- <li>
-                                <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
-                                    <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
-                                </form>
-                            </li> -->
-                            <!-- User Dropdown -->
-                            <li class="dropdown">
-                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-sign-in"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
+			<li>
+				<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+					<i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini">
+					</i>
+					<i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full">
+					</i>
+				</a>
+			</li>
+			<!-- END Main Sidebar Toggle Button -->
 
-                                    <li>
-                                        <a href="/logout">
-                                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                                            Logout
-                                        </a>
-                                    </li>
-                                    
-                                    
-                                </ul>
-                            </li>
-                            <!-- END User Dropdown -->
-                        </ul>    
-                    </header>
-                    <!-- END Header -->
+			<!-- Header Link -->
+			<li class="hidden-xs animation-fadeInQuick">
+				<a>
+					<strong>All Merchant Account</strong>
+				</a>
+			</li>
+			<!-- END Header Link -->
+		</ul>
+		<!-- END Left Header Navigation -->
 
-                    <!-- Page content -->
-                    <div id="page-content">
-                        
-                    </div>
-                    <!-- END Page Content -->
-                </div>
-                <!-- END Main Container -->
-            </div>
-            <!-- END Page Container -->
-        </div>
-        <!-- END Page Wrapper -->
+		<!-- Right Header Navigation -->
+		<ul class="nav navbar-nav-custom pull-right">
+			<!-- Search Form -->
+					<!-- <li>
+						<form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
+							<input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
+						</form>
+					</li> -->
+					<!-- User Dropdown -->
+					<li class="dropdown">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-sign-in">
+							</i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+
+							<li>
+								<a href="/logout">
+									<i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
+									</i>
+									Logout
+								</a>
+							</li>
+							
+							
+						</ul>
+					</li>
+					<!-- END User Dropdown -->
+				</ul>    
+			</header>
+			<!-- END Header -->
+
+			<!-- Page content -->
+			<div id="page-content">
+				
+				<div class="block full">
+					
+					<div class="table-responsive">
+						<div class="dataTables_wrapper form-inline no-footer">
+							<div class="row">
+								<div class="col-sm-6 col-xs-5">
+									<div class="dataTables_length" id="example-datatable_length">
+										<label>
+											<select name="example-datatable_length" aria-controls="example-datatable" class="form-control">
+												<option value="5">5</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+											</select>
+										</label>
+									</div>
+								</div>
+								<div class="col-sm-6 col-xs-7">
+									<div id="example-datatable_filter" class="dataTables_filter">
+										<label>
+											<div class="input-group">
+												<input type="search" class="form-control" placeholder="Search" aria-controls="example-datatable">
+												<span class="input-group-addon">
+													<i class="fa fa-search">
+													</i>
+												</span>
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+							<table id="example-datatable" class="table table-vcenter table-borderless table-hover dataTable no-footer" role="grid" aria-describedby="example-datatable_info">
+								<thead>
+									<tr role="row">
+										<th class="text-center sorting" style="width: 50px;" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="ID: activate to sort column ascending">ID</th>
+										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="User: activate to sort column ascending" style="width: 50px;">Company Name</th>
+										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 80px;">Email</th>
+										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="website: activate to sort column ascending" style="width: 80px;">Website</th>
+										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="Social Media: activate to sort column ascending" style="width: 80px;">Social Media</th>
+										<th class="sorting" tabindex="0" aria-controls="example-datatable" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="width: 300px;">Description</th>
+										
+										<th class="text-center sorting_disabled" style="width: 74px;" rowspan="1" colspan="1" aria-label="">
+											<i class="fa fa-flash">
+											</i>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr role="row" class="odd">
+										<td class="text-center">4</td>
+										<td class="">
+											<strong>Maximuax</strong>
+										</td>
+										<td class="">app.user4@example.com</td>
+										<td class="">maximuax.com</td>
+										<td class="">instagram.com/maxix</td>
+										<td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor.</td>
+										
+										<td class="text-center">
+											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+												<i class="fa fa-pencil">
+												</i>
+											</a>
+											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
+												<i class="fa fa-times">
+												</i>
+											</a>
+										</td>
+									</tr>
+									<tr role="row" class="even">
+										<td class="text-center">2</td>
+										<td class="">
+											<strong>Fish Market</strong>
+										</td>
+										<td class="">app.user4@example.com</td>
+										<td class="">fishmart.com</td>
+										<td class="">instagram.com/fishmarket</td>
+										<td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor.</td>
+										<td class="text-center">
+											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+												<i class="fa fa-pencil">
+												</i>
+											</a>
+											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
+												<i class="fa fa-times">
+												</i>
+											</a>
+										</td>
+									</tr>
+									<tr role="row" class="odd">
+										<td class="text-center">27</td>
+										<td class="">
+											<strong>Chococolate</strong>
+										</td>
+										<td class="">app.user27@example.com</td>
+										<td class="">chococo.com</td>
+										<td class="">instagram.com/chococo</td>
+										<td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor.</td>
+										<td class="text-center">
+											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+												<i class="fa fa-pencil">
+												</i>
+											</a>
+											<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-xs btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
+												<i class="fa fa-times">
+												</i>
+											</a>
+										</td>
+									</tr>
+									
+								</tbody>
+							</table>
+							<div class="row">
+								<div class="col-sm-5 hidden-xs">
+									<div class="dataTables_info" id="example-datatable_info" role="status" aria-live="polite">
+										<strong>1</strong>-<strong>10</strong> of <strong>30</strong>
+									</div>
+								</div>
+								<div class="col-sm-7 col-xs-12 clearfix">
+									<div class="dataTables_paginate paging_bootstrap" id="example-datatable_paginate">
+										<ul class="pagination pagination-sm remove-margin">
+											<li class="prev disabled">
+												<a href="javascript:void(0)">
+													<i class="fa fa-chevron-left">
+													</i> </a>
+												</li>
+												<li class="active">
+													<a href="javascript:void(0)">1</a>
+												</li>
+												<li>
+													<a href="javascript:void(0)">2</a>
+												</li>
+												<li>
+													<a href="javascript:void(0)">3</a>
+												</li>
+												<li class="next">
+													<a href="javascript:void(0)"> <i class="fa fa-chevron-right">
+													</i>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- END Page Content -->
+		</div>
+		<!-- END Main Container -->
+	</div>
+	<!-- END Page Container -->
+</div>
+<!-- END Page Wrapper -->
