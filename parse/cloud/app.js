@@ -122,7 +122,7 @@ app.get('/ending', function(req, res) {
 // User endpoint
 app.get('/user', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
-    res.redirect('/login:user');
+    res.redirect('/login-user');
   }
 
   var innerQuery = new Parse.Query(ImageMetadata);
@@ -201,7 +201,7 @@ app.get('/user-ending', function(req, res) {
 // Merchant endpoint
 app.get('/merchant', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
-    res.redirect('/login:merchant');
+    res.redirect('/login-merchant');
   }
 
   // Get the latest images to show
@@ -244,23 +244,23 @@ app.get('/admin', function(req, res) {
 });
 
 // USER LOGIN
-app.get('/login:user', function(req, res){
-  res.render('login:user');
+app.get('/login-user', function(req, res){
+  res.render('login-user');
 });
 // USER SIGNUP
-app.get('/signup:user', function(req, res){
-  res.render('signup:user');
+app.get('/signup-user', function(req, res){
+  res.render('signup-user');
 });
 
 // UPLOAD
-app.get('/merchant:upload', function(req, res){
-  res.render('merchant:upload');
+app.get('/merchant-upload', function(req, res){
+  res.render('merchant-upload');
 });
 
 // TRANSACTION - MERCHANT
-app.get('/merchant:transaction', function(req, res){
+app.get('/merchant-transaction', function(req, res){
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
-    res.redirect('/login:merchant');
+    res.redirect('/login-merchant');
   }
 
   // Get the latest images to show
@@ -284,45 +284,45 @@ app.get('/merchant:transaction', function(req, res){
 
 // TRANSACTION
 // USER
-app.get('/user:transaction', function(req, res){
-  res.render('user:transaction');
+app.get('/user-transaction', function(req, res){
+  res.render('user-transaction');
 });
 // ADMIN_user
-app.get('/admin:transaction-merchant', function(req, res){
-  res.render('admin:transaction-merchant');
+app.get('/admin-transaction-merchant', function(req, res){
+  res.render('admin-transaction-merchant');
 });
 // ADMIN_merchant
-app.get('/admin:transaction-user', function(req, res){
-  res.render('admin:transaction-user');
+app.get('/admin-transaction-user', function(req, res){
+  res.render('admin-transaction-user');
 });
 
 // USER FEATURE
 // INBOX
-app.get('/user:inbox', function(req, res){
-  res.render('user:inbox');
+app.get('/user-inbox', function(req, res){
+  res.render('user-inbox');
 });
 
 // BOOKMARK
-app.get('/user:bookmark', function(req, res){
-  res.render('user:bookmark');
+app.get('/user-bookmark', function(req, res){
+  res.render('user-bookmark');
 });
 
 // ADMIN FEATURE - ACCOUNT MANAGEMENT
 // ADD MERCHANT
-app.get('/admin:add:merchant', function(req, res){
-  res.render('admin:add:merchant');
+app.get('/admin-add-merchant', function(req, res){
+  res.render('admin-add-merchant');
 });
 // MERCHANT TABLE
-app.get('/admin:account:merchant', function(req, res){
-  res.render('admin:account:merchant');
+app.get('/admin-account-merchant', function(req, res){
+  res.render('admin-account-merchant');
 });
 // ADD USER
-app.get('/admin:add:user', function(req, res){
-  res.render('admin:add:user');
+app.get('/admin-add-user', function(req, res){
+  res.render('admin-add-user');
 });
 // MERCHANT USER
-app.get('/admin:account:user', function(req, res){
-  res.render('admin:account:user');
+app.get('/admin-account-user', function(req, res){
+  res.render('admin-account-user');
 });
 
 // User endpoints

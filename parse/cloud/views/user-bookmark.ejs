@@ -106,21 +106,21 @@
                 </li>
                 
                 <li>
-                    <a href="user:transaction" class="active">
+                    <a href="/user-transaction">
                         <i class="fa fa-dollar sidebar-nav-icon"></i>
                         <span class="sidebar-nav-mini-hide">Cashout</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/user:bookmark">
+                    <a href="" class="active">
                         <i class="fa fa-bookmark sidebar-nav-icon"></i>
-                        <span class="sidebar-nav-mini-hide">Favourites</span>
+                        <span class="sidebar-nav-mini-hide">Bookmark</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/user:inbox">
+                    <a href="/user-inbox">
                         <i class="fa fa-inbox sidebar-nav-icon"></i>
                         <span class="sidebar-nav-mini-hide">Inbox</span>
                     </a>
@@ -165,7 +165,7 @@
 
             <!-- Header Link -->
             <li class="hidden-xs animation-fadeInQuick">
-                <a><strong>Your cashout records!</strong></a>
+                <a><strong>Your favourite deals!</strong> </a>
             </li>
             <!-- END Header Link -->
         </ul>
@@ -216,184 +216,42 @@
 
                 <!-- Page content -->
                 <div id="page-content">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <a href="javascript:void(0)" class="widget">
-                                <div class="widget-content themed-background-info text-light-op">
-                                    <i class="fa fa-fw fa-chevron-right"></i> <strong>Like Count</strong>
-                                </div>
-                                <div class="widget-content themed-background-muted text-center">
-                                    <i class="fa fa-thumbs-o-up fa-3x text-info"></i>
-                                </div>
-                                <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="75">75</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="javascript:void(0)" class="widget">
-                                <div class="widget-content themed-background-danger text-light-op">
-                                    <i class="fa fa-fw fa-chevron-right"></i> <strong>Share Count</strong>
-                                </div>
-                                <div class="widget-content themed-background-muted text-center">
-                                    <i class="fa fa-heart-o fa-3x text-danger"></i>
-                                </div>
-                                <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="14">14</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="javascript:void(0)" class="widget">
-                                <div class="widget-content themed-background-dark text-light-op">
-                                    <i class="fa fa-fw fa-chevron-right"></i> <strong>Favourites</strong>
-                                </div>
-                                <div class="widget-content themed-background-muted text-center">
-                                    <i class="fa fa-bookmark fa-3x text-dark"></i>
-                                </div>
-                                <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="4">4</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="javascript:void(0)" class="widget">
-                                <div class="widget-content themed-background-success text-light-op">
-                                    <i class="fa fa-fw fa-chevron-right"></i> <strong>Points Balance</strong>
-                                </div>
-                                <div class="widget-content themed-background-muted text-center">
-                                    <i class="fa fa-dollar fa-3x text-success"></i>
-                                </div>
-                                <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="368">368</h3>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
 
-                    <!-- Mini Pricing Tables Block -->
-                    <div class="block">
-                        <!-- Mini Pricing Tables Title -->
-                        <div class="block-title">
-                            <h2>Cashout NOW</h2>
-                        </div>
-                        <!-- END Mini Pricing Tables Title -->
+                    <div class="row gallery">
+                        <!-- BOOKMARK CONDITIONS -->
+                            <% _(images).each(function(image){
+                                var imageMetadata = image.get('imageMetadata');
+                                if (imageMetadata.get("approval")==1) {%>
+                                <div class="col-sm-3">
+                                    
+                                    <!-- gallery-image-container animation-fadeInQuick2 -->
+                                    <div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
 
-                        <!-- Mini Pricing Tables Content -->
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <table class="table table-pricing table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>$50</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <h1>500 points</h1>
-                                            </td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>
-                                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                                    <input type="hidden" name="cmd" value="_s-xclick">
-                                                    <input type="hidden" name="hosted_button_id" value="3QC36YWPCLFVC">
-                                                    <input type="image" src="https://db.tt/tKogfhTI" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-                                                </form>
+                                        <img src="<%= image.get('sizeNormal').url() %>"
+                                        alt="<%= imageMetadata.get("desc")+"|||"
+                                        +imageMetadata.get("expiry")+"|||"
+                                        +imageMetadata.get("location") %>" 
+                                        >
+                                        <a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options" data-toggle="lightbox-image" 
+                                            title=" 
+                                            <%= imageMetadata.get("desc") 
+                                            + "<br>" 
+                                            + imageMetadata.get("expiry") 
+                                            + "<br>" 
+                                            + imageMetadata.get("location")%>">
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-sm-3">
-                                <table class="table table-pricing table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>$100</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <h1>1000 points</h1>
-                                            </td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>
-                                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                                    <input type="hidden" name="cmd" value="_s-xclick">
-                                                    <input type="hidden" name="hosted_button_id" value="YYZLVWWZCHZQW">
-                                                    <input type="image" src="https://db.tt/tKogfhTI" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-                                                </form>
+                                            
+                                            <h2 class="text-light">
+                                                <%=imageMetadata.get("title")%>
+                                            </h2>
+                                            <i class="fa fa-search-plus fa-3x text-light"></i>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-sm-3">
-                                <table class="table table-pricing table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>$150</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <h1>1500 points</h1>
-                                            </td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>
-                                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                                    <input type="hidden" name="cmd" value="_s-xclick">
-                                                    <input type="hidden" name="hosted_button_id" value="2EEFUK2RJ7XCJ">
-                                                    <input type="image" src="https://db.tt/tKogfhTI" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-                                                </form>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-sm-3">
-                                <table class="table table-pricing table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>$200</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <h1>2000 points</h1>
-                                            </td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>
-                                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                                    <input type="hidden" name="cmd" value="_s-xclick">
-                                                    <input type="hidden" name="hosted_button_id" value="TVCWSF2LHZSL4">
-                                                    <input type="image" src="https://db.tt/tKogfhTI" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-                                                </form>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- END Mini Pricing Tables Content -->
-                    </div>
-                    <!-- END Mini Pricing Tables Block -->
-
+                                        </a>
+                                     <!-- <a href="/i/<%=image.id%>" class="gallery-image-options" data-toggle="lightbox-image" title="Image Info">
+                                        <h2 class="text-light"><strong><%=imageMetadata.get("title")%></strong></h2>
+                                        <i class="fa fa-search-plus fa-3x text-light"></i>
+                                    </a> -->
+                                </div>
                 </div>
                 <!-- END Page Content -->
             </div>
@@ -416,7 +274,7 @@
                 <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <select id="fcompose-users" name="fcompose-users" class="select-chosen" Placeholder="To.." style="width: 250px;">
+                            <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
                                 <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
                                 <option value="Mr.Admin">Mr. Admin</option>
                                 <option value="Ms.Design">Ms. Design</option>

@@ -9,10 +9,13 @@ if(Parse.User)
     <div class="preloader">
         <div class="inner">
             <!-- Animation spinner for all modern browsers -->
-            <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
+            <div class="preloader-spinner themed-background hidden-lt-ie10">
+            </div>
 
             <!-- Text for IE9 -->
-            <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+            <h3 class="text-primary visible-lt-ie10">
+                <strong>Loading..</strong>
+            </h3>
         </div>
     </div>
     
@@ -20,7 +23,10 @@ if(Parse.User)
         <!-- Alternative Sidebar -->
         <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
             <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
+                <i class="fa fa-times">
+                </i>
+            </a>
 
             <!-- Wrapper for scrolling functionality -->
             <div id="sidebar-scroll-alt">
@@ -32,22 +38,28 @@ if(Parse.User)
                         <h2 class="text-light">Colors</h2>
                         <ul class="sidebar-themes clearfix">
                             <li>
-                                <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
+                                <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse">
+                                </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
+                                <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse">
+                                </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
+                                <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse">
+                                </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
+                                <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse">
+                                </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
+                                <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse">
+                                </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
+                                <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse">
+                                </a>
                             </li>
                             
                         </ul>
@@ -98,99 +110,120 @@ if(Parse.User)
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
                 <a href="/merchant" class="sidebar-title">
-                    <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
-                </a>
-            </div>
-            <!-- END Sidebar Brand -->
-
-            <!-- Wrapper for scrolling functionality -->
-            <div id="sidebar-scroll">
-                <!-- Sidebar Content -->
-                <div class="sidebar-content">
-                    <!-- Sidebar Navigation -->
-                    <ul class="sidebar-nav">
-                        <li class="sidebar-separator">
-                            <i class="fa fa-ellipsis-h"></i>
-                        </li>
-                        <li>
-                            <a href="/merchant:upload"><i class="fa fa-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
-                        </li>
-                        <li>
-                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-pie-chart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
-                            <ul>
-                                <li>
-                                    <a href="">Customer</a>
-                                </li>
-                                <li>
-                                    <a href="">Merchant</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="sidebar-nav-menu">
-                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                <i class="fa fa-paypal sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Payment</span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="/merchant:transaction">Unpaid Ads</a>
-                                </li>
-                                <li>
-                                    <a href="">History Payments</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
-                                <i class="fa fa-pencil sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Feedback</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- END Sidebar Navigation -->
-                </div>
-                <!-- END Sidebar Content -->
-            </div>
-            <!-- END Wrapper for scrolling functionality -->
-
-            <!-- Sidebar Extra Info -->
-            <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-                <div class="text-center">
-                    <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
-                </div>
-            </div>
-            <!-- END Sidebar Extra Info -->
+                    <i class="">
+                    </i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
+                </span>
+            </a>
         </div>
-        <!-- END Main Sidebar -->
+        <!-- END Sidebar Brand -->
 
-        <!-- Main Container -->
-        <div id="main-container">
-
-
-            <header class="navbar navbar-inverse navbar-fixed-top">
-                <!-- Left Header Navigation -->
-                <ul class="nav navbar-nav-custom">
-                    <!-- Main Sidebar Toggle Button -->
+        <!-- Wrapper for scrolling functionality -->
+        <div id="sidebar-scroll">
+            <!-- Sidebar Content -->
+            <div class="sidebar-content">
+                <!-- Sidebar Navigation -->
+                <ul class="sidebar-nav">
+                    <li class="sidebar-separator">
+                        <i class="fa fa-ellipsis-h">
+                        </i>
+                    </li>
                     <li>
-                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
-                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                        <a href="/merchant-upload">
+                            <i class="fa fa-cloud-upload sidebar-nav-icon">
+                            </i>
+                            <span class="sidebar-nav-mini-hide">Upload</span>
                         </a>
                     </li>
-                    <!-- END Main Sidebar Toggle Button -->
-
-                    <!-- Header Link -->
-                    <li class="hidden-xs animation-fadeInQuick">
-                        <a><strong>Your transaction records</strong></a>
+                    <li>
+                        <a href="#" class="sidebar-nav-menu">
+                            <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
+                            </i>
+                            <i class="fa fa-pie-chart sidebar-nav-icon">
+                            </i>
+                            <span class="sidebar-nav-mini-hide">Reports</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="">Customer</a>
+                            </li>
+                            <li>
+                                <a href="">Merchant</a>
+                            </li>
+                        </ul>
                     </li>
-                    <!-- END Header Link -->
+                    <li>
+                        <a href="#" class="sidebar-nav-menu">
+                            <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
+                            </i>
+                            <i class="fa fa-paypal sidebar-nav-icon">
+                            </i>
+                            <span class="sidebar-nav-mini-hide">Payment</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="/merchant-transaction">Unpaid Ads</a>
+                            </li>
+                            <li>
+                                <a href="">History Payments</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
+                            <i class="fa fa-pencil sidebar-nav-icon">
+                            </i>
+                            <span class="sidebar-nav-mini-hide">Feedback</span>
+                        </a>
+                    </li>
                 </ul>
-                <!-- END Left Header Navigation -->
+                <!-- END Sidebar Navigation -->
+            </div>
+            <!-- END Sidebar Content -->
+        </div>
+        <!-- END Wrapper for scrolling functionality -->
 
-                <!-- Right Header Navigation -->
-                <ul class="nav navbar-nav-custom pull-right">
-                    <!-- Search Form -->
+        <!-- Sidebar Extra Info -->
+        <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+            <div class="text-center">
+                <small>Crafted with <i class="fa fa-heart text-danger">
+                </i> by AT+CO.JR. </small>
+            </div>
+        </div>
+        <!-- END Sidebar Extra Info -->
+    </div>
+    <!-- END Main Sidebar -->
+
+    <!-- Main Container -->
+    <div id="main-container">
+
+
+        <header class="navbar navbar-inverse navbar-fixed-top">
+            <!-- Left Header Navigation -->
+            <ul class="nav navbar-nav-custom">
+                <!-- Main Sidebar Toggle Button -->
+                <li>
+                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                        <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini">
+                        </i>
+                        <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full">
+                        </i>
+                    </a>
+                </li>
+                <!-- END Main Sidebar Toggle Button -->
+
+                <!-- Header Link -->
+                <li class="hidden-xs animation-fadeInQuick">
+                    <a>
+                        <strong>Your transaction records</strong>
+                    </a>
+                </li>
+                <!-- END Header Link -->
+            </ul>
+            <!-- END Left Header Navigation -->
+
+            <!-- Right Header Navigation -->
+            <ul class="nav navbar-nav-custom pull-right">
+                <!-- Search Form -->
                             <!-- <li>
                                 <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
                                     <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
@@ -201,7 +234,8 @@ if(Parse.User)
                             <!-- Alternative Sidebar Toggle Button -->
                             <li>
                                 <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-user">
+                                    </i>
                                 </a>
                             </li>
                             <!-- END Alternative Sidebar Toggle Button -->
@@ -209,7 +243,8 @@ if(Parse.User)
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-sign-in"></i>
+                                    <i class="fa fa-sign-in">
+                                    </i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
@@ -217,7 +252,8 @@ if(Parse.User)
                                     </li>
                                     <li>
                                         <a href="/logout">
-                                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
+                                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
+                                            </i>
                                             Logout
                                         </a>
                                     </li>
@@ -272,15 +308,22 @@ if(Parse.User)
                                                         <td>
                                                             <h4>
                                                                 <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>" title=" 
-                                                                    <%= src+','+likeCount+','+shareCount+','+addCount+','+title %>"><strong>Title: <%= title %></strong>
+                                                                    <%= src+','+likeCount+','+shareCount+','+addCount+','+title %>">
+                                                                    <strong>Title: <%= title %>
+                                                                    </strong>
                                                                 </a>
                                                             </h4>
                                                             <span class="text-muted">Please proceed to payment for your ad. </span>
                                                         </td>
                                                         <td class="hidden-xs text-center" style="width: 30px;">
-                                                            <i class="fa fa-paperclip fa-2x text-muted"></i>
+                                                            <i class="fa fa-paperclip fa-2x text-muted">
+                                                            </i>
                                                         </td>
-                                                        <td class="hidden-xs text-right text-muted" style="width: 120px;"><em><%=image.get("updatedAt")%></em></td>
+                                                        <td class="hidden-xs text-right text-muted" style="width: 120px;">
+                                                            <em>
+                                                                <%=image.get("updatedAt")%>
+                                                            </em>
+                                                        </td>
                                                     </tr>
 
                                                     <%
@@ -298,15 +341,21 @@ if(Parse.User)
                                     <div class="block-title clearfix">
 
                                         <div class="block-options pull-left">
-                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;"><i class="fa fa-chevron-left"></i>  Back to Inbox</a>
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
+                                                <i class="fa fa-chevron-left">
+                                                </i>  Back to Inbox</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- END Title -->
+                                        <!-- END Title -->
 
-                                    <!-- Message Body -->
-                                    <!-- Message -->
+                                        <!-- Message Body -->
+                                        <!-- Message -->
                             <!-- <div class="alert alert-success text-center">
-                                <h2><strong>Thank you for your business <i class="fa fa-smile-o"></i></strong></h2>
+                                <h2>
+<strong>Thank you for your business <i class="fa fa-smile-o">
+</i>
+</strong>
+</h2>
                                 <p>We will be happy to work together again in the future!</p>
                             </div> -->
                             <!-- END Message -->
@@ -330,63 +379,98 @@ if(Parse.User)
                                             <td>
                                                 <h4>Likes</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong id="likeCount"></strong></span></td>
+                                            <td class="text-center">
+                                                <span class="label label-success">
+                                                    <strong id="likeCount">
+                                                    </strong>
+                                                </span>
+                                            </td>
                                             <td class="text-right">$ 0.40</td>
-                                            <td class="text-right" id="likeCountSum"></td>
+                                            <td class="text-right" id="likeCountSum">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">2</td>
                                             <td>
                                                 <h4>Share</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong id="shareCount"></strong></span></td>
+                                            <td class="text-center">
+                                                <span class="label label-success">
+                                                    <strong id="shareCount">
+                                                    </strong>
+                                                </span>
+                                            </td>
                                             <td class="text-right">$ 0.80</td>
-                                            <td class="text-right" id="shareCountSum"></td>
+                                            <td class="text-right" id="shareCountSum">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">3</td>
                                             <td>
                                                 <h4>Additional Days</h4>
                                             </td>
-                                            <td class="text-center"><span class="label label-success"><strong id="addCount"></strong></span></td>
+                                            <td class="text-center">
+                                                <span class="label label-success">
+                                                    <strong id="addCount">
+                                                    </strong>
+                                                </span>
+                                            </td>
                                             <td class="text-right">$ 50</td>
-                                            <td class="text-right" id="addCountSum"></td>
+                                            <td class="text-right" id="addCountSum">
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="4" class="text-right"><span class="h4">Subtotal</span></td>
-                                            <td class="text-right"><span class="h4" id="subtotal"></span></td>
+                                            <td colspan="4" class="text-right">
+                                                <span class="h4">Subtotal</span>
+                                            </td>
+                                            <td class="text-right">
+                                                <span class="h4" id="subtotal">
+                                                </span>
+                                            </td>
                                         </tr>
                                         <tr class="warning">
-                                            <td colspan="4" class="text-right"><span class="h4"><strong>Total Due</strong></span></td>
-                                            <td class="text-right"><span class="h4"><strong id="totalDue"></strong></span></td>
+                                            <td colspan="4" class="text-right">
+                                                <span class="h4">
+                                                    <strong>Total Due</strong>
+                                                </span>
+                                            </td>
+                                            <td class="text-right">
+                                                <span class="h4">
+                                                    <strong id="totalDue">
+                                                    </strong>
+                                                </span>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- END Table -->
-                            <!-- <button type="button" class="btn btn-lg btn-block btn-danger"><i class="fa fa-cc-paypal"></i>   Make Payment</button> -->
-                            <div class="col-xl-2 text-center">
-                                <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
-                                    <div class="hide" id="errorBox">
-                                    </div>
-                                    <input type="hidden" name="button" value="buynow">
-                                    <input type="hidden" name="business" value="emailhelenshih@gmail.com">
-                                    <input type="hidden" name="item_name" value="Ads Payment">
-                                    <input type="hidden" name="quantity" value="">
-                                    <input type="hidden" name="amount" id="paypalAmount" value="10">
-                                    <input type="hidden" name="currency_code" value="SGD">
-                                    <input type="hidden" name="shipping" value="0">
-                                    <input type="hidden" name="tax" value="0">
-                                    <input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/transaction-merchant/success">
-                                    <input type="hidden" name="cmd" value="_xclick">
-                                    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
-                                    <input type="hidden" name="env" value="www">
-                                     <input type="image" style="width: 100%;" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                    <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
-                                </form>
-                            </div>
+                            <!-- <button type="button" class="btn btn-lg btn-block btn-danger">
+<i class="fa fa-cc-paypal">
+</i>   Make Payment</button> -->
+<div class="col-xl-2 text-center">
+    <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
+        <div class="hide" id="errorBox">
+        </div>
+        <input type="hidden" name="button" value="buynow">
+        <input type="hidden" name="business" value="emailhelenshih@gmail.com">
+        <input type="hidden" name="item_name" value="Ads Payment">
+        <input type="hidden" name="quantity" value="">
+        <input type="hidden" name="amount" id="paypalAmount" value="10">
+        <input type="hidden" name="currency_code" value="SGD">
+        <input type="hidden" name="shipping" value="0">
+        <input type="hidden" name="tax" value="0">
+        <input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/transaction-merchant/success">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+        <input type="hidden" name="env" value="www">
+        <input type="image" style="width: 100%;" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+        <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
+    </form>
+</div>
                             <!-- <form id="checkout" method="post" action="/checkout">
-                              <div id="dropin"></div>
+                              <div id="dropin">
+</div>
                               <input type="submit" value="Pay $10">
                           </form> -->
                           <!-- END Message Body -->
@@ -410,14 +494,18 @@ if(Parse.User)
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title"><strong>Compose Message</strong></h3>
+                <h3 class="modal-title">
+                    <strong>Compose Message</strong>
+                </h3>
             </div>
             <div class="modal-body">
                 <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
                     <div class="form-group">
                         <div class="col-xs-12">
                             <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
-                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <option>
+                                </option>
+                                <!-- Required for data-placeholder attribute to work with Chosen plugin -->
                                 <option value="Mr.Admin">Mr. Admin</option>
                                 <option value="Ms.Design">Ms. Design</option>
                                 <option value="Dr.DB">Dr. Database</option>
@@ -426,7 +514,8 @@ if(Parse.User)
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" data-placeholder="Write your message.."></textarea>
+                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" data-placeholder="Write your message..">
+                            </textarea>
                         </div>
                     </div>
                     <div class="form-group form-actions">
