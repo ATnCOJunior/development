@@ -274,14 +274,19 @@ app.get('/merchant-transaction', function(req, res){
 
   query.find({
     success: function(objects) {
-      res.render('merchant:transaction', {
+      res.render('merchant-transaction', {
         images: objects
       });
     }
   });
 });
+
 // TRANSACTION MERCHANT SUCCESS
 app.get('/merchant-transaction-success', function(req, res){
+  res.render('merchant-transaction-success');
+});
+
+app.post('/merchant-transaction-success', function(req, res){
   res.render('merchant-transaction-success');
 });
 
