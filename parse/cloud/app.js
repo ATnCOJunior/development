@@ -122,7 +122,7 @@ app.get('/ending', function(req, res) {
 // User endpoint
 app.get('/user', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
-    res.redirect('/user-login');
+    res.redirect('/login-user');
   }
 
   var innerQuery = new Parse.Query(ImageMetadata);
@@ -201,7 +201,7 @@ app.get('/user-ending', function(req, res) {
 // Merchant endpoint
 app.get('/merchant', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
-    res.redirect('/login');
+    res.redirect('/login-merchant');
   }
 
   // Get the latest images to show
@@ -244,23 +244,23 @@ app.get('/admin', function(req, res) {
 });
 
 // USER LOGIN
-app.get('/user-login', function(req, res){
-  res.render('user-login');
+app.get('/login-user', function(req, res){
+  res.render('login-user');
 });
 // USER SIGNUP
-app.get('/user-signup', function(req, res){
-  res.render('user-signup');
+app.get('/signup-user', function(req, res){
+  res.render('signup-user');
 });
 
 // UPLOAD
-app.get('/upload', function(req, res){
-  res.render('upload');
+app.get('/merchant-upload', function(req, res){
+  res.render('merchant-upload');
 });
 
 // TRANSACTION - MERCHANT
-app.get('/transaction-merchant', function(req, res){
+app.get('/merchant-transaction', function(req, res){
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
-    res.redirect('/login');
+    res.redirect('/login-merchant');
   }
 
   // Get the latest images to show
@@ -274,25 +274,12 @@ app.get('/transaction-merchant', function(req, res){
 
   query.find({
     success: function(objects) {
-<<<<<<< HEAD
-      res.render('transaction-merchant', {
-=======
       res.render('merchant-transaction', {
->>>>>>> origin/master
         images: objects
       });
     }
   });
 });
-<<<<<<< HEAD
-// TRANSACTION - USER
-app.get('/transaction-user', function(req, res){
-  res.render('transaction-user');
-});
-// TRANSACTION - ADMIN_user
-app.get('/transaction-admin_merchant', function(req, res){
-  res.render('transaction-admin_user');
-=======
 
 // TRANSACTION MERCHANT SUCCESS
 app.get('/merchant-transaction-success', function(req, res){
@@ -308,17 +295,21 @@ app.post('/merchant-transaction-success', function(req, res){
 // USER
 app.get('/user-transaction', function(req, res){
   res.render('user-transaction');
->>>>>>> origin/master
 });
-// TRANSACTION - ADMIN_merchant
-app.get('/transaction-admin_user', function(req, res){
-  res.render('transaction-admin_merchant');
+// ADMIN_user
+app.get('/admin-transaction-merchant', function(req, res){
+  res.render('admin-transaction-merchant');
+});
+// ADMIN_merchant
+app.get('/admin-transaction-user', function(req, res){
+  res.render('admin-transaction-user');
 });
 
+// USER FEATURE
 // INBOX
-app.get('/userInbox', function(req, res){
+app.get('/user-inbox', function(req, res){
   if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
-    res.redirect('/user-login');
+    res.redirect('/login-user');
   }
 
   // Get the latest notifications to show
@@ -330,7 +321,7 @@ app.get('/userInbox', function(req, res){
 
   query.find({
     success: function(objects) {
-      res.render('userInbox', {
+      res.render('user-inbox', {
         notifications: objects
       });
     }
@@ -341,7 +332,7 @@ app.get('/userInbox', function(req, res){
 // BOOKMARK
 app.get('/user-bookmark', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
-    res.redirect('/user-login');
+    res.redirect('/login-user');
   }
 
   // Get the latest bookmarks to show
@@ -352,7 +343,7 @@ app.get('/user-bookmark', function(req, res) {
 
   query.find({
     success: function(objects) {
-      res.render('bookmark', {
+      res.render('user-bookmark', {
         bookmarks: objects
       });
     },
@@ -361,6 +352,27 @@ app.get('/user-bookmark', function(req, res) {
     }
   });
   //res.render('bookmark');
+});
+
+
+
+
+// ADMIN FEATURE - ACCOUNT MANAGEMENT
+// ADD MERCHANT
+app.get('/admin-add-merchant', function(req, res){
+  res.render('admin-add-merchant');
+});
+// MERCHANT TABLE
+app.get('/admin-account-merchant', function(req, res){
+  res.render('admin-account-merchant');
+});
+// ADD USER
+app.get('/admin-add-user', function(req, res){
+  res.render('admin-add-user');
+});
+// MERCHANT USER
+app.get('/admin-account-user', function(req, res){
+  res.render('admin-account-user');
 });
 
 // User endpoints

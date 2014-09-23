@@ -106,7 +106,7 @@
                         </li>
 
                         <li>
-                            <a href="/transaction-user">
+                            <a href="/user-transaction">
                                 <i class="fa fa-dollar sidebar-nav-icon"></i>
                                 <span class="sidebar-nav-mini-hide">Cashout</span>
                             </a>
@@ -120,7 +120,7 @@
                         </li>
 
                         <li>
-                            <a href="/userInbox">
+                            <a href="/user-inbox">
                                 <i class="fa fa-inbox sidebar-nav-icon"></i>
                                 <span class="sidebar-nav-mini-hide">Inbox</span>
                             </a>
@@ -274,28 +274,7 @@
                         <!-- bookmark like share button -->
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-effect-ripple btn-success" onclick="<%
-                                
-                                var user = Parse.User.current();
- 
-                                // Make a new bookmark
-                                var Bookmark = Parse.Object.extend("Bookmark");
-                                var bookmark = new Bookmark();
-                                bookmark.set("image", image.id);
-                                bookmark.set("user", user);
-                                bookmark.save(null, {
-                                      success: function(bookmark) {
-                                        // Execute any logic that should take place after the object is saved.
-                                        console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user);
-                                      },
-                                      error: function(bookmark, error) {
-                                        // Execute any logic that should take place if the save fails.
-                                        // error is a Parse.Error with an error code and message.
-                                        console.log('Failed to create new bookmark, with error code: ' + error.message);
-                                      }
-
-                                });
-                                    %>">
+                            <button type="button" class="btn btn-effect-ripple btn-success" onclick="Parse.User.current().save({bookmarks : bookmarks.push(image.id)});">
                                 <i class="fa fa-bookmark"></i> Bookmark
                             </button>
                             <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">

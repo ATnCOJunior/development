@@ -121,7 +121,7 @@ $(function() {
         //Do POST to /:id/reject
     });
 
-    $('#message-list a').click(function(event) {
+    $('#message-list').click(function(event) {
         var attributes = event.currentTarget.title.split(',');
 
         var likeCount = parseInt(attributes[1]);
