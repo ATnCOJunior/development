@@ -297,6 +297,7 @@ if(Parse.User)
                                                     var addCount = imageMetadata.get("addDays");
                                                     var title = imageMetadata.get("title");
                                                     var src = image.get('sizeNormal').url();
+                                                    var date = imageMetadata.get("updatedAt")
                                                     %>
 
                                                     <!-- Use the first row as a prototype for your column widths -->
@@ -321,7 +322,7 @@ if(Parse.User)
                                                         </td>
                                                         <td class="hidden-xs text-right text-muted" style="width: 120px;">
                                                             <em>
-                                                                <%=image.get("updatedAt")%>
+                                                                <%= date %>
                                                             </em>
                                                         </td>
                                                     </tr>
@@ -362,112 +363,128 @@ if(Parse.User)
 
                             <!-- Table -->
                             <div class="table-responsive">
-                                <img id="imagePreview">
-                                <table class="table table-striped table-hover table-borderless table-vcenter">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">#</th>
-                                            <th style="width: 50%;">Product</th>
-                                            <th class="text-center">Quantity</th>
-                                            <th class="text-right">Unit</th>
-                                            <th class="text-right">Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>
-                                                <h4>Likes</h4>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="label label-success">
-                                                    <strong id="likeCount">
-                                                    </strong>
-                                                </span>
-                                            </td>
-                                            <td class="text-right">$ 0.40</td>
-                                            <td class="text-right" id="likeCountSum">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td>
-                                                <h4>Share</h4>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="label label-success">
-                                                    <strong id="shareCount">
-                                                    </strong>
-                                                </span>
-                                            </td>
-                                            <td class="text-right">$ 0.80</td>
-                                            <td class="text-right" id="shareCountSum">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">3</td>
-                                            <td>
-                                                <h4>Additional Days</h4>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="label label-success">
-                                                    <strong id="addCount">
-                                                    </strong>
-                                                </span>
-                                            </td>
-                                            <td class="text-right">$ 50</td>
-                                            <td class="text-right" id="addCountSum">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" class="text-right">
-                                                <span class="h4">Subtotal</span>
-                                            </td>
-                                            <td class="text-right">
-                                                <span class="h4" id="subtotal">
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr class="warning">
-                                            <td colspan="4" class="text-right">
-                                                <span class="h4">
-                                                    <strong>Total Due</strong>
-                                                </span>
-                                            </td>
-                                            <td class="text-right">
-                                                <span class="h4">
-                                                    <strong id="totalDue">
-                                                    </strong>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- END Table -->
-                            <!-- <button type="button" class="btn btn-lg btn-block btn-danger">
-<i class="fa fa-cc-paypal">
-</i>   Make Payment</button> -->
-<div class="col-xl-2 text-center">
-    <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
-        <div class="hide" id="errorBox">
-        </div>
-        <input type="hidden" name="button" value="buynow">
-        <input type="hidden" name="business" value="emailhelenshih@gmail.com">
-        <input type="hidden" name="item_name" value="Ads Payment">
-        <input type="hidden" name="quantity" value="">
-        <input type="hidden" name="amount" id="paypalAmount" value="10">
-        <input type="hidden" name="currency_code" value="SGD">
-        <input type="hidden" name="shipping" value="0">
-        <input type="hidden" name="tax" value="0">
-        <input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/merchant-transaction-success">
-        <input type="hidden" name="cmd" value="_xclick">
-        <input type="hidden" name="bn" value="JavaScriptButton_buynow">
-        <input type="hidden" name="env" value="www">
-        <input type="image" style="width: 100%;" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-        <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
-    </form>
-</div>
+                                <div class="col-xs-4">
+                                    
+                                    <div class="widget-content widget-content-full">
+                                        <div id="info-carousel" class="carousel slide remove-margin">
+
+                                            <!-- Wrapper for slides -->
+                                            <div class="carousel-inner">
+                                                <div class="item active">
+                                                    <img id="imagePreview" src=" 
+                                                    http://files.parsetfss.com/cbebca68-eb67-4c19-9388-07669720e0c1/tfss-576ef32f-3c3b-4107-af1a-6b439738a103-image.JPEG">       
+                                                </div>
+                                            </div>
+                                            <!-- END Wrapper for slides -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <table class="table table-striped table-hover table-borderless table-vcenter">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th class="text-left">Product</th>
+                                                <th class="text-center">Quantity</th>
+                                                <th class="text-right">Unit</th>
+                                                <th class="text-right">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center">1</td>
+                                                <td>
+                                                    <h4>Likes</h4>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="label label-success">
+                                                        <strong id="likeCount">
+                                                        </strong>
+                                                    </span>
+                                                </td>
+                                                <td class="text-right">$ 0.40</td>
+                                                <td class="text-right" id="likeCountSum">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">2</td>
+                                                <td>
+                                                    <h4>Share</h4>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="label label-success">
+                                                        <strong id="shareCount">
+                                                        </strong>
+                                                    </span>
+                                                </td>
+                                                <td class="text-right">$ 0.80</td>
+                                                <td class="text-right" id="shareCountSum">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">3</td>
+                                                <td>
+                                                    <h4>Additional Days</h4>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="label label-success">
+                                                        <strong id="addCount">
+                                                        </strong>
+                                                    </span>
+                                                </td>
+                                                <td class="text-right">$ 50</td>
+                                                <td class="text-right" id="addCountSum">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-right">
+                                                    <span class="h4">Subtotal</span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span class="h4" id="subtotal">
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr class="warning">
+                                                <td colspan="4" class="text-right">
+                                                    <span class="h4">
+                                                        <strong>Total Due</strong>
+                                                    </span>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span class="h4">
+                                                        <strong id="totalDue">
+                                                        </strong>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <!-- END Table -->
+
+                                <div class="col-xl-2 text-center">
+                                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
+                                        <div class="hide" id="errorBox">
+                                        </div>
+                                        <input type="hidden" name="button" value="buynow">
+                                        <input type="hidden" name="business" value="emailhelenshih@gmail.com">
+                                        <input type="hidden" name="item_name" value="Ads Payment">
+                                        <input type="hidden" name="quantity" value="">
+                                        <input type="hidden" name="amount" id="paypalAmount" value="10">
+                                        <input type="hidden" name="currency_code" value="SGD">
+                                        <input type="hidden" name="shipping" value="0">
+                                        <input type="hidden" name="tax" value="0">
+                                        <input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/merchant-transaction-success">
+                                        <input type="hidden" name="cmd" value="_xclick">
+                                        <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+                                        <input type="hidden" name="env" value="www">
+                                        <input type="image" style="width: 100%;" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                                        <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
+                                    </form>
+                                </div>
                             <!-- <form id="checkout" method="post" action="/checkout">
                               <div id="dropin">
 </div>

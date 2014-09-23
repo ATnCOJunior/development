@@ -2504,6 +2504,7 @@ li.dropdown-header {
     padding: 9px 15px 10px;
     border-top: none;
     background-color: #f9f9f9;
+    text-align: center;
 }
 
 .modal.fade .modal-dialog {

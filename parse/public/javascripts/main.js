@@ -121,14 +121,14 @@ $(function() {
         //Do POST to /:id/reject
     });
 
-    $('#message-list').click(function(event) {
+    $('#message-list a').click(function(event) {
         var attributes = event.currentTarget.title.split(',');
 
         var likeCount = parseInt(attributes[1]);
         var shareCount = parseInt(attributes[2]);
         var addCount = parseInt(attributes[3]);
         var total = likeCount * 0.4 + shareCount * 0.8 + addCount * 50;
-
+        console.log(attributes);
         $('#imagePreview').attr('src', attributes[0]);
         $('#likeCount').text('x' + likeCount);
         $('#likeCountSum').text('$ ' + likeCount * 0.4);
@@ -183,8 +183,13 @@ Uploader = Backbone.View.extend({
                     category: self.$("[name=category]").val(),
                     expiry: self.$("[name=expiry]").val(),
                     location: self.$("[name=location]").val(),
-                    desc: self.$("[name=desc]").val()
-
+                    desc: self.$("[name=desc]").val(),
+                    likes:0,
+                    shares:0,
+                    addDays:0,
+                    daysLeft:self.$("[name=expiry]").val(),
+                    paid:0,
+                    views:0
                 }, function(data) {
                     if (data.error) {
                         console.log(data.error);
