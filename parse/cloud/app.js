@@ -122,7 +122,7 @@ app.get('/ending', function(req, res) {
 // User endpoint
 app.get('/user', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
-    res.redirect('/login-user');
+    res.redirect('/user-login');
   }
 
   var innerQuery = new Parse.Query(ImageMetadata);
@@ -201,7 +201,7 @@ app.get('/user-ending', function(req, res) {
 // Merchant endpoint
 app.get('/merchant', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
-    res.redirect('/login-merchant');
+    res.redirect('/login');
   }
 
   // Get the latest images to show
@@ -244,23 +244,23 @@ app.get('/admin', function(req, res) {
 });
 
 // USER LOGIN
-app.get('/login-user', function(req, res){
-  res.render('login-user');
+app.get('/user-login', function(req, res){
+  res.render('user-login');
 });
 // USER SIGNUP
-app.get('/signup-user', function(req, res){
-  res.render('signup-user');
+app.get('/user-signup', function(req, res){
+  res.render('user-signup');
 });
 
 // UPLOAD
-app.get('/merchant-upload', function(req, res){
-  res.render('merchant-upload');
+app.get('/upload', function(req, res){
+  res.render('upload');
 });
 
 // TRANSACTION - MERCHANT
-app.get('/merchant-transaction', function(req, res){
+app.get('/transaction-merchant', function(req, res){
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
-    res.redirect('/login-merchant');
+    res.redirect('/login');
   }
 
   // Get the latest images to show
@@ -274,59 +274,71 @@ app.get('/merchant-transaction', function(req, res){
 
   query.find({
     success: function(objects) {
-      res.render('merchant:transaction', {
+      res.render('transaction-merchant', {
         images: objects
       });
     }
   });
 });
-// TRANSACTION MERCHANT SUCCESS
-app.get('/merchant-transaction-success', function(req, res){
-  res.render('merchant-transaction-success');
+// TRANSACTION - USER
+app.get('/transaction-user', function(req, res){
+  res.render('transaction-user');
+});
+// TRANSACTION - ADMIN_user
+app.get('/transaction-admin_merchant', function(req, res){
+  res.render('transaction-admin_user');
+});
+// TRANSACTION - ADMIN_merchant
+app.get('/transaction-admin_user', function(req, res){
+  res.render('transaction-admin_merchant');
 });
 
-
-// TRANSACTION
-// USER
-app.get('/user-transaction', function(req, res){
-  res.render('user-transaction');
-});
-// ADMIN_user
-app.get('/admin-transaction-merchant', function(req, res){
-  res.render('admin-transaction-merchant');
-});
-// ADMIN_merchant
-app.get('/admin-transaction-user', function(req, res){
-  res.render('admin-transaction-user');
-});
-
-// USER FEATURE
 // INBOX
-app.get('/user-inbox', function(req, res){
-  res.render('user-inbox');
+app.get('/userInbox', function(req, res){
+  if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
+    res.redirect('/user-login');
+  }
+
+  // Get the latest notifications to show
+  var query = new Parse.Query("Notification");
+  query.equalTo("user", Parse.User.current());
+  query.include("image");
+  query.include("user");
+  query.descending("createdAt");
+
+  query.find({
+    success: function(objects) {
+      res.render('userInbox', {
+        notifications: objects
+      });
+    }
+  });
+  //res.render('userInbox');
 });
 
 // BOOKMARK
-app.get('/user-bookmark', function(req, res){
-  res.render('user-bookmark');
-});
+app.get('/user-bookmark', function(req, res) {
+  if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
+    res.redirect('/user-login');
+  }
 
-// ADMIN FEATURE - ACCOUNT MANAGEMENT
-// ADD MERCHANT
-app.get('/admin-add-merchant', function(req, res){
-  res.render('admin-add-merchant');
-});
-// MERCHANT TABLE
-app.get('/admin-account-merchant', function(req, res){
-  res.render('admin-account-merchant');
-});
-// ADD USER
-app.get('/admin-add-user', function(req, res){
-  res.render('admin-add-user');
-});
-// MERCHANT USER
-app.get('/admin-account-user', function(req, res){
-  res.render('admin-account-user');
+  // Get the latest bookmarks to show
+  var query = new Parse.Query("Bookmark");
+  query.equalTo("user", Parse.User.current());
+  query.include("user");
+  query.descending("createdAt");
+
+  query.find({
+    success: function(objects) {
+      res.render('bookmark', {
+        bookmarks: objects
+      });
+    },
+    error: function(err) {
+      res.send(500, err);
+    }
+  });
+  //res.render('bookmark');
 });
 
 // User endpoints
