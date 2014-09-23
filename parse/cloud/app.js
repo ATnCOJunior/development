@@ -274,12 +274,17 @@ app.get('/transaction-merchant', function(req, res){
 
   query.find({
     success: function(objects) {
+<<<<<<< HEAD
       res.render('transaction-merchant', {
+=======
+      res.render('merchant-transaction', {
+>>>>>>> origin/master
         images: objects
       });
     }
   });
 });
+<<<<<<< HEAD
 // TRANSACTION - USER
 app.get('/transaction-user', function(req, res){
   res.render('transaction-user');
@@ -287,6 +292,23 @@ app.get('/transaction-user', function(req, res){
 // TRANSACTION - ADMIN_user
 app.get('/transaction-admin_merchant', function(req, res){
   res.render('transaction-admin_user');
+=======
+
+// TRANSACTION MERCHANT SUCCESS
+app.get('/merchant-transaction-success', function(req, res){
+  res.render('merchant-transaction-success');
+});
+
+app.post('/merchant-transaction-success', function(req, res){
+  res.render('merchant-transaction-success');
+});
+
+
+// TRANSACTION
+// USER
+app.get('/user-transaction', function(req, res){
+  res.render('user-transaction');
+>>>>>>> origin/master
 });
 // TRANSACTION - ADMIN_merchant
 app.get('/transaction-admin_user', function(req, res){
