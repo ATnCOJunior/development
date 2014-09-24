@@ -4,6 +4,34 @@ module.exports = function() {
     var express = require('express');
     var app = express();
 
+    // Cashout function
+    app.post('/cashout', function(req, res) {
+        var user = req.body.user;
+        var pointAmount = req.body.pointAmount;
+        var dollarAmount = req.body.dollarAmount;
+
+        var record = Parse.Object.extend("Record");
+
+        user.save({
+            point: user.get("point") - pointAmount
+        });
+
+        record.save({
+            amount: dollarAmount,
+            account: user.get("paypal")
+        }, {
+            success: function(user) {
+                res.redirect("/user-transaction");
+            },
+            error: function(user, error) {
+                res.set('error', error);
+                res.redirect("/user-transaction", error);
+            }
+        });
+    });
+
+
+
     // Updates the user's profile info
     app.post('/update', function(req, res) {
         var user = Parse.User.current();

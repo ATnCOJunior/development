@@ -114,8 +114,20 @@ Parse.Cloud.define("approveImage", function(request, response) {
   Parse.Cloud.useMasterKey();
   var object = new ImageMetadata;
   object.id = request.params.metadataId;
+  var expiry = parseInt(object.get("expiry"));
+  var expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + expiry);
 
+  var dd = someDate.getDate();
+  var mm = someDate.getMonth() + 1;
+  var y = someDate.getFullYear();
+
+  expiryDate = dd + '/'+ mm + '/'+ y;
+
+  var expiryString = expiryDate.toString();
+  object.set("expiry", expiryString);
   object.set("approval", "1");
+
   object.save().then(function() {
     response.success();
   }, function(error) {

@@ -274,7 +274,28 @@
                         <!-- bookmark like share button -->
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-effect-ripple btn-success" onclick="Parse.User.current().save({bookmarks : bookmarks.push(image.id)});">
+                            <button type="button" class="btn btn-effect-ripple btn-success" onclick="<%
+                                
+                                var user = Parse.User.current();
+ 
+                                // Make a new bookmark
+                                var Bookmark = Parse.Object.extend("Bookmark");
+                                var bookmark = new Bookmark();
+                                bookmark.set("image", image.id);
+                                bookmark.set("user", user);
+                                bookmark.save(null, {
+                                      success: function(bookmark) {
+                                        // Execute any logic that should take place after the object is saved.
+                                        console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user);
+                                      },
+                                      error: function(bookmark, error) {
+                                        // Execute any logic that should take place if the save fails.
+                                        // error is a Parse.Error with an error code and message.
+                                        console.log('Failed to create new bookmark, with error code: ' + error.message);
+                                      }
+
+                                });
+                                    %>">
                                 <i class="fa fa-bookmark"></i> Bookmark
                             </button>
                             <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">

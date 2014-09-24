@@ -226,7 +226,7 @@
                                     <i class="fa fa-thumbs-o-up fa-3x text-info"></i>
                                 </div>
                                 <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="75">75</h3>
+                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="<%=Parse.User.current().get("likes")%>"><%=Parse.User.current().get("likes")%></h3>
                                 </div>
                             </a>
                         </div>
@@ -239,7 +239,7 @@
                                     <i class="fa fa-heart-o fa-3x text-danger"></i>
                                 </div>
                                 <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="14">14</h3>
+                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="<%=Parse.User.current().get("shares")%>"><%=Parse.User.current().get("shares")%></h3>
                                 </div>
                             </a>
                         </div>
@@ -296,9 +296,10 @@
                                         </tr>
                                         <tr class="active">
                                             <td>
-                                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                                    <input type="hidden" name="cmd" value="_s-xclick">
-                                                    <input type="hidden" name="hosted_button_id" value="3QC36YWPCLFVC">
+                                                <form action="/cashout" method="post" target="_top">
+                                                    <input type="hidden" name="user" value="<%=Parse.User.current()%>">
+                                                    <input type="hidden" name="pointAmount" value="500">
+                                                    <input type="hidden" name="dollarAmount" value="50">
                                                     <input type="image" src="https://db.tt/tKogfhTI" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
                                                     <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
                                                 </form>
