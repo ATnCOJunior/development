@@ -366,6 +366,14 @@ app.get('/admin-add-merchant', function(req, res){
 app.get('/admin-account-merchant', function(req, res){
   res.render('admin-account-merchant');
 });
+// MERCHANT PAYMENT
+app.get('/admin-transaction-merchant', function(req, res){
+  res.render('admin-transaction-merchant');
+});
+// USER PAYMENT
+app.get('/admin-transaction-user', function(req, res){
+  res.render('admin-transaction-user');
+});
 // ADD USER
 app.get('/admin-add-user', function(req, res){
   res.render('admin-add-user');
