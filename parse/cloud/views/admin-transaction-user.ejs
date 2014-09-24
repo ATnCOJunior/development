@@ -1,48 +1,48 @@
 
-        <div id="page-wrapper" class="page-loading">
-            <!-- Preloader -->
-            <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
-            <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
-            <div class="preloader">
-                <div class="inner">
-                    <!-- Animation spinner for all modern browsers -->
-                    <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
+<div id="page-wrapper" class="page-loading">
+    <!-- Preloader -->
+    <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+    <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
+    <div class="preloader">
+        <div class="inner">
+            <!-- Animation spinner for all modern browsers -->
+            <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
 
-                    <!-- Text for IE9 -->
-                    <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
-                </div>
+            <!-- Text for IE9 -->
+            <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+        </div>
+    </div>
+    <!-- END Preloader -->
+
+    <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+        <!-- Alternative Sidebar -->
+        <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+            <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+
+            <!-- Wrapper for scrolling functionality -->
+            <div id="sidebar-scroll-alt">
+
             </div>
-            <!-- END Preloader -->
+            <!-- END Wrapper for scrolling functionality -->
+        </div>
+        <!-- END Alternative Sidebar -->
 
-            <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
-                <!-- Alternative Sidebar -->
-                <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
-                    <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-                    <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+        <!-- Main Sidebar -->
+        <div id="sidebar">
+            <!-- Sidebar Brand -->
+            <div id="sidebar-brand" class="themed-background">
+                <a href="/" class="sidebar-title">
+                    <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+                </a>
+            </div>
+            <!-- END Sidebar Brand -->
 
-                    <!-- Wrapper for scrolling functionality -->
-                    <div id="sidebar-scroll-alt">
-                        
-                    </div>
-                    <!-- END Wrapper for scrolling functionality -->
-                </div>
-                <!-- END Alternative Sidebar -->
-
-                <!-- Main Sidebar -->
-                <div id="sidebar">
-                    <!-- Sidebar Brand -->
-                    <div id="sidebar-brand" class="themed-background">
-                        <a href="/" class="sidebar-title">
-                            <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
-                        </a>
-                    </div>
-                    <!-- END Sidebar Brand -->
-
-                    <!-- Wrapper for scrolling functionality -->
-                    <div id="sidebar-scroll">
-                        <!-- Sidebar Content -->
-                        <div class="sidebar-content">
-                            <!-- Sidebar Navigation -->
+            <!-- Wrapper for scrolling functionality -->
+            <div id="sidebar-scroll">
+                <!-- Sidebar Content -->
+                <div class="sidebar-content">
+                    <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
 
                         <li class="sidebar-separator">
@@ -64,128 +64,172 @@
                             </a>
                             <ul>
                                 <li>
-                                   <a href="/admin-account-user">Account Table</a>  
-                               </li>
-                           </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="sidebar-nav-menu">
-                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                <i class="fa fa-briefcase sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Merchant Management</span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="/admin-add-merchant">Add a Merchant</a>
-                                </li>
-                                <li>
-                                    <a href="/admin-account-merchant">Account Table</a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <li class="active">
-                            <a href="#" class="sidebar-nav-menu">
-                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                <i class="fa fa-dollar sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Transactions</span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="admin-transaction-merchant" class="active">Merchant Payment</a>
-                                </li>
-                                <li>
-                                    <a href="admin-transaction-user">Customer Cashout</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- <li>
-                            <a href="">
-                                <i class="fa fa-inbox sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Inbox</span>
-                            </a>
-                        </li> -->
-                    </ul>
-                    <!-- END Sidebar Navigation -->
-                        </div>
-                        <!-- END Sidebar Content -->
-                    </div>
-                    <!-- END Wrapper for scrolling functionality -->
-
-                    <!-- Sidebar Extra Info -->
-                    <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-                        <div class="text-center">
-                            <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
-                        </div>
-                    </div>
-                    <!-- END Sidebar Extra Info -->
-                </div>
-                <!-- END Main Sidebar -->
-
-                <!-- Main Container -->
-                <div id="main-container">
-                    
-                    <header class="navbar navbar-inverse navbar-fixed-top">
-                        <!-- Left Header Navigation -->
-                        <ul class="nav navbar-nav-custom">
-                            <!-- Main Sidebar Toggle Button -->
-                            
+                                 <a href="/admin-account-user">Account Table</a>  
+                             </li>
+                         </ul>
+                     </li>
+                     <li>
+                        <a href="#" class="sidebar-nav-menu">
+                            <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                            <i class="fa fa-briefcase sidebar-nav-icon"></i>
+                            <span class="sidebar-nav-mini-hide">Merchant Management</span>
+                        </a>
+                        <ul>
                             <li>
-                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
-                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
-                                </a>
+                                <a href="/admin-add-merchant">Add a Merchant</a>
                             </li>
-                            <!-- END Main Sidebar Toggle Button -->
-
-                            <!-- Header Link -->
-                            <li class="hidden-xs animation-fadeInQuick">
-                                <a><strong>User transacion records</strong></a>
+                            <li>
+                                <a href="/admin-account-merchant">Account Table</a>
                             </li>
-                            <!-- END Header Link -->
                         </ul>
-                        <!-- END Left Header Navigation -->
-
-                        <!-- Right Header Navigation -->
-                        <ul class="nav navbar-nav-custom pull-right">
-                            <!-- Search Form -->
-                            <!-- <li>
-                                <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
-                                    <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
-                                </form>
-                            </li> -->
-                             <!-- User Dropdown -->
-                            <li class="dropdown">
-                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-sign-in"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    
-                                    <li>
-                                        <a href="/">
-                                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                                            Logout
-                                        </a>
-                                    </li>
-                                    
-                                    
-                                </ul>
+                    </li>
+                    
+                    <li class="active">
+                        <a href="#" class="sidebar-nav-menu">
+                            <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                            <i class="fa fa-dollar sidebar-nav-icon"></i>
+                            <span class="sidebar-nav-mini-hide">Transactions</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="admin-transaction-merchant" class="active">Merchant Payment</a>
                             </li>
-                            <!-- END User Dropdown -->
-                        </ul>    
-                    </header>
-                    <!-- END Header -->
-
-                     <!-- Page content -->
-                    <div id="page-content">
-
-                        
-                    </div>
-                    <!-- END Page Content -->
-                </div>
-                <!-- END Main Container -->
+                            <li>
+                                <a href="admin-transaction-user">Customer Cashout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- END Sidebar Navigation -->
             </div>
-            <!-- END Page Container -->
+            <!-- END Sidebar Content -->
         </div>
-        <!-- END Page Wrapper -->
+        <!-- END Wrapper for scrolling functionality -->
+
+        <!-- Sidebar Extra Info -->
+        <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+            <div class="text-center">
+                <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
+            </div>
+        </div>
+        <!-- END Sidebar Extra Info -->
+    </div>
+    <!-- END Main Sidebar -->
+
+    <!-- Main Container -->
+    <div id="main-container">
+
+        <header class="navbar navbar-inverse navbar-fixed-top">
+            <!-- Left Header Navigation -->
+            <ul class="nav navbar-nav-custom">
+                <!-- Main Sidebar Toggle Button -->
+                
+                <li>
+                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                        <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                        <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                    </a>
+                </li>
+                <!-- END Main Sidebar Toggle Button -->
+
+                <!-- Header Link -->
+                <li class="hidden-xs animation-fadeInQuick">
+                    <a><strong>User transacion records</strong></a>
+                </li>
+                <!-- END Header Link -->
+            </ul>
+            <!-- END Left Header Navigation -->
+
+            <!-- Right Header Navigation -->
+            <ul class="nav navbar-nav-custom pull-right">
+
+               <!-- User Dropdown -->
+               <li class="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+
+                    <li>
+                        <a href="/">
+                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
+                            Logout
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </li>
+            <!-- END User Dropdown -->
+        </ul>    
+    </header>
+    <!-- END Header -->
+
+    <!-- Page content -->
+    <div id="page-content">
+        <!-- Message List -->
+        <div id="message-list">
+
+            <!-- Messages -->
+            <div class="block-content-full" >
+                <table class="table table-borderless table-striped table-vcenter remove-margin">
+                    <tbody>
+
+                        <% _(images).each(function(image){
+                            var imageMetadata = image.get('imageMetadata');
+                            // customer ID or name
+                            // cashout amount
+                            // customer payment account
+                            %>
+
+                            <!-- Use the first row as a prototype for your column widths -->
+                            <tr>
+                                <td class="td-label td-label-muted text-center" style="width: 5%;">
+
+                                </td>
+
+                                <td>
+                                    <h4>
+                                        <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>">
+                                            <strong>
+                                                Customer_NAME :: $xxx :: Paypal_Account
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                    <span class="text-muted">Please proceed to payment for customer's cashout. </span>
+                                </td>
+                                <td class="hidden-xs text-center" style="width: 30px;">
+                                    <i class="fa fa-paperclip fa-2x text-muted">
+                                    </i>
+                                </td>
+                                <!-- $50 : 3QC36YWPCLFVC -->
+                                <td class="hidden-xs text-right text-muted" style="width: 120px;">
+                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                        <input type="hidden" name="cmd" value="_s-xclick">
+                                        <!-- $50 : 3QC36YWPCLFVC -->
+                                        <!-- $100 : YYZLVWWZCHZQW -->
+                                        <!-- $150 : 2EEFUK2RJ7XCJ -->
+                                        <!-- $200 : TVCWSF2LHZSL4 -->
+                                        <input type="hidden" name="hosted_button_id" value="3QC36YWPCLFVC">
+
+                                        <input type="image" src="https://db.tt/fxcMfz4H" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                                        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                                    </form>
+                                </td>
+                            </tr>
+                            <%});%>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END Messages -->
+            </div>
+            <!-- END Message List -->
+
+        </div>
+        <!-- END Page Content -->
+    </div>
+    <!-- END Main Container -->
+</div>
+<!-- END Page Container -->
+</div>
+<!-- END Page Wrapper -->

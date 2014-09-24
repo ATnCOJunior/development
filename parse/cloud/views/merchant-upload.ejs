@@ -177,8 +177,8 @@
                     <!-- Main Sidebar Toggle Button -->
                     <li>
                         <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
-                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
                         </a>
                     </li>
                     <!-- END Main Sidebar Toggle Button -->
@@ -193,164 +193,157 @@
 
                 <!-- Right Header Navigation -->
                 <ul class="nav navbar-nav-custom pull-right">
-                    <!-- Search Form -->
-                            <!-- <li>
-                                <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
-                                    <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
-                                </form>
-                            </li> -->
-                            <!-- END Search Form -->
+                    
+                    <!-- Alternative Sidebar Toggle Button -->
+                    <li>
+                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+                            <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                        </a>
+                    </li>
+                    <!-- END Alternative Sidebar Toggle Button -->
 
-                            <!-- Alternative Sidebar Toggle Button -->
+                    <!-- User Dropdown -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-header">
+                                <strong>MERCHANT</strong>
+                            </li>
                             <li>
-                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
-                                    <i class="fa fa-user"></i>
+                                <a href="/">
+                                    <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
+                                    Logout
                                 </a>
                             </li>
-                            <!-- END Alternative Sidebar Toggle Button -->
-
-                            <!-- User Dropdown -->
-                            <li class="dropdown">
-                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-sign-in"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-header">
-                                        <strong>MERCHANT</strong>
-                                    </li>
-                                    <li>
-                                        <a href="/">
-                                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                                            Logout
-                                        </a>
-                                    </li>
-                                    
-                                    
-                                </ul>
-                            </li>
-                            <!-- END User Dropdown -->
+                            
+                            
                         </ul>
-                        <!-- END Right Header Navigation -->
-                    </header>
-                    <!-- END Header -->
+                    </li>
+                    <!-- END User Dropdown -->
+                </ul>
+                <!-- END Right Header Navigation -->
+            </header>
+            <!-- END Header -->
 
-                    <!-- Page content -->
+            <!-- Page content -->
 
-                    <div id="page-content" style="min-height: 612px;">
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="block col-sm-8">
-                                
-                                <!-- Upload Form -->
-                                <form id="upload" action="/merchant:upload" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+            <div id="page-content" style="min-height: 612px;">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="block col-sm-8">
+                        
+                        <!-- Upload Form -->
+                        <form id="upload" action="/merchant:upload" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
 
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="example-email">Title</label>
-                                        <div class="col-md-6">
-                                            <input type="text" id="example-email" name="title" class="form-control" placeholder=" Title of this amazing deal" required>
-                                        </div>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-email">Title</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="example-email" name="title" class="form-control" placeholder=" Title of this amazing deal" required>
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="example-textarea-input">Description</label>
-                                        <div class="col-md-9">
-                                            <textarea id="example-textarea-input" name="desc" rows="7" class="form-control" placeholder="Tell us more about it" required>
-                                            </textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="example-textarea-input">Location Address</label>
-                                        <div class="col-md-9">
-                                            <input type="text" name="location" class="form-control" placeholder=" Address or URL for your location" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="example-select">Category</label>
-                                        <div class="col-md-5">
-                                            <select id="example-select" name="category" class="form-control" size="1" required>
-                                                <option value="">Choose a Category</option>
-                                                <option value="1">Cafe</option>
-                                                <option value="2">Bars</option>
-                                                <option value="3">Dining</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-textarea-input">Description</label>
+                                <div class="col-md-9">
+                                    <textarea id="example-textarea-input" name="desc" rows="7" class="form-control" placeholder="Tell us more about it" required>
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-textarea-input">Location Address</label>
+                                <div class="col-md-9">
+                                    <input type="text" name="location" class="form-control" placeholder=" Address or URL for your location" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-select">Category</label>
+                                <div class="col-md-5">
+                                    <select id="example-select" name="category" class="form-control" size="1" required>
+                                        <option value="">Choose a Category</option>
+                                        <option value="1">Cafe</option>
+                                        <option value="2">Bars</option>
+                                        <option value="3">Dining</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="example-datepicker">Posting Duration</label>
-                                        <div class="col-md-9">
-                                          <input type="number" name="expiry" class="form-control" placeholder="Tell us your posting period (at least 7 days)" required>
-                                      </div>
-                                  </div>
-                                  <div class="form-group form-actions">
-                                    <div class="col-md-9 col-md-offset-3">
-                                        <input type="file">
-                                        <a href="#">
-                                        </a>
-                                    </div>
-                                </div>  
-
-
-                                <button type="submit" class="btn btn-effect-ripple btn-block  btn-success submit" style="text-align:center">
-                                    <i class="fa fa-check">
-                                    </i>
-                                    Submit
-                                </button> 
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-datepicker">Posting Duration</label>
+                                <div class="col-md-9">
+                                  <input type="number" name="expiry" class="form-control" placeholder="Tell us your posting period (at least 7 days)" required>
+                              </div>
+                          </div>
+                          <div class="form-group form-actions">
+                            <div class="col-md-9 col-md-offset-3">
+                                <input type="file">
+                                <a href="#">
+                                </a>
+                            </div>
+                        </div>  
 
 
-                                <script type="text/javascript">
-                                new Uploader({ el: "#upload" });
-                                </script>
+                        <button type="submit" class="btn btn-effect-ripple btn-block  btn-success submit" style="text-align:center">
+                            <i class="fa fa-check">
+                            </i>
+                            Submit
+                        </button> 
 
-                            </form>             
+
+                        <script type="text/javascript">
+                        new Uploader({ el: "#upload" });
+                        </script>
+
+                    </form>             
 
 
+                </div>
+            </div>
+        </div>
+
+        <!-- END Page Content -->
+    </div>
+    <!-- END Main Container -->
+</div>
+<!-- END Page Container -->
+</div>
+<!-- END Page Wrapper -->
+
+
+<!-- Compose Message -->
+<div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title"><strong>Compose Message</strong></h3>
+            </div>
+            <div class="modal-body">
+                <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <option value="Mr.Admin">Mr. Admin</option>
+                                <option value="Ms.Design">Ms. Design</option>
+                                <option value="Dr.DB">Dr. Database</option>
+                            </select>
                         </div>
                     </div>
-                </div>
-
-                <!-- END Page Content -->
-            </div>
-            <!-- END Main Container -->
-        </div>
-        <!-- END Page Container -->
-    </div>
-    <!-- END Page Wrapper -->
-
-
-    <!-- Compose Message -->
-    <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title"><strong>Compose Message</strong></h3>
-                </div>
-                <div class="modal-body">
-                    <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
-                                    <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                    <option value="Mr.Admin">Mr. Admin</option>
-                                    <option value="Ms.Design">Ms. Design</option>
-                                    <option value="Dr.DB">Dr. Database</option>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" data-placeholder="Write your message.."></textarea>
                         </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" data-placeholder="Write your message.."></textarea>
-                            </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
                         </div>
-                        <div class="form-group form-actions">
-                            <div class="col-xs-12 text-right">
-                                <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- END Compose Message -->
+</div>
+<!-- END Compose Message -->

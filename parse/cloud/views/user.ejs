@@ -157,8 +157,8 @@
                     <!-- Main Sidebar Toggle Button -->
                     <li>
                         <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
-                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
                         </a>
                     </li>
                     <!-- END Main Sidebar Toggle Button -->
@@ -173,18 +173,11 @@
 
                 <!-- Right Header Navigation -->
                 <ul class="nav navbar-nav-custom pull-right">
-                    <!-- Search Form -->
-                   <!-- <li>
-                        <form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
-                            <input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
-                        </form>
-                    </li> -->
-                    <!-- END Search Form -->
 
                     <!-- Alternative Sidebar Toggle Button -->
                     <li>
                         <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
-                            <i class="fa fa-user"></i>
+                            <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
                         </a>
                     </li>
                     <!-- END Alternative Sidebar Toggle Button -->
@@ -192,7 +185,7 @@
                     <!-- User Dropdown -->
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-sign-in"></i>
+                            <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-header">
@@ -234,12 +227,6 @@
                 </div>
                 <!-- END Gallery Header -->
 
-
-                <!-- Gallery Items -->
-                <!-- Lightbox functionality is based on Magnific Popup plugin (initialized in js/app.js -> uiInit()) -->
-                <!-- Add the category value for each item in its data-category attribute (for the filter functionality to work) -->
-
-                <!-- Okay, this part is for retrieval of all images. and all the images, will have a data-category tag in the class: gallery-image-container-->
                 <div class="row gallery">
                     <% _(images).each(function(image){
                         var imageMetadata = image.get('imageMetadata');
@@ -266,15 +253,12 @@
                                     <i class="fa fa-search-plus fa-3x text-light"></i>
 
                                 </a>
-                             <!-- <a href="/i/<%=image.id%>" class="gallery-image-options" data-toggle="lightbox-image" title="Image Info">
-                                <h2 class="text-light"><strong><%=imageMetadata.get("title")%></strong></h2>
-                                <i class="fa fa-search-plus fa-3x text-light"></i>
-                            </a> -->
-                        </div>
-                        <!-- bookmark like share button -->
-                        <div class="modal-footer">
 
-                            <button type="button" class="btn btn-effect-ripple btn-success" onclick="<%
+                            </div>
+                            <!-- bookmark like share button -->
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-effect-ripple btn-success" onclick="<%
                                 
                                 var user = Parse.User.current();
  
@@ -296,62 +280,61 @@
 
                                 });
                                     %>">
-                                <i class="fa fa-bookmark"></i> Bookmark
-                            </button>
-                            <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-                                <i class="fa fa-thumbs-up"></i> Like
-                            </button>
-                            <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-                                <i class="fa fa-share"></i> Share
-                            </button>
-                        </div>
-                        <!-- END bookmark like share button -->
-                    </div>
-                    <%}});%>
-                </div>
-                <!-- END Gallery Items -->
-            </div>
-            <!-- END Page Content -->
-        </div>
-        <!-- END Main Container -->
-    </div>
-    <!-- END Page Container -->
-</div>
-<!-- END Page Wrapper -->
 
-<!-- Compose Message -->
-<div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title"><strong>Compose Message</strong></h3>
+                                <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+                                    <i class="fa fa-thumbs-up"></i> Like
+                                </button>
+                                <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+                                    <i class="fa fa-share"></i> Share
+                                </button>
+                            </div>
+                            <!-- END bookmark like share button -->
+                        </div>
+                        <%}});%>
+                    </div>
+                    <!-- END Gallery Items -->
+                </div>
+                <!-- END Page Content -->
             </div>
-            <div class="modal-body">
-                <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
-                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                <option value="Mr.Admin">Mr. Admin</option>
-                                <option value="Ms.Design">Ms. Design</option>
-                                <option value="Dr.DB">Dr. Database</option>
-                            </select>
+            <!-- END Main Container -->
+        </div>
+        <!-- END Page Container -->
+    </div>
+    <!-- END Page Wrapper -->
+
+    <!-- Compose Message -->
+    <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title"><strong>Compose Message</strong></h3>
+                </div>
+                <div class="modal-body">
+                    <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
+                                    <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                    <option value="Mr.Admin">Mr. Admin</option>
+                                    <option value="Ms.Design">Ms. Design</option>
+                                    <option value="Dr.DB">Dr. Database</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-actions">
-                        <div class="col-xs-12 text-right">
-                            <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
+                        <div class="form-group form-actions">
+                            <div class="col-xs-12 text-right">
+                                <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- END Compose Message -->
+    <!-- END Compose Message -->
