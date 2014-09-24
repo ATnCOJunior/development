@@ -23,38 +23,11 @@
             <div id="sidebar-scroll-alt">
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
-                    <!-- Color Themes -->
-                    <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
-                    <div class="sidebar-section">
-                        <h2 class="text-light">Colors</h2>
-                        <ul class="sidebar-themes clearfix">
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <!-- END Color Themes -->
-
+                   
                     <!-- Profile -->
                     <div class="sidebar-section">
                         <h2 class="text-light">Profile</h2>
-                        <form action="index.html" method="post" class="form-control-borderless" onsubmit="return false;">
+                        <form action="/update" method="post" class="form-control-borderless" onsubmit="return false;">
                             <div class="form-group">
                                 <label for="side-profile-name">Gender</label>
                                 <input type="text" name="" class="form-control" value="male/ female">
@@ -108,7 +81,7 @@
                         <li>
                             <a href="/user-transaction">
                                 <i class="fa fa-dollar sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Cashout</span>
+                                <span class="sidebar-nav-mini-hide">Account</span>
                             </a>
                         </li>
 
@@ -119,12 +92,6 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="/user-inbox">
-                                <i class="fa fa-inbox sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Inbox</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
                                 <i class="fa fa-pencil sidebar-nav-icon"></i>
@@ -229,24 +196,33 @@
 
                 <div class="row gallery">
                     <% _(images).each(function(image){
+                        var imageURL = image.get('sizeNormal').url();
                         var imageMetadata = image.get('imageMetadata');
+                        var desc = imageMetadata.get('desc');
+                        var expiry = imageMetadata.get('expiry');
+                        var location = imageMetadata.get('location');
+                        var category = imageMetadata.get("category");
                         if (imageMetadata.get("approval")==1) {%>
+                        
                         <div class="col-sm-3">
-                            <div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
+                            <div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=category%>"> 
                                 <!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
-                                <img src="<%= image.get('sizeNormal').url() %>"
-                                alt="<%= imageMetadata.get("desc")+"|||"
-                                +imageMetadata.get("expiry")+"|||"
-                                +imageMetadata.get("location") %>" 
+                                <img src="<%= imageURL %>"
+                                alt="<%= desc
+                                +'|||'
+                                +expiry
+                                +'|||'
+                                +location
+                                %>" 
                                 >
-                                <a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options" data-toggle="lightbox-image" 
+                                <a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options"
                                     title=" 
-                                    <%= imageMetadata.get("desc") 
+                                    <%= desc
                                     + "<br>" 
-                                    + imageMetadata.get("expiry") 
+                                    + expiry
                                     + "<br>" 
-                                    + imageMetadata.get("location")%>">
-
+                                    + location %>"
+                                    >
                                     <h2 class="text-light">
                                         <%=imageMetadata.get("title")%>
                                     </h2>
@@ -261,82 +237,82 @@
                                 <button type="button" class="btn btn-effect-ripple btn-success" onclick="<%
                                 
                                 var user = Parse.User.current();
- 
+
                                 // Make a new bookmark
                                 var Bookmark = Parse.Object.extend("Bookmark");
                                 var bookmark = new Bookmark();
-                                bookmark.set("image", image.id);
+                                bookmark.set("bookmark_image", image);
                                 bookmark.set("user", user);
                                 bookmark.save(null, {
-                                      success: function(bookmark) {
+                                  success: function(bookmark) {
                                         // Execute any logic that should take place after the object is saved.
                                         console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user);
-                                      },
-                                      error: function(bookmark, error) {
+                                    },
+                                    error: function(bookmark, error) {
                                         // Execute any logic that should take place if the save fails.
                                         // error is a Parse.Error with an error code and message.
                                         console.log('Failed to create new bookmark, with error code: ' + error.message);
-                                      }
+                                    }
 
                                 });
-                                    %>">
-                                    <i class="fa fa-bookmark"></i> Bookmark
-                                </button>
+                                %>">
+                                <i class="fa fa-bookmark"></i> Bookmark
+                            </button>
 
-                                <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-                                    <i class="fa fa-thumbs-up"></i> Like
-                                </button>
-                                <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-                                    <i class="fa fa-share"></i> Share
-                                </button>
-                            </div>
-                            <!-- END bookmark like share button -->
+                            <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+                                <i class="fa fa-thumbs-up"></i> Like
+                            </button>
+                            <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+                                <i class="fa fa-share"></i> Share
+                            </button>
                         </div>
-                        <%}});%>
+                        <!-- END bookmark like share button -->
                     </div>
-                    <!-- END Gallery Items -->
+                    <%}});%>
                 </div>
-                <!-- END Page Content -->
+                <!-- END Gallery Items -->
             </div>
-            <!-- END Main Container -->
+            <!-- END Page Content -->
         </div>
-        <!-- END Page Container -->
+        <!-- END Main Container -->
     </div>
-    <!-- END Page Wrapper -->
+    <!-- END Page Container -->
+</div>
+<!-- END Page Wrapper -->
 
-    <!-- Compose Message -->
-    <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title"><strong>Compose Message</strong></h3>
-                </div>
-                <div class="modal-body">
-                    <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
-                                    <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                    <option value="Mr.Admin">Mr. Admin</option>
-                                    <option value="Ms.Design">Ms. Design</option>
-                                    <option value="Dr.DB">Dr. Database</option>
-                                </select>
-                            </div>
+<!-- Compose Message -->
+<div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title"><strong>Compose Message</strong></h3>
+            </div>
+            <div class="modal-body">
+                <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <select id="fcompose-users" name="fcompose-users" class="select-chosen" data-placeholder="To.." style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <option value="Mr.Admin">Mr. Admin</option>
+                                <option value="Ms.Design">Ms. Design</option>
+                                <option value="Dr.DB">Dr. Database</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
                         </div>
-                        <div class="form-group form-actions">
-                            <div class="col-xs-12 text-right">
-                                <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
-                            </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- END Compose Message -->
+</div>
+<!-- END Compose Message -->

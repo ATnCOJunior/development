@@ -156,6 +156,13 @@
 							</li>
 						</ul>
 					</li>
+
+                    <li>
+                        <a href="/admin-inbox">
+                            <i class="fa fa-inbox sidebar-nav-icon"></i>
+                            <span class="sidebar-nav-mini-hide">Inbox</span>
+                        </a>
+                    </li>
 				</ul>
 				<!-- END Sidebar Navigation -->
 			</div>
@@ -270,32 +277,31 @@
 									var social = merchant.get("social");
 									var desc = merchant.get("desc");
 									%>
-								<tr>
-									<td class="">
-										<strong><%=company%></strong>
-									</td>
-									<td class=""><%=email%>/td>
-									<td class="">
-										Website: <%=website%>
-										<br>
-										Social Media Site: <%=social%>
-									</td>
-									<td class=""><%=desc%></td>
+									<tr>
+										<td class="">
+											<strong><%=company%></strong>
+										</td>
+										<td class=""><%=email%></td>
+											<td class="">
+												Website: <%=website%>
+												<br>
+												Social Media Site: <%=social%>
+											</td>
+											<td class=""><%=desc%></td>
 
-									<td class="text-center">
-										<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" data-toggle="tooltip" title="
-											<%= company+','+email+','+website+','+social+','+desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
-											<i class="fa fa-pencil">
-											</i>
-										</a>
-										<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
-											<i class="fa fa-times">
-											</i>
-										</a>
-									</td>
-								</tr>
-
-								
+											<td class="text-center">
+												<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" title="
+												<%= company+','+email+','+website+','+social+','+desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+												<i class="fa fa-pencil">
+												</i>
+											</a>
+											<a href="javascript:void(0)" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
+												<i class="fa fa-times">
+												</i>
+											</a>
+										</td>
+									</tr>
+								<%});%>
 							</tbody>
 						</table>
 					</div>

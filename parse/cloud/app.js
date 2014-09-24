@@ -37,7 +37,7 @@ app.use(parseExpressCookieSession({
 
 // Views
 
-
+// IMAGE GALLERY
 
 app.locals._ = require('underscore');
 
@@ -243,20 +243,13 @@ app.get('/admin', function(req, res) {
   }
 });
 
-// USER LOGIN
-app.get('/login-user', function(req, res){
-  res.render('login-user');
-});
-// USER SIGNUP
-app.get('/signup-user', function(req, res){
-  res.render('signup-user');
-});
+// IMAGE GALLERY END //
 
+// MERCHANT FEATURE
 // UPLOAD
 app.get('/merchant-upload', function(req, res){
   res.render('merchant-upload');
 });
-
 // TRANSACTION - MERCHANT
 app.get('/merchant-transaction', function(req, res){
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
@@ -280,7 +273,6 @@ app.get('/merchant-transaction', function(req, res){
     }
   });
 });
-
 // TRANSACTION MERCHANT SUCCESS
 app.get('/merchant-transaction-success', function(req, res){
   res.render('merchant-transaction-success');
@@ -290,15 +282,25 @@ app.post('/merchant-transaction-success', function(req, res){
   res.render('merchant-transaction-success');
 });
 
-
-// TRANSACTION
-// USER
-app.get('/user-transaction', function(req, res){
-  res.render('user-transaction');
+// INBOX
+app.get('/merchant-inbox', function(req, res){
+  res.render('merchant-inbox');
 });
 
 
 // USER FEATURE
+// USER LOGIN
+app.get('/login-user', function(req, res){
+  res.render('login-user');
+});
+// USER SIGNUP
+app.get('/signup-user', function(req, res){
+  res.render('signup-user');
+});
+// TRANSACTION
+app.get('/user-transaction', function(req, res){
+  res.render('user-transaction');
+});
 // INBOX
 app.get('/user-inbox', function(req, res){
   if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
@@ -321,7 +323,6 @@ app.get('/user-inbox', function(req, res){
   });
   //res.render('userInbox');
 });
-
 // BOOKMARK
 app.get('/user-bookmark', function(req, res) {
   if (!Parse.User.current() || Parse.User.current().get("type") != "customer") {
@@ -332,6 +333,8 @@ app.get('/user-bookmark', function(req, res) {
   var query = new Parse.Query("Bookmark");
   query.equalTo("user", Parse.User.current());
   query.include("user");
+  query.include("bookmark_image");
+  query.include("bookmark_image.imageMetadata");
   query.descending("createdAt");
 
   query.find({
@@ -347,10 +350,11 @@ app.get('/user-bookmark', function(req, res) {
   //res.render('bookmark');
 });
 
-
-
-
 // ADMIN FEATURE - ACCOUNT MANAGEMENT
+// INBOX
+app.get('/admin-inbox', function(req, res){
+  res.render('admin-inbox');
+});
 // ADD MERCHANT
 app.get('/admin-add-merchant', function(req, res){
   res.render('admin-add-merchant');
@@ -363,8 +367,9 @@ app.get('/admin-account-merchant', function(req, res){
 
   query.find({
     success: function(objects){
-      res.render('admin-account-merchant');
+      res.render('admin-account-merchant', {
         merchants: objects
+      });
     }
   });
 });

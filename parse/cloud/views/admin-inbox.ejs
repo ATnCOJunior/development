@@ -1,4 +1,3 @@
-
 <div id="page-wrapper" class="page-loading">
     <!-- Preloader -->
     <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
@@ -50,7 +49,7 @@
                         </li>
 
                         <li>
-                            <a href="/admin">
+                            <a href="/admin" class="active">
                                 <i class="fa fa-eye sidebar-nav-icon"></i>
                                 <span class="sidebar-nav-mini-hide">Ads Approval</span>
                             </a>
@@ -84,7 +83,7 @@
                         </ul>
                     </li>
                     
-                    <li class="active">
+                    <li>
                         <a href="#" class="sidebar-nav-menu">
                             <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
                             <i class="fa fa-dollar sidebar-nav-icon"></i>
@@ -95,7 +94,7 @@
                                 <a href="admin-transaction-merchant">Merchant Payment</a>
                             </li>
                             <li>
-                                <a href="admin-transaction-user" class="active">Customer Cashout</a>
+                                <a href="admin-transaction-user">Customer Cashout</a>
                             </li>
                         </ul>
                     </li>
@@ -130,7 +129,7 @@
             <!-- Left Header Navigation -->
             <ul class="nav navbar-nav-custom">
                 <!-- Main Sidebar Toggle Button -->
-                
+
                 <li>
                     <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
                         <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
@@ -141,7 +140,7 @@
 
                 <!-- Header Link -->
                 <li class="hidden-xs animation-fadeInQuick">
-                    <a><strong>User transacion records</strong></a>
+                    <a><strong>Admin Console</strong></a>
                 </li>
                 <!-- END Header Link -->
             </ul>
@@ -150,108 +149,94 @@
             <!-- Right Header Navigation -->
             <ul class="nav navbar-nav-custom pull-right">
 
-             <!-- User Dropdown -->
-             <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <!-- User Dropdown -->
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
 
-                    <li>
-                        <a href="/">
-                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                            Logout
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-            </li>
-            <!-- END User Dropdown -->
-        </ul>    
-    </header>
-    <!-- END Header -->
+                        <li>
+                            <a href="/logout">
+                                <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
+                                Logout
+                            </a>
+                        </li>
 
-    <!-- Page content -->
-    <div id="page-content">
-        <!-- Message List -->
-        <div id="message-list">
 
-            <!-- Messages -->
-            <div class="block-content-full" >
-                <table class="table table-borderless table-striped table-vcenter remove-margin">
-                    <tbody>
+                    </ul>
+                </li>
+                <!-- END User Dropdown -->
+            </ul>    
+        </header>
+        <!-- END Header -->
 
-                        <% _(records).each(function(record){
-                            var user = record.get("user");
-                            // customer ID or name
-                            // cashout amount
-                            // customer payment account
-                            %>
+        <!-- Page content -->
+        <div id="page-content">
 
-                            <!-- Use the first row as a prototype for your column widths -->
-                            <tr>
-                                <td class="td-label td-label-muted text-center" style="width: 5%;">
+            <!-- Table Styles Block -->
+            <div class="block">
 
-                                </td>
+                <!-- Table Styles Content -->
+                <div class="table-responsive">
 
-                                <td>
-                                    <h4>
-                                        <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>">
-                                            <strong>
-                                                <%=user.get("name")%> :: <%=record.get("amount")%> :: <%=user.get("paypal")%>
-                                            </strong>
-                                        </a>
-                                    </h4>
-                                    <span class="text-muted">Please proceed to payment for customer's cashout. </span>
-                                </td>
-                                <td class="hidden-xs text-center" style="width: 30px;">
-                                    <i class="fa fa-paperclip fa-2x text-muted">
-                                    </i>
-                                </td>
-                                
-                                <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
-                                    <div class="hide" id="errorBox">
-                                    </div>
-                                    <input type="hidden" name="button" value="buynow">
+                    <!-- Message List -->
+                    <div id="user-inbox-list">
+                        <!-- Title -->
+                        <div class="block-title clearfix">
+                            <div class="block-options pull-right">
+                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                            <div class="block-options pull-left">
 
-                                    <!-- for each item's paypal account -->
-                                    <input type="hidden" name="business" value="<%=user.paypal%>">
+                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-warning" title="" style="overflow: hidden; position: relative;" data-original-title="Mark as Read"><i class="fa fa-star"></i></a>
 
-                                    <input type="hidden" name="item_name" value="Ads Payment">
-                                    <input type="hidden" name="quantity" value="">
+                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-danger" title="" style="overflow: hidden; position: relative;" data-original-title="Delete Selected"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                        <!-- END Title -->
 
-                                    <!-- $50 -->
-                                    <!-- $100 -->
-                                    <!-- $150 -->
-                                    <!-- $200 -->
-                                    <input type="hidden" name="amount" value="<%=record.get("amount")%>">
+                        <!-- Messages -->
+                        <div class="block-content-full">
+                            <table class="table table-borderless table-striped table-vcenter remove-margin">
+                                <tbody>
+                                    <!-- Use the first row as a prototype for your column widths -->
+                                    <tr>
+                                        <td class="td-label td-label-muted text-center" style="width: 5%;">
+                                            <label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label>
+                                        </td>
 
-                                    <input type="hidden" name="currency_code" value="SGD">
-                                    <input type="hidden" name="shipping" value="0">
-                                    <input type="hidden" name="tax" value="0">
-                                    <!--<input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/merchant-transaction-success"> -->
-                                    <input type="hidden" name="cmd" value="_xclick">
-                                    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
-                                    <input type="hidden" name="env" value="www">
-                                    <input type="image" style="width: 100%;" src="https://db.tt/fxcMfz4H" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                    <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
-                                </form>
-                                
-                            </td>
-                        </tr>
-                        <%});%>
-                    </tbody>
-                </table>
+                                        <td>
+                                            <h4>
+                                                <strong>Pending Ads Approval 
+                                                    // Pending Payment to Users
+                                                    // Feedbacks
+                                                </strong>
+                                            </h4>
+                                            <span class="text-muted">This is the preview text of this message..</span>
+                                        </td>
+                                        <td class="hidden-xs text-center" style="width: 30px;">
+                                            <i class="fa fa-paperclip fa-2x text-muted"></i>
+                                        </td>
+                                        <td class="hidden-xs text-right text-muted" style="width: 120px;"><em>just now</em></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- END Messages -->
+                    </div>
+                    <!-- END Message List -->
+
+                </div>
+                <!-- END Table Styles Content -->
             </div>
-            <!-- END Messages -->
+            <!-- END Table Styles Block -->
         </div>
-        <!-- END Message List -->
-
+        <!-- END Page Content -->
     </div>
-    <!-- END Page Content -->
-</div>
-<!-- END Main Container -->
+    <!-- END Main Container -->
 </div>
 <!-- END Page Container -->
 </div>

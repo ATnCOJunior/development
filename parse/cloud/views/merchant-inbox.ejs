@@ -1,4 +1,3 @@
-
 <div id="page-wrapper" class="page-loading">
     <!-- Preloader -->
     <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
@@ -12,9 +11,6 @@
             <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
         </div>
     </div>
-    
-
-
 
     <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
         <!-- Alternative Sidebar -->
@@ -26,53 +22,30 @@
             <div id="sidebar-scroll-alt">
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
-                    <!-- Color Themes -->
-                    <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
-                    <div class="sidebar-section">
-                        <h2 class="text-light">Colors</h2>
-                        <ul class="sidebar-themes clearfix">
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <!-- END Color Themes -->
-
+                    
                     <!-- Profile -->
                     <div class="sidebar-section">
                         <h2 class="text-light">Profile</h2>
-                        <form action="index.html" method="post" class="form-control-borderless" onsubmit="return false;">
+                        <form action="/update" method="post" class="form-control-borderless" >
                             <div class="form-group">
-                                <label for="side-profile-name">Gender</label>
-                                <input type="text" name="" class="form-control" value="male/ female">
+                                <label for="side-profile-name">Company Name</label>
+                                <input type="text" name="company" class="form-control" value="<%=Parse.User.current().get("company")%>">
                             </div>
                             <div class="form-group">
-                                <label for="side-profile-name">Age</label>
-                                <input type="text" name="" class="form-control" value="21">
+                                <label for="side-profile-email">Email</label>
+                                <input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
                             </div>
                             <div class="form-group">
-                                <label for="side-profile-name">Occupation</label>
-                                <input type="text" name="" class="form-control" value="student">
+                                <label for="side-profile-password">Website URL</label>
+                                <input type="text" name="website" class="form-control" value="<%=Parse.User.current().get("website")%>">
                             </div>
                             <div class="form-group">
-                                <label for="side-profile-name">Paypal Account</label>
-                                <input type="text" name="" class="form-control" value="8888 8888 8888 8888">
+                                <label for="side-profile-password-confirm">Social Media Site</label>
+                                <input type="text" name="social" class="form-control" value="<%=Parse.User.current().get("social")%>">
+                            </div>
+                            <div class="form-group">
+                                <label for="side-profile-password-confirm">Description</label>
+                                <input type="text"  name="desc" class="form-control" value="<%=Parse.User.current().get("desc")%>">
                             </div>
                             <div class="form-group remove-margin">
                                 <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
@@ -80,6 +53,8 @@
                         </form>
                     </div>
                     <!-- END Profile -->
+
+
                 </div>
                 <!-- END Sidebar Content -->
             </div>
@@ -91,129 +66,142 @@
         <div id="sidebar">
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
-                <a href="/user" class="sidebar-title">
-                    <i class=""></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
+                <a href="/merchant" class="sidebar-title">
+                    <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
                 </a>
             </div>
             <!-- END Sidebar Brand -->
 
             <!-- Wrapper for scrolling functionality -->
             <div id="sidebar-scroll">
-             <!-- Sidebar Content -->
-             <div class="sidebar-content">
-                <!-- Sidebar Navigation -->
-                <ul class="sidebar-nav">
-
-                    <li class="sidebar-separator">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </li>
-
-                    <li>
-                        <a href="/user-transaction">
-                            <i class="fa fa-eye sidebar-nav-icon"></i>
-                            <span class="sidebar-nav-mini-hide">Account</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/user-bookmark">
-                            <i class="fa fa-bookmark sidebar-nav-icon"></i>
-                            <span class="sidebar-nav-mini-hide">Bookmark</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="" class=" active">
-                            <i class="fa fa-inbox sidebar-nav-icon"></i>
-                            <span class="sidebar-nav-mini-hide">Inbox</span>
-                            <span class="badge pull-right">9</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
-                            <i class="fa fa-pencil sidebar-nav-icon"></i>
-                            <span class="sidebar-nav-mini-hide">Feedback</span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- END Sidebar Navigation -->
-            </div>
-            <!-- END Sidebar Content -->
-        </div>
-        <!-- END Wrapper for scrolling functionality -->
-
-        <!-- Sidebar Extra Info -->
-        <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-            <div class="text-center">
-                <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
-            </div>
-        </div>
-        <!-- END Sidebar Extra Info -->
-    </div>
-    <!-- END Main Sidebar -->
-
-    <!-- Main Container -->
-    <div id="main-container">
-
-        <header class="navbar navbar-inverse navbar-fixed-top navbar-glass">              
-            <!-- Left Header Navigation -->
-            <ul class="nav navbar-nav-custom">
-                <!-- Main Sidebar Toggle Button -->
-                <li>
-                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                        <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                        <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                    </a>
-                </li>
-                <!-- END Main Sidebar Toggle Button -->
-
-                <!-- Header Link -->
-                <li class="hidden-xs animation-fadeInQuick">
-                    <a><strong>Your message inbox</strong></a>
-                </li>
-                <!-- END Header Link -->
-            </ul>
-            <!-- END Left Header Navigation -->
-
-            <!-- Right Header Navigation -->
-            <ul class="nav navbar-nav-custom pull-right">
-             
-
-                <!-- Alternative Sidebar Toggle Button -->
-                <li>
-                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
-                        <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                    </a>
-                </li>
-                <!-- END Alternative Sidebar Toggle Button -->
-
-                <!-- User Dropdown -->
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-header">
-                            <strong>USER</strong>
+                <!-- Sidebar Content -->
+                <div class="sidebar-content">
+                    <!-- Sidebar Navigation -->
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-separator">
+                            <i class="fa fa-ellipsis-h"></i>
                         </li>
                         <li>
-                            <a href="/">
-                                <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                                Logout
+                            <a href="/merchant-upload"><i class="fa fa-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-pie-chart sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Reports</span></a>
+                            <ul>
+                                <li>
+                                    <a href="">Customer</a>
+                                </li>
+                                <li>
+                                    <a href="">Merchant</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu">
+                                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="fa fa-paypal sidebar-nav-icon"></i>
+                                <span class="sidebar-nav-mini-hide">Payment</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/merchant-transaction">Unpaid Ads</a>
+                                </li>
+                                <li>
+                                    <a href="">History Payments</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/merchant-inbox">
+                                <i class="fa fa-inbox sidebar-nav-icon"></i>
+                                <span class="sidebar-nav-mini-hide">Inbox</span>
                             </a>
                         </li>
-                        
-                        
+                        <li>
+                            <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
+                                <i class="fa fa-pencil sidebar-nav-icon"></i>
+                                <span class="sidebar-nav-mini-hide">Feedback</span>
+                            </a>
+                        </li>
                     </ul>
-                </li>
-                <!-- END User Dropdown -->
-            </ul>
-            <!-- END Right Header Navigation -->
-        </header>
-        <!-- END Header -->
+                    <!-- END Sidebar Navigation -->
+                </div>
+                <!-- END Sidebar Content -->
+            </div>
+            <!-- END Wrapper for scrolling functionality -->
 
-        <!-- Page content -->
-        <div id="page-content" style="min-height: 553px;">
+            <!-- Sidebar Extra Info -->
+            <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+                <div class="text-center">
+                    <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
+                </div>
+            </div>
+            <!-- END Sidebar Extra Info -->
+        </div>
+        <!-- END Main Sidebar -->
+
+        <!-- Main Container -->
+        <div id="main-container">
+
+
+            <header class="navbar navbar-inverse navbar-fixed-top">
+                <!-- Left Header Navigation -->
+                <ul class="nav navbar-nav-custom">
+                    <!-- Main Sidebar Toggle Button -->
+                    <li>
+                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                        </a>
+                    </li>
+                    <!-- END Main Sidebar Toggle Button -->
+
+                    <!-- Header Link -->
+                    <li class="hidden-xs animation-fadeInQuick">
+                        <a><strong>Your Store</strong></a>
+                    </li>
+                    <!-- END Header Link -->
+                </ul>
+                <!-- END Left Header Navigation -->
+
+                <!-- Right Header Navigation -->
+                <ul class="nav navbar-nav-custom pull-right">
+
+
+                    <!-- Alternative Sidebar Toggle Button -->
+                    <li>
+                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+                            <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                        </a>
+                    </li>
+                    <!-- END Alternative Sidebar Toggle Button -->
+
+                    <!-- User Dropdown -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-header">
+                                <strong>MERCHANT</strong>
+                            </li>
+                            <li>
+                                <a href="/logout">
+                                    <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
+                                    Logout
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <!-- END User Dropdown -->
+                </ul>
+                <!-- END Right Header Navigation -->
+            </header>
+            <!-- END Header -->
+
+            <!-- Page content -->
+            <div id="page-content">
 
             <!-- Table Styles Block -->
             <div class="block">
@@ -250,7 +238,7 @@
 
                                         <td>
                                             <h4>
-                                                <strong>Product updates</strong>
+                                                <strong>Ads Approval</strong>
                                             </h4>
                                             <span class="text-muted">This is the preview text of this message..</span>
                                         </td>
@@ -271,13 +259,12 @@
                 <!-- END Table Styles Content -->
             </div>
             <!-- END Table Styles Block -->
-            
+            </div>
+            <!-- END Page Content -->
         </div>
-        <!-- END Page Content -->
+        <!-- END Main Container -->
     </div>
-    <!-- END Main Container -->
-</div>
-<!-- END Page Container -->
+    <!-- END Page Container -->
 </div>
 <!-- END Page Wrapper -->
 
@@ -304,7 +291,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
+                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" data-placeholder="Write your message.."></textarea>
                         </div>
                     </div>
                     <div class="form-group form-actions">

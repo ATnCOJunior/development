@@ -22,34 +22,7 @@
             <div id="sidebar-scroll-alt">
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
-                    <!-- Color Themes -->
-                    <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
-                    <div class="sidebar-section">
-                        <h2 class="text-light">Colors</h2>
-                        <ul class="sidebar-themes clearfix">
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <!-- END Color Themes -->
-
+                    
                     <!-- Profile -->
                     <div class="sidebar-section">
                         <h2 class="text-light">Profile</h2>
@@ -136,6 +109,12 @@
                                     <a href="">History Payments</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="/merchant-inbox">
+                                <i class="fa fa-inbox sidebar-nav-icon"></i>
+                                <span class="sidebar-nav-mini-hide">Inbox</span>
+                            </a>
                         </li>
                         <li>
                             <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
@@ -229,24 +208,24 @@
 
                     <div class="header-section text-center">
                         <div class="btn-group gallery-filter">
-                           <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a>
-                           <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Current</a>
-                           <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Pending</a>
-                           <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Rejected</a>
-                           <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Expired</a>
-                       </div>
-                   </div>
-                   <!-- END Gallery Filter Links -->
-               </div>
-               <!-- END Gallery Header -->
+                         <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a>
+                         <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Current</a>
+                         <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Pending</a>
+                         <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Rejected</a>
+                         <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Expired</a>
+                     </div>
+                 </div>
+                 <!-- END Gallery Filter Links -->
+             </div>
+             <!-- END Gallery Header -->
 
 
-               <!-- Gallery Items -->
-               <!-- Lightbox functionality is based on Magnific Popup plugin (initialized in js/app.js -> uiInit()) -->
-               <!-- Add the category value for each item in its data-category attribute (for the filter functionality to work) -->
+             <!-- Gallery Items -->
+             <!-- Lightbox functionality is based on Magnific Popup plugin (initialized in js/app.js -> uiInit()) -->
+             <!-- Add the category value for each item in its data-category attribute (for the filter functionality to work) -->
 
-               <!-- Okay, this part is for retrieval of all images. and all the images, will have a data-category tag in the class: gallery-image-container-->
-               <div class="row gallery">
+             <!-- Okay, this part is for retrieval of all images. and all the images, will have a data-category tag in the class: gallery-image-container-->
+             <div class="row gallery">
                 <% _(images).each(function(image){
                     var imageMetadata = image.get('imageMetadata');
                     var dataCategory = "";
@@ -268,7 +247,7 @@
                             +imageMetadata.get("expiry")+"|||"
                             +imageMetadata.get("location") %>" 
                             >
-                            <a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options" data-toggle="lightbox-image" 
+                            <a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options"
                                 title=" 
                                 <%= imageMetadata.get("desc") 
                                 + "<br>" 
