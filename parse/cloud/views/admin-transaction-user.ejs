@@ -64,11 +64,11 @@
                             </a>
                             <ul>
                                 <li>
-                                 <a href="/admin-account-user">Account Table</a>  
-                             </li>
-                         </ul>
-                     </li>
-                     <li>
+                                   <a href="/admin-account-user">Account Table</a>  
+                               </li>
+                           </ul>
+                       </li>
+                       <li>
                         <a href="#" class="sidebar-nav-menu">
                             <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
                             <i class="fa fa-briefcase sidebar-nav-icon"></i>
@@ -143,8 +143,8 @@
             <!-- Right Header Navigation -->
             <ul class="nav navbar-nav-custom pull-right">
 
-               <!-- User Dropdown -->
-               <li class="dropdown">
+             <!-- User Dropdown -->
+             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
                 </a>
@@ -202,33 +202,49 @@
                                     <i class="fa fa-paperclip fa-2x text-muted">
                                     </i>
                                 </td>
-                                <!-- $50 : 3QC36YWPCLFVC -->
-                                <td class="hidden-xs text-right text-muted" style="width: 120px;">
-                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                        <input type="hidden" name="cmd" value="_s-xclick">
-                                        <!-- $50 : 3QC36YWPCLFVC -->
-                                        <!-- $100 : YYZLVWWZCHZQW -->
-                                        <!-- $150 : 2EEFUK2RJ7XCJ -->
-                                        <!-- $200 : TVCWSF2LHZSL4 -->
-                                        <input type="hidden" name="hosted_button_id" value="3QC36YWPCLFVC">
+                                
+                                <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
+                                    <div class="hide" id="errorBox">
+                                    </div>
+                                    <input type="hidden" name="button" value="buynow">
 
-                                        <input type="image" src="https://db.tt/fxcMfz4H" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-                                    </form>
-                                </td>
-                            </tr>
-                            <%});%>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- END Messages -->
+                                    <!-- for each item's paypal account -->
+                                    <input type="hidden" name="business" value="emailhelenshih@gmail.com">
+
+                                    <input type="hidden" name="item_name" value="Ads Payment">
+                                    <input type="hidden" name="quantity" value="">
+
+                                    <!-- $50 -->
+                                    <!-- $100 -->
+                                    <!-- $150 -->
+                                    <!-- $200 -->
+                                    <input type="hidden" name="amount" value="50">
+
+                                    <input type="hidden" name="currency_code" value="SGD">
+                                    <input type="hidden" name="shipping" value="0">
+                                    <input type="hidden" name="tax" value="0">
+                                    <!--<input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/merchant-transaction-success"> -->
+                                    <input type="hidden" name="cmd" value="_xclick">
+                                    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+                                    <input type="hidden" name="env" value="www">
+                                    <input type="image" style="width: 100%;" src="https://db.tt/fxcMfz4H" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                                    <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
+                                </form>
+                                
+                            </td>
+                        </tr>
+                        <%});%>
+                    </tbody>
+                </table>
             </div>
-            <!-- END Message List -->
-
+            <!-- END Messages -->
         </div>
-        <!-- END Page Content -->
+        <!-- END Message List -->
+
     </div>
-    <!-- END Main Container -->
+    <!-- END Page Content -->
+</div>
+<!-- END Main Container -->
 </div>
 <!-- END Page Container -->
 </div>
