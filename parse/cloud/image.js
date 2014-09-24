@@ -103,10 +103,11 @@ module.exports = function() {
         res.send("Image not found - 1");
       } else {
         var image = objects[0];
-
+        var imageMetadata = image.get("imageMetadata");
         // Update metadata on image (adds a view)
         Parse.Cloud.run('approveImage', {
-          metadataId: image.get("imageMetadata").id
+          metadataId: imageMetadata.id,
+          expiry: imageMetadata.get("expiry")
         }).then(function() {
           // Render the template to show one image
           res.redirect('/admin');

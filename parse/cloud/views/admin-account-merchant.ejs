@@ -35,24 +35,24 @@
 							<h2 class="text-light">Profile</h2>
 							<form action="/update" method="post" class="form-control-borderless" >
 								<div class="form-group">
-									<label for="side-profile-name">Company Name</label>
-									<input type="text" name="company" class="form-control" value="<%=Parse.User.current().get("company")%>">
+									<label for="side-profile-name" >Company Name</label>
+									<input type="text" name="company" class="form-control" id="admin-acc-merchant-list-company" value="">
 								</div>
 								<div class="form-group">
 									<label for="side-profile-email">Email</label>
-									<input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
+									<input type="email" name="email" class="form-control" id="admin-acc-merchant-list-email" value="">
 								</div>
 								<div class="form-group">
 									<label for="side-profile-password">Website URL</label>
-									<input type="text" name="website" class="form-control" value="<%=Parse.User.current().get("website")%>">
+									<input type="text" name="website" class="form-control" id="admin-acc-merchant-list-website" value="">
 								</div>
 								<div class="form-group">
 									<label for="side-profile-password-confirm">Social Media Site</label>
-									<input type="text" name="social" class="form-control" value="<%=Parse.User.current().get("social")%>">
+									<input type="text" name="social" class="form-control" id="admin-acc-merchant-list-social" value="">
 								</div>
 								<div class="form-group">
 									<label for="side-profile-password-confirm">Description</label>
-									<input type="text"  name="desc" class="form-control" value="<%=Parse.User.current().get("desc")%>">
+									<input type="text"  name="desc" class="form-control" id="admin-acc-merchant-list-desc" value="">
 								</div>
 								<div class="form-group remove-margin">
 									<button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
@@ -99,7 +99,7 @@
 					</li>
 
 					<li>
-						<a href="">
+						<a href="/admin">
 							<i class="fa fa-eye sidebar-nav-icon">
 							</i>
 							<span class="sidebar-nav-mini-hide">Ads Approval</span>
@@ -239,13 +239,13 @@
 					<!-- END Table Styles Title -->
 
 					<!-- Table Styles Content -->
-					<div class="table-responsive">
+					<div class="table-responsive" id="admin-acc-merchant-list">
 						
 						<table id="general-table" class="table table-vcenter table-hover">
 							<thead>
-								<tr>
 
-									<th class="text-center">ID</th>
+
+								<tr>
 
 									<th class="text-center">Company Name</th>
 
@@ -263,22 +263,28 @@
 								</tr>
 							</thead>
 							<tbody>
+								<% _(merchants).each(function(merchant){
+									var company = merchant.get("company");
+									var email = merchant.get("email");
+									var website = merchant.get("website");
+									var social = merchant.get("social");
+									var desc = merchant.get("desc");
+									%>
 								<tr>
-
-									<td class="text-center">41</td>
 									<td class="">
-										<strong>ChococoLate</strong>
+										<strong><%=company%></strong>
 									</td>
-									<td class="">app.user4@example.com</td>
+									<td class=""><%=email%>/td>
 									<td class="">
-										Website: chococolate.com
+										Website: <%=website%>
 										<br>
-										Social Media Site: instagram.com/chococolate
+										Social Media Site: <%=social%>
 									</td>
-									<td class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor.</td>
+									<td class=""><%=desc%></td>
 
 									<td class="text-center">
-										<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" data-toggle="tooltip" title="" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+										<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" data-toggle="tooltip" title="
+											<%= company+','+email+','+website+','+social+','+desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
 											<i class="fa fa-pencil">
 											</i>
 										</a>

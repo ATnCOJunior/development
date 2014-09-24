@@ -141,6 +141,19 @@ $(function() {
         $('#paypalAmount').attr('value', total);
     });
 
+    $('#admin-acc-merchant-list a').click(function(event) {
+
+        var attributes = event.currentTarget.title.split(',');
+
+        console.log(attributes);
+
+        $('#admin-acc-merchant-list-company').attr('value', attributes[0]);
+        $('#admin-acc-merchant-list-email').attr('value', attributes[1]);
+        $('#admin-acc-merchant-list-website').attr('value', attributes[2]);
+        $('#admin-acc-merchant-list-social').attr('value', attributes[3]);
+        $('#admin-acc-merchant-list-desc').attr('value', attributes[4]);
+    });
+    
 });
 
 Uploader = Backbone.View.extend({

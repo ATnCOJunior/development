@@ -239,7 +239,7 @@ app.get('/admin', function(req, res) {
       });
     });
   } else {
-    res.redirect('/');
+    res.redirect('/login-user');
   }
 });
 
@@ -296,14 +296,7 @@ app.post('/merchant-transaction-success', function(req, res){
 app.get('/user-transaction', function(req, res){
   res.render('user-transaction');
 });
-// ADMIN_user
-app.get('/admin-transaction-merchant', function(req, res){
-  res.render('admin-transaction-merchant');
-});
-// ADMIN_merchant
-app.get('/admin-transaction-user', function(req, res){
-  res.render('admin-transaction-user');
-});
+
 
 // USER FEATURE
 // INBOX
@@ -362,17 +355,36 @@ app.get('/user-bookmark', function(req, res) {
 app.get('/admin-add-merchant', function(req, res){
   res.render('admin-add-merchant');
 });
+
 // MERCHANT TABLE
 app.get('/admin-account-merchant', function(req, res){
-  res.render('admin-account-merchant');
+  var query = new Parse.Query("User");
+  query.equalTo("type", "merchant");
+
+  query.find({
+    success: function(objects){
+      res.render('admin-account-merchant');
+        merchants: objects
+    }
+  });
 });
+
 // MERCHANT PAYMENT
 app.get('/admin-transaction-merchant', function(req, res){
   res.render('admin-transaction-merchant');
 });
 // USER PAYMENT
 app.get('/admin-transaction-user', function(req, res){
-  res.render('admin-transaction-user');
+  var query = new Parse.Query("Record");
+  query.descending("createdAt");
+
+  query.find({
+    success: function(objects) {
+      res.render('admin-transaction-user', {
+        records: objects
+      });
+    }
+  });
 });
 // ADD USER
 app.get('/admin-add-user', function(req, res){
