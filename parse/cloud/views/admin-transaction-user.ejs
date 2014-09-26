@@ -178,12 +178,11 @@
         <div id="message-list">
 
             <!-- Messages -->
-            <div class="block-content-full" >
+            <div class="block-content-full" id="admin-trans-user">
                 <table class="table table-borderless table-striped table-vcenter remove-margin">
                     <tbody>
 
                         <% _(records).each(function(record){
-                            var user = record.get("user");
                             // customer ID or name
                             // cashout amount
                             // customer payment account
@@ -197,9 +196,10 @@
 
                                 <td>
                                     <h4>
-                                        <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>">
+                                        <a href="javascript:void(0)" class="text-dark" title="
+                                                <%=record.get("user")+','+record.get("amount")+','+record.get("account")%>">
                                             <strong>
-                                                <%=user.get("name")%> :: <%=record.get("amount")%> :: <%=user.get("paypal")%>
+                                                <%=record.get("user")%> :: <%=record.get("amount")%> :: <%=record.get("account")%>
                                             </strong>
                                         </a>
                                     </h4>
@@ -216,7 +216,7 @@
                                     <input type="hidden" name="button" value="buynow">
 
                                     <!-- for each item's paypal account -->
-                                    <input type="hidden" name="business" value="<%=user.paypal%>">
+                                    <input type="hidden" name="business" value="<%=record.get("account")%>">
 
                                     <input type="hidden" name="item_name" value="Ads Payment">
                                     <input type="hidden" name="quantity" value="">

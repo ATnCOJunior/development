@@ -141,7 +141,7 @@
 							+imageMetadata.get("expiry")+"|||"
 							+imageMetadata.get("location") %>" 
 							>
-							<a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options" 
+							<a href="<%= image.get('sizeNormal').url() %>"  data-toggle="lightbox-image" class="gallery-image-options" 
 								title=" 
 								<%= imageMetadata.get("desc") 
 								+ "<br>" 
@@ -169,13 +169,13 @@
 							<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
 								<i class="fa fa-share"></i> Share
 							</button>
-							<div class="text-success">
+							<!-- <div class="text-success">
 								<label class="switch switch-success">   
 									<input type="checkbox" checked="">
 									<span></span>
 								</label>
 								<strong class=" text-success">	Bookmark</strong>
-							</div>
+							</div> -->
 						</div>
 						<!-- END bookmark like share button -->
 					</div>

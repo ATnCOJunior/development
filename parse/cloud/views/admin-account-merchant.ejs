@@ -33,7 +33,8 @@
 						<!-- Profile -->
 						<div class="sidebar-section">
 							<h2 class="text-light">Profile</h2>
-							<form action="/update" method="post" class="form-control-borderless" >
+							<form action="/update-trans" method="post" class="form-control-borderless" >
+								<input type="hidden" name="userid" id="admin-acc-merchant-list-userid" value="">
 								<div class="form-group">
 									<label for="side-profile-name" >Company Name</label>
 									<input type="text" name="company" class="form-control" id="admin-acc-merchant-list-company" value="">
@@ -271,6 +272,7 @@
 							</thead>
 							<tbody>
 								<% _(merchants).each(function(merchant){
+									var userid = merchant.id;
 									var company = merchant.get("company");
 									var email = merchant.get("email");
 									var website = merchant.get("website");
@@ -291,7 +293,7 @@
 
 											<td class="text-center">
 												<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" title="
-												<%= company+','+email+','+website+','+social+','+desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+												<%=userid+','+company+','+email+','+website+','+social+','+desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
 												<i class="fa fa-pencil">
 												</i>
 											</a>

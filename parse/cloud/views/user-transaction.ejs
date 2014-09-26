@@ -232,7 +232,7 @@
                                     <i class="fa fa-dollar fa-3x text-success"></i>
                                 </div>
                                 <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="368">368</h3>
+                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="<%=Parse.User.current().get("points")%>"><%=Parse.User.current().get("points")%></h3>
                                 </div>
                             </a>
                         </div>
@@ -296,8 +296,8 @@
                                                         <i class="fa fa-arrow-right"></i>Cashout
                                                     </button>
                                                     <input type="hidden" name="user" value="<%=Parse.User.current()%>">
-                                                    <input type="hidden" name="pointAmount" value="500">
-                                                    <input type="hidden" name="dollarAmount" value="50">
+                                                    <input type="hidden" name="pointAmount" value="1000">
+                                                    <input type="hidden" name="dollarAmount" value="100">
                                                 </form>
                                             </td>
                                         </tr>
@@ -324,8 +324,8 @@
                                                         <i class="fa fa-arrow-right"></i>Cashout
                                                     </button>
                                                     <input type="hidden" name="user" value="<%=Parse.User.current()%>">
-                                                    <input type="hidden" name="pointAmount" value="500">
-                                                    <input type="hidden" name="dollarAmount" value="50">
+                                                    <input type="hidden" name="pointAmount" value="1500">
+                                                    <input type="hidden" name="dollarAmount" value="150">
                                                 </form>
                                             </td>
                                         </tr>
@@ -352,8 +352,8 @@
                                                     <i class="fa fa-arrow-right"></i>Cashout
                                                 </button>
                                                     <input type="hidden" name="user" value="<%=Parse.User.current()%>">
-                                                    <input type="hidden" name="pointAmount" value="500">
-                                                    <input type="hidden" name="dollarAmount" value="50">
+                                                    <input type="hidden" name="pointAmount" value="2000">
+                                                    <input type="hidden" name="dollarAmount" value="200">
                                             </form>
                                         </td>
                                     </tr>

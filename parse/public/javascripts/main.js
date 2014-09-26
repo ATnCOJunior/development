@@ -147,11 +147,23 @@ $(function() {
 
         console.log(attributes);
 
-        $('#admin-acc-merchant-list-company').attr('value', attributes[0]);
-        $('#admin-acc-merchant-list-email').attr('value', attributes[1]);
-        $('#admin-acc-merchant-list-website').attr('value', attributes[2]);
-        $('#admin-acc-merchant-list-social').attr('value', attributes[3]);
-        $('#admin-acc-merchant-list-desc').attr('value', attributes[4]);
+        $('#admin-acc-merchant-list-userid').attr('value', attributes[0]);
+        $('#admin-acc-merchant-list-company').attr('value', attributes[1]);
+        $('#admin-acc-merchant-list-email').attr('value', attributes[2]);
+        $('#admin-acc-merchant-list-website').attr('value', attributes[3]);
+        $('#admin-acc-merchant-list-social').attr('value', attributes[4]);
+        $('#admin-acc-merchant-list-desc').attr('value', attributes[5]);
+    });
+
+    $('#admin-trans-user a').click(function(event) {
+
+        var attributes = event.currentTarget.title.split(',');
+
+        console.log(attributes);
+
+        $('#admin-trans-user-name').attr('value', attributes[0]);
+        $('#admin-trans-user-amount').attr('value', attributes[1]);
+        $('#admin-trans-user-account').attr('value', attributes[2]);
     });
     
 });

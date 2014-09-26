@@ -6,28 +6,26 @@ module.exports = function() {
 
     // Cashout function
     app.post('/cashout', function(req, res) {
-        var user = req.body.user;
+        var user = Parse.User.current();
         var pointAmount = req.body.pointAmount;
         var dollarAmount = req.body.dollarAmount;
 
-        var record = Parse.Object.extend("Record");
+        var pointAmountNew = parseInt(pointAmount);
+        var dollarAmountNew = parseInt(dollarAmount);
+        var newPointAmount = user.get("points") - pointAmountNew;
 
-        user.save({
-            point: user.get("point") - pointAmount
-        });
 
-        record.save({
-            amount: dollarAmount,
-            account: user.get("paypal")
-        }, {
-            success: function(user) {
-                res.redirect("/user-transaction");
-            },
-            error: function(user, error) {
-                res.set('error', error);
-                res.redirect("/user-transaction", error);
-            }
-        });
+        var Record = Parse.Object.extend("Record");
+        var record = new Record();
+
+        user.set("points", newPointAmount);
+        record.set("amount", dollarAmountNew);
+        record.set("account", user.get("paypal"));
+        record.set("user", user.get("username"));
+        record.save();
+        user.save();
+
+        res.redirect("/user-transaction");
     });
 
 
@@ -53,6 +51,56 @@ module.exports = function() {
         });
     });
 
+    // Updates the user's profile info
+    app.post('/update-trans', function(req, res) {
+        // var User = Parse.User;
+        // var query = new Parse.Query(User);
+        // var user;
+        // var userid = req.body.userid;
+        // query.equalTo("objectId", userid);
+              console.log(req.body.userid);
+        var query = new Parse.Query(Parse.User);
+        query.get(req.body.userid, {
+            success: function (user) {
+                console.log("success");
+                console.log(user);
+
+             res.redirect("/admin-account-merchant");
+            },
+            error: function (error) {
+                console.log(error);
+                console.log("error");
+                          res.redirect("/admin");
+            }, 
+            useMasterKey: true
+
+        });  // find all the women
+ 
+        // query.find({
+        //     success: function(users) {
+        //         user = users[0];
+        //         user.save({
+        //             company: req.body.company,
+        //             email: req.body.email,
+        //             website: req.body.website,
+        //             social: req.body.social,
+        //             desc: req.body.desc
+        //         }, {
+        //             success: function(user) {
+        //                 res.redirect("/admin-account-merchant");
+        //             },
+        //             error: function(object, error) {
+        //                 res.set('error', error);
+        //                 res.redirect("/admin-account-merchant", error);
+        //             }
+        //         });
+        //     },
+        //     error: function(error) {
+        //         console.log(error);
+        //     }
+        // });
+
+    });
 
     // MERCHANT FUNCTIONS
 
