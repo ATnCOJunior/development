@@ -93,7 +93,10 @@
 			<div class="sidebar-content">
 				<!-- Sidebar Navigation -->
 				<ul class="sidebar-nav">
-
+					<li class="" style="text-align:center;">
+						<strong>ADMIN</strong>
+					</li>
+					
 					<li class="sidebar-separator">
 						<i class="fa fa-ellipsis-h">
 						</i>
@@ -158,12 +161,12 @@
 						</ul>
 					</li>
 
-                    <li>
-                        <a href="/admin-inbox">
-                            <i class="fa fa-inbox sidebar-nav-icon"></i>
-                            <span class="sidebar-nav-mini-hide">Inbox</span>
-                        </a>
-                    </li>
+					<li>
+						<a href="/admin-inbox">
+							<i class="fa fa-inbox sidebar-nav-icon"></i>
+							<span class="sidebar-nav-mini-hide">Inbox</span>
+						</a>
+					</li>
 				</ul>
 				<!-- END Sidebar Navigation -->
 			</div>
@@ -241,18 +244,12 @@
 
 
 			<div class="block">
-				<!-- Table Styles Title -->
-				<div class="block-title clearfix">
-
-					<!-- END Table Styles Title -->
-
+				<div>
 					<!-- Table Styles Content -->
 					<div class="table-responsive" id="admin-acc-merchant-list">
 						
 						<table id="general-table" class="table table-vcenter table-hover">
 							<thead>
-
-
 								<tr>
 
 									<th class="text-center">Company Name</th>
@@ -284,25 +281,25 @@
 											<strong><%=company%></strong>
 										</td>
 										<td class=""><%=email%></td>
-											<td class="">
-												Website: <%=website%>
-												<br>
-												Social Media Site: <%=social%>
-											</td>
-											<td class=""><%=desc%></td>
-
-											<td class="text-center">
-												<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" title="
-												<%=userid+','+company+','+email+','+website+','+social+','+desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
-												<i class="fa fa-pencil">
-												</i>
-											</a>
-											<a href="javascript:void(0)" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
-												<i class="fa fa-times">
-												</i>
-											</a>
+										<td class="">
+											Website: <%=website%>
+											<br>
+											Social Media Site: <%=social%>
 										</td>
-									</tr>
+										<td class=""><%=desc%></td>
+
+										<td class="text-center">
+											<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" title="
+											<%=userid+','+company+','+email+','+website+','+social+','+desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+											<i class="fa fa-pencil">
+											</i>
+										</a>
+										<a href="javascript:void(0)" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
+											<i class="fa fa-times">
+											</i>
+										</a>
+									</td>
+								</tr>
 								<%});%>
 							</tbody>
 						</table>

@@ -76,29 +76,43 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li class="dropdown-header">
-								<strong>Sign In</strong>
+								<strong>User</strong>
 							</li>
 							<li>
 								<a href="" onclick="facebookMod.login()">
 									<i class="fa fa-facebook-square fa fa-inbox fa-fw pull-right" 
 									></i>
-									Login via Facebook
+									Facebook
+								</a>
+							</li>
+
+							<li>
+								<a href="/signup-user">
+									<i class="fa fa-sign-in fa fa-inbox fa-fw pull-right"></i>
+									Register
 								</a>
 							</li>
 							<li>
 								<a href="/login-user">
 									<i class="fa fa-sign-in fa fa-inbox fa-fw pull-right"></i>
-									Login as user
+									Login
+								</a>
+							</li>
+							<li class="dropdown-header">
+								<strong>Merchant</strong>
+							</li>
+							<li>
+								<a href="/signup-merchant">
+									<i class="fa fa-briefcase fa fa-inbox fa-fw pull-right"></i>
+									Register
 								</a>
 							</li>
 							<li>
 								<a href="/login-merchant">
 									<i class="fa fa-briefcase fa fa-inbox fa-fw pull-right"></i>
-									Login as merchant
+									Login
 								</a>
 							</li>
-
-
 						</ul>
 					</li>
 					<!-- END User Dropdown -->
@@ -121,6 +135,29 @@
 						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="cafe" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Cafe</a>
 						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="bars" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Bars</a>
 						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
+					</div>
+					<div class="btn-group">
+						<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by <span class="caret"></span></a>
+						<ul class="dropdown-menu text-left">
+							
+							<li>
+								<a href="javascript:void(0)">
+									New
+								</a>
+							</li>
+							
+							<li>
+								<a href="javascript:void(0)">
+									Trending
+								</a>
+							</li>
+							
+							<li>
+								<a href="javascript:void(0)">
+									Ending
+								</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<!-- END Gallery Filter Links -->
