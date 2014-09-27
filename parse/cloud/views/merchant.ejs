@@ -240,14 +240,15 @@
                         dataCategory = "expired";
                     } %>
                     <div class="col-sm-3">
-                        <div class="gallery-image-container animation-fadeInQuick2" data-category="<%=dataCategory%>"> 
+                        
+                        <div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=dataCategory%>"> 
                             <!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
                             <img src="<%= image.get('sizeNormal').url() %>"
                             alt="<%= imageMetadata.get("desc")+"|||"
                             +imageMetadata.get("expiry")+"|||"
                             +imageMetadata.get("location") %>" 
                             >
-                            <a href="<%= image.get('sizeNormal').url() %>" class="gallery-image-options"
+                            <a href="<%= image.get('sizeNormal').url() %>" data-toggle="lightbox-image" class="gallery-image-options"
                                 title=" 
                                 <%= imageMetadata.get("desc") 
                                 + "<br>" 
