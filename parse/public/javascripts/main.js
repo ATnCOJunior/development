@@ -165,6 +165,15 @@ $(function() {
         $('#admin-trans-user-amount').attr('value', attributes[1]);
         $('#admin-trans-user-account').attr('value', attributes[2]);
     });
+
+    $('#admin-inbox a').click(function(event) {
+
+        var attributes = event.currentTarget.title.split(',');
+
+        console.log(attributes);
+
+        $('#admin-inbox-message').attr('value', attributes[0]);
+    });
     
 });
 

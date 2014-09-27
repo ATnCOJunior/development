@@ -284,7 +284,26 @@ app.post('/merchant-transaction-success', function(req, res){
 
 // INBOX
 app.get('/merchant-inbox', function(req, res){
-  res.render('merchant-inbox');
+  if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {
+    res.redirect('/login-merchant');
+  }
+
+  var query = new Parse.Query("Notification");
+  query.equalTo("owner", Parse.User.current().id);
+  query.equalTo("readStatus", 0);
+  query.include("user");
+  query.include("image");
+
+  query.find({
+    success: function(objects) {
+      res.render('merchant-inbox', {
+        notifications: objects
+      });
+    },
+    error: function(err) {
+      res.send(500, err);
+    }
+  });
 });
 
 
@@ -353,7 +372,26 @@ app.get('/user-bookmark', function(req, res) {
 // ADMIN FEATURE - ACCOUNT MANAGEMENT
 // INBOX
 app.get('/admin-inbox', function(req, res){
-  res.render('admin-inbox');
+  if (!Parse.User.current() || Parse.User.current().get("type") != "admin") {
+    res.redirect('/login-merchant');
+  }
+
+  var query = new Parse.Query("Notification");
+  query.equalTo("owner", Parse.User.current().id);
+  query.equalTo("readStatus", 0);
+  query.include("user");
+  query.include("image");
+
+  query.find({
+    success: function(objects) {
+      res.render('admin-inbox', {
+        notifications: objects
+      });
+    },
+    error: function(err) {
+      res.send(500, err);
+    }
+  });
 });
 // ADD MERCHANT
 app.get('/admin-add-merchant', function(req, res){

@@ -30,10 +30,16 @@ module.exports = function() {
       imageMetadata.set("location", req.body.location);
       imageMetadata.set("desc", req.body.desc);
       
+      imageMetadata.set("addDays", 0);
+      imageMetadata.set("paid", 0);
+      imageMetadata.set("shares", 0);
+      imageMetadata.set("likes", 0);
+      imageMetadata.set("views", 0);
+
       imageMetadata.set("approval", "0")
 
       image.set("imageMetadata", imageMetadata);
-      console.log("creation at image.js"+imageMetadata);
+      console.log("creation at image.js" + imageMetadata);
       // Set up the ACL so everyone can read the image
       // but only the owner can have write access
       var acl = new Parse.ACL();
@@ -47,7 +53,26 @@ module.exports = function() {
 
       // Save the image and return some info about it via json
       image.save().then(function(image) {
-        res.redirect('/merchant#pending');
+        var Notification = Parse.Object.extend("Notification");
+        var notification = new Notification();
+
+        notification.set("owner", "MVUYgJSM9w");
+        notification.set("code", 1);
+        notification.set("message", "Ads Approval for Merchant: " + Parse.User.current().get("username") + ", ad: " + imageMetadata.get("title"));
+        notification.set("image", image);
+        notification.set("user", Parse.User.current());
+        notification.set("readStatus", 0);
+
+        notification.save(null, {
+          success: function() {
+            console.log("notifcation for upload successful");
+            res.redirect('/merchant#pending');
+          },
+          error: function() {
+            console.log("notification for upload not successful");
+            res.redirect('/merchant#pending');
+          }
+        });
       }, function(error) {
         res.json({
           error: error
@@ -104,15 +129,31 @@ module.exports = function() {
       } else {
         var image = objects[0];
         var imageMetadata = image.get("imageMetadata");
-        // Update metadata on image (adds a view)
-        Parse.Cloud.run('approveImage', {
-          metadataId: imageMetadata.id,
-          expiry: imageMetadata.get("expiry")
-        }).then(function() {
-          // Render the template to show one image
-          res.redirect('/admin');
-        }, function(error) {
-          res.send("Error: " + error);
+
+        var Notification = Parse.Object.extend("Notification");
+        var notification = new Notification();
+
+        notification.set("owner", image.get("user").id);
+        notification.set("code", 4);
+        notification.set("message", "Ad approved by admin for ad: " + imageMetadata.get("title"));
+        notification.set("readStatus", 0);
+        notification.save(null, {
+          success: function() {
+            console.log("ads approved notification not successful");
+            Parse.Cloud.run('approveImage', {
+              metadataId: imageMetadata.id,
+              expiry: imageMetadata.get("expiry")
+            }).then(function() {
+              // Render the template to show one image
+              res.redirect('/admin');
+            }, function(error) {
+              res.send("Error: " + error);
+            });
+          },
+          error: function(error) {
+            console.log("ads approved notification not successful");
+            res.send("Error: " + error);
+          }
         });
       }
     }, function(error) {
@@ -132,17 +173,30 @@ module.exports = function() {
     query.find().then(function(objects) {
       if (objects.length === 0) {
         res.send("Image not found - 1");
-      } else {
-        var image = objects[0];
+      } else {var Notification = Parse.Object.extend("Notification");
+        var notification = new Notification();
 
-        // Update metadata on image (adds a view)
-        Parse.Cloud.run('rejectImage', {
-          metadataId: image.get("imageMetadata").id
-        }).then(function() {
-          // Render the template to show one image
-          res.redirect('/admin');
-        }, function(error) {
-          res.send("Error: " + error);
+        notification.set("owner", image.get("user").id);
+        notification.set("code", 5);
+        notification.set("message", "Ad approved by admin for ad: " + imageMetadata.get("title") + ", reason: " + imageMetadata.get("reasonForRejection"));
+        notification.set("readStatus", 0);
+        notification.save(null, {
+          success: function() {
+            console.log("ads approved notification not successful");
+            Parse.Cloud.run('approveImage', {
+              metadataId: imageMetadata.id,
+              expiry: imageMetadata.get("expiry")
+            }).then(function() {
+              // Render the template to show one image
+              res.redirect('/admin');
+            }, function(error) {
+              res.send("Error: " + error);
+            });
+          },
+          error: function(error) {
+            console.log("ads approved notification not successful");
+            res.send("Error: " + error);
+          }
         });
       }
     }, function(error) {

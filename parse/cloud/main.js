@@ -9,14 +9,14 @@ var SMALL_WIDTH = 110;
 // Resize image into various sizes before saving
 Parse.Cloud.beforeSave("Image", function(req, res) {
   var original = req.object.get('sizeOriginal');
-  console.log("beforeSave:"+req.object);
+  console.log("beforeSave:" + req.object);
   Parse.Promise.as().then(function() {
     var im = new ImageMetadata;
     // Create an image metadata object on creation
     if (req.object.isNew() && req.object.get('imageMetadata') == undefined) {
       im.set("views", 0);
       return im.save();
-    }else{
+    } else {
       im = req.object.get('imageMetadata');
       return im.save();
     }
@@ -114,15 +114,19 @@ Parse.Cloud.define("approveImage", function(request, response) {
   Parse.Cloud.useMasterKey();
   var object = new ImageMetadata;
   object.id = request.params.metadataId;
-  var expiry = request.params.expiry;
+  var expiry = parseInt(request.params.expiry);
   var expiryDate = new Date();
+
+  console.log("first: " + expiryDate);
+  console.log("expiry: " + expiry);
   expiryDate.setDate(expiryDate.getDate() + expiry);
+  console.log("second: " + expiryDate);  
 
   var dd = expiryDate.getDate();
   var mm = expiryDate.getMonth() + 1;
   var y = expiryDate.getFullYear();
 
-  expiryDate = dd + '/'+ mm + '/'+ y;
+  expiryDate = dd + '/' + mm + '/' + y;
 
   var expiryString = expiryDate.toString();
   object.set("expiry", expiryString);
