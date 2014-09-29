@@ -4,13 +4,12 @@
  *  Description: Custom javascript code used in Image Gallery page
  */
 
-var CompGallery = function() {
+var CompGalleryMerchant = function() {
 
     return {
         init: function() {
-            var galleryFilter = $('.gallery-filter');
-            var gallery       = $('.gallery');
-            
+            var galleryFilter = $('.gallery-filter-merchant');
+            var gallery       = $('.gallery-merchant');
             var showCategory;
 
             // When a gallery filter link is clicked
@@ -29,14 +28,14 @@ var CompGallery = function() {
                     // If the value is 'all' hide the current visible items and show them all together, else hide them all and show only from the category we need
                     if (showCategory === 'all') {
                         gallery
-                            .find('.gallery-image-container')
+                            .find('.gallery-image-container-merchant')
                             .parent()
                             .hide(0, function(){
                                 $(this).show(0);
                             });
                     } else {
                         gallery
-                            .find('.gallery-image-container')
+                            .find('.gallery-image-container-merchant')
                             .parent()
                             .hide(0, function(){
                                 gallery
