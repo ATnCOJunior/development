@@ -1,0 +1,16 @@
+@media screen and (min-width: 992px) {
+
+	.mfp-figure figure {
+	    margin-left: -300px;
+	}
+
+	.mfp-bottom-bar {
+	    position: fixed;
+	    top: 200px;
+	    width: 300px;
+	    right: 25px;
+	    left: auto;
+	    font-size: 18px;
+	}
+
+}

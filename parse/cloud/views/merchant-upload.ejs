@@ -29,7 +29,6 @@
             <div id="sidebar-scroll-alt">
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
-                 
 
                     <!-- Profile -->
                     <div class="sidebar-section">
@@ -94,6 +93,9 @@
                             <i class="fa fa-ellipsis-h"></i>
                         </li>
                         <li>
+                            <a href="/merchant"><i class="fa fa-bullhorn sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Campaigns</span></a>
+                        </li>
+                        <li>
                             <a href="/merchant-upload"><i class="fa fa-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
                         </li>
                         <li>
@@ -121,12 +123,6 @@
                                     <a href="">History Payments</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="/merchant-inbox">
-                                <i class="fa fa-inbox sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Inbox</span>
-                            </a>
                         </li>
                         <li>
                             <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
@@ -177,7 +173,7 @@
 
                 <!-- Right Header Navigation -->
                 <ul class="nav navbar-nav-custom pull-right">
-                    
+
                     <!-- Alternative Sidebar Toggle Button -->
                     <li>
                         <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
@@ -217,9 +213,9 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="block col-sm-8">
-                        
+
                         <!-- Upload Form -->
-                        <form id="upload" action="/merchant:upload" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+                        <form id="upload" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="example-email">Title</label>
@@ -304,16 +300,15 @@
                 <h3 class="modal-title"><strong>Compose Message</strong></h3>
             </div>
             <div class="modal-body">
-                <form action="/compose" method="post" class="form-horizontal form-bordered">
+                <form action="page_app_email.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
                     <div class="form-group">
-                        <input type="hidden" name="origin" value="/user">
                         <div class="col-xs-12">
                             If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
+                            <textarea id="fcompose-message" name="fcompose-message" rows="7" class="form-control" data-placeholder="Write your message.."></textarea>
                         </div>
                     </div>
                     <div class="form-group form-actions">

@@ -35,11 +35,11 @@ module.exports = function() {
       imageMetadata.set("shares", 0);
       imageMetadata.set("likes", 0);
       imageMetadata.set("views", 0);
-
+      
       imageMetadata.set("approval", "0")
 
       image.set("imageMetadata", imageMetadata);
-      console.log("creation at image.js" + imageMetadata);
+      console.log("creation at image.js"+imageMetadata);
       // Set up the ACL so everyone can read the image
       // but only the owner can have write access
       var acl = new Parse.ACL();
@@ -154,7 +154,7 @@ module.exports = function() {
             console.log("ads approved notification not successful");
             res.send("Error: " + error);
           }
-        });
+        }); 
       }
     }, function(error) {
       res.send("Image not found");
@@ -165,6 +165,9 @@ module.exports = function() {
   app.get('/:id/reject', function(req, res) {
     var id = req.params.id;
 
+    var reason = req.params.reason;
+    console.log(reason);
+
     // Build the query to find an image by id
     var query = new Parse.Query(Image);
     query.equalTo("objectId", id);
@@ -173,8 +176,11 @@ module.exports = function() {
     query.find().then(function(objects) {
       if (objects.length === 0) {
         res.send("Image not found - 1");
-      } else {var Notification = Parse.Object.extend("Notification");
+      } else {
+        var Notification = Parse.Object.extend("Notification");
         var notification = new Notification();
+        var image = objects[0];
+        var imageMetadata = image.get("imageMetadata");
 
         notification.set("owner", image.get("user").id);
         notification.set("code", 5);
@@ -183,7 +189,7 @@ module.exports = function() {
         notification.save(null, {
           success: function() {
             console.log("ads approved notification not successful");
-            Parse.Cloud.run('approveImage', {
+            Parse.Cloud.run('rejectImage', {
               metadataId: imageMetadata.id,
               expiry: imageMetadata.get("expiry")
             }).then(function() {

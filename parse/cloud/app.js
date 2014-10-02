@@ -358,6 +358,8 @@ app.get('/user-bookmark', function(req, res) {
 
   query.find({
     success: function(objects) {
+      console.log(objects);
+
       res.render('user-bookmark', {
         bookmarks: objects
       });
@@ -366,7 +368,6 @@ app.get('/user-bookmark', function(req, res) {
       res.send(500, err);
     }
   });
-  //res.render('bookmark');
 });
 
 // ADMIN FEATURE - ACCOUNT MANAGEMENT
