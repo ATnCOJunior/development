@@ -110,7 +110,7 @@ $(function() {
 
         // Make a new bookmark
 
-        if ($(event.currentTarget).is(':checked')) {
+        // if ($(event.currentTarget).is(':checked')) {
             var imageId = $(event.currentTarget).attr('title');
         	var userId = $('#userID').val();
 
@@ -134,7 +134,7 @@ $(function() {
                     console.log('Failed to create new bookmark, with error code: ' + error.message);
                 }
             });
-        }
+        // }
     });
 
 

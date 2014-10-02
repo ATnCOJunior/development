@@ -272,7 +272,13 @@
 								</a>
 							</div>
 							<!-- bookmark like share button -->
-							<div class="modal-footer">
+							<div class="modal-footer" title="<%=imageID%>">
+								<!-- <div class="bookmark-switch">
+									<button type="button" class="btn btn-effect-ripple btn-success" data-dismiss="modal">
+										<i class="fa fa-bookmark"></i> Bookmark
+									</button>
+									
+								</div> -->
 								<form class="bookmark" action="/bookmark" method="post">
 									<div class="text-success">
 										<label class="switch switch-success">
@@ -280,7 +286,7 @@
 											<span></span>
 										</label>
 										<strong class="text-success"> Bookmark</strong>
-									</div>
+									</div> 
 								</form>
 								<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
 									<i class="fa fa-thumbs-up"></i> Like
@@ -318,6 +324,23 @@
 							<div class="col-xs-12">
 								If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
 							</div>
+						</div>
+                        <div class="block full form-inline">
+							<!-- Inline Form Content -->
+
+							<div class="form-group">
+								<label class="sr-only" for="example-if-email">Email</label>
+								<input type="email"   name="example-if-email" class="form-control" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="example-if-password">Contact</label>
+								<input type="yexy"  name="example-if-password" class="form-control" placeholder="Contact number">
+							</div>
+							<div class="form-group">
+
+								<button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
+							</div>
+							<!-- END Inline Form Content -->
 						</div>
 						<div class="form-group">
 							<div class="col-xs-12">
