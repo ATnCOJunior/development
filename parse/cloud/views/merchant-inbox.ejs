@@ -86,6 +86,9 @@
                             <i class="fa fa-ellipsis-h"></i>
                         </li>
                         <li>
+                            <a href="/merchant"><i class="fa fa-bullhorn sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Campaigns</span></a>
+                        </li>
+                        <li>
                             <a href="/merchant-upload"><i class="fa fa-cloud-upload sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Upload</span></a>
                         </li>
                         <li>
@@ -114,7 +117,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="/merchant-inbox">
                                 <i class="fa fa-inbox sidebar-nav-icon"></i>
                                 <span class="sidebar-nav-mini-hide">Inbox</span>
@@ -161,7 +164,7 @@
 
                     <!-- Header Link -->
                     <li class="hidden-xs animation-fadeInQuick">
-                        <a><strong>Your Store</strong></a>
+                        <a><strong>Your Notifications</strong></a>
                     </li>
                     <!-- END Header Link -->
                 </ul>
@@ -207,65 +210,65 @@
             <!-- Page content -->
             <div id="page-content">
 
-            <!-- Table Styles Block -->
-            <div class="block">
+                <!-- Table Styles Block -->
+                <div class="block">
 
-                <!-- Table Styles Content -->
-                <div class="table-responsive">
+                    <!-- Table Styles Content -->
+                    <div class="table-responsive">
 
-                    <!-- Message List -->
-                    <div id="user-inbox-list">
-                        <!-- Title -->
-                        <div class="block-title clearfix">
-                            <div class="block-options pull-right">
-                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
-                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+                        <!-- Message List -->
+                        <div id="user-inbox-list">
+                            <!-- Title -->
+                            <div class="block-title clearfix">
+                                <div class="block-options pull-right">
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+                                </div>
+                                <div class="block-options pull-left">
+
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-warning" title="" style="overflow: hidden; position: relative;" data-original-title="Mark as Read"><i class="fa fa-star"></i></a>
+
+                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-danger" title="" style="overflow: hidden; position: relative;" data-original-title="Delete Selected"><i class="fa fa-times"></i></a>
+                                </div>
                             </div>
-                            <div class="block-options pull-left">
+                            <!-- END Title -->
 
-                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-warning" title="" style="overflow: hidden; position: relative;" data-original-title="Mark as Read"><i class="fa fa-star"></i></a>
+                            <!-- Messages -->
+                            <div class="block-content-full">
+                                <table class="table table-borderless table-hover table-vcenter remove-margin">
+                                    <tbody>
+                                        <% _(notifications).each(function(notification){
+                                            if(notification.get("code")==4){
+                                                var title = "Ad approved"
+                                            }else if(notification.get("code")==5){
+                                                var title = "Ad rejected";
+                                            }
+                                            var message = notification.get("message");
+                                            %>
+                                            <!-- Use the first row as a prototype for your column widths -->
+                                            <tr>
+                                                <td class="td-label td-label-muted text-center" style="width: 5%;">
+                                                    <label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label>
+                                                </td>
 
-                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-danger" title="" style="overflow: hidden; position: relative;" data-original-title="Delete Selected"><i class="fa fa-times"></i></a>
-                            </div>
-                        </div>
-                        <!-- END Title -->
-
-                        <!-- Messages -->
-                        <div class="block-content-full">
-                            <table class="table table-borderless table-hover table-vcenter remove-margin">
-                                <tbody>
-                                    <% _(notifications).each(function(notification){
-                                        if(notification.get("code")==4){
-                                            var title = "Ad approved"
-                                        }else if(notification.get("code")==5){
-                                            var title = "Ad rejected";
-                                        }
-                                        var message = notification.get("message");
-                                    %>
-                                    <!-- Use the first row as a prototype for your column widths -->
-                                    <tr>
-                                        <td class="td-label td-label-muted text-center" style="width: 5%;">
-                                            <label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label>
-                                        </td>
-
-                                        <td>
-                                            <a href="javascript:void(0)" class="text-dark" title="
-                                                <%=message%>">
-                                                <strong>
-                                                    <%=title%>
-                                                    <br>
-                                                </strong>
-                                            </a>
-                                            <span class="text-muted"><%=message.substring(0,50)%></span>
-                                        </td>
-                                        <td class="hidden-xs text-center" style="width: 30px;">
-                                            <i class="fa fa-paperclip fa-2x text-muted"></i>
-                                        </td>
-                                        <td class="hidden-xs text-right text-muted" style="width: 120px;"><em>just now</em></td>
-                                    </tr>
-                                    <% 
+                                                <td>
+                                                    <a href="javascript:void(0)" class="text-dark" title="
+                                                    <%=message%>">
+                                                    <strong>
+                                                        <%=title%>
+                                                        <br>
+                                                    </strong>
+                                                </a>
+                                                <span class="text-muted"><%=message.substring(0,50)%></span>
+                                            </td>
+                                            <td class="hidden-xs text-center" style="width: 30px;">
+                                                <i class="fa fa-paperclip fa-2x text-muted"></i>
+                                            </td>
+                                            <td class="hidden-xs text-right text-muted" style="width: 120px;"><em>just now</em></td>
+                                        </tr>
+                                        <% 
                                     });
-                                %>
+                                    %>
                                 </tbody>
                             </table>
                         </div>
@@ -277,12 +280,12 @@
                 <!-- END Table Styles Content -->
             </div>
             <!-- END Table Styles Block -->
-            </div>
-            <!-- END Page Content -->
         </div>
-        <!-- END Main Container -->
+        <!-- END Page Content -->
     </div>
-    <!-- END Page Container -->
+    <!-- END Main Container -->
+</div>
+<!-- END Page Container -->
 </div>
 <!-- END Page Wrapper -->
 
@@ -298,7 +301,7 @@
             <div class="modal-body">
                 <form action="/compose" method="post" class="form-horizontal form-bordered">
                     <div class="form-group">
-                        <input type="hidden" name="origin" value="/user">
+                        <input type="hidden" name="origin" value="/merchant-inbox">
                         <div class="col-xs-12">
                             If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
                         </div>

@@ -1,308 +1,337 @@
 <div id="page-wrapper" class="page-loading">
-    <!-- Preloader -->
-    <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
-    <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
-    <div class="preloader">
-        <div class="inner">
-            <!-- Animation spinner for all modern browsers -->
-            <div class="preloader-spinner themed-background hidden-lt-ie10">
-            </div>
+	<!-- Preloader -->
+	<!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+	<!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
+	<div class="preloader">
+		<div class="inner">
+			<!-- Animation spinner for all modern browsers -->
+			<div class="preloader-spinner themed-background hidden-lt-ie10">
+			</div>
 
-            <!-- Text for IE9 -->
-            <h3 class="text-primary visible-lt-ie10">
-                <strong>Loading..</strong>
-            </h3>
-        </div>
-    </div>
-    <!-- END Preloader -->
+			<!-- Text for IE9 -->
+			<h3 class="text-primary visible-lt-ie10">
+				<strong>Loading..</strong>
+			</h3>
+		</div>
+	</div>
+	<!-- END Preloader -->
 
-    <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
-        <!-- Alternative Sidebar -->
-        <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
-            <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
-                <i class="fa fa-times">
-                </i>
-            </a>
+	<div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+		<!-- Alternative Sidebar -->
+		<div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+			<!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+			<a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
+				<i class="fa fa-times">
+				</i>
+			</a>
 
-            <!-- Wrapper for scrolling functionality -->
-            <div id="sidebar-scroll-alt">
+			<!-- Wrapper for scrolling functionality -->
+			<div id="sidebar-scroll-alt">
 
-            </div>
-            <!-- END Wrapper for scrolling functionality -->
-        </div>
-        <!-- END Alternative Sidebar -->
+			</div>
+			<!-- END Wrapper for scrolling functionality -->
+		</div>
+		<!-- END Alternative Sidebar -->
 
-        <!-- Main Sidebar -->
-        <div id="sidebar">
-            <!-- Sidebar Brand -->
-            <div id="sidebar-brand" class="themed-background">
-                <a href="/" class="sidebar-title">
-                    <i class="">
-                    </i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
-                </span>
-            </a>
-        </div>
-        <!-- END Sidebar Brand -->
+		<!-- Main Sidebar -->
+		<div id="sidebar">
+			<!-- Sidebar Brand -->
+			<div id="sidebar-brand" class="themed-background">
+				<a href="/admin" class="sidebar-title">
+					<i class="">
+					</i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
+				</span>
+			</a>
+		</div>
+		<!-- END Sidebar Brand -->
 
-        <!-- Wrapper for scrolling functionality -->
-        <div id="sidebar-scroll">
-            <!-- Sidebar Content -->
-            <div class="sidebar-content">
-                <!-- Sidebar Navigation -->
-                <ul class="sidebar-nav">
-                    <li class="" style="text-align:center;">
-                        <strong>ADMIN</strong>
-                    </li>
+		<!-- Wrapper for scrolling functionality -->
+		<div id="sidebar-scroll">
+			<!-- Sidebar Content -->
+			<div class="sidebar-content">
+				<!-- Sidebar Navigation -->
+				<ul class="sidebar-nav">
+					<li class="" style="text-align:center;">
+						<strong>ADMIN</strong>
+					</li>
 
-                    <li class="sidebar-separator">
-                        <i class="fa fa-ellipsis-h">
-                        </i>
-                    </li>
+					<li class="sidebar-separator">
+						<i class="fa fa-ellipsis-h">
+						</i>
+					</li>
 
-                    <li>
-                        <a href="/admin" class="active">
-                            <i class="fa fa-eye sidebar-nav-icon">
-                            </i>
-                            <span class="sidebar-nav-mini-hide">Ads Approval</span>
-                        </a>
-                    </li>
+					<li>
+						<a href="/admin" class="active">
+							<i class="fa fa-eye sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Ads Approval</span>
+						</a>
+					</li>
 
-                    <li>
-                        <a href="#" class="sidebar-nav-menu">
-                            <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
-                            </i>
-                            <i class="fa fa-users sidebar-nav-icon">
-                            </i>
-                            <span class="sidebar-nav-mini-hide">Customer Management</span>
-                        </a>
-                        <ul>
-                            <li>
-                               <a href="/admin-account-user">Account Table</a>  
-                           </li>
-                       </ul>
-                   </li>
-                   <li>
-                    <a href="#" class="sidebar-nav-menu">
-                        <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
-                        </i>
-                        <i class="fa fa-briefcase sidebar-nav-icon">
-                        </i>
-                        <span class="sidebar-nav-mini-hide">Merchant Management</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/admin-add-merchant">Add a Merchant</a>
-                        </li>
-                        <li>
-                            <a href="/admin-account-merchant">Account Table</a>
-                        </li>
-                    </ul>
-                </li>
+					<li>
+						<a href="#" class="sidebar-nav-menu">
+							<i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
+							</i>
+							<i class="fa fa-users sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Customer Management</span>
+						</a>
+						<ul>
+							<li>
+								<a href="/admin-account-user">Account Table</a>  
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="sidebar-nav-menu">
+							<i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
+							</i>
+							<i class="fa fa-briefcase sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Merchant Management</span>
+						</a>
+						<ul>
+							<li>
+								<a href="/admin-add-merchant">Add a Merchant</a>
+							</li>
+							<li>
+								<a href="/admin-account-merchant">Account Table</a>
+							</li>
+						</ul>
+					</li>
 
-                <li>
-                    <a href="#" class="sidebar-nav-menu">
-                        <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
-                        </i>
-                        <i class="fa fa-dollar sidebar-nav-icon">
-                        </i>
-                        <span class="sidebar-nav-mini-hide">Transactions</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="admin-transaction-merchant">Merchant Payment</a>
-                        </li>
-                        <li>
-                            <a href="admin-transaction-user">Customer Cashout</a>
-                        </li>
-                    </ul>
-                </li>
+					<li>
+						<a href="#" class="sidebar-nav-menu">
+							<i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
+							</i>
+							<i class="fa fa-dollar sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Transactions</span>
+						</a>
+						<ul>
+							<li>
+								<a href="/admin-transaction-merchant">Merchant Payment</a>
+							</li>
+							<li>
+								<a href="/admin-transaction-user">Customer Cashout</a>
+							</li>
+						</ul>
+					</li>
 
-                <li>
-                    <a href="/admin-inbox">
-                        <i class="fa fa-inbox sidebar-nav-icon">
-                        </i>
-                        <span class="sidebar-nav-mini-hide">Inbox</span>
-                    </a>
-                </li>
-            </ul>
-            <!-- END Sidebar Navigation -->
-        </div>
-        <!-- END Sidebar Content -->
-    </div>
-    <!-- END Wrapper for scrolling functionality -->
+					<li>
+						<a href="/admin-inbox">
+							<i class="fa fa-inbox sidebar-nav-icon">
+							</i>
+							<span class="sidebar-nav-mini-hide">Inbox</span>
+						</a>
+					</li>
+				</ul>
+				<!-- END Sidebar Navigation -->
+			</div>
+			<!-- END Sidebar Content -->
+		</div>
+		<!-- END Wrapper for scrolling functionality -->
 
-    <!-- Sidebar Extra Info -->
-    <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-        <div class="text-center">
-            <small>Crafted with <i class="fa fa-heart text-danger">
-            </i> by AT+CO.JR. </small>
-        </div>
-    </div>
-    <!-- END Sidebar Extra Info -->
-</div>
-<!-- END Main Sidebar -->
+		<!-- Sidebar Extra Info -->
+		<div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+			<div class="text-center">
+				<small>Crafted with <i class="fa fa-heart text-danger">
+				</i> by AT+CO.JR. </small>
+			</div>
+		</div>
+		<!-- END Sidebar Extra Info -->
+	</div>
+	<!-- END Main Sidebar -->
 
-<!-- Main Container -->
-<div id="main-container">
+	<!-- Main Container -->
+	<div id="main-container">
 
-    <header class="navbar navbar-inverse navbar-fixed-top">
-        <!-- Left Header Navigation -->
-        <ul class="nav navbar-nav-custom">
-            <!-- Main Sidebar Toggle Button -->
+		<header class="navbar navbar-inverse navbar-fixed-top">
+			<!-- Left Header Navigation -->
+			<ul class="nav navbar-nav-custom">
+				<!-- Main Sidebar Toggle Button -->
 
-            <li>
-                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;">
-                    </i>
-                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;">
-                    </i>
-                </a>
-            </li>
-            <!-- END Main Sidebar Toggle Button -->
+				<li>
+					<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+						<i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;">
+						</i>
+						<i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;">
+						</i>
+					</a>
+				</li>
+				<!-- END Main Sidebar Toggle Button -->
 
-            <!-- Header Link -->
-            <li class="hidden-xs animation-fadeInQuick">
-                <a>
-                    <strong>Admin Console</strong>
-                </a>
-            </li>
-            <!-- END Header Link -->
-        </ul>
-        <!-- END Left Header Navigation -->
+				<!-- Header Link -->
+				<li class="hidden-xs animation-fadeInQuick">
+					<a>
+						<strong>Admin Console</strong>
+					</a>
+				</li>
+				<!-- END Header Link -->
+			</ul>
+			<!-- END Left Header Navigation -->
 
-        <!-- Right Header Navigation -->
-        <ul class="nav navbar-nav-custom pull-right">
+			<!-- Right Header Navigation -->
+			<ul class="nav navbar-nav-custom pull-right">
 
-            <!-- User Dropdown -->
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;">
-                    </i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
+				<!-- User Dropdown -->
+				<li class="dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;">
+						</i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-right">
 
-                    <li>
-                        <a href="/logout">
-                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
-                            </i>
-                            Logout
-                        </a>
-                    </li>
+						<li>
+							<a href="/logout">
+								<i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
+								</i>
+								Logout
+							</a>
+						</li>
 
 
-                </ul>
-            </li>
-            <!-- END User Dropdown -->
-        </ul>    
-    </header>
-    <!-- END Header -->
+					</ul>
+				</li>
+				<!-- END User Dropdown -->
+			</ul>    
+		</header>
+		<!-- END Header -->
 
-    <!-- Page content -->
-    <div id="page-content">
+		<!-- Page content -->
+		<div id="page-content">
 
-        <!-- Gallery Header -->
-        <div class="content-header">
-            <!-- Gallery Filter Links -->
-            <!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
-            <!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
-            <div class="header-section text-center">
-                <div class="btn-group gallery-filter">
-                        <!-- <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;">
-<span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;">
-</span>All</a> -->
-<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending" style="overflow: hidden; position: relative;">
-    <span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;">
-    </span>Pending</a>
-    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;">
-        <span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;">
-        </span>Current</a>
-        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected" style="overflow: hidden; position: relative;">
-            <span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;">
-            </span>Rejected</a>
-            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired" style="overflow: hidden; position: relative;">
-                <span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;">
-                </span>Expired</a>
-            </div>
-        </div>
-        <!-- END Gallery Filter Links -->
-    </div>
-    <!-- END Gallery Header -->
+			<!-- Gallery Header -->
+			<div class="content-header">
+				<!-- Gallery Filter Links -->
+				<!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
+				<!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
+				<div class="header-section text-center">
+					<div class="btn-group gallery-filter">
+						<!-- <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a> -->
+						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Current</a>
+						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Pending</a>
+						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Rejected</a>
+						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Expired</a>
+					</div>
 
-    <div class="row gallery">
-        <% _(images).each(function(image){
-            var imageMetadata = image.get('imageMetadata');
-            var dataCategory = "";
-            var status = imageMetadata.get("approval");
-            if (status=="1") {
-                dataCategory = "current";
-            }else if (status=="0"){
-                dataCategory = "pending";
-            }else if (status=="-1"){
-                dataCategory = "rejected";
-            }else if (status=="2"){
-                dataCategory = "expired";
-            } %>
-            <div class="col-sm-3">
-                <div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=dataCategory%>">
+					<div class="block-options pull-right">
+						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+					</div>
+				</div>
+				<!-- END Gallery Filter Links -->
+			</div>
+			<!-- END Gallery Header -->
 
-                    <img src="<%= image.get('sizeNormal').url() %>"
-                    alt="<%= imageMetadata.get("desc")+"|||"
-                    +imageMetadata.get("expiry")+"|||"
-                    +imageMetadata.get("location") %>" 
-                    >
-                    <a href="<%= image.get('sizeNormal').url() %>" data-toggle="lightbox-image" class="gallery-image-options"
-                        title=" 
-                        <%= imageMetadata.get("desc") 
-                        + "<br>" 
-                        + "Status: " + dataCategory  
-                        + "<br>" 
-                        + imageMetadata.get("expiry") 
-                        + "<br>" 
-                        + imageMetadata.get("location")%>">
 
-                        <h2 class="text-light">
-                            <%=imageMetadata.get("title")%>
-                        </h2>
-                        <i class="fa fa-search-plus fa-3x text-light">
-                        </i>
+			<div class="row gallery">
+				<% _(images).each(function(image){
+					var imageURL = image.get('sizeNormal').url();
+					var imageMetadata = image.get('imageMetadata');
+					var desc = imageMetadata.get('desc');
+					var expiry = imageMetadata.get('expiry');
+					var location = imageMetadata.get('location');
 
-                    </a>
+					var dataCategory = "";
+					var status = imageMetadata.get("approval");
+					if (status=="1") {
+						dataCategory = "current";
+					}else if (status=="0"){
+						dataCategory = "pending";
+					}else if (status=="-1"){
+						dataCategory = "rejected";
+					}else if (status=="2"){
+						dataCategory = "expired";
+					} %>
+					<div class="col-sm-3">
+						<div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=dataCategory%>">
 
-                </div>
-                <!-- bookmark like share button -->
-                <div class="modal-footer">
+							<img src="<%= imageURL %>"
+							alt="<%= desc
+							+'|||'
+							+expiry
+							+'|||'
+							+location
+							%>" 
+							>
+							<a href="<%= image.get('sizeNormal').url() %>" data-toggle="lightbox-image" class="gallery-image-options"								
+								title="<%= 
+								"<h3>Description: </h3>"
+								+ desc
+								+ "<br>"
+								+ "<h3> Status: </h3>" 
+								+ dataCategory  
+								+ "<br>" 
+								+"<h3>Expiry date: </h3>"
+								+ expiry
+								+ "<br>" 
+								+"<h3>Location: </h3>"
+								+ location 
+								%>">
+								<i class="fa fa-search-plus fa-3x text-light">
+								</i>
+							</a>
 
-                    <button onClick="location.href='/i/<%=image.id%>/approve'" type="button" class="btn btn-effect-ripple btn-success">
-                        <i class="fa fa-check-circle">
-                        </i> Approve
-                    </button>
-                    <button onClick="location.href='/i/<%=image.id%>/reject'" type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-                        <i class="fa fa-times-circle">
-                        </i>
-                    </i> Reject
-                </button>
-                <div class="chosen-container chosen-container-multi chosen-with-drop chosen-container-active" style="width: 100%;" title="" id="">
-                
-                    <div class="form-group">
-                        <select id="search-categories" name="search-categories" class="select-chosen" data-placeholder="Choose categories.." style="width: 250px; display: none;" multiple="">
-                            <option value="bad-content">Inappropriate content</option>
-                            <option value="low-res">Low image resolution</option>
-                        </select>
-                 
-                    </div>
-                </div>
-            </div>
-            <!-- END bookmark like share button -->
-        </div>
-        <%});%>
-    </div>
-    <!-- END Gallery Items -->
-</div>
-<!-- END Page Content -->
-</div>
-<!-- END Main Container -->
+						</div>
+						<%
+						if (status=="0"){
+							%>
+							<!-- bookmark like share button -->
+							<div class="modal-footer">
+
+								<button onClick="location.href='/i/<%=image.id%>/approve'" type="button" class="btn btn-effect-ripple btn-success">
+									<i class="fa fa-check-circle">
+									</i> Approve
+								</button>
+								<button onClick="location.href='/i/<%=image.id%>/reject'" type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+									<i class="fa fa-times-circle">
+									</i>
+								</i> Reject
+								</button>
+								<div class="chosen-container chosen-container-multi chosen-with-drop chosen-container-active" style="width: 100%;" title="">
+
+									<div class="form-group">
+										<select id="search-categories" name="search-categories" class="select-chosen" data-placeholder="Choose categories.." style="width: 250px; display: none;" multiple="">
+											<option value="bad-content">Inappropriate content</option>
+											<option value="low-res">Low image resolution</option>
+										</select>
+
+									</div>
+								</div>
+							</div>
+						<!-- END bookmark like share button -->
+						<%}else if (status=="1"){%>
+							<!-- ads footer -->
+							<div class="modal-footer">
+								<h2 class="text-info"> Current </h2>
+							</div>
+							<!-- ads footer -->
+						<%}
+						else if (status=="-1"){%>
+							<!-- ads footer -->
+							<div class="modal-footer">
+								<h2 class="text-danger"> Rejected </h2>
+							</div>
+							<!-- ads footer -->
+						<%}
+						else{%>
+							<!-- ads footer -->
+							<div class="modal-footer">
+								<h2 class="text-muted"> Expired </h2>
+							</div>
+							<!-- ads footer -->
+						<%}%>
+					</div>
+				<%});%>
+				<br><br>
+			</div>
+			<!-- END Gallery Items -->
+		</div>
+		<!-- END Page Content -->
+	</div>
+	<!-- END Main Container -->
 </div>
 <!-- END Page Container -->
 </div>
-        <!-- END Page Wrapper -->
+<!-- END Page Wrapper -->

@@ -32,7 +32,7 @@ if(Parse.User)
             <div id="sidebar-scroll-alt">
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
-                    
+
 
                     <!-- Profile -->
                     <div class="sidebar-section">
@@ -100,6 +100,9 @@ if(Parse.User)
                         </i>
                     </li>
                     <li>
+                        <a href="/merchant"><i class="fa fa-bullhorn sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Campaigns</span></a>
+                    </li>
+                    <li>
                         <a href="/merchant-upload">
                             <i class="fa fa-cloud-upload sidebar-nav-icon">
                             </i>
@@ -123,7 +126,7 @@ if(Parse.User)
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="#" class="sidebar-nav-menu">
                             <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
                             </i>
@@ -249,243 +252,256 @@ if(Parse.User)
 
                 <!-- Table Styles Content -->
                 <div class="table-responsive">
-                    <!-- Message List -->
-                    <div id="message-list">
-
-                        <!-- Messages -->
-                        <div class="block-content-full" >
-                            <table class="table table-borderless table-hover table-vcenter remove-margin">
-                                <tbody>
-
-                                    <% _(images).each(function(image){
-                                        var imageMetadata = image.get('imageMetadata');
-                                        var likeCount = imageMetadata.get("likes");
-                                        var shareCount = imageMetadata.get("shares");
-                                        var addCount = imageMetadata.get("addDays");
-                                        var title = imageMetadata.get("title");
-                                        var src = image.get('sizeNormal').url();
-                                        var date = imageMetadata.get("updatedAt")
-                                        %>
-
-                                        <!-- Use the first row as a prototype for your column widths -->
-                                        <tr>
-                                            <td class="td-label td-label-muted text-center" style="width: 5%;">
-
-                                            </td>
-
-                                            <td>
-                                                <h4>
-                                                    <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>" title=" 
-                                                        <%= src+','+likeCount+','+shareCount+','+addCount+','+title %>">
-                                                        <strong>Title: <%= title %>
-                                                        </strong>
-                                                    </a>
-                                                </h4>
-                                                <span class="text-muted">Please proceed to payment for your ad. </span>
-                                            </td>
-                                            <td class="hidden-xs text-center" style="width: 30px;">
-                                                <i class="fa fa-paperclip fa-2x text-muted">
-                                                </i>
-                                            </td>
-                                            <td class="hidden-xs text-right text-muted" style="width: 120px;">
-                                                <em>
-                                                    <%= date %>
-                                                </em>
-                                            </td>
-                                        </tr>
-
-                                        <%
-                                    });%>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- END Messages -->
+                 <!-- Title -->
+                 <div class="block-title clearfix">
+                    <div class="block-options pull-right">
+                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
                     </div>
-                    <!-- END Message List -->
+                    <div class="block-options pull-left">
+                        <h2>Your due payments</h2>
+                    </div>
+                </div>
+                <!-- END Title -->
 
-                    <!-- Message View -->
-                    <div id="message-view" class="block-section display-none">
-                        <!-- Title -->
-                        <div class="block-title clearfix">
+                <!-- Message List -->
+                <div id="message-list">
 
-                            <div class="block-options pull-left">
-                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
-                                    <i class="fa fa-chevron-left">
-                                    </i>  Back to Inbox</a>
-                                </div>
+                    <!-- Messages -->
+                    <div class="block-content-full" >
+                        <table class="table table-borderless table-hover table-vcenter remove-margin">
+                            <tbody>
+
+                                <% _(images).each(function(image){
+                                    var imageMetadata = image.get('imageMetadata');
+                                    var likeCount = imageMetadata.get("likes");
+                                    var shareCount = imageMetadata.get("shares");
+                                    var addCount = imageMetadata.get("addDays");
+                                    var title = imageMetadata.get("title");
+                                    var src = image.get('sizeNormal').url();
+                                    var date = imageMetadata.get("updatedAt")
+                                    if (imageMetadata.get("approval")==2) {%>
+                                    %>
+
+                                    <!-- Use the first row as a prototype for your column widths -->
+                                    <tr>
+                                        <td class="td-label td-label-muted text-center" style="width: 5%;">
+
+                                        </td>
+
+                                        <td>
+                                            <h4>
+                                                <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>" title=" 
+                                                    <%= src+','+likeCount+','+shareCount+','+addCount+','+title %>">
+                                                    <strong>Title: <%= title %>
+                                                    </strong>
+                                                </a>
+                                            </h4>
+                                            <span class="text-muted">Please proceed to payment for your ad. </span>
+                                        </td>
+                                        <td class="hidden-xs text-center" style="width: 30px;">
+                                            <i class="fa fa-paperclip fa-2x text-muted">
+                                            </i>
+                                        </td>
+                                        <td class="hidden-xs text-right text-muted" style="width: 120px;">
+                                            <em>
+                                                <%= date %>
+                                            </em>
+                                        </td>
+                                    </tr>
+
+                                    <%
+                                }});%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END Messages -->
+                </div>
+                <!-- END Message List -->
+
+                <!-- Message View -->
+                <div id="message-view" class="block-section display-none">
+                    <!-- Title -->
+                    <div class="block-title clearfix">
+
+                        <div class="block-options pull-left">
+                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
+                                <i class="fa fa-chevron-left">
+                                </i>  Back to Inbox</a>
                             </div>
-                            <!-- END Title -->
+                        </div>
+                        <!-- END Title -->
 
 
-                            <!-- Table -->
-                            <div class="table-responsive">
-                                <div class="col-xs-4">
+                        <!-- Table -->
+                        <div class="table-responsive">
+                            <div class="col-xs-4">
 
-                                    <div class="widget-content widget-content-full">
-                                        <div id="info-carousel" class="carousel slide remove-margin">
+                                <div class="widget-content widget-content-full">
+                                    <div id="info-carousel" class="carousel slide remove-margin">
 
-                                            <!-- Wrapper for slides -->
-                                            <div class="carousel-inner">
-                                                <div class="item active">
-                                                    <img id="imagePreview" src=" 
-                                                    http://files.parsetfss.com/cbebca68-eb67-4c19-9388-07669720e0c1/tfss-576ef32f-3c3b-4107-af1a-6b439738a103-image.JPEG">       
-                                                </div>
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <img id="imagePreview" src=" 
+                                                http://files.parsetfss.com/cbebca68-eb67-4c19-9388-07669720e0c1/tfss-576ef32f-3c3b-4107-af1a-6b439738a103-image.JPEG">       
                                             </div>
-                                            <!-- END Wrapper for slides -->
-
                                         </div>
+                                        <!-- END Wrapper for slides -->
+
                                     </div>
                                 </div>
-                                <div class="col-xs-8">
-                                    <table class="table table-hover table-borderless table-vcenter">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">#</th>
-                                                <th class="text-left">Product</th>
-                                                <th class="text-center">Quantity</th>
-                                                <th class="text-right">Unit</th>
-                                                <th class="text-right">Amount</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-center">1</td>
-                                                <td>
-                                                    <h4>Likes</h4>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="label label-success">
-                                                        <strong id="likeCount">
-                                                        </strong>
-                                                    </span>
-                                                </td>
-                                                <td class="text-right">$ 0.40</td>
-                                                <td class="text-right" id="likeCountSum">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">2</td>
-                                                <td>
-                                                    <h4>Share</h4>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="label label-success">
-                                                        <strong id="shareCount">
-                                                        </strong>
-                                                    </span>
-                                                </td>
-                                                <td class="text-right">$ 0.80</td>
-                                                <td class="text-right" id="shareCountSum">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">3</td>
-                                                <td>
-                                                    <h4>Additional Days</h4>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="label label-success">
-                                                        <strong id="addCount">
-                                                        </strong>
-                                                    </span>
-                                                </td>
-                                                <td class="text-right">$ 50</td>
-                                                <td class="text-right" id="addCountSum">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4" class="text-right">
-                                                    <span class="h4">Subtotal</span>
-                                                </td>
-                                                <td class="text-right">
-                                                    <span class="h4" id="subtotal">
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr class="warning">
-                                                <td colspan="4" class="text-right">
-                                                    <span class="h4">
-                                                        <strong>Total Due</strong>
-                                                    </span>
-                                                </td>
-                                                <td class="text-right">
-                                                    <span class="h4">
-                                                        <strong id="totalDue">
-                                                        </strong>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <!-- END Table -->
-
-                                <div class="col-xl-2 text-center">
-                                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
-                                        <div class="hide" id="errorBox">
-                                        </div>
-                                        <input type="hidden" name="button" value="buynow">
-                                        <input type="hidden" name="business" value="emailhelenshih@gmail.com">
-                                        <input type="hidden" name="item_name" value="Ads Payment">
-                                        <input type="hidden" name="quantity" value="">
-                                        <input type="hidden" name="amount" id="paypalAmount" value="10">
-                                        <input type="hidden" name="currency_code" value="SGD">
-                                        <input type="hidden" name="shipping" value="0">
-                                        <input type="hidden" name="tax" value="0">
-                                        <input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/merchant-transaction-success">
-                                        <input type="hidden" name="cmd" value="_xclick">
-                                        <input type="hidden" name="bn" value="JavaScriptButton_buynow">
-                                        <input type="hidden" name="env" value="www">
-                                        <input type="image" style="width: 100%;" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                        <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
-                                    </form>
-                                </div>
-                                
-                                <!-- END Message Body -->
                             </div>
-                            <!-- END Message View -->
-                            <!-- END Table Styles Content -->
+                            <div class="col-xs-8">
+                                <table class="table table-hover table-borderless table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="text-left">Product</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-right">Unit</th>
+                                            <th class="text-right">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>
+                                                <h4>Likes</h4>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="label label-success">
+                                                    <strong id="likeCount">
+                                                    </strong>
+                                                </span>
+                                            </td>
+                                            <td class="text-right">$ 0.40</td>
+                                            <td class="text-right" id="likeCountSum">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td>
+                                                <h4>Share</h4>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="label label-success">
+                                                    <strong id="shareCount">
+                                                    </strong>
+                                                </span>
+                                            </td>
+                                            <td class="text-right">$ 0.80</td>
+                                            <td class="text-right" id="shareCountSum">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">3</td>
+                                            <td>
+                                                <h4>Additional Days</h4>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="label label-success">
+                                                    <strong id="addCount">
+                                                    </strong>
+                                                </span>
+                                            </td>
+                                            <td class="text-right">$ 50</td>
+                                            <td class="text-right" id="addCountSum">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" class="text-right">
+                                                <span class="h4">Subtotal</span>
+                                            </td>
+                                            <td class="text-right">
+                                                <span class="h4" id="subtotal">
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr class="warning">
+                                            <td colspan="4" class="text-right">
+                                                <span class="h4">
+                                                    <strong>Total Due</strong>
+                                                </span>
+                                            </td>
+                                            <td class="text-right">
+                                                <span class="h4">
+                                                    <strong id="totalDue">
+                                                    </strong>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- END Table -->
+
+                            <div class="col-xl-2 text-center">
+                                <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
+                                    <div class="hide" id="errorBox">
+                                    </div>
+                                    <input type="hidden" name="button" value="buynow">
+                                    <input type="hidden" name="business" value="emailhelenshih@gmail.com">
+                                    <input type="hidden" name="item_name" value="Ads Payment">
+                                    <input type="hidden" name="quantity" value="">
+                                    <input type="hidden" name="amount" id="paypalAmount" value="10">
+                                    <input type="hidden" name="currency_code" value="SGD">
+                                    <input type="hidden" name="shipping" value="0">
+                                    <input type="hidden" name="tax" value="0">
+                                    <input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/merchant-transaction-success">
+                                    <input type="hidden" name="cmd" value="_xclick">
+                                    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+                                    <input type="hidden" name="env" value="www">
+                                    <input type="image" style="width: 100%;" src="https://db.tt/AfjVuanB" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                                    <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
+                                </form>
+                            </div>
+
+                            <!-- END Message Body -->
                         </div>
-                        <!-- END Table Styles Block -->
+                        <!-- END Message View -->
+                        <!-- END Table Styles Content -->
                     </div>
-                    <!-- END Page Content -->
+                    <!-- END Table Styles Block -->
                 </div>
-                <!-- END Main Container -->
+                <!-- END Page Content -->
             </div>
-            <!-- END Page Container -->
+            <!-- END Main Container -->
         </div>
-        <!-- END Page Wrapper -->
+        <!-- END Page Container -->
+    </div>
+    <!-- END Page Wrapper -->
 
-        <!-- Compose Message -->
-        <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h3 class="modal-title"><strong>Compose Message</strong></h3>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/compose" method="post" class="form-horizontal form-bordered">
-                            <div class="form-group">
-                                <input type="hidden" name="origin" value="/user">
-                                <div class="col-xs-12">
-                                    If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
-                                </div>
+    <!-- Compose Message -->
+    <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title"><strong>Compose Message</strong></h3>
+                </div>
+                <div class="modal-body">
+                    <form action="/compose" method="post" class="form-horizontal form-bordered">
+                        <div class="form-group">
+                            <input type="hidden" name="origin" value="/merchant-transaction">
+                            <div class="col-xs-12">
+                                If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
                             </div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
                             </div>
-                            <div class="form-group form-actions">
-                                <div class="col-xs-12 text-right">
-                                    <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
-                                </div>
+                        </div>
+                        <div class="form-group form-actions">
+                            <div class="col-xs-12 text-right">
+                                <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 <!-- END Compose Message -->

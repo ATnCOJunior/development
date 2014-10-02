@@ -94,22 +94,35 @@ $(function() {
     });
 
     $('.reject').click(function(event) {
-        var metadataId = event.currentTarget.getAttribute('metadataid');
-        $.ajax({
-            type: "POST",
-            url: "https://the-central-market.parseapp.com/i/" + metadataId + "/reject",
-            headers: {
-                "X-Parse-Application-Id": appid,
-                "X-Parse-REST-API-Key": restAPIKey
-            },
-            data: {
-                metadataId: metadataId
-            }
-        }).done(function(msg) {
-            console.log("Image Reject");
-        });
-        //Do POST to /:id/reject
+        var reason = $(e.currentTarget).siblings('.chosen-container').find('[name=search-categories]').get(0).value;
+        var imageId = $(e.currentTarget).data('id');
+
+        console.log('reject', imageId, reason);
+
+        console.log('/i/'+ imageId +'/reject?reason=' + reason);
+
+        // location.href= '/i/'+ imageId +'/reject?reason=' + reason;
+   
+        // // remove tool
+        // $('a["title"]').on('mouseenter', function(e){
+        //     e.preventDefault();
     });
+    //     var metadataId = event.currentTarget.getAttribute('metadataid');
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "https://the-central-market.parseapp.com/i/" + metadataId + "/reject",
+    //         headers: {
+    //             "X-Parse-Application-Id": appid,
+    //             "X-Parse-REST-API-Key": restAPIKey
+    //         },
+    //         data: {
+    //             metadataId: metadataId
+    //         }
+    //     }).done(function(msg) {
+    //         console.log("Image Reject");
+    //     });
+    //     //Do POST to /:id/reject
+    // });
 
     //Button in popup
     $('#approve-button').click(function(event) {
@@ -120,6 +133,31 @@ $(function() {
     $('#reject-button').click(function(event) {
         //Do POST to /:id/reject
     });
+
+    // bookmar
+    $('bookmark-switch').click(function(event)) {
+
+        var user = Parse.User.current();
+        var image = event.currentTarget;
+        // Make a new bookmark
+        var Bookmark = Parse.Object.extend("Bookmark");
+        var bookmark = new Bookmark();
+        bookmark.set("bookmark_image", image);
+        bookmark.set("user", user);
+        bookmark.save(null, {
+            success: function(bookmark) {
+                // Execute any logic that should take place after the object is saved.
+                console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user);
+            },
+            error: function(bookmark, error) {
+                // Execute any logic that should take place if the save fails.
+                // error is a Parse.Error with an error code and message.
+                console.log('Failed to create new bookmark, with error code: ' + error.message);
+            }
+
+        });
+    }
+
 
     $('#message-list a').click(function(event) {
         var attributes = event.currentTarget.title.split(',');

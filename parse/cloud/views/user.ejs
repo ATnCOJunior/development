@@ -1,345 +1,329 @@
 <div id="page-wrapper" class="page-loading">
-    <!-- Preloader -->
-    <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
-    <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
-    <div class="preloader">
-        <div class="inner">
-            <!-- Animation spinner for all modern browsers -->
-            <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
+	<!-- Preloader -->
+	<!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+	<!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
+	<div class="preloader">
+		<div class="inner">
+			<!-- Animation spinner for all modern browsers -->
+			<div class="preloader-spinner themed-background hidden-lt-ie10"></div>
 
-            <!-- Text for IE9 -->
-            <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
-        </div>
-    </div>
+			<!-- Text for IE9 -->
+			<h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+		</div>
+	</div>
 
-    <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
-        <!-- Alternative Sidebar -->
-        <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
-            <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+	<div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+		<!-- Alternative Sidebar -->
+		<div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+			<!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+			<a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
 
-            <!-- Wrapper for scrolling functionality -->
-            <div id="sidebar-scroll-alt">
-                <!-- Sidebar Content -->
-                <div class="sidebar-content">
-                   
-                    <!-- Profile -->
-                    <div class="sidebar-section">
-                        <h2 class="text-light">Profile</h2>
-                        <form action="/update-user" method="post" class="form-control-borderless" onsubmit="return false;">
-                            <input type="hidden" name="origin" value="/user">
-                            <div class="form-group">
-                                <label for="side-profile-name">Name</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("gender")%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="side-profile-name">Age</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("age")%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="side-profile-name">Occupation</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("occupation")%>">
-                            </div>
-                            <div class="form-group">
-                                <label for="side-profile-name">Paypal Account</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("paypal")%>">
-                            </div>
-                            <div class="form-group remove-margin">
-                                <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- END Profile -->
-                </div>
-                <!-- END Sidebar Content -->
-            </div>
-            <!-- END Wrapper for scrolling functionality -->
-        </div>
-        <!-- END Alternative Sidebar -->
+			<!-- Wrapper for scrolling functionality -->
+			<div id="sidebar-scroll-alt">
+				<!-- Sidebar Content -->
+				<div class="sidebar-content">
+					
+					<!-- Profile -->
+					<div class="sidebar-section">
+						<h2 class="text-light">Profile</h2>
+						<form action="/update-user" method="post" class="form-control-borderless" onsubmit="return false;">
+							<input type="hidden" name="origin" value="/user">
+							<div class="form-group">
+								<label for="side-profile-name">Name</label>
+								<input type="text" name="" class="form-control" value="<%=Parse.User.current().get("gender")%>">
+							</div>
+							<div class="form-group">
+								<label for="side-profile-name">Age</label>
+								<input type="text" name="" class="form-control" value="<%=Parse.User.current().get("age")%>">
+							</div>
+							<div class="form-group">
+								<label for="side-profile-name">Occupation</label>
+								<input type="text" name="" class="form-control" value="<%=Parse.User.current().get("occupation")%>">
+							</div>
+							<div class="form-group">
+								<label for="side-profile-name">Paypal Account</label>
+								<input type="text" name="" class="form-control" value="<%=Parse.User.current().get("paypal")%>">
+							</div>
+							<div class="form-group remove-margin">
+								<button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
+							</div>
+						</form>
+					</div>
+					<!-- END Profile -->
+				</div>
+				<!-- END Sidebar Content -->
+			</div>
+			<!-- END Wrapper for scrolling functionality -->
+		</div>
+		<!-- END Alternative Sidebar -->
 
-        <!-- Main Sidebar -->
-        <div id="sidebar">
-            <!-- Sidebar Brand -->
-            <div id="sidebar-brand" class="themed-background">
-                <a href="/user" class="sidebar-title">
-                    <i class=""></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
-                </a>
-            </div>
-            <!-- END Sidebar Brand -->
+		<!-- Main Sidebar -->
+		<div id="sidebar">
+			<!-- Sidebar Brand -->
+			<div id="sidebar-brand" class="themed-background">
+				<a href="/user" class="sidebar-title">
+					<i class=""></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
+				</a>
+			</div>
+			<!-- END Sidebar Brand -->
 
-            <!-- Wrapper for scrolling functionality -->
-            <div id="sidebar-scroll">
-                <!-- Sidebar Content -->
-                <div class="sidebar-content">
-                    <!-- Sidebar Navigation -->
-                    <ul class="sidebar-nav">
-                        <li class="" style="text-align:center;">
-                            <strong>USER</strong>
-                        </li>
+			<!-- Wrapper for scrolling functionality -->
+			<div id="sidebar-scroll">
+				<!-- Sidebar Content -->
+				<div class="sidebar-content">
+					<!-- Sidebar Navigation -->
+					<ul class="sidebar-nav">
+						<li class="" style="text-align:center;">
+							<strong>USER</strong>
+						</li>
 
-                        <li class="sidebar-separator">
-                            <i class="fa fa-ellipsis-h"></i>
-                        </li>
+						<li class="sidebar-separator">
+							<i class="fa fa-ellipsis-h"></i>
+						</li>
 
-                        <li>
-                            <a href="/user-transaction">
-                                <i class="fa fa-dollar sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Account</span>
-                            </a>
-                        </li>
+						<li>
+							<a href="/user-transaction">
+								<i class="fa fa-dollar sidebar-nav-icon"></i>
+								<span class="sidebar-nav-mini-hide">Account</span>
+							</a>
+						</li>
 
-                        <li>
-                            <a href="/user-bookmark">
-                                <i class="fa fa-bookmark sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Bookmark</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/user-inbox">
-                                <i class="fa fa-inbox sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
-                                <i class="fa fa-pencil sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Feedback</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- END Sidebar Navigation -->
-                </div>
-                <!-- END Sidebar Content -->
-            </div>
-            <!-- END Wrapper for scrolling functionality -->
+						<li>
+							<a href="/user-bookmark">
+								<i class="fa fa-bookmark sidebar-nav-icon"></i>
+								<span class="sidebar-nav-mini-hide">Bookmark</span>
+							</a>
+						</li>
+						<li>
+							<a href="/user-inbox">
+								<i class="fa fa-inbox sidebar-nav-icon"></i>
+								<span class="sidebar-nav-mini-hide">Inbox</span>
+							</a>
+						</li>
+						<li>
+							<a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
+								<i class="fa fa-pencil sidebar-nav-icon"></i>
+								<span class="sidebar-nav-mini-hide">Feedback</span>
+							</a>
+						</li>
+					</ul>
+					<!-- END Sidebar Navigation -->
+				</div>
+				<!-- END Sidebar Content -->
+			</div>
+			<!-- END Wrapper for scrolling functionality -->
 
-            <!-- Sidebar Extra Info -->
-            <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-                <div class="text-center">
-                    <small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
-                </div>
-            </div>
-            <!-- END Sidebar Extra Info -->
-        </div>
-        <!-- END Main Sidebar -->
+			<!-- Sidebar Extra Info -->
+			<div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
+				<div class="text-center">
+					<small>Crafted with <i class="fa fa-heart text-danger"></i> by AT+CO.JR. </small>
+				</div>
+			</div>
+			<!-- END Sidebar Extra Info -->
+		</div>
+		<!-- END Main Sidebar -->
 
-        <!-- Main Container -->
-        <div id="main-container">
+		<!-- Main Container -->
+		<div id="main-container">
 
-            <header class="navbar navbar-inverse navbar-fixed-top">
-                <!-- Left Header Navigation -->
-                <ul class="nav navbar-nav-custom">
-                    <!-- Main Sidebar Toggle Button -->
-                    <li>
-                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-                            <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                            <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                        </a>
-                    </li>
-                    <!-- END Main Sidebar Toggle Button -->
+			<header class="navbar navbar-inverse navbar-fixed-top">
+				<!-- Left Header Navigation -->
+				<ul class="nav navbar-nav-custom">
+					<!-- Main Sidebar Toggle Button -->
+					<li>
+						<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+							<i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
+							<i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
+						</a>
+					</li>
+					<!-- END Main Sidebar Toggle Button -->
 
-                    <!-- Header Link -->
-                    <li class="hidden-xs animation-fadeInQuick">
-                        <a><strong>Deals for You!</strong></a>
-                    </li>
-                    <!-- END Header Link -->
-                </ul>
-                <!-- END Left Header Navigation -->
+					<!-- Header Link -->
+					<li class="hidden-xs animation-fadeInQuick">
+						<a><strong>Deals for You!</strong></a>
+					</li>
+					<!-- END Header Link -->
+				</ul>
+				<!-- END Left Header Navigation -->
 
-                <!-- Right Header Navigation -->
-                <ul class="nav navbar-nav-custom pull-right">
+				<!-- Right Header Navigation -->
+				<ul class="nav navbar-nav-custom pull-right">
 
-                    <!-- Alternative Sidebar Toggle Button -->
-                    <li>
-                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
-                            <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                        </a>
-                    </li>
-                    <!-- END Alternative Sidebar Toggle Button -->
+					<!-- Alternative Sidebar Toggle Button -->
+					<li>
+						<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+							<i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
+						</a>
+					</li>
+					<!-- END Alternative Sidebar Toggle Button -->
 
-                    <!-- User Dropdown -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-header">
-                                <strong>USER</strong>
-                            </li>
-                            <li>
-                                <a href="/user-logout">
-                                    <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                                    Logout
-                                </a>
-                            </li>
-                            
-                            
-                        </ul>
-                    </li>
-                    <!-- END User Dropdown -->
-                </ul>
-                <!-- END Right Header Navigation -->
-            </header>
-            <!-- END Header -->
+					<!-- User Dropdown -->
+					<li class="dropdown">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li class="dropdown-header">
+								<strong>USER</strong>
+							</li>
+							<li>
+								<a href="/user-logout">
+									<i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
+									Logout
+								</a>
+							</li>
+							
+							
+						</ul>
+					</li>
+					<!-- END User Dropdown -->
+				</ul>
+				<!-- END Right Header Navigation -->
+			</header>
+			<!-- END Header -->
 
-            <!-- Page content -->
-            <div id="page-content">
+			<!-- Page content -->
+			<div id="page-content">
 
-                <!-- Gallery Header -->
-                <div class="content-header">
-                    <!-- Gallery Filter Links -->
-                    <!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
-                    <!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
-                    <div class="header-section text-center">
-                        <div class="btn-group gallery-filter">
-                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a>
-                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="cafe" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Cafe</a>
-                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="bars" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Bars</a>
-                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
-                        </div>
-                        <div class="btn-group">
-                        <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by <span class="caret"></span></a>
-                        <ul class="dropdown-menu text-left">
-                            
-                            <li>
-                                <a href="javascript:void(0)">
-                                    New
-                                </a>
-                            </li>
-                            
-                            <li>
-                                <a href="javascript:void(0)">
-                                    Trending
-                                </a>
-                            </li>
-                            
-                            <li>
-                                <a href="javascript:void(0)">
-                                    Ending
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    </div>
-                    <!-- END Gallery Filter Links -->
-                </div>
-                <!-- END Gallery Header -->
+				<!-- Gallery Header -->
+				<div class="content-header">
+					<!-- Gallery Filter Links -->
+					<!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
+					<!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
+					<div class="header-section text-center">
+						<div class="btn-group gallery-filter">
+							<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a>
+							<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="cafe" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Cafe</a>
+							<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="bars" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Bars</a>
+							<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
+						</div>
+						<div class="btn-group">
+							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by <span class="caret"></span></a>
+							<ul class="dropdown-menu text-left">
+								
+								<li>
+									<a href="javascript:void(0)">
+										New
+									</a>
+								</li>
+								
+								<li>
+									<a href="javascript:void(0)">
+										Trending
+									</a>
+								</li>
+								
+								<li>
+									<a href="javascript:void(0)">
+										Ending
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="block-options pull-right">
+							<a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+							<a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+						</div>
+					</div>
+					<!-- END Gallery Filter Links -->
+				</div>
+				<!-- END Gallery Header -->
 
-                <div class="row gallery">
-                    <% _(images).each(function(image){
-                        var imageURL = image.get('sizeNormal').url();
-                        var imageMetadata = image.get('imageMetadata');
-                        var desc = imageMetadata.get('desc');
-                        var expiry = imageMetadata.get('expiry');
-                        var location = imageMetadata.get('location');
-                        var category = imageMetadata.get("category");
-                        if (imageMetadata.get("approval")==1) {%>
-                        
-                        <div class="col-sm-3">
-                            <div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=category%>"> 
-                                <!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
-                                <img src="<%= imageURL %>"
-                                alt="<%= desc
-                                +'|||'
-                                +expiry
-                                +'|||'
-                                +location
-                                %>" 
-                                >
-                                <a href="<%= image.get('sizeNormal').url() %>" data-toggle="lightbox-image" class="gallery-image-options"
-                                    title=" 
-                                    <%= desc
-                                    + "<br>" 
-                                    + expiry
-                                    + "<br>" 
-                                    + location %>"
-                                    >
-                                    <h2 class="text-light">
-                                        <%=imageMetadata.get("title")%>
-                                    </h2>
-                                    <i class="fa fa-search-plus fa-3x text-light"></i>
+				<div class="row gallery">
+					<% _(images).each(function(image){
+						var imageURL = image.get('sizeNormal').url();
+						var imageMetadata = image.get('imageMetadata');
+						var desc = imageMetadata.get('desc');
+						var expiry = imageMetadata.get('expiry');
+						var location = imageMetadata.get('location');
+						var category = imageMetadata.get("category");
+						if (imageMetadata.get("approval")==1) {%>
+						
+						<div class="col-sm-3">
+							<div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=category%>"> 
+								<!-- <div class="gallery-image-container animation-fadeInQuick2" data-category="cafe">  -->
+								<img src="<%= imageURL %>"
+								alt="<%= desc
+								+'|||'
+								+expiry
+								+'|||'
+								+location
+								%>" 
+								>
+								<a href="<%= imageURL %>" data-toggle="lightbox-image" class="gallery-image-options"
+									title="<%= 
+									"<h3>Description: </h3>"
+									+ desc
+									+ "<br>"
+									+"<h3>Expiry date: </h3>"
+									+ expiry
+									+ "<br>" 
+									+"<h3>Location: </h3>"
+									+ location 
+									%>"
+									>
+									<i class="fa fa-search-plus fa-3x text-light"></i>
+								</a>
+							</div>
+							<!-- bookmark like share button -->
+							<div class="modal-footer">
+								<div class="text-success">
+									<label class="switch switch-success">   
+										<input type="checkbox" class="bookmark-switch">
+										<span></span>
+									</label>
+									<strong class="text-success"> Bookmark</strong>
+								</div>
+								<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+									<i class="fa fa-thumbs-up"></i> Like
+								</button>
+								<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+									<i class="fa fa-share"></i> Share
+								</button>
+							</div>
+							<!-- END bookmark like share button -->
+						</div>
+						<%}});%>
+					</div>
+					<!-- END Gallery Items -->
+				</div>
+				<!-- END Page Content -->
+			</div>
+			<!-- END Main Container -->
+		</div>
+		<!-- END Page Container -->
+	</div>
+	<!-- END Page Wrapper -->
 
-                                </a>
-
-                            </div>
-                            <!-- bookmark like share button -->
-                            <div class="modal-footer">
-
-                                <button type="button" class="btn btn-effect-ripple btn-success" onclick="<%
-                                
-                                var user = Parse.User.current();
-
-                                // Make a new bookmark
-                                var Bookmark = Parse.Object.extend("Bookmark");
-                                var bookmark = new Bookmark();
-                                bookmark.set("bookmark_image", image);
-                                bookmark.set("user", user);
-                                bookmark.save(null, {
-                                  success: function(bookmark) {
-                                        // Execute any logic that should take place after the object is saved.
-                                        console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user);
-                                    },
-                                    error: function(bookmark, error) {
-                                        // Execute any logic that should take place if the save fails.
-                                        // error is a Parse.Error with an error code and message.
-                                        console.log('Failed to create new bookmark, with error code: ' + error.message);
-                                    }
-
-                                });
-                                %>">
-                                <i class="fa fa-bookmark"></i> Bookmark
-                            </button>
-
-                            <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-                                <i class="fa fa-thumbs-up"></i> Like
-                            </button>
-                            <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-                                <i class="fa fa-share"></i> Share
-                            </button>
-                        </div>
-                        <!-- END bookmark like share button -->
-                    </div>
-                    <%}});%>
-                </div>
-                <!-- END Gallery Items -->
-            </div>
-            <!-- END Page Content -->
-        </div>
-        <!-- END Main Container -->
-    </div>
-    <!-- END Page Container -->
-</div>
-<!-- END Page Wrapper -->
-
-<!-- Compose Message -->
-<div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title"><strong>Compose Message</strong></h3>
-            </div>
-            <div class="modal-body">
-                <form action="/compose" method="post" class="form-horizontal form-bordered">
-                    <div class="form-group">
-                        <input type="hidden" name="origin" value="/user">
-                        <div class="col-xs-12">
-                            If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group form-actions">
-                        <div class="col-xs-12 text-right">
-                            <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END Compose Message -->
+	<!-- Compose Message -->
+	<div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3 class="modal-title"><strong>Compose Message</strong></h3>
+				</div>
+				<div class="modal-body">
+					<form action="/compose" method="post" class="form-horizontal form-bordered">
+						<div class="form-group">
+							<input type="hidden" name="origin" value="/user">
+							<div class="col-xs-12">
+								If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
+							</div>
+						</div>
+						<div class="form-group form-actions">
+							<div class="col-xs-12 text-right">
+								<button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Compose Message -->

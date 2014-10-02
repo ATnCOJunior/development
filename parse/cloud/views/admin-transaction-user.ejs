@@ -32,7 +32,7 @@
         <div id="sidebar">
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
-                <a href="/" class="sidebar-title">
+                <a href="/admin" class="sidebar-title">
                     <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
                 </a>
             </div>
@@ -203,15 +203,19 @@
                                 </td>
 
                                 <td>
-                                    <h4>
-                                        <strong>
-                                            <%=record.get("user")%> :: <%=record.get("amount")%> :: <%=record.get("account")%>
-                                        </strong>
-                                    </a>
-                                </h4>
-                                <span class="text-muted">Please proceed to payment for customer's cashout. </span>
-                            </td>
-                            <td class="hidden-xs text-center" style="width: 100;padding-top: 20px;padding-bottom: 0px;">
+                                    <a href="javascript:void(0)" class="text-dark" title="
+                                                <%=record.get("user")+','+record.get("amount")+','+record.get("account")%>">
+                                            <strong>
+                                                <%=record.get("user")%> :: <%=record.get("amount")%> :: <%=record.get("account")%>
+                                            </strong>
+                                        </a>
+                                    </h4>
+                                    <span class="text-muted">Please proceed to payment for customer's cashout. </span>
+                                </td>
+                                <td class="hidden-xs text-center" style="width: 30px;">
+                                    <i class="fa fa-paperclip fa-2x text-muted">
+                                    </i>
+                                </td>
                                 <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
                                     <div class="hide" id="errorBox">
                                     </div>

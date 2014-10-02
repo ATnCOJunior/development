@@ -1,0 +1,29 @@
+@media screen and (min-width: 992px) {
+
+	.mfp-figure figure {
+	    margin-left: -300px;
+	}
+
+	.mfp-bottom-bar {
+	    position: fixed;
+	    top: 200px;
+	    width: 300px;
+	    right: 25px;
+	    left: auto;
+	    font-size: 18px;
+	    font-family: century gothic;
+	}
+
+}
+.widget-image.widget-image-xs {
+    margin-top: 40px;
+    height: 200;
+}
+
+h3{
+	color: #5ccdde;
+}
+
+.col-sm-3{
+	margin-bottom: 10px;
+}

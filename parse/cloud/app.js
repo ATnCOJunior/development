@@ -379,6 +379,7 @@ app.get('/admin-inbox', function(req, res){
   var query = new Parse.Query("Notification");
   query.equalTo("owner", Parse.User.current().id);
   query.equalTo("readStatus", 0);
+  query.descending("createdAt");
   query.include("user");
   query.include("image");
 

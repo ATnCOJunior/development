@@ -30,7 +30,6 @@ module.exports = function() {
                 res.redirect(origin);
             }
         })
-        res.redirect("/user");
     });
 
 

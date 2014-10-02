@@ -173,7 +173,11 @@ module.exports = function() {
     query.find().then(function(objects) {
       if (objects.length === 0) {
         res.send("Image not found - 1");
-      } else {var Notification = Parse.Object.extend("Notification");
+      } else {
+        var image = objects[0];
+        var imageMetadata = image.get("imageMetadata");
+
+        var Notification = Parse.Object.extend("Notification");
         var notification = new Notification();
 
         notification.set("owner", image.get("user").id);
@@ -183,7 +187,7 @@ module.exports = function() {
         notification.save(null, {
           success: function() {
             console.log("ads approved notification not successful");
-            Parse.Cloud.run('approveImage', {
+            Parse.Cloud.run('rejectImage', {
               metadataId: imageMetadata.id,
               expiry: imageMetadata.get("expiry")
             }).then(function() {
