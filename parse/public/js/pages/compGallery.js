@@ -10,7 +10,6 @@ var CompGallery = function() {
         init: function() {
             var galleryFilter = $('.gallery-filter');
             var gallery       = $('.gallery');
-            
             var showCategory;
 
             // When a gallery filter link is clicked

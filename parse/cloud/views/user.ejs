@@ -22,7 +22,7 @@
             <div id="sidebar-scroll-alt">
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
-
+                   
                     <!-- Profile -->
                     <div class="sidebar-section">
                         <h2 class="text-light">Profile</h2>
@@ -198,28 +198,28 @@
                             <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
                         </div>
                         <div class="btn-group">
-                            <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by <span class="caret"></span></a>
-                            <ul class="dropdown-menu text-left">
-
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        New
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        Trending
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        Ending
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by <span class="caret"></span></a>
+                        <ul class="dropdown-menu text-left">
+                            
+                            <li>
+                                <a href="javascript:void(0)">
+                                    New
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="javascript:void(0)">
+                                    Trending
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="javascript:void(0)">
+                                    Ending
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     </div>
                     <!-- END Gallery Filter Links -->
                 </div>
@@ -228,7 +228,6 @@
                 <div class="row gallery">
                     <% _(images).each(function(image){
                         var imageURL = image.get('sizeNormal').url();
-                        
                         var imageMetadata = image.get('imageMetadata');
                         var desc = imageMetadata.get('desc');
                         var expiry = imageMetadata.get('expiry');
@@ -265,13 +264,31 @@
                             </div>
                             <!-- bookmark like share button -->
                             <div class="modal-footer">
-                             <div class="text-success">
-                                <label class="switch switch-success">   
-                                    <input type="checkbox" class="bookmark-switch">
-                                    <span></span>
-                                </label>
-                                <strong class=" text-success">  Bookmark</strong>
-                            </div>
+
+                                <button type="button" class="btn btn-effect-ripple btn-success" onclick="<%
+                                
+                                var user = Parse.User.current();
+
+                                // Make a new bookmark
+                                var Bookmark = Parse.Object.extend("Bookmark");
+                                var bookmark = new Bookmark();
+                                bookmark.set("bookmark_image", image);
+                                bookmark.set("user", user);
+                                bookmark.save(null, {
+                                  success: function(bookmark) {
+                                        // Execute any logic that should take place after the object is saved.
+                                        console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user);
+                                    },
+                                    error: function(bookmark, error) {
+                                        // Execute any logic that should take place if the save fails.
+                                        // error is a Parse.Error with an error code and message.
+                                        console.log('Failed to create new bookmark, with error code: ' + error.message);
+                                    }
+
+                                });
+                                %>">
+                                <i class="fa fa-bookmark"></i> Bookmark
+                            </button>
 
                             <button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
                                 <i class="fa fa-thumbs-up"></i> Like

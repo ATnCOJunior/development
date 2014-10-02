@@ -51,6 +51,9 @@
 			<div class="sidebar-content">
 				<!-- Sidebar Navigation -->
 				<ul class="sidebar-nav">
+					<li class="" style="text-align:center;">
+						<strong>ADMIN</strong>
+					</li>
 
 					<li class="sidebar-separator">
 						<i class="fa fa-ellipsis-h">
@@ -170,85 +173,93 @@
 
 			<!-- Right Header Navigation -->
 			<ul class="nav navbar-nav-custom pull-right">
-				
-				<li class="dropdown">
-					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;">
-						</i>
-					</a>
-					<ul class="dropdown-menu dropdown-menu-right">
+				<!-- Search Form -->
+					<!-- <li>
+						<form action="page_ready_search_results.html" method="post" class="navbar-form-custom" role="search">
+							<input type="text" id="top-search" name="top-search" class="form-control" placeholder="Search..">
+						</form>
+					</li> -->
+					<!-- User Dropdown -->
+					<li class="dropdown">
+						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;">
+							</i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
 
-						<li>
-							<a href="/logout">
-								<i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
-								</i>
-								Logout
-							</a>
-						</li>
-						
-						
-					</ul>
-				</li>
-				<!-- END User Dropdown -->
-			</ul>    
-		</header>
-		<!-- END Header -->
+							<li>
+								<a href="/logout">
+									<i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
+									</i>
+									Logout
+								</a>
+							</li>
+							
+							
+						</ul>
+					</li>
+					<!-- END User Dropdown -->
+				</ul>    
+			</header>
+			<!-- END Header -->
 
-		<!-- Page content -->
-		<div id="page-content">
-
-
-			<div class="block">
-				<!-- Table Styles Title -->
-				<div class="block-title clearfix">
-
-					<!-- END Table Styles Title -->
-
-					<!-- Table Styles Content -->
-					<div class="table-responsive" id="admin-acc-merchant-list">
-
-						<table id="general-table" class="table table-vcenter table-hover">
-							<thead>
+			<!-- Page content -->
+			<div id="page-content">
 
 
-								<tr>
+				<div class="block">
+					<!-- Table Styles Title -->
+					<div class="block-title clearfix">
 
-									<th class="text-center">Name</th>
+						<!-- END Table Styles Title -->
 
-									<th class="text-center">Information</th>
+						<!-- Table Styles Content -->
+						<div class="table-responsive" id="admin-acc-merchant-list">
 
-									<th style="width: 300px;" class="text-center">Paypal Account</th>
+							<table id="general-table" class="table table-vcenter table-hover">
+								<thead>
 
 
-									<th class="text-center" style="width: 80px;" rowspan="1" colspan="1" aria-label="">
-										<i class="fa fa-flash">
-										</i>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
+									<tr>
 
-								<tr>
-									<td class="">
-										<strong>name</strong>
-									</td>
-									<td class="">
-										Gender: 
-										<br>
-										Age: 
-										<br>
-										Occupation: 
-									</td>
-									<td class="">PaypalAccount</td>
+										<th class="text-center">Name</th>
 
-									<td class="text-center">
-										<a href="javascript:void(0)" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
-											<i class="fa fa-times">
+										<th class="text-center">Information</th>
+
+										<th style="width: 300px;" class="text-center">Paypal Account</th>
+
+
+										<th class="text-center" style="width: 80px;" rowspan="1" colspan="1" aria-label="">
+											<i class="fa fa-flash">
 											</i>
-										</a>
-									</td>
-								</tr>
-								
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr>
+										<td class="">
+											<strong>name</strong>
+										</td>
+										<td class="">
+											Gender: 
+											<br>
+											Age: 
+											<br>
+											Occupation: 
+										</td>
+										<td class="">PaypalAccount</td>
+
+										<td class="text-center">
+											<a href="javascript:void(0)" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
+												<i class="fa fa-times">
+												</i>
+											</a>
+										</td>
+									</tr>
+									<!-- 
+									<%});%>
+								-->
 							</tbody>
 						</table>
 					</div>
