@@ -26,7 +26,33 @@
             <div id="sidebar-scroll-alt">
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
-                   
+                    <!-- Color Themes -->
+                    <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
+                    <div class="sidebar-section">
+                        <h2 class="text-light">Colors</h2>
+                        <ul class="sidebar-themes clearfix">
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-default" data-theme="default" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="themed-background-passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse"></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- END Color Themes -->
 
                     <!-- Profile -->
                     <div class="sidebar-section">
@@ -78,10 +104,7 @@
              <div class="sidebar-content">
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
-                    <li class="" style="text-align:center;">
-                        <strong>USER</strong>
-                    </li>
-                    
+
                     <li class="sidebar-separator">
                         <i class="fa fa-ellipsis-h"></i>
                     </li>
@@ -104,7 +127,7 @@
                         <a href="" class=" active">
                             <i class="fa fa-inbox sidebar-nav-icon"></i>
                             <span class="sidebar-nav-mini-hide">Inbox</span>
-                            <span class="badge pull-right" style="margin-bottom: 13px; margin-top: 13px;">9</span>
+                            <span class="badge pull-right">9</span>
                         </a>
                     </li>
                     <li>
@@ -218,7 +241,7 @@
 
                         <!-- Messages -->
                         <div class="block-content-full">
-                            <table class="table table-borderless table-hover table-vcenter remove-margin">
+                            <table class="table table-borderless table-striped table-vcenter remove-margin">
                                 <tbody>
                                     <!-- Use the first row as a prototype for your column widths -->
                                     <tr>
@@ -273,7 +296,12 @@
                     <div class="form-group">
                         <input type="hidden" name="origin" value="/user">
                         <div class="col-xs-12">
-                            If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
+                            <select id="fcompose-users" name="type" class="select-chosen" data-placeholder="To.." style="width: 250px;">
+                                <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                <option value="Mr.Admin">Mr. Admin</option>
+                                <option value="Ms.Design">Ms. Design</option>
+                                <option value="Dr.DB">Dr. Database</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
