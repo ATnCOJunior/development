@@ -24,26 +24,31 @@
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
 
-                    <!-- Profile -->
+                                        <!-- Profile -->
                     <div class="sidebar-section">
                         <h2 class="text-light">Profile</h2>
-                        <form action="/update" method="post" class="form-control-borderless" onsubmit="return false;">
-                            <input type="hidden" name="origin" value="/user-transaction">
+                        <form action="/update-user" method="post" class="form-control-borderless">
+                            <input type="hidden" name="origin" value="/user">
                             <div class="form-group">
-                                <label for="side-profile-name">Gender</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("gender")%>">
+                                <label for="side-profile-name">Name</label>
+                                <input type="hidden" class="type" value="<%=Parse.User.current().id%>" id="userID">
+                                <input type="text" name="fullName" class="form-control" value="<%=Parse.User.current().get("fullName")%>">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="side-profile-name">Age</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("age")%>">
+                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("dob")%>">
                             </div>
                             <div class="form-group">
                                 <label for="side-profile-name">Occupation</label>
                                 <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("occupation")%>">
+                            </div> -->
+                            <div class="form-group">
+                                <label for="side-profile-name">Email Address</label>
+                                <input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
                             </div>
                             <div class="form-group">
                                 <label for="side-profile-name">Paypal Account</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("paypal")%>">
+                                <input type="text" name="paypal" class="form-control" value="<%=Parse.User.current().get("paypal")%>">
                             </div>
                             <div class="form-group remove-margin">
                                 <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
@@ -273,9 +278,15 @@
                                         <tr class="active">
                                             <td>
                                                 <form  action="/cashout" method="post" class="form-horizontal">
-                                                    <button type="submit" class="btn btn-effect-ripple btn-success">
-                                                        <i class="fa fa-arrow-right"></i>Cashout
-                                                    </button>
+                                                    <%if(Parse.User.current().get("points")>=500){%>
+                                                        <button type="submit" class="btn btn-effect-ripple btn-success">
+                                                            <i class="fa fa-arrow-right"></i>Cashout
+                                                        </button>
+                                                    <%}else{%>
+                                                        <button type="button" class="btn btn-effect-ripple btn-success">
+                                                            Not Enough Points!
+                                                        </button>
+                                                    <%}%>
                                                     <input type="hidden" name="user" value="<%=Parse.User.current()%>">
                                                     <input type="hidden" name="pointAmount" value="500">
                                                     <input type="hidden" name="dollarAmount" value="50">
@@ -301,9 +312,15 @@
                                         <tr class="active">
                                             <td>
                                                 <form  action="/cashout" method="post" class="form-horizontal">
-                                                    <button type="submit" class="btn btn-effect-ripple btn-success">
-                                                        <i class="fa fa-arrow-right"></i>Cashout
-                                                    </button>
+                                                    <%if(Parse.User.current().get("points")>=1000){%>
+                                                        <button type="submit" class="btn btn-effect-ripple btn-success">
+                                                            <i class="fa fa-arrow-right"></i>Cashout
+                                                        </button>
+                                                    <%}else{%>
+                                                        <button type="button" class="btn btn-effect-ripple btn-success">
+                                                            Not Enough Points!
+                                                        </button>
+                                                    <%}%>
                                                     <input type="hidden" name="user" value="<%=Parse.User.current()%>">
                                                     <input type="hidden" name="pointAmount" value="1000">
                                                     <input type="hidden" name="dollarAmount" value="100">
@@ -329,9 +346,15 @@
                                         <tr class="active">
                                             <td>
                                                 <form  action="/cashout" method="post" class="form-horizontal">
+                                                <%if(Parse.User.current().get("points")>=1500){%>
                                                     <button type="submit" class="btn btn-effect-ripple btn-success">
                                                         <i class="fa fa-arrow-right"></i>Cashout
                                                     </button>
+                                                <%}else{%>
+                                                    <button type="button" class="btn btn-effect-ripple btn-success">
+                                                        Not Enough Points!
+                                                    </button>
+                                                <%}%>
                                                     <input type="hidden" name="user" value="<%=Parse.User.current()%>">
                                                     <input type="hidden" name="pointAmount" value="1500">
                                                     <input type="hidden" name="dollarAmount" value="150">
@@ -356,10 +379,16 @@
                                         </tr>
                                         <tr class="active">
                                             <td>
-                                             <form  action="/cashout" method="post" class="form-horizontal">
+                                            <form  action="/cashout" method="post" class="form-horizontal">
+                                            <%if(Parse.User.current().get("points")>=2000){%>
                                                 <button type="submit" class="btn btn-effect-ripple btn-success">
                                                     <i class="fa fa-arrow-right"></i>Cashout
                                                 </button>
+                                            <%}else{%>
+                                                <button type="button" class="btn btn-effect-ripple btn-success">
+                                                    Not Enough Points!
+                                                </button>
+                                            <%}%>
                                                 <input type="hidden" name="user" value="<%=Parse.User.current()%>">
                                                 <input type="hidden" name="pointAmount" value="2000">
                                                 <input type="hidden" name="dollarAmount" value="200">

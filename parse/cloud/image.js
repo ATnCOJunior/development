@@ -44,7 +44,7 @@ module.exports = function() {
       // but only the owner can have write access
       var acl = new Parse.ACL();
       acl.setPublicReadAccess(true);
-      acl.setWriteAccess("3xhM0lDzrs", true);
+      acl.setWriteAccess("VJNxQ9QDbY", true);
       if (Parse.User.current()) {
         image.set("user", Parse.User.current());
         acl.setWriteAccess(Parse.User.current(), true);
@@ -56,7 +56,7 @@ module.exports = function() {
         var Notification = Parse.Object.extend("Notification");
         var notification = new Notification();
 
-        notification.set("owner", "MVUYgJSM9w");
+        notification.set("owner", "VJNxQ9QDbY");
         notification.set("code", 1);
         notification.set("message", "Ads Approval for Merchant: " + Parse.User.current().get("username") + ", ad: " + imageMetadata.get("title"));
         notification.set("image", image);

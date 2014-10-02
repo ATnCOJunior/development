@@ -13,7 +13,7 @@ module.exports = function() {
         var Notification = Parse.Object.extend("Notification");
         var notification = new Notification();
 
-        notification.set("owner", "MVUYgJSM9w");
+        notification.set("owner", "VJNxQ9QDbY");
         notification.set("code", 3);
         notification.set("message", "Feedback from User/Merchant: " + user.get("username") + ", " + message);
         notification.set("type", type);
@@ -54,7 +54,7 @@ module.exports = function() {
         record.set("amount", dollarAmountNew);
         record.set("account", user.get("paypal"));
         record.set("user", user.get("username"));
-        notification.set("owner", "MVUYgJSM9w");
+        notification.set("owner", "VJNxQ9QDbY");
         notification.set("code", 2);
         notification.set("message", "Pending Cashout for User: " + user.get("username") + ", $" + dollarAmountNew);
         notification.set("amount", dollarAmountNew);
@@ -111,6 +111,28 @@ module.exports = function() {
             }
         });
     });
+
+
+    // Updates the user's profile info
+    app.post('/update-user', function(req, res) {
+        var user = Parse.User.current();
+
+        user.setEmail(req.body.email,null);
+
+        user.save({
+            fullName: req.body.fullName,
+            paypal: req.body.paypal
+        }, {
+            success: function(user) {
+                res.redirect(req.body.origin);
+            },
+            error: function(user, error) {
+                res.set('error', error);
+                res.redirect(req.body.origin, error);
+            }
+        });
+    });
+
 
     // Updates the user's profile info
     app.post('/update-trans', function(req, res) {
@@ -197,6 +219,7 @@ module.exports = function() {
         user.set('desc', desc);
         user.set('type', "merchant");
 
+
         user.signUp().then(function(user) {
             res.redirect('/merchant');
         }, function(error) {
@@ -228,6 +251,12 @@ module.exports = function() {
             });
         });
     });
+
+    // Render the login page
+    app.get('/login-user', function(req, res) {
+        res.render('login-user');
+    });
+
 
     // Logs in the user
     app.post('/login-user', function(req, res) {
@@ -298,29 +327,6 @@ module.exports = function() {
         }, function(error) {
             // Show the error message and let the user try again
             res.render('login-user', {
-                flash: error.message
-            });
-        });
-    });
-
-    // Render the login page
-    app.get('/login-user', function(req, res) {
-        res.render('login-user');
-    });
-
-    // Logs in the user
-    app.post('/login-user', function(req, res) {
-        Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
-            if (user.get("type") == "customer") {
-                res.redirect('/user');
-            } else {
-                res.render('login', {
-                    flash: "Invalid Username or Password"
-                });
-            }
-        }, function(error) {
-            // Show the error message and let the user try again
-            res.render('login', {
                 flash: error.message
             });
         });

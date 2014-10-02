@@ -24,26 +24,31 @@
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
                     
-                    <!-- Profile -->
+                                        <!-- Profile -->
                     <div class="sidebar-section">
                         <h2 class="text-light">Profile</h2>
-                        <form action="/update-user" method="post" class="form-control-borderless" onsubmit="return false;">
-                            <input type="hidden" name="origin" value="/user-bookmark">
+                        <form action="/update-user" method="post" class="form-control-borderless">
+                            <input type="hidden" name="origin" value="/user">
                             <div class="form-group">
-                                <label for="side-profile-name">Gender</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("gender")%>">
+                                <label for="side-profile-name">Name</label>
+                                <input type="hidden" class="type" value="<%=Parse.User.current().id%>" id="userID">
+                                <input type="text" name="fullName" class="form-control" value="<%=Parse.User.current().get("fullName")%>">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="side-profile-name">Age</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("age")%>">
+                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("dob")%>">
                             </div>
                             <div class="form-group">
                                 <label for="side-profile-name">Occupation</label>
                                 <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("occupation")%>">
+                            </div> -->
+                            <div class="form-group">
+                                <label for="side-profile-name">Email Address</label>
+                                <input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
                             </div>
                             <div class="form-group">
                                 <label for="side-profile-name">Paypal Account</label>
-                                <input type="text" name="" class="form-control" value="<%=Parse.User.current().get("paypal")%>">
+                                <input type="text" name="paypal" class="form-control" value="<%=Parse.User.current().get("paypal")%>">
                             </div>
                             <div class="form-group remove-margin">
                                 <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
@@ -95,6 +100,14 @@
                             <span class="sidebar-nav-mini-hide">Bookmark</span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="/user-inbox">
+                            <i class="fa fa-inbox sidebar-nav-icon"></i>
+                            <span class="sidebar-nav-mini-hide">Inbox</span>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
                             <i class="fa fa-pencil sidebar-nav-icon"></i>
