@@ -250,6 +250,7 @@ app.get('/admin', function(req, res) {
 app.get('/merchant-upload', function(req, res){
   res.render('merchant-upload');
 });
+
 // TRANSACTION - MERCHANT
 app.get('/merchant-transaction', function(req, res){
   if (!Parse.User.current() || Parse.User.current().get("type") != "merchant") {

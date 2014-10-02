@@ -146,6 +146,7 @@ Parse.Cloud.define("rejectImage", function(request, response) {
   object.id = request.params.metadataId;
 
   object.set("approval", "-1");
+  object.set("reason", request.params.reason);
   object.save().then(function() {
     response.success();
   }, function(error) {

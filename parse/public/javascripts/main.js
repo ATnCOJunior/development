@@ -93,37 +93,6 @@ $(function() {
         //Do POST to /:id/approve
     });
 
-    $('.reject').click(function(event) {
-        var reason = $(e.currentTarget).siblings('.chosen-container').find('[name=search-categories]').get(0).value;
-        var imageId = $(e.currentTarget).data('id');
-
-        console.log('reject', imageId, reason);
-
-        console.log('/i/'+ imageId +'/reject?reason=' + reason);
-
-        // location.href= '/i/'+ imageId +'/reject?reason=' + reason;
-   
-        // // remove tool
-        // $('a["title"]').on('mouseenter', function(e){
-        //     e.preventDefault();
-    });
-    //     var metadataId = event.currentTarget.getAttribute('metadataid');
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "https://the-central-market.parseapp.com/i/" + metadataId + "/reject",
-    //         headers: {
-    //             "X-Parse-Application-Id": appid,
-    //             "X-Parse-REST-API-Key": restAPIKey
-    //         },
-    //         data: {
-    //             metadataId: metadataId
-    //         }
-    //     }).done(function(msg) {
-    //         console.log("Image Reject");
-    //     });
-    //     //Do POST to /:id/reject
-    // });
-
     //Button in popup
     $('#approve-button').click(function(event) {
         //Do POST to /:id/approve
@@ -134,29 +103,39 @@ $(function() {
         //Do POST to /:id/reject
     });
 
-    // bookmar
-    $('bookmark-switch').click(function(event)) {
-
-        var user = Parse.User.current();
-        var image = event.currentTarget;
-        // Make a new bookmark
+    // bookmark
+    $('.bookmark-switch').click(function(event) {
         var Bookmark = Parse.Object.extend("Bookmark");
         var bookmark = new Bookmark();
-        bookmark.set("bookmark_image", image);
-        bookmark.set("user", user);
-        bookmark.save(null, {
-            success: function(bookmark) {
-                // Execute any logic that should take place after the object is saved.
-                console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user);
-            },
-            error: function(bookmark, error) {
-                // Execute any logic that should take place if the save fails.
-                // error is a Parse.Error with an error code and message.
-                console.log('Failed to create new bookmark, with error code: ' + error.message);
-            }
 
-        });
-    }
+        // Make a new bookmark
+
+        if ($(event.currentTarget).is(':checked')) {
+            var imageId = $(event.currentTarget).attr('title');
+        	var userId = $('#userID').val();
+
+            var img = Parse.Object.extend("Image");
+            var image = new img();
+			image.id = imageId;
+
+			var user = new Parse.User();
+			user.id = userId;
+
+            bookmark.set("bookmark_image", image);
+            bookmark.set("user", user);
+            bookmark.save(null, {
+                success: function(bookmark) {
+                    // Execute any logic that should take place after the object is saved.
+                    console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user.id);
+                },
+                error: function(bookmark, error) {
+                    // Execute any logic that should take place if the save fails.
+                    // error is a Parse.Error with an error code and message.
+                    console.log('Failed to create new bookmark, with error code: ' + error.message);
+                }
+            });
+        }
+    });
 
 
     $('#message-list a').click(function(event) {
@@ -212,7 +191,7 @@ $(function() {
 
         $('#admin-inbox-message').attr('value', attributes[0]);
     });
-    
+
 });
 
 Uploader = Backbone.View.extend({
@@ -256,12 +235,12 @@ Uploader = Backbone.View.extend({
                     expiry: self.$("[name=expiry]").val(),
                     location: self.$("[name=location]").val(),
                     desc: self.$("[name=desc]").val(),
-                    likes:0,
-                    shares:0,
-                    addDays:0,
-                    daysLeft:self.$("[name=expiry]").val(),
-                    paid:0,
-                    views:0
+                    likes: 0,
+                    shares: 0,
+                    addDays: 0,
+                    daysLeft: self.$("[name=expiry]").val(),
+                    paid: 0,
+                    views: 0
                 }, function(data) {
                     if (data.error) {
                         console.log(data.error);

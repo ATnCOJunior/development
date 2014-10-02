@@ -30,7 +30,8 @@
 							<input type="hidden" name="origin" value="/user">
 							<div class="form-group">
 								<label for="side-profile-name">Name</label>
-								<input type="text" name="" class="form-control" value="<%=Parse.User.current().get("gender")%>">
+								<input type="hidden" class="type" value="<%=Parse.User.current().id%>" id="userID">
+								<input type="text" name="" class="form-control" value="<%=Parse.User.current().get("name")%>">
 							</div>
 							<div class="form-group">
 								<label for="side-profile-name">Age</label>
@@ -232,6 +233,7 @@
 				<div class="row gallery">
 					<% _(images).each(function(image){
 						var imageURL = image.get('sizeNormal').url();
+						var imageID = image.id;
 						var imageMetadata = image.get('imageMetadata');
 						var desc = imageMetadata.get('desc');
 						var expiry = imageMetadata.get('expiry');
@@ -267,13 +269,18 @@
 							</div>
 							<!-- bookmark like share button -->
 							<div class="modal-footer">
-								<div class="text-success">
-									<label class="switch switch-success">   
-										<input type="checkbox" class="bookmark-switch">
-										<span></span>
-									</label>
-									<strong class="text-success"> Bookmark</strong>
-								</div>
+								<form class="bookmark" action="/bookmark" method="post">
+									<div class="text-success">
+										<label class="switch switch-success">   
+											<%
+											if()
+											%>
+											<input type="checkbox" class="bookmark-switch" title="<%=imageID%>">
+											<span></span>
+										</label>
+										<strong class="text-success"> Bookmark</strong>
+									</div>
+								</form>
 								<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
 									<i class="fa fa-thumbs-up"></i> Like
 								</button>

@@ -162,7 +162,7 @@ module.exports = function() {
   });
 
 
-  app.get('/:id/reject', function(req, res) {
+  app.get('/:id/reject/:reason', function(req, res) {
     var id = req.params.id;
 
     // Build the query to find an image by id
@@ -182,13 +182,14 @@ module.exports = function() {
 
         notification.set("owner", image.get("user").id);
         notification.set("code", 5);
-        notification.set("message", "Ad approved by admin for ad: " + imageMetadata.get("title") + ", reason: " + imageMetadata.get("reasonForRejection"));
+        notification.set("message", "Ad approved by admin for ad: " + imageMetadata.get("title") + ", reason: " + req.params.reason);
         notification.set("readStatus", 0);
         notification.save(null, {
           success: function() {
             console.log("ads approved notification not successful");
             Parse.Cloud.run('rejectImage', {
               metadataId: imageMetadata.id,
+              reason: req.params.reason,
               expiry: imageMetadata.get("expiry")
             }).then(function() {
               // Render the template to show one image

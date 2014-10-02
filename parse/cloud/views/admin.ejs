@@ -209,7 +209,7 @@
 				<div class="header-section text-center">
 					<div class="btn-group gallery-filter">
 						<!-- <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a> -->
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Current</a>
+						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Approved</a>
 						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Pending</a>
 						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Rejected</a>
 						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Expired</a>
@@ -284,54 +284,58 @@
 									<i class="fa fa-check-circle">
 									</i> Approve
 								</button>
-								<button onClick="location.href='/i/<%=image.id%>/reject'" type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-									<i class="fa fa-times-circle">
-									</i>
-								</i> Reject
-								</button>
-								<div class="chosen-container chosen-container-multi chosen-with-drop chosen-container-active" style="width: 100%;" title="">
-
-									<div class="form-group">
-										<select id="search-categories" name="search-categories" class="select-chosen" data-placeholder="Choose categories.." style="width: 250px; display: none;" multiple="">
-											<option value="bad-content">Inappropriate content</option>
-											<option value="low-res">Low image resolution</option>
-										</select>
-
-									</div>
+								<!-- onClick="location.href='/i/<%=image.id%>/reject'" type="button" class="btn  -->
+								<div class="btn-group">
+									<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Reject <span class="caret"></span></a>
+									<ul class="dropdown-menu text-left">
+										
+										<li>
+											<a href="/i/<%=image.id%>/reject/bad-image">
+												<i class="fa fa-times-circle pull-right"></i>
+												Poor image quality
+											</a>
+										</li>
+										<li>
+											<a href="/i/<%=image.id%>/reject/bad-content">
+												<i class="fa fa-times-circle pull-right"></i>
+												Inappropriate content
+											</a>
+										</li>
+									</ul>
 								</div>
 							</div>
-						<!-- END bookmark like share button -->
-						<%}else if (status=="1"){%>
+							<!-- END bookmark like share button -->
+							<%}else if (status=="1"){%>
 							<!-- ads footer -->
 							<div class="modal-footer">
-								<h2 class="text-info"> Current </h2>
+								<h2 class="text-info"> Approved </h2>
 							</div>
 							<!-- ads footer -->
-						<%}
-						else if (status=="-1"){%>
+							<%}
+							else if (status=="-1"){%>
 							<!-- ads footer -->
 							<div class="modal-footer">
 								<h2 class="text-danger"> Rejected </h2>
 							</div>
 							<!-- ads footer -->
-						<%}
-						else{%>
+							<%}
+							else{%>
 							<!-- ads footer -->
 							<div class="modal-footer">
 								<h2 class="text-muted"> Expired </h2>
 							</div>
 							<!-- ads footer -->
-						<%}%>
+							<%}%>
+						</div>
+						<%});%>
+						<br><br>
 					</div>
-				<%});%>
-				<br><br>
+					<!-- END Gallery Items -->
+				</div>
+				<!-- END Page Content -->
 			</div>
-			<!-- END Gallery Items -->
+			<!-- END Main Container -->
 		</div>
-		<!-- END Page Content -->
+		<!-- END Page Container -->
 	</div>
-	<!-- END Main Container -->
-</div>
-<!-- END Page Container -->
-</div>
 <!-- END Page Wrapper -->
