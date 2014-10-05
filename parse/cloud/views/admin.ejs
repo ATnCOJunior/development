@@ -78,7 +78,7 @@
 						</a>
 						<ul>
 							<li>
-								<a href="/admin-account-user">Account Table</a>  
+								<a href="/admin-account-user">View Accounts</a>  
 							</li>
 						</ul>
 					</li>
@@ -95,7 +95,7 @@
 								<a href="/admin-add-merchant">Add a Merchant</a>
 							</li>
 							<li>
-								<a href="/admin-account-merchant">Account Table</a>
+								<a href="/admin-account-merchant">View Accounts</a>
 							</li>
 						</ul>
 					</li>
@@ -229,6 +229,7 @@
 				<% _(images).each(function(image){
 					var imageURL = image.get('sizeNormal').url();
 					var imageMetadata = image.get('imageMetadata');
+					var title = imageMetadata.get('title');
 					var desc = imageMetadata.get('desc');
 					var expiry = imageMetadata.get('expiry');
 					var location = imageMetadata.get('location');
@@ -257,7 +258,10 @@
 							>
 							<a href="<%= image.get('sizeNormal').url() %>" data-toggle="lightbox-image" class="gallery-image-options"								
 								title="<%= 
-								"<h3>Description: </h3>"
+								 "<h3>Title: </h3>"
+								+ title
+								+ "<h3>Company: </h3>"
+								+ "<h3>Description: </h3>"
 								+ desc
 								+ "<br>"
 								+ "<h3> Status: </h3>" 

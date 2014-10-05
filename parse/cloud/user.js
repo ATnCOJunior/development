@@ -201,6 +201,7 @@ module.exports = function() {
 
     // Signs up a new user
     app.post('/signup-merchant', function(req, res) {
+        var origin = req.body.origin;
         var username = req.body.username;
         var password = req.body.password;
         var company = req.body.company;
@@ -219,14 +220,23 @@ module.exports = function() {
         user.set('desc', desc);
         user.set('type', "merchant");
 
-
         user.signUp().then(function(user) {
-            res.redirect('/merchant');
+            if(origin!="/merchant"){
+                
+            }else{
+                res.redirect(origin);
+            }
         }, function(error) {
-            // Show the error message and let the user try again
-            res.render('login', {
-                flash: error.message
-            });
+            if(origin!="/merchant"){
+                res.redirect(origin, {
+                    flash: error.message
+                });
+                
+            }else{
+                res.render('login', {
+                    flash: error.message
+                });
+            }
         });
     });
 

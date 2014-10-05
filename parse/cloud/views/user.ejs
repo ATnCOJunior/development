@@ -86,6 +86,13 @@
 							<i class="fa fa-ellipsis-h"></i>
 						</li>
 
+						<li class="active">
+							<a href="/user">
+								<i class="fa fa-bullhorn sidebar-nav-icon"></i>
+								<span class="sidebar-nav-mini-hide">Promotions</span>
+							</a>
+						</li>
+
 						<li>
 							<a href="/user-transaction">
 								<i class="fa fa-dollar sidebar-nav-icon"></i>
@@ -239,6 +246,7 @@
 						var imageURL = image.get('sizeNormal').url();
 						var imageID = image.id;
 						var imageMetadata = image.get('imageMetadata');
+						var title = imageMetadata.get('title');
 						var desc = imageMetadata.get('desc');
 						var expiry = imageMetadata.get('expiry');
 						var location = imageMetadata.get('location');
@@ -258,13 +266,16 @@
 								>
 								<a href="<%= imageURL %>" data-toggle="lightbox-image" class="gallery-image-options"
 									title="<%= 
-									"<h3>Description: </h3>"
+									"<h3>Title: </h3>"
+									+ title
+									+ "<h3>Company: </h3>"
+									+ "<h3>Description: </h3>"
 									+ desc
 									+ "<br>"
-									+"<h3>Expiry date: </h3>"
+									+ "<h3>Expiry date: </h3>"
 									+ expiry
 									+ "<br>" 
-									+"<h3>Location: </h3>"
+									+ "<h3>Location: </h3>"
 									+ location 
 									%>"
 									>
@@ -273,21 +284,9 @@
 							</div>
 							<!-- bookmark like share button -->
 							<div class="modal-footer" title="<%=imageID%>">
-								<!-- <div class="bookmark-switch">
-									<button type="button" class="btn btn-effect-ripple btn-success" data-dismiss="modal">
-										<i class="fa fa-bookmark"></i> Bookmark
-									</button>
-									
-								</div> -->
-								<form class="bookmark" action="/bookmark" method="post">
-									<div class="text-success">
-										<label class="switch switch-success">
-											<input type="checkbox" class="bookmark-switch" title="<%=imageID%>">
-											<span></span>
-										</label>
-										<strong class="text-success"> Bookmark</strong>
-									</div> 
-								</form>
+								<button type="button" class="bookmark-switch btn btn-effect-ripple btn-success" data-dismiss="modal" title="<%=imageID%>">
+									<i class="fa fa-bookmark"></i> Bookmark
+								</button>								
 								<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
 									<i class="fa fa-thumbs-up"></i> Like
 								</button>
@@ -325,7 +324,7 @@
 								If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
 							</div>
 						</div>
-                        <div class="block full form-inline">
+						<div class="block full form-inline">
 							<!-- Inline Form Content -->
 
 							<div class="form-group">

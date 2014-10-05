@@ -158,6 +158,24 @@ $(function() {
         $('#paypalAmount').attr('value', total);
     });
 
+    // $('#admin-message-list a').click(function(event) {
+    //     var attributes = event.currentTarget.title.split(',');
+
+    //     var title = parseInt(attributes[0]);
+    //     var date = parseInt(attributes[1]);
+    //     var user = parseInt(attributes[2]);
+    //     var message = parseInt(attributes[3]);
+    //     var image = parseInt(attributes[4]);
+    //     console.log(attributes);
+    //     $('#feedback-type').text(title);
+    //     $('#feedback-time').text(date);
+    //     $('#feedback-user').text(user);
+    //     $('#feedback-content').text(message);
+    //     if(image!=null){
+    //         $('#feedback-image').attr('src', image);
+    //     }
+    // });
+
     $('#admin-acc-merchant-list a').click(function(event) {
 
         var attributes = event.currentTarget.title.split(',');

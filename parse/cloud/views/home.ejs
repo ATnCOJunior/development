@@ -172,6 +172,7 @@
 				<% _(images).each(function(image){
 					var imageURL = image.get('sizeNormal').url();
 					var imageMetadata = image.get('imageMetadata');
+					var title = imageMetadata.get('title');
 					var desc = imageMetadata.get('desc');
 					var expiry = imageMetadata.get('expiry');
 					var location = imageMetadata.get('location');
@@ -192,13 +193,16 @@
 							>
 							<a href="<%= imageURL %>" data-toggle="lightbox-image" class="gallery-image-options"
 								title="<%= 
-								"<h3>Description: </h3>"
+								 "<h3>Title: </h3>"
+								+ title
+								+ "<h3>Company: </h3>"
+								+ "<h3>Description: </h3>"
 								+ desc
 								+ "<br>"
-								+"<h3>Expiry date: </h3>"
+								+ "<h3>Expiry date: </h3>"
 								+ expiry
 								+ "<br>" 
-								+"<h3>Location: </h3>"
+								+ "<h3>Location: </h3>"
 								+ location 
 								%>"
 							>
@@ -244,4 +248,3 @@
 	<!-- END Page Container -->
 </div>
 <!-- END Page Wrapper -->
-

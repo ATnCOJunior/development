@@ -239,13 +239,12 @@
 				<!-- Okay, this part is for retrieval of all images. and all the images, will have a data-category tag in the class: gallery-image-container-->
 				<div class="row gallery">
 					<% _(images).each(function(image){
-						
 						var imageURL = image.get('sizeNormal').url();
 						var imageMetadata = image.get('imageMetadata');
+						var title = imageMetadata.get('title');
 						var desc = imageMetadata.get('desc');
 						var expiry = imageMetadata.get('expiry');
 						var location = imageMetadata.get('location');
-
 						var dataCategory = "";
 						var status = imageMetadata.get("approval");
 						if (status=="1") {
@@ -271,46 +270,49 @@
 								>
 								<a href="<%= image.get('sizeNormal').url() %>" data-toggle="lightbox-image" class="gallery-image-options"
 									title="<%= 
-									"<h3>Description: </h3>"
+									"<h3>Title: </h3>"
+									+ title
+									+ "<h3>Company: </h3>"
+									+ "<h3>Description: </h3>"
 									+ desc
 									+ "<br>"
-									+"<h3>Expiry date: </h3>"
+									+ "<h3>Expiry date: </h3>"
 									+ expiry
 									+ "<br>" 
-									+"<h3>Location: </h3>"
+									+ "<h3>Location: </h3>"
 									+ location 
 									%>"
-								>	
+									>	
 									<i class="fa fa-search-plus fa-3x text-light"></i>
 								</a>
 							</div>
 
 							<%if (status=="0"){%>
 							<!--pending ads footer -->
-								<div class="modal-footer">
-									<h2 class="text-info"> Pending </h2>
-								</div>
+							<div class="modal-footer">
+								<h2 class="text-info"> Pending </h2>
+							</div>
 							<!-- end pending ads footer -->
 							
 							<%}else if (status=="1"){%>
 							<!--current ads footer -->
-								<div class="modal-footer">
-									<h2 class="text-info"> Approved </h2>
-								</div>
+							<div class="modal-footer">
+								<h2 class="text-info"> Approved </h2>
+							</div>
 							<!-- end current ads footer -->
 							<%}
 							else if (status=="-1"){%>
 							<!-- rejected ads footer -->
-								<div class="modal-footer">
-									<h2 class="text-danger"> Rejected </h2>
-								</div>
+							<div class="modal-footer">
+								<h2 class="text-danger"> Rejected </h2>
+							</div>
 							<!-- END rejected ads footer -->
 							<%}
 							else{%>
 							<!-- expired ads footer -->
-								<div class="modal-footer">
-									<h2 class="text-muted"> Expired </h2>
-								</div>
+							<div class="modal-footer">
+								<h2 class="text-muted"> Expired </h2>
+							</div>
 							<!-- END expired ads footer -->
 							<%}%>
 						</div>
@@ -328,7 +330,7 @@
 	</div>
 	<!-- END Page Wrapper -->
 
-<!-- Compose Message -->
+	<!-- Compose Message -->
 	<div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -344,7 +346,7 @@
 								If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
 							</div>
 						</div>
-                        <div class="block full form-inline">
+						<div class="block full form-inline">
 							<!-- Inline Form Content -->
 
 							<div class="form-group">
