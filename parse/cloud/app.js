@@ -329,7 +329,7 @@ app.get('/user-inbox', function(req, res){
 
   // Get the latest notifications to show
   var query = new Parse.Query("Notification");
-  query.equalTo("user", Parse.User.current());
+  query.equalTo("owner", Parse.User.current().id);
   query.include("image");
   query.include("user");
   query.descending("createdAt");

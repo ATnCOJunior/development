@@ -184,7 +184,7 @@
                     <div class="table-responsive">
 
                         <!-- Message List -->
-                        <div id="user-inbox-list">
+                        <div id="admin-inbox-message-list">
                             <!-- Title -->
                             <div class="block-title clearfix">
                                 <div class="block-options pull-right">
@@ -205,16 +205,33 @@
                                 <table class="table table-borderless table-hover table-vcenter remove-margin">
                                     <tbody>
                                         <% _(notifications).each(function(notification){
-                                            if(notification.get("code")==1){
-                                                var image = notification.get("image");
-                                                var user = notification.get("user");
-                                                var title = "Ads Approval";
-                                            }else if(notification.get("code")==2){
-                                                var title = "Pending User Cashout";
-                                            }else if(notification.get("code")==3){
-                                                var title = "User/Merchant Feedback";
+                                            if(notification.get("user")!=undefined){
+
+                                            var title = ""; 
+                                            var timestamp = "";
+                                            var message = "";
+                                            var user = "";
+                                            var imageUrl = "";
+                                            var imageId = "";
+                                            var code = notification.get("code");
+                                        
+                                            if(code==1){
+                                                if (notification.get("image")!=null){
+                                                    imageUrl = notification.get("image").get('sizeNormal').url();
+                                                    imageId = notification.get("image").id;
+                                                }
+                                                user = notification.get("user").get("fullName");
+                                                title = "Ads Approval";
+                                            }else if(code==2){
+                                                title = "Pending User Cashout";
+                                                user = notification.get("user").get("fullName");
+
+                                            }else if(code==3){
+                                                title = "User/Merchant Feedback";
+                                                user = notification.get("user").get("fullName");
                                             }
-                                            var message = notification.get("message");
+                                            message = notification.get("message");
+                                            timestamp = notification.createdAt;
                                             %>
                                             <!-- Use the first row as a prototype for your column widths -->
                                             <tr>
@@ -223,23 +240,24 @@
                                                 </td>
 
                                                 <td>
-                                                    
-                                                    <a href="javascript:void(0)" class="text-dark" title="
-                                                    <%=message%>">
-                                                    <strong>
-                                                        <%=title%>
-                                                        <br>
-                                                    </strong>
-                                                </a>
-                                                <span class="text-muted"><%=message.substring(0,50)%></span>
+                                                    <h4>
+                                                        <a href="javascript:void(0)" class="text-dark" title="
+                                                            <%=title+'|'+timestamp+'|'+user+'|'+message+'|'+imageUrl+'|'+imageId%>">
+                                                            <strong>
+                                                                <%=title%>
+                                                                <br>
+                                                            </strong>
+                                                        </a>
+                                                    </h4>
+                                                <span class="text-muted"><%=message%></span>
                                             </td>
                                             <td class="hidden-xs text-center" style="width: 30px;">
                                                 <i class="fa fa-paperclip fa-2x text-muted"></i>
                                             </td>
-                                            <td class="hidden-xs text-right text-muted" style="width: 120px;"><em>just now</em></td>
+                                            <td class="hidden-xs text-right text-muted" style="width: 120px;"><em><%=timestamp%></em></td>
                                         </tr>
                                         <% 
-                                    });
+                                    }});
                                     %>
                                 </tbody>
                             </table>
@@ -247,6 +265,62 @@
                         <!-- END Messages -->
                     </div>
                     <!-- END Message List -->
+                    <!-- Message View -->
+                    <div id="admin-inbox-message-view" class="block-section display-none">
+                        <!-- Title -->
+                        <div class="block-title clearfix">
+
+                            <div class="block-options pull-left">
+                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
+                                    <i class="fa fa-chevron-left">
+                                    </i>  Back to Inbox</a>
+                                </div>
+                            </div>
+                            <!-- END Title -->
+                            
+                            <!-- Message Body -->
+                            <h3>
+                                <strong id="feedback-type">Feedback/ Ads Approval/ Cashout request</strong> 
+                                <small><em id="feedback-time"></em></small>
+                            </h3>
+                            <p>
+                                From:
+                                <a href="javascript:void(0)">
+                                    <strong id="feedback-user">User ID</strong>
+                                </a> 
+                            </p>
+                            <hr>
+                            <p id="feedback-content">Content</p>
+                            <img id="feedback-image" src="http://files.parsetfss.com/cbebca68-eb67-4c19-9388-07669720e0c1/tfss-576ef32f-3c3b-4107-af1a-6b439738a103-image.JPEG">
+                            
+                            <div id="approve-buttons" class="modal-footer display-none">
+                                <button id="approve-btn" type="button" class="btn btn-effect-ripple btn-success">
+                                    <i class="fa fa-check-circle">
+                                    </i> Approve
+                                </button>
+                                <div class="btn-group">
+                                    <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Reject <span class="caret"></span></a>
+                                    <ul class="dropdown-menu text-left">
+                                        
+                                        <li>
+                                            <a id="bad-image" href="">
+                                                <i class="fa fa-times-circle pull-right"></i>
+                                                Poor image quality
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="bad-content" href="">
+                                                <i class="fa fa-times-circle pull-right"></i>
+                                                Inappropriate content
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- END Message Body -->
+                        </div>
+                        <!-- END Message View -->
                 </div>
             </div>
             <!-- END Table Styles Content -->

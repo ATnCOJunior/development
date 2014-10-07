@@ -24,8 +24,24 @@ var AppEmail = function() {
             });
 
             /* Show/Hide Message view - Just for preview */
-            var inboxList = $('#message-list');
-            var inboxView = $('#message-view');
+            var origin = $(location).attr('pathname');
+            console.log(origin);
+            if (origin=="/merchant-transaction"){
+                var inboxList = $('#merchant-transaction-message-list');
+                var inboxView = $('#merchant-transaction-message-view');
+            }else if (origin=="/admin-inbox"){
+                var inboxList = $('#admin-inbox-message-list');
+                var inboxView = $('#admin-inbox-message-view');
+            }else if (origin=="/merchant-inbox"){
+                var inboxList = $('#merchant-inbox-message-list');
+                var inboxView = $('#merchant-inbox-message-view');
+            }else if (origin=="/user-inbox"){
+                var inboxList = $('#user-inbox-message-list');
+                var inboxView = $('#user-inbox-message-view');
+            }
+            
+            console.log("a: " + inboxList);
+            console.log("b: " + inboxView);
 
             inboxList.find('h4 > a').on('click', function(){
                 inboxList

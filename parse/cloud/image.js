@@ -24,9 +24,12 @@ module.exports = function() {
       var ImageMetadata = Parse.Object.extend("ImageMetadata");
       var imageMetadata = new ImageMetadata();
 
+      console.log(req.body.promoEnd);
+
       imageMetadata.set("title", req.body.title);
       imageMetadata.set("category", req.body.category);
       imageMetadata.set("expiry", req.body.expiry);
+      imageMetadata.set("promoEnd", new Date(req.body.promoEnd));
       imageMetadata.set("location", req.body.location);
       imageMetadata.set("desc", req.body.desc);
       

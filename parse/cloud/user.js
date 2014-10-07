@@ -4,30 +4,32 @@ module.exports = function() {
     var express = require('express');
     var app = express();
 
-    app.post('/compose', function(req, res){
+    app.post('/compose', function(req, res) {
         var user = Parse.User.current();
+        var fullName = user.get("fullName");
         var origin = req.body.origin;
         var message = req.body.message;
-        var type = req.body.type; 
+        var contact = req.body.contact;
+        var contactNumber = req.body.contactNumber;
 
         var Notification = Parse.Object.extend("Notification");
         var notification = new Notification();
 
-        notification.set("owner", "VJNxQ9QDbY");
-        notification.set("code", 3);
-        notification.set("message", "Feedback from User/Merchant: " + user.get("username") + ", " + message);
-        notification.set("type", type);
-        notification.set("user", user);
-        notification.set("readStatus", 0);
+        notification.set("owner", "VJNxQ9QDbY"); //confirm working
+        notification.set("code", 3); //confirm working
+        notification.set("contact", contact); //confirm working
+        notification.set("contactNumber", parseInt(contactNumber)); //confirm working
+        notification.set("message", "Feedback from User/Merchant: " + message + ". Contact: " + contactNumber + ". Email: " + contact);
+        notification.set("user", user); //confirm working
+        notification.set("readStatus", 0); //confirm working
 
         notification.save(null, {
-            success: function(){
-                console.log("feedback notification successful");
+            success: function() {
                 res.redirect(origin);
             },
-            error: function(){
-                console.log("feedback notification unsuccessful");
-                res.redirect(origin);
+            error: function(error) {
+                res.set('error', error);
+                res.redirect(origin, error);
             }
         })
     });
@@ -117,7 +119,7 @@ module.exports = function() {
     app.post('/update-user', function(req, res) {
         var user = Parse.User.current();
 
-        user.setEmail(req.body.email,null);
+        user.setEmail(req.body.email, null);
 
         user.save({
             fullName: req.body.fullName,
@@ -221,18 +223,20 @@ module.exports = function() {
         user.set('type', "merchant");
 
         user.signUp().then(function(user) {
-            if(origin!="/merchant"){
-                
-            }else{
+            if (origin != "/merchant") {
+                Parse.User.logIn("admin", "admin").then(function(user) {
+                    res.redirect(origin);
+                });
+            } else {
                 res.redirect(origin);
             }
         }, function(error) {
-            if(origin!="/merchant"){
+            if (origin != "/merchant") {
                 res.redirect(origin, {
                     flash: error.message
                 });
-                
-            }else{
+
+            } else {
                 res.render('login', {
                     flash: error.message
                 });
@@ -274,7 +278,61 @@ module.exports = function() {
             if (Parse.User.current().get('username') == "admin") {
                 res.redirect('/admin');
             } else {
-                res.redirect('/user');
+                // Get the latest bookmarks to show
+                var query = new Parse.Query("Bookmark");
+                query.equalTo("user", Parse.User.current());
+                query.include("user");
+                query.include("bookmark_image");
+                query.include("bookmark_image.imageMetadata");
+                query.descending("createdAt");
+
+                query.find({
+                    success: function(objects) {
+                        console.log("bookmarks query successful");
+                        for (var i = 0; i < objects.length; i++) {
+                            var image = objects[i].get("bookmark_image");
+                            var imageMetadata = image.get("imageMetadata");
+                            var promoEnd = imageMetadata.get("promoEnd");
+                            var today = new Date();
+                            var timeDiff = Math.abs(promoEnd.getTime() - today.getTime());
+                            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                            console.log(diffDays);
+                            if(diffDays<=3 & objects[i].get("notified")==0){
+                                var Notification = Parse.Object.extend("Notification");
+                                var notification = new Notification();
+
+                                notification.set("owner", Parse.User.current().id);
+                                notification.set("code", 9);
+                                notification.set("image",image);
+                                notification.set("message", "Bookmarked Ad Expiring in 3 Days. Ad: " + imageMetadata.get("title") + ".");
+                                notification.set("readStatus", 0);
+
+                                objects[i].set("notified", 1);
+
+                                notification.save(null, {
+                                    success: function() {
+                                        console.log("expiry notification successful");
+                                        objects[i].save(null,{
+                                            success: function(){
+                                                console.log("notified successfully updated");
+                                            },
+                                            error: function(){
+                                                console.log("notified not successfully updated");
+                                            }
+                                        });
+                                    },
+                                    error: function() {
+                                        console.log("expiry notification unsuccessful");
+                                    }
+                                });
+                            }
+                        }
+                        res.redirect('/user');
+                    },
+                    error: function(err) {
+                        res.send(500, err);
+                    }
+                });
             }
         }, function(error) {
             // Show the error message and let the user try again

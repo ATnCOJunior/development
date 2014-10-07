@@ -206,18 +206,17 @@
                 <!-- END Right Header Navigation -->
             </header>
             <!-- END Header -->
+        <!-- Page content -->
+        <div id="page-content">
 
-            <!-- Page content -->
-            <div id="page-content">
-
-                <!-- Table Styles Block -->
-                <div class="block">
-
+            <!-- Table Styles Block -->
+            <div class="block">
+                <div>
                     <!-- Table Styles Content -->
                     <div class="table-responsive">
 
                         <!-- Message List -->
-                        <div id="user-inbox-list">
+                        <div id="merchant-inbox-message-list">
                             <!-- Title -->
                             <div class="block-title clearfix">
                                 <div class="block-options pull-right">
@@ -234,16 +233,23 @@
                             <!-- END Title -->
 
                             <!-- Messages -->
-                            <div class="block-content-full">
+                            <div class="block-content-full" id="merchant-inbox">
                                 <table class="table table-borderless table-hover table-vcenter remove-margin">
                                     <tbody>
                                         <% _(notifications).each(function(notification){
-                                            if(notification.get("code")==4){
-                                                var title = "Ad approved"
-                                            }else if(notification.get("code")==5){
-                                                var title = "Ad rejected";
+                                            var title = ""; 
+                                            var timestamp = "";
+                                            var message = "";
+                                            var code = notification.get("code");
+                                        
+                                            if(code==4){
+                                                title = "Ads Approved";
+                                            }else if(code==5){
+                                                title = "Ads Rejected";
+
                                             }
-                                            var message = notification.get("message");
+                                            message = notification.get("message");
+                                            timestamp = notification.createdAt;
                                             %>
                                             <!-- Use the first row as a prototype for your column widths -->
                                             <tr>
@@ -252,19 +258,21 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="javascript:void(0)" class="text-dark" title="
-                                                    <%=message%>">
-                                                    <strong>
-                                                        <%=title%>
-                                                        <br>
-                                                    </strong>
-                                                </a>
-                                                <span class="text-muted"><%=message.substring(0,50)%></span>
+                                                    <h4>
+                                                        <a href="javascript:void(0)" class="text-dark" title="
+                                                            <%=title+'|'+timestamp+'|'+message%>">
+                                                            <strong>
+                                                                <%=title%>
+                                                                <br>
+                                                            </strong>
+                                                        </a>
+                                                    </h4>
+                                                <span class="text-muted"><%=message%></span>
                                             </td>
                                             <td class="hidden-xs text-center" style="width: 30px;">
                                                 <i class="fa fa-paperclip fa-2x text-muted"></i>
                                             </td>
-                                            <td class="hidden-xs text-right text-muted" style="width: 120px;"><em>just now</em></td>
+                                            <td class="hidden-xs text-right text-muted" style="width: 120px;"><em><%=timestamp%></em></td>
                                         </tr>
                                         <% 
                                     });
@@ -275,13 +283,37 @@
                         <!-- END Messages -->
                     </div>
                     <!-- END Message List -->
+                    <!-- Message View -->
+                    <div id="merchant-inbox-message-view" class="block-section display-none">
+                        <!-- Title -->
+                        <div class="block-title clearfix">
 
+                            <div class="block-options pull-left">
+                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
+                                    <i class="fa fa-chevron-left">
+                                    </i>  Back to Inbox</a>
+                                </div>
+                            </div>
+                            <!-- END Title -->
+                            
+                            <!-- Message Body -->
+                            <h3>
+                                <strong id="feedback-type">Feedback/ Ads Approval/ Cashout request</strong> 
+                                <small><em id="feedback-time"></em></small>
+                            </h3>
+                            <hr>
+                            <p id="feedback-content">Content</p>
+
+                            <!-- END Message Body -->
+                        </div>
+                        <!-- END Message View -->
                 </div>
-                <!-- END Table Styles Content -->
             </div>
-            <!-- END Table Styles Block -->
+            <!-- END Table Styles Content -->
         </div>
-        <!-- END Page Content -->
+        <!-- END Table Styles Block -->
+    </div>
+    <!-- END Page Content -->
     </div>
     <!-- END Main Container -->
 </div>
@@ -300,7 +332,7 @@
                 <div class="modal-body">
                     <form action="/compose" method="post" class="form-horizontal form-bordered">
                         <div class="form-group">
-                            <input type="hidden" name="origin" value="/user">
+                            <input type="hidden" name="origin" value="/merchant-inbox">
                             <div class="col-xs-12">
                                 If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
                             </div>
@@ -309,12 +341,12 @@
                             <!-- Inline Form Content -->
 
                             <div class="form-group">
-                                <label class="sr-only" for="example-if-email">Email</label>
-                                <input type="email"   name="example-if-email" class="form-control" placeholder="Email">
+                                <label class="sr-only">Email</label>
+                                <input type="email" name="contact" class="form-control" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label class="sr-only" for="example-if-password">Contact</label>
-                                <input type="yexy"  name="example-if-password" class="form-control" placeholder="Contact number">
+                                <label class="sr-only">Contact</label>
+                                <input type="number" name="contactNumber" class="form-control" placeholder="Contact number">
                             </div>
                             <div class="form-group">
 

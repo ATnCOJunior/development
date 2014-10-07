@@ -262,6 +262,14 @@
                                   <input type="number" name="expiry" class="form-control" placeholder="Tell us your posting period (at least 7 days)" required>
                               </div>
                           </div>
+
+                          <div class="form-group">
+                                <label class="col-md-3 control-label" for="example-datepicker">Promotion End-date</label>
+                                <div class="col-md-9">
+                                  <input type="date" name="promoEnd" class="form-control" placeholder="Tell our customers when your promotion ends!" required>
+                              </div>
+                          </div>
+
                           <div class="form-group form-actions">
                             <div class="col-md-9 col-md-offset-3">
                                 <input type="file">
@@ -308,7 +316,7 @@
                 <div class="modal-body">
                     <form action="/compose" method="post" class="form-horizontal form-bordered">
                         <div class="form-group">
-                            <input type="hidden" name="origin" value="/user">
+                            <input type="hidden" name="origin" value="/merchant-upload">
                             <div class="col-xs-12">
                                 If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
                             </div>
@@ -317,12 +325,12 @@
                             <!-- Inline Form Content -->
 
                             <div class="form-group">
-                                <label class="sr-only" for="example-if-email">Email</label>
-                                <input type="email"   name="example-if-email" class="form-control" placeholder="Email">
+                                <label class="sr-only">Email</label>
+                                <input type="email" name="contact" class="form-control" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label class="sr-only" for="example-if-password">Contact</label>
-                                <input type="yexy"  name="example-if-password" class="form-control" placeholder="Contact number">
+                                <label class="sr-only">Contact</label>
+                                <input type="number" name="contactNumber" class="form-control" placeholder="Contact number">
                             </div>
                             <div class="form-group">
 

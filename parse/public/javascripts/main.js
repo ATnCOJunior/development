@@ -138,7 +138,7 @@ $(function() {
     });
 
 
-    $('#message-list a').click(function(event) {
+    $('#merchant-transaction-message-list a').click(function(event) {
         var attributes = event.currentTarget.title.split(',');
 
         var likeCount = parseInt(attributes[1]);
@@ -158,23 +158,68 @@ $(function() {
         $('#paypalAmount').attr('value', total);
     });
 
-    // $('#admin-message-list a').click(function(event) {
-    //     var attributes = event.currentTarget.title.split(',');
+    $('#admin-inbox-message-list a').click(function(event) {
+        var attributes = event.currentTarget.title.split('|');
 
-    //     var title = parseInt(attributes[0]);
-    //     var date = parseInt(attributes[1]);
-    //     var user = parseInt(attributes[2]);
-    //     var message = parseInt(attributes[3]);
-    //     var image = parseInt(attributes[4]);
-    //     console.log(attributes);
-    //     $('#feedback-type').text(title);
-    //     $('#feedback-time').text(date);
-    //     $('#feedback-user').text(user);
-    //     $('#feedback-content').text(message);
-    //     if(image!=null){
-    //         $('#feedback-image').attr('src', image);
-    //     }
-    // });
+        var title = attributes[0];  
+        var date = attributes[1];
+        var user = attributes[2];
+        var message = attributes[3];
+        var imageUrl = attributes[4];
+        var imageId = attributes[5];
+        console.log(attributes);
+        $('#feedback-type').text(title);
+        $('#feedback-time').text(date);
+        $('#feedback-user').text(user);
+        $('#feedback-content').text(message);
+        if(imageUrl!=null){
+            $('#feedback-image').attr('src', imageUrl);
+        }
+        console.log("title: " + title);
+        if(imageId!=""){
+            var buttons = $('#approve-buttons');
+            console.log("check for buttons: " + buttons);
+            buttons
+                .removeClass('display-none')
+                .addClass('animation-fadeInQuick2');
+
+            $('#approve-btn').click(function() {
+                location.href="/i/"+imageId+"/approve";
+            });
+            $('#bad-image').click(function(){
+                location.href="/i/"+imageId+"/reject/bad-image";
+            });
+            $('#bad-content').click(function(){
+                location.href="/i/"+imageId+"/reject/bad-content";
+            });
+        }
+    });
+
+    $('#merchant-inbox-message-list a').click(function(event) {
+        var attributes = event.currentTarget.title.split('|');
+
+        var title = attributes[0];  
+        var date = attributes[1];
+        var message = attributes[2];
+        $('#feedback-type').text(title);
+        $('#feedback-time').text(date);
+        $('#feedback-content').text(message);
+    });
+
+     $('#user-inbox-message-list a').click(function(event) {
+        var attributes = event.currentTarget.title.split('|');
+
+        var title = attributes[0];  
+        var date = attributes[1];
+        var message = attributes[2];
+        var imageUrl = attributes[3];
+        $('#feedback-type').text(title);
+        $('#feedback-time').text(date);
+        $('#feedback-content').text(message);
+        if(imageUrl!=null){
+            $('#feedback-image').attr('src', imageUrl);
+        }
+    });
 
     $('#admin-acc-merchant-list a').click(function(event) {
 
@@ -199,16 +244,7 @@ $(function() {
         $('#admin-trans-user-name').attr('value', attributes[0]);
         $('#admin-trans-user-amount').attr('value', attributes[1]);
         $('#admin-trans-user-account').attr('value', attributes[2]);
-    });
-
-    $('#admin-inbox a').click(function(event) {
-
-        var attributes = event.currentTarget.title.split(',');
-
-        console.log(attributes);
-
-        $('#admin-inbox-message').attr('value', attributes[0]);
-    });
+    }); 
 
 });
 
@@ -253,6 +289,7 @@ Uploader = Backbone.View.extend({
                     expiry: self.$("[name=expiry]").val(),
                     location: self.$("[name=location]").val(),
                     desc: self.$("[name=desc]").val(),
+                    promoEnd: self.$("[name=promoEnd]").val(),
                     likes: 0,
                     shares: 0,
                     addDays: 0,

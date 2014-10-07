@@ -233,8 +233,10 @@
 					var desc = imageMetadata.get('desc');
 					var expiry = imageMetadata.get('expiry');
 					var location = imageMetadata.get('location');
+					var reason = imageMetadata.get('reason');
 
 					var dataCategory = "";
+					var reasonTag = "";
 					var status = imageMetadata.get("approval");
 					if (status=="1") {
 						dataCategory = "current";
@@ -242,9 +244,17 @@
 						dataCategory = "pending";
 					}else if (status=="-1"){
 						dataCategory = "rejected";
+						reasonTag = "<br>" + "<h3>Reason for Rejected: </h3>" + "<br>" + "<h3>The reason this image is rejected is because of: </h3>" + reason;
 					}else if (status=="2"){
 						dataCategory = "expired";
-					} %>
+					} 
+
+					if(dataCategory=="rejected"){
+						
+					}
+
+
+					%>
 					<div class="col-sm-3">
 						<div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=dataCategory%>">
 
@@ -271,7 +281,8 @@
 								+ expiry
 								+ "<br>" 
 								+"<h3>Location: </h3>"
-								+ location 
+								+ location
+								+ reasonTag
 								%>">
 								<i class="fa fa-search-plus fa-3x text-light">
 								</i>
