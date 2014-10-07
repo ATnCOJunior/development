@@ -244,7 +244,7 @@
 						dataCategory = "pending";
 					}else if (status=="-1"){
 						dataCategory = "rejected";
-						reasonTag = "<br>" + "<h3>Reason for Rejected: </h3>" + "<br>" + "<h3>The reason this image is rejected is because of: </h3>" + reason;
+						reasonTag = "<h3>Reason for Rejection: </h3>" + reason;
 					}else if (status=="2"){
 						dataCategory = "expired";
 					} 
@@ -273,14 +273,11 @@
 								+ "<h3>Company: </h3>"
 								+ "<h3>Description: </h3>"
 								+ desc
-								+ "<br>"
 								+ "<h3> Status: </h3>" 
 								+ dataCategory  
-								+ "<br>" 
-								+"<h3>Expiry date: </h3>"
+								+ "<h3>Campaign Period (Days/ End Date): </h3>"
 								+ expiry
-								+ "<br>" 
-								+"<h3>Location: </h3>"
+								+ "<h3>Location: </h3>"
 								+ location
 								+ reasonTag
 								%>">

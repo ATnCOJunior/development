@@ -6,12 +6,12 @@
 
 	.mfp-bottom-bar {
 	    position: fixed;
-	    top: 200px;
+	    top: 150px;
 	    width: 300px;
 	    right: 25px;
 	    left: auto;
 	    font-size: 18px;
-	    font-family: century gothic;
+	    font-family: Verdana;
 	}
 
 }
@@ -22,6 +22,7 @@
 
 h3{
 	color: #5ccdde;
+	font-size: 20px
 }
 
 .col-sm-3{

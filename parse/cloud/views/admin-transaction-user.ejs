@@ -191,6 +191,9 @@
                             <tbody>
 
                                 <% _(records).each(function(record){
+                                    var user = record.get("user");
+                                    var amount = record.get("amount");
+                                    var account = record.get("account");
                             // customer ID or name
                             // cashout amount
                             // customer payment account
@@ -198,54 +201,51 @@
 
                             <!-- Use the first row as a prototype for your column widths -->
                             <tr>
-                                <td class="td-label td-label-muted text-center" style="width: 5%;">
-
-                                </td>
-
                                 <td>
                                     <a href="javascript:void(0)" class="text-dark" title="
-                                                <%=record.get("user")+','+record.get("amount")+','+record.get("account")%>">
+                                                <%= user+','+amount+','+account%>">
                                             <strong>
-                                                <%=record.get("user")%> :: <%=record.get("amount")%> :: <%=record.get("account")%>
+                                                
+                                                <%= user %> :: $ <%= amount %> :: <%= account %>
                                             </strong>
                                         </a>
-                                    </h4>
+                                    </h4><br>
                                     <span class="text-muted">Please proceed to payment for customer's cashout. </span>
                                 </td>
                                 <td class="hidden-xs text-center" style="width: 30px;">
                                     <i class="fa fa-paperclip fa-2x text-muted">
                                     </i>
                                 </td>
-                                <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
-                                    <div class="hide" id="errorBox">
-                                    </div>
-                                    <input type="hidden" name="button" value="buynow">
+                                <td style="width: 100;">
+                                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1;">
+                                        <div class="hide" id="errorBox">
+                                        </div>
+                                        <input type="hidden" name="button" value="buynow">
 
-                                    <!-- for each item's paypal account -->
-                                    <input type="hidden" name="business" value="ben@paypal.com">
+                                        <!-- for each item's paypal account -->
+                                        <input type="hidden" name="business" value="ben@paypal.com">
 
-                                    <input type="hidden" name="item_name" value="Ads Payment">
-                                    <input type="hidden" name="quantity" value="">
+                                        <input type="hidden" name="item_name" value="Ads Payment">
+                                        <input type="hidden" name="quantity" value="">
 
-                                    <!-- $50 -->
-                                    <!-- $100 -->
-                                    <!-- $150 -->
-                                    <!-- $200 -->
-                                    <input type="hidden" name="amount" value="150">
+                                        <!-- $50 -->
+                                        <!-- $100 -->
+                                        <!-- $150 -->
+                                        <!-- $200 -->
+                                        <input type="hidden" name="amount" value="150">
 
-                                    <input type="hidden" name="currency_code" value="SGD">
-                                    <input type="hidden" name="shipping" value="0">
-                                    <input type="hidden" name="tax" value="0">
-                                    <!--<input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/merchant-transaction-success"> -->
-                                    <input type="hidden" name="cmd" value="_xclick">
-                                    <input type="hidden" name="bn" value="JavaScriptButton_buynow">
-                                    <input type="hidden" name="env" value="www">
-                                    <input type="image" style="width: 100%;" src="https://db.tt/fxcMfz4H" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                                    <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
-                                </form>
-                            </td>
-
-                        </tr>
+                                        <input type="hidden" name="currency_code" value="SGD">
+                                        <input type="hidden" name="shipping" value="0">
+                                        <input type="hidden" name="tax" value="0">
+                                        <!--<input type="hidden" name="notify_url" value="https://thefoodiemarket-dev.parseapp.com/merchant-transaction-success"> -->
+                                        <input type="hidden" name="cmd" value="_xclick">
+                                        <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+                                        <input type="hidden" name="env" value="www">
+                                        <input type="image" style="width: 100%;padding-top: 15px;" src="https://db.tt/fxcMfz4H" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                                        <!-- <button type="submit" class="paypal-button large">Buy Now</button> -->
+                                    </form>
+                                </td>  
+                            </tr>
                                 <%});%>
                             </tbody>
                         </table>

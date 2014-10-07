@@ -256,7 +256,7 @@
 							dataCategory = "pending";
 						}else if (status=="-1"){
 							dataCategory = "rejected";
-							reasonTag = "<br>" + "<h3>Reason for Rejected: </h3>" + "<br>" + "<h3>The reason this image is rejected is because of: </h3>" + reason;
+							reasonTag = "<h3>Reason for Rejection: </h3>" + reason;
 						}else if (status=="2"){
 							dataCategory = "expired";
 						} %>
@@ -302,7 +302,7 @@
 							<%}else if (status=="1"){%>
 							<!--current ads footer -->
 							<div class="modal-footer">
-								<h2 class="text-info"> Approved </h2>
+								<h2 class="text-seccess"> Approved </h2>
 							</div>
 							<!-- end current ads footer -->
 							<%}
