@@ -246,6 +246,31 @@
 						var expiry = imageMetadata.get('expiry');
 						var location = imageMetadata.get('location');
 						var reason = imageMetadata.get('reason');
+						var company = image.get("user").get("company");
+						var promoEnd = imageMetadata.get("promoEnd");
+					    var dd = promoEnd.getDate();
+					    var mm = promoEnd.getMonth()+1; //January is 0!
+					    var yyyy = promoEnd.getFullYear();
+					    var hours = promoEnd.getHours();
+					    var minutes = promoEnd.getMinutes();
+					    var seconds = promoEnd.getSeconds();
+
+					    if(dd<10){
+					        dd='0'+dd;
+					    } 
+					    if(mm<10){
+					        mm='0'+mm;
+					    } 
+				        if(hours<10){
+					        hours='0'+hours;
+					    } 
+					    if(minutes<10){
+					        minutes='0'+minutes;
+					    } 
+						if(seconds<10){
+					        seconds='0'+seconds;
+					    } 
+					    var promoDate = dd+'/'+mm+'/'+yyyy+" "+hours+":"+minutes+":"+seconds;
 
 						var dataCategory = "";
 						var reasonTag = "";
@@ -277,12 +302,15 @@
 									"<h3>Title: </h3>"
 									+ title
 									+ "<h3>Company: </h3>"
+									+ company
 									+ "<h3>Description: </h3>"
 									+ desc
 									+ "<br>"
 									+ "<h3>Campaign Period (Days/ End Date): </h3>"
 									+ expiry
 									+ "<br>" 
+									+ "<h3>Promotion End Date: </h3>"
+									+ promoDate 
 									+ "<h3>Location: </h3>"
 									+ location 
 									+ reasonTag

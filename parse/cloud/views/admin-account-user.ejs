@@ -236,20 +236,23 @@
 									</tr>
 								</thead>
 								<tbody>
-
+									<% _(users).each(function(user){
+									var username = user.get("username");
+									var gender = user.get("gender");
+									var occupation = user.get("occupation");
+									var paypal = user.get("paypal");
+									%>
 									<tr>
 										<td class="">
-											<strong>name</strong>
+											<strong><%=username%></strong>
 										</td>
 										<td class="">
-											Gender: 
+											Gender: <%=gender%>
 											<br>
-											Age: 
-											<br>
-											Occupation: 
+											Occupation: <%=occupation%>
 										</td>
-										<td class="">PaypalAccount</td>
-
+										<td class="">PaypalAccount: <%=paypal%></td>
+	
 										<td class="text-center">
 											<a href="javascript:void(0)" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
 												<i class="fa fa-times">
@@ -257,6 +260,7 @@
 											</a>
 										</td>
 									</tr>
+									<%});%>
 									
 							</tbody>
 						</table>

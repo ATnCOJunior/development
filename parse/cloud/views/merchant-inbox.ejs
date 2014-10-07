@@ -249,7 +249,31 @@
 
                                             }
                                             message = notification.get("message");
-                                            timestamp = notification.createdAt;
+                                            timeTemp = notification.createdAt;
+                                            var dd = timeTemp.getDate();
+                                            var mm = timeTemp.getMonth()+1; //January is 0!
+                                            var yyyy = timeTemp.getFullYear();
+                                            var hours = timeTemp.getHours();
+                                            var minutes = timeTemp.getMinutes();
+                                            var seconds = timeTemp.getSeconds();
+
+                                            if(dd<10){
+                                                dd='0'+dd;
+                                            } 
+                                            if(mm<10){
+                                                mm='0'+mm;
+                                            } 
+                                            if(hours<10){
+                                                hours='0'+hours;
+                                            } 
+                                            if(minutes<10){
+                                                minutes='0'+minutes;
+                                            } 
+                                            if(seconds<10){
+                                                seconds='0'+seconds;
+                                            } 
+                                            var timestamp = dd+'/'+mm+'/'+yyyy+" "+hours+":"+minutes+":"+seconds;
+                                            
                                             %>
                                             <!-- Use the first row as a prototype for your column widths -->
                                             <tr>

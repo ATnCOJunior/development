@@ -437,7 +437,16 @@ app.get('/admin-add-user', function(req, res){
 });
 // MERCHANT USER
 app.get('/admin-account-user', function(req, res){
-  res.render('admin-account-user');
+  var query = new Parse.Query("User");
+  query.equalTo("type", "customer");
+
+  query.find({
+    success: function(objects){
+      res.render('admin-account-user', {
+        users: objects
+      });
+    }
+  });
 });
 
 // User endpoints

@@ -61,6 +61,7 @@ var AppEmail = function() {
                 inboxList
                     .removeClass('display-none')
                     .addClass('animation-fadeInQuick2Inv');
+                
             });
         }
     };

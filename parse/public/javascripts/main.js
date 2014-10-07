@@ -273,7 +273,7 @@ Uploader = Backbone.View.extend({
             var file = this.fileUploadControl.files[0];
             var name = "image.jpg";
             var parseFile = new Parse.File(name, file);
-
+            
             // First, we save the file using the javascript sdk
             parseFile.save().then(function() {
                 // Then, we post to our custom endpoint which will do the post
