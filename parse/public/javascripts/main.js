@@ -148,13 +148,13 @@ $(function() {
         console.log(attributes);
         $('#imagePreview').attr('src', attributes[0]);
         $('#likeCount').text('x' + likeCount);
-        $('#likeCountSum').text('$ ' + likeCount * 0.4);
+        $('#likeCountSum').text('$ ' + (likeCount * 0.4).toFixed(2));
         $('#shareCount').text('x' + shareCount);
-        $('#shareCountSum').text('$ ' + shareCount * 0.8);
+        $('#shareCountSum').text('$ ' + (shareCount * 0.8).toFixed(2));
         $('#addCount').text('x' + addCount);
-        $('#addCountSum').text('$ ' + addCount * 50);
-        $('#subtotal').text('$' + total);
-        $('#totalDue').text('$' + total);
+        $('#addCountSum').text('$ ' + (addCount * 50).toFixed(2));
+        $('#subtotal').text('$' + (total).toFixed(2));
+        $('#totalDue').text('$' + (total).toFixed(2));
         $('#paypalAmount').attr('value', total);
     });
 
@@ -175,24 +175,24 @@ $(function() {
         if(imageUrl!=null){
             $('#feedback-image').attr('src', imageUrl);
         }
-        console.log("title: " + title);
-        if(imageId!=""){
-            var buttons = $('#approve-buttons');
-            console.log("check for buttons: " + buttons);
-            buttons
-                .removeClass('display-none')
-                .addClass('animation-fadeInQuick2');
+        // console.log("title: " + title);
+        // if(imageId!=""){
+        //     var buttons = $('#approve-buttons');
+        //     console.log("check for buttons: " + buttons);
+        //     buttons
+        //         .removeClass('display-none')
+        //         .addClass('animation-fadeInQuick2');
 
-            $('#approve-btn').click(function() {
-                location.href="/i/"+imageId+"/approve";
-            });
-            $('#bad-image').click(function(){
-                location.href="/i/"+imageId+"/reject/bad-image";
-            });
-            $('#bad-content').click(function(){
-                location.href="/i/"+imageId+"/reject/bad-content";
-            });
-        }
+        //     $('#approve-btn').click(function() {
+        //         location.href="/i/"+imageId+"/approve";
+        //     });
+        //     $('#bad-image').click(function(){
+        //         location.href="/i/"+imageId+"/reject/bad-image";
+        //     });
+        //     $('#bad-content').click(function(){
+        //         location.href="/i/"+imageId+"/reject/bad-content";
+        //     });
+        // }
     });
 
     $('#merchant-inbox-message-list a').click(function(event) {
@@ -300,7 +300,7 @@ Uploader = Backbone.View.extend({
                     if (data.error) {
                         console.log(data.error);
                     } else {
-                        window.location.href = "https://thefoodiemarket-dev.parseapp.com/merchant";
+                        window.location.href = "https://thefoodiemarket.parseapp.com/merchant";
                     }
                 });
             });

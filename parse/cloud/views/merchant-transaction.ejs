@@ -279,10 +279,41 @@ if(Parse.User)
                                     var addCount = imageMetadata.get("addDays");
                                     var title = imageMetadata.get("title");
                                     var src = image.get('sizeNormal').url();
-                                    var date = imageMetadata.get("updatedAt")
+                                    var timeTemp = imageMetadata.createdAt;
+                                    var buffer = new Date(timeTemp.getTime()+timeTemp.getTimezoneOffset()*60*1000);
+                                    var offset = timeTemp.getTimezoneOffset() / 60;
+                                    var hours = timeTemp.getHours();
+                                    buffer.setHours(hours - offset);
+                                    timeTemp = buffer;  
+                                    
+                                    var dd = timeTemp.getDate();
+                                    var mm = timeTemp.getMonth()+1; //January is 0!
+                                    var yyyy = timeTemp.getFullYear();
+                                    var hours = timeTemp.getHours();
+                                    var minutes = timeTemp.getMinutes();
+                                    var seconds = timeTemp.getSeconds();
+
+                                    if(dd<10){
+                                        dd='0'+dd;
+                                    } 
+                                    if(mm<10){
+                                        mm='0'+mm;
+                                    } 
+                                    if(hours<10){
+                                        hours='0'+hours;
+                                    } 
+                                    if(minutes<10){
+                                        minutes='0'+minutes;
+                                    } 
+                                    if(seconds<10){
+                                        seconds='0'+seconds;
+                                    } 
+                                    var date = dd+'/'+mm+'/'+yyyy+" "+hours+":"+minutes+":"+seconds;
+
+
+
                                     if (imageMetadata.get("approval")==2) {%>
                                     
-
                                     <!-- Use the first row as a prototype for your column widths -->
                                     <tr>
                                         <td class="td-label td-label-muted text-center" style="width: 5%;">

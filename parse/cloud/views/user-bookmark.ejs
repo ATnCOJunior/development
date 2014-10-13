@@ -212,6 +212,19 @@
                     var expiry = imageMetadata.get('expiry');
                     var location = imageMetadata.get('location');
                     var title = imageMetadata.get("title");
+                    var promoEnd = imageMetadata.get("promoEnd");
+                    var dd = promoEnd.getDate();
+                    var mm = promoEnd.getMonth()+1; 
+                    var yyyy = promoEnd.getFullYear();
+
+                    if(dd<10){
+                        dd='0'+dd;
+                    } 
+                    if(mm<10){
+                        mm='0'+mm;
+                    } 
+                    
+                    var promoDate = dd+'/'+mm+'/'+yyyy;
 
                     if (imageMetadata.get("approval")==1){
                         %>
@@ -231,9 +244,9 @@
                                     "<h3>Description: </h3>"
                                     + desc
                                     + "<br>"
-                                    +"<h3>Expiry date: </h3>"
-                                    + expiry
-                                    + "<br>" 
+                                    +"<h3>Promotion End Date: </h3>"
+                                    + promoDate
+                                    + "<br>"
                                     +"<h3>Location: </h3>"
                                     + location 
                                     %>"

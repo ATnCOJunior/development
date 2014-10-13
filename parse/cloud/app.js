@@ -243,6 +243,26 @@ app.get('/admin', function(req, res) {
   }
 });
 
+// Admin endpoint
+app.get('/admin-pending', function(req, res) {
+  if (Parse.User.current() && Parse.User.current().get('username') == "admin") {
+    // Get the latest images to show
+    var query = new Parse.Query(Image);
+    query.include("imageMetadata");
+    query.include("user");
+    query.descending("createdAt");
+
+    query.find().then(function(objects) {
+      res.render('admin', {
+        pending: 'yes',
+        images: objects
+      });
+    });
+  } else {
+    res.redirect('/login-user');
+  }
+});
+
 // IMAGE GALLERY END //
 
 // MERCHANT FEATURE

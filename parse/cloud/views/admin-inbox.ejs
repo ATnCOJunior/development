@@ -232,6 +232,13 @@
                                             }
                                             message = notification.get("message");
                                             timeTemp = notification.createdAt;
+
+                                            var buffer = new Date(timeTemp.getTime()+timeTemp.getTimezoneOffset()*60*1000);
+                                            var offset = timeTemp.getTimezoneOffset() / 60;
+                                            var hours = timeTemp.getHours();
+                                            buffer.setHours(hours - offset);
+                                            timeTemp = buffer;  
+                                            
                                             var dd = timeTemp.getDate();
                                             var mm = timeTemp.getMonth()+1; //January is 0!
                                             var yyyy = timeTemp.getFullYear();
@@ -317,7 +324,7 @@
                             <hr>
                             <p id="feedback-content">Content</p>
                             <div class="text-center">
-                                <img id="feedback-image" src="http://files.parsetfss.com/cbebca68-eb67-4c19-9388-07669720e0c1/tfss-576ef32f-3c3b-4107-af1a-6b439738a103-image.JPEG">
+                                <a href="/admin"><img id="feedback-image" src="http://files.parsetfss.com/cbebca68-eb67-4c19-9388-07669720e0c1/tfss-576ef32f-3c3b-4107-af1a-6b439738a103-image.JPEG"></a>
                             </div>
                             <br>
                             <div id="approve-buttons" class="modal-footer display-none">

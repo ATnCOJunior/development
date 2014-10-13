@@ -185,7 +185,7 @@ module.exports = function() {
 
         notification.set("owner", image.get("user").id);
         notification.set("code", 5);
-        notification.set("message", "Ad approved by admin for ad: " + imageMetadata.get("title") + ", reason: " + req.params.reason);
+        notification.set("message", "Ad rejected by admin for ad: " + imageMetadata.get("title") + ", reason: " + req.params.reason);
         notification.set("readStatus", 0);
         notification.save(null, {
           success: function() {

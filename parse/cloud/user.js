@@ -252,9 +252,9 @@ module.exports = function() {
     app.post('/login-merchant', function(req, res) {
         Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
             if (Parse.User.current().get('username') == "admin") {
-                res.redirect('/admin');
+                res.redirect('/admin-inbox');
             } else if (user.get("type") == "merchant") {
-                res.redirect('/merchant');
+                res.redirect('/merchant-inbox');
             } else {
                 res.render('login-merchant');
             }
@@ -276,7 +276,7 @@ module.exports = function() {
     app.post('/login-user', function(req, res) {
         Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
             if (Parse.User.current().get('username') == "admin") {
-                res.redirect('/admin');
+                res.redirect('/admin-inbox');
             } else {
                 // Get the latest bookmarks to show
                 var query = new Parse.Query("Bookmark");
@@ -297,22 +297,22 @@ module.exports = function() {
                             var timeDiff = Math.abs(promoEnd.getTime() - today.getTime());
                             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
                             console.log(diffDays);
-                            if(diffDays<=3 & objects[i].get("notified")==0){
+                            if(diffDays<=3 & objects[i].get("notified")==undefined){
                                 var Notification = Parse.Object.extend("Notification");
                                 var notification = new Notification();
 
                                 notification.set("owner", Parse.User.current().id);
                                 notification.set("code", 9);
                                 notification.set("image",image);
-                                notification.set("message", "Bookmarked Ad Expiring in 3 Days. Ad: " + imageMetadata.get("title") + ".");
+                                notification.set("message", "Bookmarked Ad Expiring: " + imageMetadata.get("title") + ".");
                                 notification.set("readStatus", 0);
-
-                                objects[i].set("notified", 1);
 
                                 notification.save(null, {
                                     success: function() {
                                         console.log("expiry notification successful");
-                                        objects[i].save(null,{
+                                        objects[i].save({
+                                            notified: 1
+                                        },{
                                             success: function(){
                                                 console.log("notified successfully updated");
                                             },

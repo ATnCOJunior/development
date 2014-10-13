@@ -250,6 +250,14 @@
                                             }
                                             message = notification.get("message");
                                             timeTemp = notification.createdAt;
+
+                                            var buffer = new Date(timeTemp.getTime()+timeTemp.getTimezoneOffset()*60*1000);
+                                            var offset = timeTemp.getTimezoneOffset() / 60;
+                                            var hours = timeTemp.getHours();
+                                            buffer.setHours(hours - offset);
+                                            timeTemp = buffer;  
+                                            
+
                                             var dd = timeTemp.getDate();
                                             var mm = timeTemp.getMonth()+1; //January is 0!
                                             var yyyy = timeTemp.getFullYear();
