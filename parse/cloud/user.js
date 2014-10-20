@@ -309,7 +309,6 @@ module.exports = function() {
 
                                 notification.save(null, {
                                     success: function() {
-                                        console.log("expiry notification successful");
                                         objects[i].save({
                                             notified: 1
                                         },{

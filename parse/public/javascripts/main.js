@@ -300,7 +300,7 @@ Uploader = Backbone.View.extend({
                     if (data.error) {
                         console.log(data.error);
                     } else {
-                        window.location.href = "https://thefoodiemarket.parseapp.com/merchant";
+                        window.location.href = "https://thefoodiemarket-dev.parseapp.com/merchant";
                     }
                 });
             });
