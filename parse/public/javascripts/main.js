@@ -10,11 +10,15 @@ var restAPIKey = "mrPxxmjU2CjBUYPDttDrM46o1sq4xaBF0IwiBs88";
 
 
 //var facebookMod = new FacebookMod("639663216116031"); //deployment
-var facebookMod = new FacebookMod("683418888407130"); //dev
+var facebookMod; //dev
 
 $(function() {
     // Facebook Function Initiation
     Parse.initialize(appid, jsKey);
+
+    facebookMod = new FacebookMod("683418888407130");
+
+    
     console.log("deployed to pengho parse acct!");
     // Make all of special links magically post the form
     // when it has a particular data-action associated
@@ -111,29 +115,29 @@ $(function() {
         // Make a new bookmark
 
         // if ($(event.currentTarget).is(':checked')) {
-            var imageId = $(event.currentTarget).attr('title');
-        	var userId = $('#userID').val();
+        var imageId = $(event.currentTarget).attr('title');
+        var userId = $('#userID').val();
 
-            var img = Parse.Object.extend("Image");
-            var image = new img();
-			image.id = imageId;
+        var img = Parse.Object.extend("Image");
+        var image = new img();
+        image.id = imageId;
 
-			var user = new Parse.User();
-			user.id = userId;
+        var user = new Parse.User();
+        user.id = userId;
 
-            bookmark.set("bookmark_image", image);
-            bookmark.set("user", user);
-            bookmark.save(null, {
-                success: function(bookmark) {
-                    // Execute any logic that should take place after the object is saved.
-                    console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user.id);
-                },
-                error: function(bookmark, error) {
-                    // Execute any logic that should take place if the save fails.
-                    // error is a Parse.Error with an error code and message.
-                    console.log('Failed to create new bookmark, with error code: ' + error.message);
-                }
-            });
+        bookmark.set("bookmark_image", image);
+        bookmark.set("user", user);
+        bookmark.save(null, {
+            success: function(bookmark) {
+                // Execute any logic that should take place after the object is saved.
+                console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user.id);
+            },
+            error: function(bookmark, error) {
+                // Execute any logic that should take place if the save fails.
+                // error is a Parse.Error with an error code and message.
+                console.log('Failed to create new bookmark, with error code: ' + error.message);
+            }
+        });
         // }
     });
 
@@ -161,7 +165,7 @@ $(function() {
     $('#admin-inbox-message-list a').click(function(event) {
         var attributes = event.currentTarget.title.split('|');
 
-        var title = attributes[0];  
+        var title = attributes[0];
         var date = attributes[1];
         var user = attributes[2];
         var message = attributes[3];
@@ -172,7 +176,7 @@ $(function() {
         $('#feedback-time').text(date);
         $('#feedback-user').text(user);
         $('#feedback-content').text(message);
-        if(imageUrl!=null){
+        if (imageUrl != null) {
             $('#feedback-image').attr('src', imageUrl);
         }
         // console.log("title: " + title);
@@ -198,7 +202,7 @@ $(function() {
     $('#merchant-inbox-message-list a').click(function(event) {
         var attributes = event.currentTarget.title.split('|');
 
-        var title = attributes[0];  
+        var title = attributes[0];
         var date = attributes[1];
         var message = attributes[2];
         $('#feedback-type').text(title);
@@ -206,17 +210,17 @@ $(function() {
         $('#feedback-content').text(message);
     });
 
-     $('#user-inbox-message-list a').click(function(event) {
+    $('#user-inbox-message-list a').click(function(event) {
         var attributes = event.currentTarget.title.split('|');
 
-        var title = attributes[0];  
+        var title = attributes[0];
         var date = attributes[1];
         var message = attributes[2];
         var imageUrl = attributes[3];
         $('#feedback-type').text(title);
         $('#feedback-time').text(date);
         $('#feedback-content').text(message);
-        if(imageUrl!=null){
+        if (imageUrl != null) {
             $('#feedback-image').attr('src', imageUrl);
         }
     });
@@ -244,7 +248,7 @@ $(function() {
         $('#admin-trans-user-name').attr('value', attributes[0]);
         $('#admin-trans-user-amount').attr('value', attributes[1]);
         $('#admin-trans-user-account').attr('value', attributes[2]);
-    }); 
+    });
 
 });
 
@@ -273,7 +277,7 @@ Uploader = Backbone.View.extend({
             var file = this.fileUploadControl.files[0];
             var name = "image.jpg";
             var parseFile = new Parse.File(name, file);
-            
+
             // First, we save the file using the javascript sdk
             parseFile.save().then(function() {
                 // Then, we post to our custom endpoint which will do the post

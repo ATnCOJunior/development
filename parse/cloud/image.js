@@ -269,7 +269,7 @@ module.exports = function() {
           metadataId: image.get("imageMetadata").id
         }).then(function() {
           // Render the template to show one image
-          res.render('image/show', {
+          res.render('show', {
             image: image,
             size: 'sizeNormal',
             title: image.title()

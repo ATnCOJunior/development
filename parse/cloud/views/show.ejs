@@ -1,2 +1,25 @@
-<div>Hello World</div>
-<img src='<%= image._url %>'></img>
+<%
+
+var imageMetadata = image.get('imageMetadata');
+var imageURL = image.get('sizeNormal').url();
+var title = imageMetadata.get('title');
+var desc = imageMetadata.get('desc');
+
+var expiry = imageMetadata.get('expiry');
+var location = imageMetadata.get('location');
+var category = imageMetadata.get("category");
+var company = image.get("user").get("company");
+var promoEnd = imageMetadata.get("promoEnd");
+
+%>
+
+<div class="block">
+	<div class="row">
+		<div class="col-md-6">
+			<img src='<%= imageURL %>'></img>
+		</div>
+	</div>
+</div>
+
+<div class="mfp-container mfp-s-ready mfp-image-holder"><div class="mfp-content"><div class="mfp-figure"><button title="Close (Esc)" type="button" class="mfp-close">×</button><figure><img class="mfp-img" src="http://files.parsetfss.com/cbebca68-eb67-4c19-9388-07669720e0c1/tfss-7421046e-474d-45bb-a58d-2c648bfb7c70-image.JPEG" style="max-height: 2149px;"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"><h3>Title: </h3>cocktail<h3>Company: </h3>Merchant Company<h3>Description: </h3>$10 cocktails 
+	<h3>Promotion End Date: </h3>16/10/2014<h3>Location: </h3>12, amor street</div><div class="mfp-counter"></div></div></figcaption></figure></div></div><div class="mfp-preloader">Loading...</div></div>
