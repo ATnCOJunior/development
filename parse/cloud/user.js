@@ -91,6 +91,61 @@ module.exports = function() {
         });
     });
 
+    // Updates the user's profile info
+    app.post('/like', function(req, res) {
+        var user = Parse.User.current();
+
+        user.save({
+            likes: user.get("likes")+1,
+            points: user.get("points")+4
+        }, {
+            success: function(user) {
+                res.redirect("/user");
+            },
+            error: function(user, error) {
+                res.set('error', "1111111111");
+                res.redirect("/user", error);
+            }
+        });
+    });
+
+        // Updates the user's profile info
+    app.post('/unlike', function(req, res) {
+        var user = Parse.User.current();
+
+        user.save({
+            likes: user.get("likes")-1,
+            points: user.get("points")-4
+        }, {
+            success: function(user) {
+                res.redirect("/user");
+            },
+            error: function(user, error) {
+                res.set('error', "1111111111");
+                res.redirect("/user", error);
+            }
+        });
+    });
+
+
+        // Updates the user's profile info
+    app.post('/share', function(req, res) {
+        var user = Parse.User.current();
+
+        user.save({
+            shares: user.get("shares")+1,
+            points: user.get("points")+4
+        }, {
+            success: function(user) {
+                res.redirect("/user");
+            },
+            error: function(user, error) {
+                res.set('error', "1111111111");
+                res.redirect("/user", error);
+            }
+        });
+    });
+
 
 
     // Updates the user's profile info

@@ -64,6 +64,28 @@ $(function() {
         });
     });
 
+    // $('#shareButton').click(function() {
+    //     var obj = {
+    //       method: 'feed',
+    //       link: 'https://thefoodiemarket-dev.parseapp.com/i/<%=imageID%>',
+    //       picture: ,//the picture you want for the caption
+    //       name: 'aaa',
+    //       caption: 'aaa',
+    //       description: 'aaa',
+    //       display: 'popup'
+    //     };
+
+    //     function callback(response) {
+    //        //here you can check the response and see if it was shared
+    //        if (response && response.post_id){
+    //          post('/share');
+    //        }
+    //     }
+
+        
+    //     FB.ui(obj, callback);
+    // });
+
 
     $('.adsimage').click(function(event) {
         $('.popup-image').attr("src", event.target.src);
