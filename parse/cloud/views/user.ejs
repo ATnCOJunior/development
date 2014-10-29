@@ -308,7 +308,10 @@
 								
 								<div class="fb-like" data-href="https://thefoodiemarket-dev.parseapp.com/i/<%=imageID%>" data-layout="button" data-action="like" data-show-faces="true" data-dismiss="modal"></div>
 								
-								<a href="#" onclick="share(<%=imageID%>, <%=title%>, <%=desc%>)">Share</a>
+								<button type="button" class="share btn btn-effect-ripple btn-success" data-dismiss="
+								modal" title="<%=imageID%> + '|||' + <%=title%> + '|||' + <%=desc%>">
+									<i class="fa fa-bookmark"></i> Share
+								</button>			
 								
 							</div>
 							<!-- END bookmark like share button -->
@@ -378,26 +381,28 @@
 
 								
 <script>
-	function share(imageID, title, desc){
-		var obj = {
-	      method: 'feed',
-	      name: 'The Foodie Market!',
-	      title: title,
-	      description: desc,
-	      link: 'https://www.thefoodiemarket-dev.parseapp.com/' + imageID,
-	      display: 'popup'
-	    };
+	// NOTE! If the code for shares in main.js doesn't work, use this. this is currently working. just uncomment this and comment the jquery for share in main.js
+	
+	// function share(imageID, title, desc){
+	// 	var obj = {
+	//       method: 'feed',
+	//       name: 'The Foodie Market!',
+	//       title: 'The Foodie Market!',
+	//       description: aaa,
+	//       link: 'https://www.thefoodiemarket-dev.parseapp.com/',
+	//       display: 'popup'
+	//     };
 
-	    function callback(response) {
-	       //here you can check the response and see if it was shared
-	       if (response && response.post_id){
-	         post('/share');
-	       }
-	    }
+	//     function callback(response) {
+	//        //here you can check the response and see if it was shared
+	//        if (response && response.post_id){
+	//          post('/share');
+	//        }
+	//     }
 
 	    
-	    FB.ui(obj, callback);
-	}
+	//     FB.ui(obj, callback);
+	// }
 </script>
 <script>
 

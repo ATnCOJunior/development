@@ -17,7 +17,7 @@ $(function() {
     Parse.initialize(appid, jsKey);
 
     facebookMod = new FacebookMod("683418888407130");
-
+    console.log("facebookMod: " + facebookMod);
     
     console.log("deployed to pengho parse acct!");
     // Make all of special links magically post the form
@@ -46,23 +46,23 @@ $(function() {
         });
     });
 
-    $('.share').click(function(e) {
-        var metadataId = e.currentTarget.getAttribute('metadataid');
+    // $('.share').click(function(e) {
+    //     var metadataId = e.currentTarget.getAttribute('metadataid');
 
-        $.ajax({
-            type: "POST",
-            url: "https://api.parse.com/1/functions/shareImage",
-            headers: {
-                "X-Parse-Application-Id": appid,
-                "X-Parse-REST-API-Key": restAPIKey
-            },
-            data: {
-                metadataId: metadataId
-            }
-        }).done(function(msg) {
-            console.log("Data Saved");
-        });
-    });
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "https://api.parse.com/1/functions/shareImage",
+    //         headers: {
+    //             "X-Parse-Application-Id": appid,
+    //             "X-Parse-REST-API-Key": restAPIKey
+    //         },
+    //         data: {
+    //             metadataId: metadataId
+    //         }
+    //     }).done(function(msg) {
+    //         console.log("Data Saved");
+    //     });
+    // });
 
     // $('#shareButton').click(function() {
     //     var obj = {
@@ -127,6 +127,37 @@ $(function() {
     //Button in popup
     $('#reject-button').click(function(event) {
         //Do POST to /:id/reject
+    });
+
+    //share
+    $('.share').click(function(event) {
+        var string = $(event.currentTarget).attr('title');
+        var array = string.split('|');
+
+        var imageID = array[0];
+        var title = array[1];
+        var desc = array[2];
+
+        function share(imageID, title, desc){
+            var obj = {
+              method: 'feed',
+              name: 'The Foodie Market!',
+              title: title,
+              description: desc,
+              link: 'https://www.thefoodiemarket-dev.parseapp.com/' + imageID,
+              display: 'popup'
+            };
+
+            function callback(response) {
+               //here you can check the response and see if it was shared
+               if (response && response.post_id){
+                 post('/share');
+               }
+            }
+
+            
+            FB.ui(obj, callback);
+        }
     });
 
     // bookmark
