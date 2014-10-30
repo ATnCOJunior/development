@@ -130,35 +130,35 @@ $(function() {
     });
 
     //share
-    $('.share').click(function(event) {
-        var string = $(event.currentTarget).attr('title');
-        var array = string.split('|');
+    // $('.share').click(function(event) {
+    //     var string = $(event.currentTarget).attr('title');
+    //     var array = string.split('|');
 
-        var imageID = array[0];
-        var title = array[1];
-        var desc = array[2];
+    //     var imageID = array[0];
+    //     var title = array[1];
+    //     var desc = array[2];
 
-        function share(imageID, title, desc){
-            var obj = {
-              method: 'feed',
-              name: 'The Foodie Market!',
-              title: title,
-              description: desc,
-              link: 'https://www.thefoodiemarket-dev.parseapp.com/' + imageID,
-              display: 'popup'
-            };
+    //     function share(imageID, title, desc){
+    //         var obj = {
+    //           method: 'feed',
+    //           name: 'The Foodie Market!',
+    //           title: title,
+    //           description: desc,
+    //           link: 'https://www.thefoodiemarket-dev.parseapp.com/' + imageID,
+    //           display: 'popup'
+    //         };
 
-            function callback(response) {
-               //here you can check the response and see if it was shared
-               if (response && response.post_id){
-                 post('/share');
-               }
-            }
+    //         function callback(response) {
+    //            //here you can check the response and see if it was shared
+    //            if (response && response.post_id){
+    //              post('/share');
+    //            }
+    //         }
 
             
-            FB.ui(obj, callback);
-        }
-    });
+    //         FB.ui(obj, callback);
+    //     }
+    // });
 
     // bookmark
     $('.bookmark-switch').click(function(event) {
