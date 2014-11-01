@@ -35,7 +35,7 @@
 		<!-- Alternative Sidebar -->
 		<div id="sidebar-alt" tabindex="-1" aria-hidden="true">
 			<!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-			<a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+			<a id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
 
 			<!-- Wrapper for scrolling functionality -->
 			<div id="sidebar-scroll-alt">
@@ -58,7 +58,7 @@
 
 					<div id="sidebar-brand" class="themed-background">
 						<a href="/" class="sidebar-title">
-							<i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+							<i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
 						</a>
 					</div>
 					<!-- END Header Link -->
@@ -68,180 +68,180 @@
 				<!-- Right Header Navigation -->
 				<ul class="nav navbar-nav-custom pull-right">
 
-
 					<!-- User Dropdown -->
 					<li class="dropdown">
-						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-							Login
+						<a class="dropdown-toggle" data-toggle="dropdown">
+							User
 						</a>
 						<ul class="dropdown-menu dropdown-menu-right">
-							<li class="dropdown-header">
-								<strong>User</strong>
-							</li>
-							<li>
-								<button onclick="facebookMod.login()">
-									<i class="fa fa-facebook-square fa fa-inbox fa-fw pull-right" 
-									></i>
-									Facebook
-								</button>
-							</li>
-
-							<li>
-								<a href="/signup-user">
-									<i class="fa fa-sign-in fa fa-inbox fa-fw pull-right"></i>
-									Register
-								</a>
-							</li>
-							<li>
-								<a href="/login-user">
-									<i class="fa fa-sign-in fa fa-inbox fa-fw pull-right"></i>
-									Login
-								</a>
-							</li>
-							<li class="dropdown-header">
-								<strong>Merchant</strong>
-							</li>
-							<li>
-								<a href="/signup-merchant">
-									<i class="fa fa-briefcase fa fa-inbox fa-fw pull-right"></i>
-									Register
-								</a>
-							</li>
-							<li>
-								<a href="/login-merchant">
-									<i class="fa fa-briefcase fa fa-inbox fa-fw pull-right"></i>
-									Login
-								</a>
-							</li>
-						</ul>
-					</li>
-					<!-- END User Dropdown -->
-				</ul>
-				<!-- END Right Header Navigation -->
-			</header>
-			<!-- END Header -->
-		</div>
-		<!-- Page content -->
-		<div id="page-content">
-
-			<!-- Gallery Header -->
-			<div class="content-header">
-				<!-- Gallery Filter Links -->
-				<!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
-				<!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
-				<div class="header-section text-center">
-					<div class="btn-group gallery-filter">
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a>
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="cafe" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Cafe</a>
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="bars" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Bars</a>
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
-					</div>
-					<div class="btn-group">
-						<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by <span class="caret"></span></a>
-						<ul class="dropdown-menu text-left">
 							
 							<li>
-								<a href="/">
-									New
-								</a>
-							</li>
-							
-							<li>
-								<a href="/trending">
-									Trending
-								</a>
-							</li>
-							
-							<li>
-								<a href="/ending">
-									Ending
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="block-options pull-right">
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
-					</div>
-				</div>
-				<!-- END Gallery Filter Links -->
-			</div>
-			<!-- END Gallery Header -->
-
-			<div class="row gallery">
-				<% _(images).each(function(image){
-					var imageURL = image.get('sizeNormal').url();
-					var imageMetadata = image.get('imageMetadata');
-					var title = imageMetadata.get('title');
-					var desc = imageMetadata.get('desc');
-					var expiry = imageMetadata.get('expiry');
-					var location = imageMetadata.get('location');
-					var category = imageMetadata.get("category");
-					var company = image.get("user").get("company");
-					var promoEnd = imageMetadata.get("promoEnd");
-				    var dd = promoEnd.getDate();
-				    var mm = promoEnd.getMonth()+1; 
-				    var yyyy = promoEnd.getFullYear();
-
-				    if(dd<10){
-				        dd='0'+dd;
-				    } 
-				    if(mm<10){
-				        mm='0'+mm;
-				    } 
-			       	
-				    var promoDate = dd+'/'+mm+'/'+yyyy;
-
-					if (imageMetadata.get("approval")==1) {%>
-					<div class="col-sm-3">
-
-						<!-- gallery-image-container animation-fadeInQuick2 -->
-						<div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
-
-							<img src="<%= imageURL %>"
-								alt="<%= desc
-								+'|||'
-								+expiry
-								+'|||'
-								+location
-								%>" 
-							>
-							<a href="<%= imageURL %>" data-toggle="lightbox-image" class="gallery-image-options"
-								title="<%= 
-								 "<h3>Title: </h3>"
-								+ title
-								+ "<h3>Company: </h3>"
-								+ company
-								+ "<h3>Description: </h3>"
-								+ desc
-								+ "<br>" 
-								+ "<h3>Promotion End Date: </h3>"
-								+ promoDate
-								+ "<h3>Location: </h3>"
-								+ location 
-								%>"
-							>
-								<i class="fa fa-search-plus fa-3x text-light"></i>
+								<a class="btn btn-square btn-muted" onclick="facebookMod.login()" type="button" style="
+								text-align: left;
+								">
+								<i class="fa fa-facebook-square fa fa-inbox fa-fw pull-right"></i>
+								Facebook Login
 							</a>
-						</div>
-						<!-- bookmark like share button -->
-						<div class="modal-footer">
+						</li>
 
-							<button type="button" class="btn btn-effect-ripple btn-success">
-								
-								<i class="fa fa-bookmark"></i> Bookmark
-								
-							</button>
-							<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-								
-								<i class="fa fa-thumbs-up"></i> Like
-								
-							</button>
-							<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
-								
-								<i class="fa fa-share"></i> Share
-								
-							</button>
+						<li>
+							<a href="/signup-user">
+								Register
+							</a>
+						</li>
+						<li>
+							<a href="/login-user">
+								Login
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- END User Dropdown -->
+				<!-- Merchant Dropdown -->
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						Merchant
+					</a>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li>
+							<a href="/signup-merchant">
+								Register
+							</a>
+						</li>
+						<li>
+							<a href="/login-merchant">
+								Login
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- END Merchant Dropdown -->
+			</ul>
+			<!-- END Right Header Navigation -->
+		</header>
+		<!-- END Header -->
+	</div>
+	<!-- Page content -->
+	<div id="page-content">
+
+		<!-- Gallery Header -->
+		<div class="content-header">
+			<!-- Gallery Filter Links -->
+			<!-- Custom Gallery functionality is initialized in js/pages/compGallery.js -->
+			<!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
+			<div class="header-section text-center">
+				<div class="btn-group gallery-filter">
+					<a class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a>
+					<a class="btn btn-effect-ripple btn-primary" data-category="cafe" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Cafe</a>
+					<a class="btn btn-effect-ripple btn-primary" data-category="bars" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Bars</a>
+					<a class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
+				</div>
+				<div class="btn-group">
+					<a data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by <span class="caret"></span></a>
+					<ul class="dropdown-menu text-left">
+
+						<li>
+							<a href="/">
+								New
+							</a>
+						</li>
+
+						<li>
+							<a href="/trending">
+								Trending
+							</a>
+						</li>
+
+						<li>
+							<a href="/ending">
+								Ending
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="block-options pull-right">
+					<a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+					<a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+				</div>
+			</div>
+			<!-- END Gallery Filter Links -->
+		</div>
+		<!-- END Gallery Header -->
+
+		<div class="row gallery">
+			<% _(images).each(function(image){
+				var imageURL = image.get('sizeNormal').url();
+				var imageMetadata = image.get('imageMetadata');
+				var title = imageMetadata.get('title');
+				var desc = imageMetadata.get('desc');
+				var expiry = imageMetadata.get('expiry');
+				var location = imageMetadata.get('location');
+				var category = imageMetadata.get("category");
+				var company = image.get("user").get("company");
+				var promoEnd = imageMetadata.get("promoEnd");
+				var dd = promoEnd.getDate();
+				var mm = promoEnd.getMonth()+1; 
+				var yyyy = promoEnd.getFullYear();
+
+				if(dd<10){
+					dd='0'+dd;
+				} 
+				if(mm<10){
+					mm='0'+mm;
+				} 
+
+				var promoDate = dd+'/'+mm+'/'+yyyy;
+
+				if (imageMetadata.get("approval")==1) {%>
+				<div class="col-sm-3">
+
+					<!-- gallery-image-container animation-fadeInQuick2 -->
+					<div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2" data-category="<%=imageMetadata.get("category")%>"> 
+
+						<img src="<%= imageURL %>"
+						alt="<%= desc
+						+'|||'
+						+expiry
+						+'|||'
+						+location
+						%>" 
+						>
+						<a href="<%= imageURL %>" data-toggle="lightbox-image" class="gallery-image-options"
+							title="<%= 
+							"<h3>Title: </h3>"
+							+ title
+							+ "<h3>Company: </h3>"
+							+ company
+							+ "<h3>Description: </h3>"
+							+ desc
+							+ "<br>" 
+							+ "<h3>Promotion End Date: </h3>"
+							+ promoDate
+							+ "<h3>Location: </h3>"
+							+ location 
+							%>"
+							>
+							<i class="fa fa-search-plus fa-3x text-light"></i>
+						</a>
+					</div>
+					<!-- bookmark like share button -->
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-effect-ripple btn-success">
+
+							<i class="fa fa-bookmark"></i> Bookmark
+
+						</button>
+						<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+
+							<i class="fa fa-thumbs-up"></i> Like
+
+						</button>
+						<button type="button" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
+
+							<i class="fa fa-share"></i> Share
+
+						</button>
 							<!-- <div class="text-success">
 								<label class="switch switch-success">   
 									<input type="checkbox" checked="">

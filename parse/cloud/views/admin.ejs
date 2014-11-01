@@ -20,7 +20,7 @@
 		<!-- Alternative Sidebar -->
 		<div id="sidebar-alt" tabindex="-1" aria-hidden="true">
 			<!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-			<a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
+			<a id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
 				<i class="fa fa-times">
 				</i>
 			</a>
@@ -38,8 +38,7 @@
 			<!-- Sidebar Brand -->
 			<div id="sidebar-brand" class="themed-background">
 				<a href="/admin" class="sidebar-title">
-					<i class="">
-					</i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
+					<i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
 				</span>
 			</a>
 		</div>
@@ -152,7 +151,7 @@
 				<!-- Main Sidebar Toggle Button -->
 
 				<li>
-					<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+					<a onclick="App.sidebar('toggle-sidebar');">
 						<i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;">
 						</i>
 						<i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;">
@@ -175,23 +174,10 @@
 			<ul class="nav navbar-nav-custom pull-right">
 
 				<!-- User Dropdown -->
-				<li class="dropdown">
-					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;">
-						</i>
+				<li class="dropdown open">
+					<a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+						Logout
 					</a>
-					<ul class="dropdown-menu dropdown-menu-right">
-
-						<li>
-							<a href="/logout">
-								<i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
-								</i>
-								Logout
-							</a>
-						</li>
-
-
-					</ul>
 				</li>
 				<!-- END User Dropdown -->
 			</ul>    
@@ -208,16 +194,16 @@
 				<!-- Add the category value you want each link in .gallery-filter to filter out in its data-category attribute. Add the value 'all' to show all items -->
 				<div class="header-section text-center">
 					<div class="btn-group gallery-filter">
-						<!-- <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a> -->
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Approved</a>
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="pending" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Pending</a>
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="rejected" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Rejected</a>
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary" data-category="expired" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Expired</a>
+						<!-- <a class="btn btn-effect-ripple btn-primary active" data-category="all" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 43px; width: 43px; top: -9.5px; left: 13.5px;"></span>All</a> -->
+						<a class="btn btn-effect-ripple btn-primary" data-category="current" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 64px; width: 64px; top: -24px; left: -1px;"></span>Approved</a>
+						<a class="btn btn-effect-ripple btn-primary" data-category="pending" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 57px; width: 57px; top: -0.5px; left: 12.5px;"></span>Pending</a>
+						<a class="btn btn-effect-ripple btn-primary" data-category="rejected" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Rejected</a>
+						<a class="btn btn-effect-ripple btn-primary" data-category="expired" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Expired</a>
 					</div>
 
 					<div class="block-options pull-right">
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+						<a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+						<a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
 					</div>
 				</div>
 				<!-- END Gallery Filter Links -->
@@ -315,7 +301,7 @@
 								</button>
 								<!-- onClick="location.href='/i/<%=image.id%>/reject'" type="button" class="btn  -->
 								<div class="btn-group">
-									<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Reject <span class="caret"></span></a>
+									<a data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Reject <span class="caret"></span></a>
 									<ul class="dropdown-menu text-left">
 										
 										<li>

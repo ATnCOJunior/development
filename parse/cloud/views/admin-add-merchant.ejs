@@ -20,7 +20,7 @@
         <!-- Alternative Sidebar -->
         <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
             <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
+            <a id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
                 <i class="fa fa-times">
                 </i>
             </a>
@@ -38,8 +38,7 @@
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
                 <a href="/admin" class="sidebar-title">
-                    <i class="">
-                    </i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
+                    <i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
                 </span>
             </a>
         </div>
@@ -78,11 +77,11 @@
                         </a>
                         <ul>
                             <li>
-                             <a href="/admin-account-user">View Accounts</a>  
-                         </li>
-                     </ul>
-                 </li>
-                 <li class="active">
+                               <a href="/admin-account-user">View Accounts</a>  
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="active">
                     <a href="#" class="sidebar-nav-menu">
                         <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide">
                         </i>
@@ -151,7 +150,7 @@
             <!-- Main Sidebar Toggle Button -->
 
             <li>
-                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                <a onclick="App.sidebar('toggle-sidebar');">
                     <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;">
                     </i>
                     <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;">
@@ -174,23 +173,10 @@
         <ul class="nav navbar-nav-custom pull-right">
 
             <!-- User Dropdown -->
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;">
-                    </i>
+            <li class="dropdown open">
+                <a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+                    Logout
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-
-                    <li>
-                        <a href="/logout">
-                            <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
-                            </i>
-                            Logout
-                        </a>
-                    </li>
-
-
-                </ul>
             </li>
             <!-- END User Dropdown -->
         </ul>    
@@ -200,8 +186,8 @@
     <!-- Page content -->
     <div id="page-content">
 
-     <!-- Register Header -->
-     <h1 class="h2 text-light text-center push-top-bottom animation-slideDown">
+       <!-- Register Header -->
+       <h1 class="h2 text-light text-center push-top-bottom animation-slideDown">
         <i class="fa fa-plus"></i> <strong>Create Account</strong>
     </h1>
     <!-- END Register Header -->

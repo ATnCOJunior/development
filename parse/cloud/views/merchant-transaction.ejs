@@ -23,7 +23,7 @@ if(Parse.User)
         <!-- Alternative Sidebar -->
         <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
             <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
+            <a id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
                 <i class="fa fa-times">
                 </i>
             </a>
@@ -50,13 +50,13 @@ if(Parse.User)
                                 <label for="side-profile-password">Website URL</label>
                                 <input type="text" name="website" class="form-control" value="<%=Parse.User.current().get("website")%>">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="side-profile-password-confirm">Social Media Site</label>
-                                <input type="text" name="social" class="form-control" value="<%=Parse.User.current().get("social")%>">
+                                <input type="text" name="social" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="side-profile-password-confirm">Description</label>
-                                <input type="text"  name="desc" class="form-control" value="<%=Parse.User.current().get("desc")%>">
+                                <input type="text"  name="desc" class="form-control"> -->
                             </div>
                             <div class="form-group remove-margin">
                                 <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
@@ -78,8 +78,7 @@ if(Parse.User)
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
                 <a href="/merchant" class="sidebar-title">
-                    <i class="">
-                    </i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
+                    <i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
                 </span>
             </a>
         </div>
@@ -153,7 +152,7 @@ if(Parse.User)
                         <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
                             <i class="fa fa-pencil sidebar-nav-icon">
                             </i>
-                            <span class="sidebar-nav-mini-hide">Feedback</span>
+                            <span class="sidebar-nav-mini-hide">Contact Us</span>
                         </a>
                     </li>
                 </ul>
@@ -183,7 +182,7 @@ if(Parse.User)
             <ul class="nav navbar-nav-custom">
                 <!-- Main Sidebar Toggle Button -->
                 <li>
-                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                    <a onclick="App.sidebar('toggle-sidebar');">
                         <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;">
                         </i>
                         <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;">
@@ -208,7 +207,7 @@ if(Parse.User)
 
                 <!-- Alternative Sidebar Toggle Button -->
                 <li>
-                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+                    <a onclick="App.sidebar('toggle-sidebar-alt');">
                         <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;">
                         </i>
                     </a>
@@ -216,25 +215,10 @@ if(Parse.User)
                 <!-- END Alternative Sidebar Toggle Button -->
 
                 <!-- User Dropdown -->
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;">
-                        </i>
+                <li class="dropdown open">
+                    <a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+                        Logout
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-header">
-                            <strong>MERCHANT</strong>
-                        </li>
-                        <li>
-                            <a href="/logout">
-                                <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
-                                </i>
-                                Logout
-                            </a>
-                        </li>
-
-
-                    </ul>
                 </li>
                 <!-- END User Dropdown -->
             </ul>
@@ -255,8 +239,8 @@ if(Parse.User)
                  <!-- Title -->
                  <div class="block-title clearfix">
                     <div class="block-options pull-right">
-                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
-                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+                        <a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+                        <a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
                     </div>
                     <div class="block-options pull-left">
                         <h2>Your due payments</h2>
@@ -322,7 +306,7 @@ if(Parse.User)
 
                                         <td>
                                             <h4>
-                                                <a href="javascript:void(0)" class="text-dark" id="<%=image.id%>" title=" 
+                                                <a class="text-dark" id="<%=image.id%>" title=" 
                                                     <%= src+','+likeCount+','+shareCount+','+addCount+','+title %>">
                                                     <strong>Title: <%= title %>
                                                     </strong>
@@ -356,7 +340,7 @@ if(Parse.User)
                     <div class="block-title clearfix">
 
                         <div class="block-options pull-left">
-                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
+                            <a class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
                                 <i class="fa fa-chevron-left">
                                 </i>  Back to Inbox</a>
                             </div>
@@ -547,6 +531,11 @@ if(Parse.User)
                                 <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
                             </div>
                         </div>
+                        <div class="form-group">
+							<div class="col-xs-12">
+								Or email our manager: plsitoh.2011@sis.smu.edu.sg
+							</div>
+						</div>
                     </form>
                 </div>
             </div>

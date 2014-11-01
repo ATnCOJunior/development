@@ -23,13 +23,13 @@
         <!-- Alternative Sidebar -->
         <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
             <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+            <a id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
 
             <!-- Wrapper for scrolling functionality -->
             <div id="sidebar-scroll-alt">
                 <!-- Sidebar Content -->
                 <div class="sidebar-content">
-                   
+
 
                     <!-- Profile -->
                     <div class="sidebar-section">
@@ -47,14 +47,14 @@
                                 <label for="side-profile-password">Website URL</label>
                                 <input type="text" name="website" class="form-control" value="<%=Parse.User.current().get("website")%>">
                             </div>
-                            <div class="form-group">
+                          <!--   <div class="form-group">
                                 <label for="side-profile-password-confirm">Social Media Site</label>
-                                <input type="text" name="social" class="form-control" value="<%=Parse.User.current().get("social")%>">
+                                <input type="text" name="social" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="side-profile-password-confirm">Description</label>
-                                <input type="text"  name="desc" class="form-control" value="<%=Parse.User.current().get("desc")%>">
-                            </div>
+                                <input type="text"  name="desc" class="form-control">
+                            </div> -->
                             <div class="form-group remove-margin">
                                 <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
                             </div>
@@ -75,7 +75,7 @@
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
                 <a href="/merchant" class="sidebar-title">
-                    <i class=""></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+                    <i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
                 </a>
             </div>
             <!-- END Sidebar Brand -->
@@ -134,7 +134,7 @@
                         <li>
                             <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
                                 <i class="fa fa-pencil sidebar-nav-icon"></i>
-                                <span class="sidebar-nav-mini-hide">Feedback</span>
+                                <span class="sidebar-nav-mini-hide">Contact Us</span>
                             </a>
                         </li>
                     </ul>
@@ -163,7 +163,7 @@
                 <ul class="nav navbar-nav-custom">
                     <!-- Main Sidebar Toggle Button -->
                     <li>
-                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                        <a onclick="App.sidebar('toggle-sidebar');">
                             <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
                             <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
                         </a>
@@ -180,33 +180,20 @@
 
                 <!-- Right Header Navigation -->
                 <ul class="nav navbar-nav-custom pull-right">
-                    
+
                     <!-- Alternative Sidebar Toggle Button -->
                     <li>
-                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+                        <a onclick="App.sidebar('toggle-sidebar-alt');">
                             <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
                         </a>
                     </li>
                     <!-- END Alternative Sidebar Toggle Button -->
 
                     <!-- User Dropdown -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                    <li class="dropdown open">
+                        <a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+                            Logout
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-header">
-                                <strong>MERCHANT</strong>
-                            </li>
-                            <li>
-                                <a href="/">
-                                    <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                                    Logout
-                                </a>
-                            </li>
-                            
-                            
-                        </ul>
                     </li>
                     <!-- END User Dropdown -->
                 </ul>
@@ -220,32 +207,32 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="block col-sm-8">
-                        
+
                         <!-- Upload Form -->
                         <form id="upload" action="/" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="example-email">Title</label>
+                                <label class="col-md-3 control-label">Title</label>
                                 <div class="col-md-6">
                                     <input type="text" id="example-email" name="title" class="form-control" placeholder=" Title of this amazing deal" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="example-textarea-input">Description</label>
+                                <label class="col-md-3 control-label">Description</label>
                                 <div class="col-md-9">
                                     <textarea id="example-textarea-input" name="desc" rows="7" class="form-control" placeholder="Tell us more about it" required>
                                     </textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="example-textarea-input">Location Address</label>
+                                <label class="col-md-3 control-label">Location Address</label>
                                 <div class="col-md-9">
                                     <input type="text" name="location" class="form-control" placeholder=" Address or URL for your location" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="example-select">Category</label>
+                                <label class="col-md-3 control-label">Category</label>
                                 <div class="col-md-5">
                                     <select id="example-select" name="category" class="form-control" size="1" required>
                                         <option value="">Choose a Category</option>
@@ -257,100 +244,113 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="example-datepicker">Posting Duration</label>
+                                <label class="col-md-3 control-label">Posting Duration</label>
                                 <div class="col-md-9">
                                   <input type="number" name="expiry" class="form-control" placeholder="Tell us your posting period (at least 7 days)" required>
                               </div>
                           </div>
 
                           <div class="form-group">
-                                <label class="col-md-3 control-label" for="example-datepicker">Promotion End-date</label>
-                                <div class="col-md-9">
-                                  <input type="date" name="promoEnd" class="form-control" placeholder="Tell our customers when your promotion ends!" required>
-                              </div>
+                            <label class="col-md-3 control-label">Promotion End-date</label>
+                            <div class="col-md-9">
+                              <input type="date" name="promoEnd" class="form-control" placeholder="Tell our customers when your promotion ends!" required>
                           </div>
+                      </div>
 
-                          <div class="form-group form-actions">
-                            <div class="col-md-9 col-md-offset-3">
-                                <input type="file">
-                                <a href="#">
-                                </a>
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Your Ad's Image</label>
+                        <div class="col-md-9">
+                            <input type="file">
+                            <!-- <button type="file" class="btn btn-square btn-default">Choose your ad's image</button> -->
+                            <div class="col-md-8">
+                                <h6> <b>Note: </b><br>
+                                    Image format: JPEG or PNG   <br>
+                                    Dimension: 580-1750 pixels(Width) x 645-2480 pixels(Height)
+                                </h6>
                             </div>
-                        </div>  
+
+                            <a href="#"> 
+                            </a> 
+                        </div>
+                    </div>  
+
+                    <button type="submit" class="btn btn-effect-ripple btn-block  btn-success submit" style="text-align:center">
+                        <i class="fa fa-check">
+                        </i>
+                        Submit
+                    </button> 
 
 
-                        <button type="submit" class="btn btn-effect-ripple btn-block  btn-success submit" style="text-align:center">
-                            <i class="fa fa-check">
-                            </i>
-                            Submit
-                        </button> 
+                    <script type="text/javascript">
+                    new Uploader({ el: "#upload" });
+                    </script>
+
+                </form>             
 
 
-                        <script type="text/javascript">
-                        new Uploader({ el: "#upload" });
-                        </script>
-
-                    </form>             
-
-
-                </div>
             </div>
         </div>
-
-        <!-- END Page Content -->
     </div>
-    <!-- END Main Container -->
+
+    <!-- END Page Content -->
+</div>
+<!-- END Main Container -->
 </div>
 <!-- END Page Container -->
 </div>
 <!-- END Page Wrapper -->
 
 <!-- Compose Message -->
-    <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title"><strong>Compose Message</strong></h3>
-                </div>
-                <div class="modal-body">
-                    <form action="/compose" method="post" class="form-horizontal form-bordered">
-                        <div class="form-group">
-                            <input type="hidden" name="origin" value="/merchant-upload">
-                            <div class="col-xs-12">
-                                If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
-                            </div>
-                        </div>
-                        <div class="block full form-inline">
-                            <!-- Inline Form Content -->
-
-                            <div class="form-group">
-                                <label class="sr-only">Email</label>
-                                <input type="email" name="contact" class="form-control" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label class="sr-only">Contact</label>
-                                <input type="text" name="contactNumber" class="form-control" placeholder="Contact number">
-                            </div>
-                            <div class="form-group">
-
-                                <button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
-                            </div>
-                            <!-- END Inline Form Content -->
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group form-actions">
-                            <div class="col-xs-12 text-right">
-                                <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title"><strong>Compose Message</strong></h3>
             </div>
+            <div class="modal-body">
+                <form action="/compose" method="post" class="form-horizontal form-bordered">
+                    <div class="form-group">
+                        <input type="hidden" name="origin" value="/merchant-upload">
+                        <div class="col-xs-12">
+                            If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
+                        </div>
+                    </div>
+                    <div class="block full form-inline">
+                        <!-- Inline Form Content -->
+
+                        <div class="form-group">
+                            <label class="sr-only">Email</label>
+                            <input type="email" name="contact" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only">Contact</label>
+                            <input type="text" name="contactNumber" class="form-control" placeholder="Contact number">
+                        </div>
+                        <div class="form-group">
+
+                            <button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
+                        </div>
+                        <!-- END Inline Form Content -->
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                     <div class="col-xs-12">
+                        Or email our manager: plsitoh.2011@sis.smu.edu.sg
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- END Compose Message -->
+</div>
+</div>
+<!-- END Compose Message -->

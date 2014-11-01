@@ -20,7 +20,7 @@
         <!-- Alternative Sidebar -->
         <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
             <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+            <a id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
 
             <!-- Wrapper for scrolling functionality -->
             <div id="sidebar-scroll-alt">
@@ -72,7 +72,7 @@
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
                 <a href="/user" class="sidebar-title">
-                    <i class=""></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
+                    <i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
                 </a>
             </div>
             <!-- END Sidebar Brand -->
@@ -122,7 +122,7 @@
                     <li>
                         <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
                             <i class="fa fa-pencil sidebar-nav-icon"></i>
-                            <span class="sidebar-nav-mini-hide">Feedback</span>
+                            <span class="sidebar-nav-mini-hide">Contact Us</span>
                         </a>
                     </li>
                 </ul>
@@ -150,7 +150,7 @@
             <ul class="nav navbar-nav-custom">
                 <!-- Main Sidebar Toggle Button -->
                 <li>
-                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                    <a onclick="App.sidebar('toggle-sidebar');">
                         <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
                         <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
                     </a>
@@ -171,30 +171,17 @@
 
                 <!-- Alternative Sidebar Toggle Button -->
                 <li>
-                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+                    <a onclick="App.sidebar('toggle-sidebar-alt');">
                         <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
                     </a>
                 </li>
                 <!-- END Alternative Sidebar Toggle Button -->
 
                 <!-- User Dropdown -->
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                <li class="dropdown open">
+                    <a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+                        Logout
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-header">
-                            <strong>USER</strong>
-                        </li>
-                        <li>
-                            <a href="/">
-                                <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                                Logout
-                            </a>
-                        </li>
-                        
-                        
-                    </ul>
                 </li>
                 <!-- END User Dropdown -->
             </ul>
@@ -216,14 +203,14 @@
                             <!-- Title -->
                             <div class="block-title clearfix">
                                 <div class="block-options pull-right">
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
+                                    <a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
+                                    <a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
                                 </div>
                                 <div class="block-options pull-left">
 
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-warning" title="" style="overflow: hidden; position: relative;" data-original-title="Mark as Read"><i class="fa fa-star"></i></a>
+                                    <a class="btn btn-effect-ripple btn-warning" title="" style="overflow: hidden; position: relative;" data-original-title="Mark as Read"><i class="fa fa-star"></i></a>
 
-                                    <a href="javascript:void(0)" class="btn btn-effect-ripple btn-danger" title="" style="overflow: hidden; position: relative;" data-original-title="Delete Selected"><i class="fa fa-times"></i></a>
+                                    <a class="btn btn-effect-ripple btn-danger" title="" style="overflow: hidden; position: relative;" data-original-title="Delete Selected"><i class="fa fa-times"></i></a>
                                 </div>
                             </div>
                             <!-- END Title -->
@@ -285,7 +272,7 @@
 
                                                 <td>
                                                     <h4>
-                                                        <a href="javascript:void(0)" class="text-dark" title="
+                                                        <a class="text-dark" title="
                                                             <%=title+'|'+timestamp+'|'+message+'|'+imageUrl%>">
                                                             <strong>
                                                                 <%=title%>
@@ -315,7 +302,7 @@
                         <div class="block-title clearfix">
 
                             <div class="block-options pull-left">
-                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
+                                <a class="btn btn-effect-ripple btn-default" id="message-view-back" style="overflow: hidden; position: relative;">
                                     <i class="fa fa-chevron-left">
                                     </i>  Back to Inbox</a>
                                 </div>
@@ -390,6 +377,11 @@
                                 <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
                             </div>
                         </div>
+                        <div class="form-group">
+							<div class="col-xs-12">
+								Or email our manager: plsitoh.2011@sis.smu.edu.sg
+							</div>
+						</div>
                     </form>
             </div>
         </div>

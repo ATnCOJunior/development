@@ -20,7 +20,7 @@
 		<!-- Alternative Sidebar -->
 		<div id="sidebar-alt" tabindex="-1" aria-hidden="true">
 			<!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-			<a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
+			<a id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');">
 				<i class="fa fa-times">
 				</i>
 			</a>
@@ -80,8 +80,7 @@
 			<!-- Sidebar Brand -->
 			<div id="sidebar-brand" class="themed-background">
 				<a href="/admin" class="sidebar-title">
-					<i class="">
-					</i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
+					<i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong>
 				</span>
 			</a>
 		</div>
@@ -194,7 +193,7 @@
 				<!-- Main Sidebar Toggle Button -->
 
 				<li>
-					<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+					<a onclick="App.sidebar('toggle-sidebar');">
 						<i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;">
 						</i>
 						<i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;">
@@ -217,22 +216,10 @@
 			<ul class="nav navbar-nav-custom pull-right">
 
 				<!-- User Dropdown -->
-				<li class="dropdown">
-					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;">
-						</i>
+				<li class="dropdown open">
+					<a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+						Logout
 					</a>
-					<ul class="dropdown-menu dropdown-menu-right">
-
-						<li>
-							<a href="/logout">
-								<i class="fa fa-sign-out fa fa-inbox fa-fw pull-right">
-								</i>
-								Logout
-							</a>
-						</li>
-
-					</ul>
 				</li>
 				<!-- END User Dropdown -->
 			</ul>    
@@ -288,13 +275,23 @@
 										</td>
 										<td class=""><%=desc%></td>
 
-										<td class="text-center">
-											<a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');" title="
-											<%=userid+','+company+','+email+','+website+','+social+','+desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
+										<!-- <td class="text-center">
+											<a onclick="App.sidebar('toggle-sidebar-alt');" title="
+											<%=userid
+											// +','+
+											company
+											// +','+
+											email
+											// +','+
+											website
+											// +','+
+											social
+											// +','+
+											desc %>" class="btn btn-effect-ripple btn-sm btn-success" style="overflow: hidden; position: relative;" data-original-title="Edit User">
 											<i class="fa fa-pencil">
 											</i>
-										</a>
-										<a href="javascript:void(0)" title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
+										</a> -->
+										<a title="" class="btn btn-effect-ripple btn-sm btn-danger" style="overflow: hidden; position: relative;" data-original-title="Delete User">
 											<i class="fa fa-times">
 											</i>
 										</a>

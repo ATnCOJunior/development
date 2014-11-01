@@ -17,7 +17,7 @@
         <!-- Alternative Sidebar -->
         <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
             <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-            <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+            <a  id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
 
             <!-- Wrapper for scrolling functionality -->
             <div id="sidebar-scroll-alt">
@@ -54,7 +54,7 @@
                                 <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
                             </div>
                         </form>
-                       
+                        
                     </div>
                     <!-- END Profile -->
                 </div>
@@ -69,15 +69,15 @@
             <!-- Sidebar Brand -->
             <div id="sidebar-brand" class="themed-background">
                 <a href="/user" class="sidebar-title">
-                    <i class=""></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
+                    <i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">Your<strong>Foodie Market</strong></span>
                 </a>
             </div>
             <!-- END Sidebar Brand -->
 
             <!-- Wrapper for scrolling functionality -->
             <div id="sidebar-scroll">
-             <!-- Sidebar Content -->
-             <div class="sidebar-content">
+               <!-- Sidebar Content -->
+               <div class="sidebar-content">
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
                     <li class="" style="text-align:center;">
@@ -117,7 +117,7 @@
                     <li>
                         <a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
                             <i class="fa fa-pencil sidebar-nav-icon"></i>
-                            <span class="sidebar-nav-mini-hide">Feedback</span>
+                            <span class="sidebar-nav-mini-hide">Contact Us</span>
                         </a>
                     </li>
                 </ul>
@@ -145,7 +145,7 @@
             <ul class="nav navbar-nav-custom">
                 <!-- Main Sidebar Toggle Button -->
                 <li>
-                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                    <a  onclick="App.sidebar('toggle-sidebar');">
                         <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini" style="margin-bottom: 13px; margin-top: 13px;"></i>
                         <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full" style="margin-bottom: 13px; margin-top: 13px;"></i>
                     </a>
@@ -172,30 +172,17 @@
 
                         <!-- Alternative Sidebar Toggle Button -->
                         <li>
-                            <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar-alt');">
+                            <a  onclick="App.sidebar('toggle-sidebar-alt');">
                                 <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
                             </a>
                         </li>
                         <!-- END Alternative Sidebar Toggle Button -->
 
                         <!-- User Dropdown -->
-                        <li class="dropdown">
-                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-sign-in" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                        <li class="dropdown open">
+                            <a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+                                Logout
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-header">
-                                    <strong>USER</strong>
-                                </li>
-                                <li>
-                                    <a href="/user-logout">
-                                        <i class="fa fa-sign-out fa fa-inbox fa-fw pull-right"></i>
-                                        Logout
-                                    </a>
-                                </li>
-                                
-                                
-                            </ul>
                         </li>
                         <!-- END User Dropdown -->
                     </ul>
@@ -207,7 +194,7 @@
                 <div id="page-content">
                     <div class="row">
                         <div class="col-sm-4">
-                            <a href="javascript:void(0)" class="widget">
+                            <a  class="widget">
                                 <div class="widget-content themed-background-info text-light-op">
                                     <i class="fa fa-fw fa-chevron-right"></i> <strong>Like Count</strong>
                                 </div>
@@ -220,7 +207,7 @@
                             </a>
                         </div>
                         <div class="col-sm-4">
-                            <a href="javascript:void(0)" class="widget">
+                            <a  class="widget">
                                 <div class="widget-content themed-background-danger text-light-op">
                                     <i class="fa fa-fw fa-chevron-right"></i> <strong>Share Count</strong>
                                 </div>
@@ -233,7 +220,7 @@
                             </a>
                         </div>
                         <!-- <div class="col-sm-3">
-                            <a href="javascript:void(0)" class="widget">
+                            <a  class="widget">
                                 <div class="widget-content themed-background-dark text-light-op">
                                     <i class="fa fa-fw fa-chevron-right"></i> <strong>Bookmarks</strong>
                                 </div>
@@ -246,7 +233,7 @@
                             </a>
                         </div> -->
                         <div class="col-sm-4">
-                            <a href="javascript:void(0)" class="widget">
+                            <a  class="widget">
                                 <div class="widget-content themed-background-success text-light-op">
                                     <i class="fa fa-fw fa-chevron-right"></i> <strong>Points Balance</strong>
                                 </div>
@@ -463,9 +450,14 @@
                                 <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="form-group">
+                         <div class="col-xs-12">
+                            Or email our manager: plsitoh.2011@sis.smu.edu.sg
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- END Compose Message -->
+</div>
+<!-- END Compose Message -->
