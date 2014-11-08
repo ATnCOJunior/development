@@ -16,7 +16,8 @@ $(function() {
     // Facebook Function Initiation
     Parse.initialize(appid, jsKey);
 
-    facebookMod = new FacebookMod("683418888407130");
+    facebookMod = new FacebookMod("639663216116031");
+    //facebookMod = new FacebookMod("683418888407130");
     console.log("facebookMod: " + facebookMod);
     
     console.log("deployed to pengho parse acct!");

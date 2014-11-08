@@ -36,7 +36,7 @@ function FacebookMod(facebookId) {
                 }
             },
             error: function(user, error) {
-                alert("User cancelled the Facebook login or did not fully authorize. Error =" + error.message);
+                alert("Oops, you did not manage to successfully login through facebook!");
             }
         });
     };

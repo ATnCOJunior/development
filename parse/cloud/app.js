@@ -54,16 +54,44 @@ app.get('/', function(req, res) {
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
     query.descending("createdAt");
+
     query.find({
         success: function(objects) {
             var metaObjects = [];
+            var expiredAds = [];
             for (i = 0; i < objects.length; i++) {
-
-                metaObjects.push(objects[i].get("imageMetadata"));
+                var expiryString = objects[i].get("imageMetadata").get("expiry");
+                console.log("String: " + objects[i].get("imageMetadata").get("expiry"));
+                if(expiryString.length < 10){
+                    var day = parseInt(expiryString.substring(0,1));
+                    var month = parseInt(expiryString.substring(2,4)-1);
+                    var year = parseInt(expiryString.substring(5,9));
+                }else{
+                    var day = parseInt(expiryString.substring(0,2));
+                    var month = parseInt(expiryString.substring(3,5)-1);
+                    var year = parseInt(expiryString.substring(6,10));
+                }
+                var expiry = new Date(year, month, day);
+                console.log("date: " + expiry);
+                var today = new Date();
+                if(expiry < today){
+                    objects[i].get("imageMetadata").set("approval", "2");
+                    expiredAds.push(objects.splice(i,1));
+                    i--;
+                }else{
+                    metaObjects.push(objects[i].get("imageMetadata"));
+                }
             }
-            res.render('home', {
-                images: objects,
-                metaObjects: metaObjects
+            Parse.Object.saveAll(expiredAds, {
+                success: function(list) {
+                    res.render('home', {
+                        images: objects,
+                        metaObjects: metaObjects
+                    });
+                },
+                error: function(error) {
+                    console.log("expiration unsuccessful");
+                }
             });
         }
     });
@@ -78,7 +106,8 @@ app.get('/trending', function(req, res) {
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
-    query.descending("views");
+    query.descending("likes");
+    query.descending("shares");
     query.find({
         success: function(objects) {
             var metaObjects = [];
