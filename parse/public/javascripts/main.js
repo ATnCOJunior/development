@@ -83,40 +83,40 @@ $(function() {
     //        }
     //     }
 
-        
+
     //     FB.ui(obj, callback);
     // });
 
 
-    $('.adsimage').click(function(event) {
-        $('.popup-image').attr("src", event.target.src);
+$('.adsimage').click(function(event) {
+    $('.popup-image').attr("src", event.target.src);
+});
+
+
+$('.adsimage').click(function(event) {
+    var str = event.target.alt;
+    var parts = str.split(",");
+    $('.companyName').text(parts[0]);
+    $('.promoInfo').text(parts[1]);
+    $('.expiry').text(parts[2]);
+    $('.site').text(parts[3]);
+});
+
+$('.approve').click(function(event) {
+    var metadataId = event.currentTarget.getAttribute('metadataid');
+    $.ajax({
+        type: "POST",
+        url: "https://the-central-market.parseapp.com/i/" + metadataId + "/approve",
+        headers: {
+            "X-Parse-Application-Id": appid,
+            "X-Parse-REST-API-Key": restAPIKey
+        },
+        data: {
+            metadataId: metadataId
+        }
+    }).done(function(msg) {
+        console.log("Image Approve");
     });
-
-
-    $('.adsimage').click(function(event) {
-        var str = event.target.alt;
-        var parts = str.split(",");
-        $('.companyName').text(parts[0]);
-        $('.promoInfo').text(parts[1]);
-        $('.expiry').text(parts[2]);
-        $('.site').text(parts[3]);
-    });
-
-    $('.approve').click(function(event) {
-        var metadataId = event.currentTarget.getAttribute('metadataid');
-        $.ajax({
-            type: "POST",
-            url: "https://the-central-market.parseapp.com/i/" + metadataId + "/approve",
-            headers: {
-                "X-Parse-Application-Id": appid,
-                "X-Parse-REST-API-Key": restAPIKey
-            },
-            data: {
-                metadataId: metadataId
-            }
-        }).done(function(msg) {
-            console.log("Image Approve");
-        });
         //Do POST to /:id/approve
     });
 
@@ -130,37 +130,6 @@ $(function() {
         //Do POST to /:id/reject
     });
 
-    //share
-    // $('.share').click(function(event) {
-    //     var string = $(event.currentTarget).attr('title');
-    //     var array = string.split('|');
-
-    //     var imageID = array[0];
-    //     var title = array[1];
-    //     var desc = array[2];
-
-    //     function share(imageID, title, desc){
-    //         var obj = {
-    //           method: 'feed',
-    //           name: 'The Foodie Market!',
-    //           title: title,
-    //           description: desc,
-    //           link: 'https://www.thefoodiemarket-dev.parseapp.com/' + imageID,
-    //           display: 'popup'
-    //         };
-
-    //         function callback(response) {
-    //            //here you can check the response and see if it was shared
-    //            if (response && response.post_id){
-    //              post('/share');
-    //            }
-    //         }
-
-            
-    //         FB.ui(obj, callback);
-    //     }
-    // });
-
     // bookmark
     $('.bookmark-switch').click(function(event) {
         var Bookmark = Parse.Object.extend("Bookmark");
@@ -169,20 +138,20 @@ $(function() {
         // Make a new bookmark
 
         // if ($(event.currentTarget).is(':checked')) {
-        var imageId = $(event.currentTarget).attr('title');
-        var userId = $('#userID').val();
+            var imageId = $(event.currentTarget).attr('title');
+            var userId = $('#userID').val();
 
-        var img = Parse.Object.extend("Image");
-        var image = new img();
-        image.id = imageId;
+            var img = Parse.Object.extend("Image");
+            var image = new img();
+            image.id = imageId;
 
-        var user = new Parse.User();
-        user.id = userId;
+            var user = new Parse.User();
+            user.id = userId;
 
-        bookmark.set("bookmark_image", image);
-        bookmark.set("user", user);
-        bookmark.save(null, {
-            success: function(bookmark) {
+            bookmark.set("bookmark_image", image);
+            bookmark.set("user", user);
+            bookmark.save(null, {
+                success: function(bookmark) {
                 // Execute any logic that should take place after the object is saved.
                 console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user.id);
             },
@@ -195,6 +164,38 @@ $(function() {
         // }
     });
 
+    // share
+    $('.share').click(function(event) {
+        var attributes = event.currentTarget.title.split('|');
+
+        console.log(attributes);
+
+        var imgID = attributes[0];
+        var title =  attributes[1];
+        var desc = attributes[2];
+        var like = attributes[3];
+        var share = attributes[4];
+        var point = attributes[5];
+
+        var obj = {
+            method: 'feed',
+            name: 'The Foodie Market!',
+            title: title,
+            description: desc,
+            link: 'https://thefoodiemarket-dev.parseapp.com/i/' + imgID,
+            display: 'popup'
+        };
+
+        function callback(response) {
+           //here you can check the response and see if it was shared
+           var query = 
+           }
+       }
+
+       
+       FB.ui(obj, callback);
+    });
+
 
     $('#merchant-transaction-message-list a').click(function(event) {
         var attributes = event.currentTarget.title.split(',');
@@ -203,7 +204,9 @@ $(function() {
         var shareCount = parseInt(attributes[2]);
         var addCount = parseInt(attributes[3]);
         var total = likeCount * 0.4 + shareCount * 0.8 + addCount * 50;
+
         console.log(attributes);
+
         $('#imagePreview').attr('src', attributes[0]);
         $('#likeCount').text('x' + likeCount);
         $('#likeCountSum').text('$ ' + (likeCount * 0.4).toFixed(2));
@@ -253,56 +256,56 @@ $(function() {
         // }
     });
 
-    $('#merchant-inbox-message-list a').click(function(event) {
-        var attributes = event.currentTarget.title.split('|');
+$('#merchant-inbox-message-list a').click(function(event) {
+    var attributes = event.currentTarget.title.split('|');
 
-        var title = attributes[0];
-        var date = attributes[1];
-        var message = attributes[2];
-        $('#feedback-type').text(title);
-        $('#feedback-time').text(date);
-        $('#feedback-content').text(message);
-    });
+    var title = attributes[0];
+    var date = attributes[1];
+    var message = attributes[2];
+    $('#feedback-type').text(title);
+    $('#feedback-time').text(date);
+    $('#feedback-content').text(message);
+});
 
-    $('#user-inbox-message-list a').click(function(event) {
-        var attributes = event.currentTarget.title.split('|');
+$('#user-inbox-message-list a').click(function(event) {
+    var attributes = event.currentTarget.title.split('|');
 
-        var title = attributes[0];
-        var date = attributes[1];
-        var message = attributes[2];
-        var imageUrl = attributes[3];
-        $('#feedback-type').text(title);
-        $('#feedback-time').text(date);
-        $('#feedback-content').text(message);
-        if (imageUrl != null) {
-            $('#feedback-image').attr('src', imageUrl);
-        }
-    });
+    var title = attributes[0];
+    var date = attributes[1];
+    var message = attributes[2];
+    var imageUrl = attributes[3];
+    $('#feedback-type').text(title);
+    $('#feedback-time').text(date);
+    $('#feedback-content').text(message);
+    if (imageUrl != null) {
+        $('#feedback-image').attr('src', imageUrl);
+    }
+});
 
-    $('#admin-acc-merchant-list a').click(function(event) {
+$('#admin-acc-merchant-list a').click(function(event) {
 
-        var attributes = event.currentTarget.title.split(',');
+    var attributes = event.currentTarget.title.split(',');
 
-        console.log(attributes);
+    console.log(attributes);
 
-        $('#admin-acc-merchant-list-userid').attr('value', attributes[0]);
-        $('#admin-acc-merchant-list-company').attr('value', attributes[1]);
-        $('#admin-acc-merchant-list-email').attr('value', attributes[2]);
-        $('#admin-acc-merchant-list-website').attr('value', attributes[3]);
-        $('#admin-acc-merchant-list-social').attr('value', attributes[4]);
-        $('#admin-acc-merchant-list-desc').attr('value', attributes[5]);
-    });
+    $('#admin-acc-merchant-list-userid').attr('value', attributes[0]);
+    $('#admin-acc-merchant-list-company').attr('value', attributes[1]);
+    $('#admin-acc-merchant-list-email').attr('value', attributes[2]);
+    $('#admin-acc-merchant-list-website').attr('value', attributes[3]);
+    $('#admin-acc-merchant-list-social').attr('value', attributes[4]);
+    $('#admin-acc-merchant-list-desc').attr('value', attributes[5]);
+});
 
-    $('#admin-trans-user a').click(function(event) {
+$('#admin-trans-user a').click(function(event) {
 
-        var attributes = event.currentTarget.title.split(',');
+    var attributes = event.currentTarget.title.split(',');
 
-        console.log(attributes);
+    console.log(attributes);
 
-        $('#admin-trans-user-name').attr('value', attributes[0]);
-        $('#admin-trans-user-amount').attr('value', attributes[1]);
-        $('#admin-trans-user-account').attr('value', attributes[2]);
-    });
+    $('#admin-trans-user-name').attr('value', attributes[0]);
+    $('#admin-trans-user-amount').attr('value', attributes[1]);
+    $('#admin-trans-user-account').attr('value', attributes[2]);
+});
 
 });
 
@@ -361,11 +364,11 @@ Uploader = Backbone.View.extend({
                         window.location.href = "https://thefoodiemarket-dev.parseapp.com/merchant";
                     }
                 });
-            });
-        } else {
-            alert("Please select a file");
-        }
+});
+} else {
+    alert("Please select a file");
+}
 
-        return false;
-    }
+return false;
+}
 });
