@@ -160,6 +160,12 @@
 					<li class="hidden-xs animation-fadeInQuick">
 						<a><strong>Deals for You!</strong></a>
 					</li>
+					<li class="hidden-xs animation-fadeInQuick">
+						<a><strong>1 Like = 2 Points</strong></a>
+					</li>
+					<li class="hidden-xs animation-fadeInQuick">
+						<a><strong>1 Share = 4 Points</strong></a>
+					</li>
 					<!-- END Header Link -->
 				</ul>
 				<!-- END Left Header Navigation -->
@@ -252,6 +258,9 @@
 						var category = imageMetadata.get("category");
 						var company = image.get("user").get("company");
 						var promoEnd = imageMetadata.get("promoEnd");
+						var likes = imageMetadata.get("likes");
+						var shares = imageMetadata.get("shares");
+						var views = imageMetadata.get("views");
 						var dd = promoEnd.getDate();
 						var mm = promoEnd.getMonth()+1; 
 						var yyyy = promoEnd.getFullYear();
@@ -298,10 +307,10 @@
 							<!-- bookmark like share button -->
 							<div class="modal-footer" title="<%=imageID%>">
 								
-								<div class="fb-like" data-href="https://thefoodiemarket-dev.parseapp.com/i/<%=imageID%>" data-layout="button" data-action="like" data-show-faces="true" data-dismiss="modal"></div>
+								<div class="fb-like" data-href="https://thefoodiemarket-dev.parseapp.com/i/<%=imageID%>" data-layout="button" data-action="like" data-show-faces="true" data-dismiss="modal" title="<%=imageID%>"></div>
 								
-								<button type="button" class="share btn btn-effect-ripple btn-info" data-dismiss="
-								modal" title="<%=imageID + '|' + title + '|' + desc + '|' + userLikeCount  + '|' + userShareCount + '|' + userPointCount%>">
+								<button type="button" class="share share2 btn btn-effect-ripple btn-info" data-dismiss="
+								modal" title="<%=imageID + '|' + title + '|' + desc + '|' + Parse.User.current().id%>">
 								Share
 								</button>	
 
@@ -382,40 +391,110 @@
 
 
 <script>
-	// NOTE! If the code for shares in main.js doesn't work, use this. this is currently working. just uncomment this and comment the jquery for share in main.js
-	
-	function share(){
-		var obj = {
-			method: 'feed',
-			name: 'The Foodie Market!',
-			title: 'The Foodie Market!',
-			description: 'aaa',
-			link: 'https://www.thefoodiemarket-dev.parseapp.com/',
-			display: 'popup'
-		};
-
-		function callback(response) {
-	       //here you can check the response and see if it was shared
-	       if (response && response.post_id){
-	       	// post('/share');
-	       }
-	   }
-
-	   
-	   FB.ui(obj, callback);
-	}
-	</script>
-	<script>
-
-	
 	var page_like_callback = function(url, html_element) {
-		//alert("Ad liked!");
-		post('/like');
+		var userId = Parse.User.current().id;
+
+		var query = new Parse.Query(Parse.User);
+        query.get(userId, {
+            success: function(user) {
+                user.set("likes", user.get("likes")+1);
+                user.set("points", user.get("points")+2);
+                user.save(null, {
+                    success: function(savedUserObject) {
+                        console.log("facebook like successful");
+
+                    },
+                    error: function(object, error) {
+                        console.log('Failed to save object: ' + error.message);
+                    }
+                });
+            },
+            error: function(error) {
+                console.log("cannot find user");
+            }
+        });
+		//var origin = $(location).attr('pathname');
+        
+        var n = url.lastIndexOf("/");
+        var imageID = url.substring(n+1);
+
+        var imageQuery = new Parse.Query(Parse.Object.extend("Image"));
+        imageQuery.include("imageMetadata");
+        imageQuery.get(imageID, 
+        {
+            success: function(image) {
+                var imageMetadata = image.get("imageMetadata");
+                console.log("likes: " + imageMetadata.get("likes"));
+                imageMetadata.set("likes", imageMetadata.get("likes")+1);
+                imageMetadata.save(null, 
+                {
+                    success: function(savedUserObject) {
+                        console.log("image like count addition successful");
+
+                    },
+                    error: function(object, error) {
+                        console.log('Failed to save object: ' + error.message);
+                    }
+                });
+            },
+            error: function(error) {
+                console.log("cannot find image");
+                console.log("error: " + error);
+            }
+        });
 	}
 
 	var page_unlike_callback = function(url, html_element) {
-		//alert("Ad unliked!");
-		post('/unlike');
+		var userId = Parse.User.current().id;
+
+		var query = new Parse.Query(Parse.User);
+        query.get(userId, {
+            success: function(user) {
+                user.set("likes", user.get("likes")-1);
+                user.set("points", user.get("points")-2);
+                user.save(null, {
+                    success: function(savedUserObject) {
+                        console.log("facebook unlike successful");
+
+                    },
+                    error: function(object, error) {
+                        console.log('Failed to save object: ' + error.message);
+                    }
+                });
+            },
+            error: function(error) {
+                console.log("cannot find user");
+            }
+        });
+		//var origin = $(location).attr('pathname');
+        
+        var n = url.lastIndexOf("/");
+        var imageID = url.substring(n+1);
+
+        var imageQuery = new Parse.Query(Parse.Object.extend("Image"));
+        imageQuery.include("imageMetadata");
+        imageQuery.get(imageID, 
+        {
+            success: function(image) {
+                var imageMetadata = image.get("imageMetadata");
+                console.log("likes: " + imageMetadata.get("likes"));
+                imageMetadata.set("likes", imageMetadata.get("likes")-1);
+                imageMetadata.save(null, 
+                {
+                    success: function(savedUserObject) {
+                        console.log("image like count deduction successful");
+
+                    },
+                    error: function(object, error) {
+                        console.log('Failed to save object: ' + error.message);
+                    }
+                });
+            },
+            error: function(error) {
+                console.log("cannot find image");
+                console.log("error: " + error);
+            }
+        });
 	}
 
 	// In your onload handler

@@ -93,20 +93,52 @@ module.exports = function() {
 
     // Updates the user's profile info
     app.post('/like', function(req, res) {
-        var user = Parse.User.current();
+        // var imageID = req.params.imageID;
+        // var imageQuery = new Parse.Query(Image);
+        // imageQuery.include("imageMetadata");
 
-        user.save({
-            likes: user.get("likes")+1,
-            points: user.get("points")+4
-        }, {
-            success: function(user) {
-                res.redirect("/user");
-            },
-            error: function(user, error) {
-                res.set('error', "1111111111");
-                res.redirect("/user", error);
-            }
-        });
+        // imageQuery.get(imageID, 
+        // {
+        //     success: function(image) {
+        //         var imageMetadata = image.get("imageMetadata");
+        //         imageMetadata.set("likes", imageMetadata.get("likes")+1);
+        //         image.save(null, 
+        //         {
+        //             success: function(savedUserObject) {
+        //                 console.log("image likes count successful");
+
+        //             },
+        //             error: function(object, error) {
+        //                 console.log('Failed to save object: ' + error.message);
+        //             }
+        //         });
+        //     },
+        //     error: function(error) {
+        //         console.log("cannot find image");
+        //     }
+        // });
+
+        console.log("success");
+        // var user = Parse.User.current();
+
+        // var query = new Parse.Query(Parse.User);
+        // query.get(user.id, {
+        //     success: function(user) {
+        //         user.set("likes", user.get("likes")+1);
+        //         user.set("points", user.get("points")+2);
+        //         user.save(null, {
+        //             success: function(savedUserObject) {
+        //                 console.log("facebook like successful");
+        //             },
+        //             error: function(object, error) {
+        //                 console.log('Failed to save object: ' + error.message);
+        //             }
+        //         });
+        //     },
+        //     error: function(error) {
+        //         console.log("cannot find user");
+        //     }
+        // });
     });
 
         // Updates the user's profile info

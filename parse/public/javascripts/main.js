@@ -1,12 +1,12 @@
 //for deployment
-// var appid = "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3";
-// var jsKey = "rOvhJctAZsQkZVkPv7nsvV4XvJ2bz00E8qm7I67A";
-// var restAPIKey = "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj";
+var appid = "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3";
+var jsKey = "rOvhJctAZsQkZVkPv7nsvV4XvJ2bz00E8qm7I67A";
+var restAPIKey = "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj";
 
 //for dev
-var appid = "n1z14zFUHMK01hZWLLFRs81fsbbLmUUdndvnuetB";
-var jsKey = "xOwM1WsUwddJBoJZOeXZEY3HXNl4KbShZXK5qkLh";
-var restAPIKey = "mrPxxmjU2CjBUYPDttDrM46o1sq4xaBF0IwiBs88";
+// var appid = "n1z14zFUHMK01hZWLLFRs81fsbbLmUUdndvnuetB";
+// var jsKey = "xOwM1WsUwddJBoJZOeXZEY3HXNl4KbShZXK5qkLh";
+// var restAPIKey = "mrPxxmjU2CjBUYPDttDrM46o1sq4xaBF0IwiBs88";
 
 
 //var facebookMod = new FacebookMod("639663216116031"); //deployment
@@ -170,28 +170,67 @@ $('.approve').click(function(event) {
 
         console.log(attributes);
 
-        var imgID = attributes[0];
+        var imgId = attributes[0];
         var title =  attributes[1];
         var desc = attributes[2];
-        var like = attributes[3];
-        var share = attributes[4];
-        var point = attributes[5];
+        var userId = attributes[3];
 
         var obj = {
             method: 'feed',
             name: 'The Foodie Market!',
             title: title,
             description: desc,
-            link: 'https://thefoodiemarket-dev.parseapp.com/i/' + imgID,
+            link: 'https://thefoodiemarket-dev.parseapp.com/i/' + imgId,
             display: 'popup'
         };
 
         function callback(response) {
-           //here you can check the response and see if it was shared
-           var query = 
-           }
-       }
+            var query = new Parse.Query(Parse.User);
+            query.get(userId, {
+                success: function(user) {
+                    user.set("shares", user.get("shares")+1);
+                    user.set("points", user.get("points")+4);
+                    user.save(null, {
+                        success: function(savedUserObject) {
+                            console.log("facebook share successful");
 
+                        },
+                        error: function(object, error) {
+                            console.log('Failed to save object: ' + error.message);
+                        }
+                    });
+                },
+                error: function(error) {
+                    console.log("cannot find user");
+                }
+            });
+
+            
+            var imageQuery = new Parse.Query(Parse.Object.extend("Image"));
+            imageQuery.include("imageMetadata");
+            imageQuery.get(imgId, 
+            {
+                success: function(image) {
+                    var imageMetadata = image.get("imageMetadata");
+                    console.log("shares: " + imageMetadata.get("shares"));
+                    imageMetadata.set("shares", imageMetadata.get("shares")+1);
+                    imageMetadata.save(null, 
+                    {
+                        success: function(savedUserObject) {
+                            console.log("image share count addition successful");
+
+                        },
+                        error: function(object, error) {
+                            console.log('Failed to save object: ' + error.message);
+                        }
+                    });
+                },
+                error: function(error) {
+                    console.log("cannot find image");
+                    console.log("error: " + error);
+                }
+            });
+        }
        
        FB.ui(obj, callback);
     });
