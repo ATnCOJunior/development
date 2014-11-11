@@ -13,13 +13,161 @@ var promoEnd = imageMetadata.get("promoEnd");
 
 %>
 
-<div class="block">
-	<div class="row">
-		<div class="col-md-6">
-			<img src='<%= imageURL %>'></img>
+<style type="text/css">
+
+h4{
+	color: gray;
+}
+
+#home-main-container{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+#page-container.sidebar-visible-lg-full header.navbar-fixed-top,
+#page-container.sidebar-visible-lg-full header.navbar-fixed-bottom {
+	left: 0px;
+}
+
+
+</style>
+
+<div id="page-wrapper" class="page-loading">
+
+
+	<!-- Preloader -->
+	<!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+	<!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in body element (HTML version) -->
+
+
+
+	<div class="preloader">
+		<div class="inner">
+			<!-- Animation spinner for all modern browsers -->
+			<div class="preloader-spinner themed-background hidden-lt-ie10"></div>
+
+			<!-- Text for IE9 -->
+			<h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
 		</div>
 	</div>
-</div>
 
-<div class="mfp-container mfp-s-ready mfp-image-holder"><div class="mfp-content"><div class="mfp-figure"><button title="Close (Esc)" type="button" class="mfp-close">×</button><figure><img class="mfp-img" src="http://files.parsetfss.com/cbebca68-eb67-4c19-9388-07669720e0c1/tfss-7421046e-474d-45bb-a58d-2c648bfb7c70-image.JPEG" style="max-height: 2149px;"><figcaption><div class="mfp-bottom-bar"><div class="mfp-title"><h3>Title: </h3>cocktail<h3>Company: </h3>Merchant Company<h3>Description: </h3>$10 cocktails 
-	<h3>Promotion End Date: </h3>16/10/2014<h3>Location: </h3>12, amor street</div><div class="mfp-counter"></div></div></figcaption></figure></div></div><div class="mfp-preloader">Loading...</div></div>
+	<div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+		<!-- Alternative Sidebar -->
+		<div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+			<!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+			<a id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+
+			<!-- Wrapper for scrolling functionality -->
+			<div id="sidebar-scroll-alt">
+
+			</div>
+			<!-- END Wrapper for scrolling functionality -->
+		</div>
+		<!-- END Alternative Sidebar -->
+
+
+
+		<!-- Main Container -->
+		<div id="home-main-container">
+
+			<header class="navbar navbar-inverse navbar-fixed-top">
+				<!-- Left Header Navigation -->
+				<ul class="nav navbar-nav-custom">
+
+					<!-- Header Link -->
+					<li>
+						<div id="sidebar-brand" class="themed-background">
+							<a href="/" class="sidebar-title">
+								<i class="fa fa-home"></i> <span class="sidebar-nav-mini-hide">The<strong>Foodie Market</strong></span>
+							</a>
+						</div>
+					</li>
+					<!-- END Header Link -->
+				</ul>
+				<!-- END Left Header Navigation -->
+
+				<!-- Right Header Navigation -->
+				<ul class="nav navbar-nav-custom pull-right">
+
+					<!-- User Dropdown -->
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown">
+							User
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							
+							<li>
+								<a class="btn btn-square btn-muted" onclick="facebookMod.login()" type="button" style="
+								text-align: left;
+								">
+								<i class="fa fa-facebook-square fa fa-inbox fa-fw pull-right"></i>
+								Facebook Login
+							</a>
+						</li>
+
+						<!-- <li>
+							<a href="/signup-user">
+								Register
+							</a>
+						</li>
+						<li>
+							<a href="/login-user">
+								Login
+							</a>
+						</li> -->
+					</ul>
+				</li>
+				<!-- END User Dropdown -->
+				<!-- Merchant Dropdown -->
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						Merchant
+					</a>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li>
+							<a href="/signup-merchant">
+								Register
+							</a>
+						</li>
+						<li>
+							<a href="/login-merchant">
+								Login
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- END Merchant Dropdown -->
+			</ul>
+			<!-- END Right Header Navigation -->
+		</header>
+		<!-- END Header -->
+	</div>
+	<!-- Page content -->
+	<div id="page-content">
+		<div class="block">
+			<div class="row">
+				<div class="col-md-9" style="text-align: center;">
+					<img src='<%= imageURL %>'></img>
+					<div class="mfp-bottom-bar">
+						<div class="mfp-title">
+							<h3>Title: </h3> <h4> <%= title %> </h4>
+							<h3>Company: </h3> <h4> <%= company %> </h4>
+							<h3>Description: </h3> <h4> <%= desc %>  </h4>
+							<h3>Promotion End Date: </h3> <h4> <%= promoEnd %> </h4>
+							<h3>Location: </h3> <h4> <%= location %> </h4>
+						</div>
+						<div class="mfp-counter">
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- END Page Content -->
+</div>
+<!-- END Main Container -->
+</div>
+<!-- END Page Container -->
+</div>
+<!-- END Page Wrapper -->
