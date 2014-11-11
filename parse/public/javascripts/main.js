@@ -1,12 +1,12 @@
 //for deployment
-var appid = "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3";
-var jsKey = "rOvhJctAZsQkZVkPv7nsvV4XvJ2bz00E8qm7I67A";
-var restAPIKey = "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj";
+// var appid = "MZVlTYAzuOWwZ1JH9xMAhlVpyEG2banAtMVaCiI3";
+// var jsKey = "rOvhJctAZsQkZVkPv7nsvV4XvJ2bz00E8qm7I67A";
+// var restAPIKey = "J3uSlWUvKMyC31ibsJ7GVWKXjHArX7q1GVTuacfj";
 
 //for dev
-// var appid = "n1z14zFUHMK01hZWLLFRs81fsbbLmUUdndvnuetB";
-// var jsKey = "xOwM1WsUwddJBoJZOeXZEY3HXNl4KbShZXK5qkLh";
-// var restAPIKey = "mrPxxmjU2CjBUYPDttDrM46o1sq4xaBF0IwiBs88";
+var appid = "n1z14zFUHMK01hZWLLFRs81fsbbLmUUdndvnuetB";
+var jsKey = "xOwM1WsUwddJBoJZOeXZEY3HXNl4KbShZXK5qkLh";
+var restAPIKey = "mrPxxmjU2CjBUYPDttDrM46o1sq4xaBF0IwiBs88";
 
 
 //var facebookMod = new FacebookMod("639663216116031"); //deployment
@@ -180,7 +180,7 @@ $('.approve').click(function(event) {
             name: 'The Foodie Market!',
             title: title,
             description: desc,
-            link: 'https://thefoodiemarket-dev.parseapp.com/i/' + imgId,
+            link: 'https://thefoodiemarket.parseapp.com/i/' + imgId,
             display: 'popup'
         };
 
@@ -400,7 +400,7 @@ Uploader = Backbone.View.extend({
                     if (data.error) {
                         console.log(data.error);
                     } else {
-                        window.location.href = "https://thefoodiemarket-dev.parseapp.com/merchant";
+                        window.location.href = "https://thefoodiemarket.parseapp.com/merchant";
                     }
                 });
 });
