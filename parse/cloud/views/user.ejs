@@ -1,5 +1,5 @@
 <%
-	console.log(bookmarks);
+console.log(bookmarks);
 %>
 <div id="page-wrapper" class="page-loading">
 	<!-- Preloader -->
@@ -105,7 +105,7 @@
 						<li>
 							<a href="/user-transaction">
 								<i class="fa fa-dollar sidebar-nav-icon"></i>
-								<span class="sidebar-nav-mini-hide">Account</span>
+								<span class="sidebar-nav-mini-hide">Cashout</span>
 							</a>
 						</li>
 
@@ -161,7 +161,7 @@
 
 					<!-- Header Link -->
 					<li class="hidden-xs animation-fadeInQuick">
-						<a><strong>Deals for You!</strong></a>
+						<a> Welcome <%=Parse.User.current().get("fullName")%>! </a>
 					</li>
 <!-- 					<li class="hidden-xs animation-fadeInQuick">
 						<a><strong>1 Like = 2 Points</strong></a>
@@ -179,7 +179,7 @@
 					<!-- Alternative Sidebar Toggle Button -->
 					<li>
 						<a onclick="App.sidebar('toggle-sidebar-alt');">
-							<i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
+							<i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i> My Profile
 						</a>
 					</li>
 					<!-- END Alternative Sidebar Toggle Button -->
@@ -234,32 +234,32 @@
 								</li>
 							</ul>
 						</div>
-						<div class="block-options pull-right">
+						<!-- <div class="block-options pull-right">
 							<a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
 							<a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
-						</div>
+						</div> -->
 					</div>
 					<!-- END Gallery Filter Links -->
 				</div>
 				<!-- END Gallery Header -->
 				
 				<%
-					if(images.length == 0){
-						%>
-						<div class="noshow"> There are currently no promotions in this category! </div>
+				if(images.length == 0){
+					%>
+					<div class="noshow"> There are currently no promotions in this category! </div>
 
-						<%
-					}
+					<%
+				}
 				%>
 
 				<div class="row gallery">
 					<%
-						var user = Parse.User.current();
-						var userLikeCount = user.get("likes");
-						var userShareCount = user.get("shares");
-						var userPointCount = user.get("points");
+					var user = Parse.User.current();
+					var userLikeCount = user.get("likes");
+					var userShareCount = user.get("shares");
+					var userPointCount = user.get("points");
 
-						 _(images).each(function(image){
+					_(images).each(function(image){
 						var imageURL = image.get('sizeNormal').url();
 						var imageID = image.id;
 						var imageMetadata = image.get('imageMetadata');
@@ -325,73 +325,84 @@
 							<!-- bookmark like share button -->
 							<div class="modal-footer" title="<%=imageID%>">
 								
-								<%
-									if(type == "Trending"){
-										%>
-										View Count: <%=views%>
-										<%
-									}else if(type == "Ending"){
-										%>
-										Promotion End Date: <%=promoDate%>
-										<%
-									}else{
-										%>
-										Promotion Start Date: <%=promoStart%>
-										<%
-									}
-								%>
-
-								<div class="fb-like" data-href="https://thefoodiemarket.parseapp.com/i/<%=imageID%>" data-layout="button_count" data-action="like" data-show-faces="true" data-dismiss="modal" title="<%=imageID%>"></div>
+								<div class="fb-like" data-href="https://thefoodiemarket.parseapp.com/i/<%=imageID%>"  data-action="like" data-show-faces="true" data-dismiss="modal" title="<%=imageID%>"></div>
 								
 								<button type="button" class="share share2 btn btn-effect-ripple btn-info" data-dismiss="
 								modal" title="<%=imageID + '|' + title + '|' + desc + '|' + Parse.User.current().id%>">
 								Share
-								</button>
-
-								<%=shares%> shares so far!
-								
-								<%	
-									var flag = false; 
-									for (var i = bookmarks.length - 1; i >= 0; i--) {
-										if(bookmarks[i]==imageID){
-											flag = true;
-										}
-									};
-									if(flag){
-										%>
-											<!-- if bookmarked -->
-											<button type="button" class="bookmark-switch btn btn-effect-ripple btn-success"  title="<%=imageID%>">
-												Unbookmark
-											</button>	
-										<%
-									}else{
-										%>
-											<!-- if haven't bookmark -->
-											<button type="button" class="bookmark-switch btn btn-effect-ripple btn-success"  title="<%=imageID%>">
-												 Bookmark
-											</button>	
-										<%
-									}
-								%>
-
-								<!-- <button type="button" class="bookmark-switch btn btn-effect-ripple btn-success" data-dismiss="modal" title="<%=imageID%>">
-									<i class="fa fa-bookmark"></i> Bookmark
-								</button>	 -->							
+							</button>
 							
+							<%	
+							var flag = false; 
+							for (var i = bookmarks.length - 1; i >= 0; i--) {
+								if(bookmarks[i]==imageID){
+									flag = true;
+								}
+							};
+							if(flag){
+								%>
+								<!-- if bookmarked -->
+								<button type="button" class="bookmark-switch btn btn-effect-ripple btn-success"  title="<%=imageID%>">
+									Unbookmark
+								</button>	
+								<%
+							}else{
+								%>
+								<!-- if haven't bookmark -->
+								<button type="button" class="bookmark-switch btn btn-effect-ripple btn-success"  title="<%=imageID%>">
+									Bookmark
+								</button>	
+								<%
+							}
+							%>
+
+							<div class="widget-content text-muted">
+								<div class="row text-center">
+									<div class="col-xs-4">
+										<i class="fa fa-heart-o"></i> <%=likes%>
+									</div>
+									<div class="col-xs-4">
+										<i class="fa fa-eye"></i> 76k
+									</div>
+									<div class="col-xs-4">
+										<i class="fa fa-share-alt"></i> <%=shares%>
+									</div>
+								</div>
 							</div>
-							<!-- END bookmark like share button -->
-						</div>
-						<%}});%>
+
+							<div class="widget-content text-muted">
+								<%
+								if(type == "Trending"){
+								// %>
+								// View Count: <%=views%>
+								// <%
+							} if(type == "Ending"){
+								%>
+								<small>End Date: <%=promoDate%></small>
+								<%
+							}else{
+								%>
+								<small>Start Date: <%=promoStart%></small>
+								<%
+							}
+							%>
+						</div>				
+						
 					</div>
-					<!-- END Gallery Items -->
+					<!-- END bookmark like share button -->
 				</div>
-				<!-- END Page Content -->
+				<%}});%>
 			</div>
-			<!-- END Main Container -->
+			<!-- END Gallery Items -->
 		</div>
-	<!-- END Page Container -->
+		<!-- END Page Content -->
 	</div>
-	<!-- END Page Wrapper -->
+	<!-- END Main Container -->
+</div>
+<!-- END Page Container -->
+</div>
+<!-- END Page Wrapper -->
+
 
 <!-- Compose Message -->
 <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -404,26 +415,24 @@
 			<div class="modal-body">
 				<form action="/compose" method="post" class="form-horizontal form-bordered">
 					<div class="form-group">
-						<input type="hidden" name="origin" value="/user">
+						<input type="hidden" name="origin" value="/merchant-inbox">
 						<div class="col-xs-12">
-							If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
+							If you have any feedback or would like to contact us, please fill out the fields below. 
+							<!-- If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;) -->
 						</div>
 					</div>
 					<div class="block full form-inline">
 						<!-- Inline Form Content -->
 
 						<div class="form-group">
-							<label class="sr-only">Email</label>
-							<input type="email" name="contact" class="form-control" placeholder="Email">
+							<label class="sr-only">email</label>
+							<input type="email" name="contact" class="form-control" placeholder="Your email">
 						</div>
 						<div class="form-group">
-							<label class="sr-only">Contact</label>
-							<input type="text" name="contactNumber" class="form-control" placeholder="Contact number">
+							<label class="sr-only">contact</label>
+							<input type="text" name="contactNumber" class="form-control" placeholder="Your contact number">
 						</div>
-						<div class="form-group">
-
-							<button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
-						</div>
+						
 						<!-- END Inline Form Content -->
 					</div>
 					<div class="form-group">
@@ -433,6 +442,7 @@
 					</div>
 					<div class="form-group form-actions">
 						<div class="col-xs-12 text-right">
+							<button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
 							<button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
 						</div>
 					</div>
@@ -450,111 +460,112 @@
 
 
 
+
 <script>
-	var page_like_callback = function(url, html_element) {
-		var userId = Parse.User.current().id;
+var page_like_callback = function(url, html_element) {
+	var userId = Parse.User.current().id;
 
-		var query = new Parse.Query(Parse.User);
-        query.get(userId, {
-            success: function(user) {
-                user.set("likes", user.get("likes")+1);
-                user.set("points", user.get("points")+2);
-                user.save(null, {
-                    success: function(savedUserObject) {
-                        console.log("facebook like successful");
+	var query = new Parse.Query(Parse.User);
+	query.get(userId, {
+		success: function(user) {
+			user.set("likes", user.get("likes")+1);
+			user.set("points", user.get("points")+2);
+			user.save(null, {
+				success: function(savedUserObject) {
+					console.log("facebook like successful");
 
-                    },
-                    error: function(object, error) {
-                        console.log('Failed to save object: ' + error.message);
-                    }
-                });
-            },
-            error: function(error) {
-                console.log("cannot find user");
-            }
-        });
+				},
+				error: function(object, error) {
+					console.log('Failed to save object: ' + error.message);
+				}
+			});
+		},
+		error: function(error) {
+			console.log("cannot find user");
+		}
+	});
 		//var origin = $(location).attr('pathname');
-        
-        var n = url.lastIndexOf("/");
-        var imageID = url.substring(n+1);
+		
+		var n = url.lastIndexOf("/");
+		var imageID = url.substring(n+1);
 
-        var imageQuery = new Parse.Query(Parse.Object.extend("Image"));
-        imageQuery.include("imageMetadata");
-        imageQuery.get(imageID, 
-        {
-            success: function(image) {
-                var imageMetadata = image.get("imageMetadata");
-                console.log("likes: " + imageMetadata.get("likes"));
-                imageMetadata.set("likes", imageMetadata.get("likes")+1);
-                imageMetadata.save(null, 
-                {
-                    success: function(savedUserObject) {
-                        console.log("image like count addition successful");
+		var imageQuery = new Parse.Query(Parse.Object.extend("Image"));
+		imageQuery.include("imageMetadata");
+		imageQuery.get(imageID, 
+		{
+			success: function(image) {
+				var imageMetadata = image.get("imageMetadata");
+				console.log("likes: " + imageMetadata.get("likes"));
+				imageMetadata.set("likes", imageMetadata.get("likes")+1);
+				imageMetadata.save(null, 
+				{
+					success: function(savedUserObject) {
+						console.log("image like count addition successful");
 
-                    },
-                    error: function(object, error) {
-                        console.log('Failed to save object: ' + error.message);
-                    }
-                });
-            },
-            error: function(error) {
-                console.log("cannot find image");
-                console.log("error: " + error);
-            }
-        });
+					},
+					error: function(object, error) {
+						console.log('Failed to save object: ' + error.message);
+					}
+				});
+			},
+			error: function(error) {
+				console.log("cannot find image");
+				console.log("error: " + error);
+			}
+		});
 	}
 
 	var page_unlike_callback = function(url, html_element) {
 		var userId = Parse.User.current().id;
 
 		var query = new Parse.Query(Parse.User);
-        query.get(userId, {
-            success: function(user) {
-                user.set("likes", user.get("likes")-1);
-                user.set("points", user.get("points")-2);
-                user.save(null, {
-                    success: function(savedUserObject) {
-                        console.log("facebook unlike successful");
+		query.get(userId, {
+			success: function(user) {
+				user.set("likes", user.get("likes")-1);
+				user.set("points", user.get("points")-2);
+				user.save(null, {
+					success: function(savedUserObject) {
+						console.log("facebook unlike successful");
 
-                    },
-                    error: function(object, error) {
-                        console.log('Failed to save object: ' + error.message);
-                    }
-                });
-            },
-            error: function(error) {
-                console.log("cannot find user");
-            }
-        });
+					},
+					error: function(object, error) {
+						console.log('Failed to save object: ' + error.message);
+					}
+				});
+			},
+			error: function(error) {
+				console.log("cannot find user");
+			}
+		});
 		//var origin = $(location).attr('pathname');
-        
-        var n = url.lastIndexOf("/");
-        var imageID = url.substring(n+1);
+		
+		var n = url.lastIndexOf("/");
+		var imageID = url.substring(n+1);
 
-        var imageQuery = new Parse.Query(Parse.Object.extend("Image"));
-        imageQuery.include("imageMetadata");
-        imageQuery.get(imageID, 
-        {
-            success: function(image) {
-                var imageMetadata = image.get("imageMetadata");
-                console.log("likes: " + imageMetadata.get("likes"));
-                imageMetadata.set("likes", imageMetadata.get("likes")-1);
-                imageMetadata.save(null, 
-                {
-                    success: function(savedUserObject) {
-                        console.log("image like count deduction successful");
+		var imageQuery = new Parse.Query(Parse.Object.extend("Image"));
+		imageQuery.include("imageMetadata");
+		imageQuery.get(imageID, 
+		{
+			success: function(image) {
+				var imageMetadata = image.get("imageMetadata");
+				console.log("likes: " + imageMetadata.get("likes"));
+				imageMetadata.set("likes", imageMetadata.get("likes")-1);
+				imageMetadata.save(null, 
+				{
+					success: function(savedUserObject) {
+						console.log("image like count deduction successful");
 
-                    },
-                    error: function(object, error) {
-                        console.log('Failed to save object: ' + error.message);
-                    }
-                });
-            },
-            error: function(error) {
-                console.log("cannot find image");
-                console.log("error: " + error);
-            }
-        });
+					},
+					error: function(object, error) {
+						console.log('Failed to save object: ' + error.message);
+					}
+				});
+			},
+			error: function(error) {
+				console.log("cannot find image");
+				console.log("error: " + error);
+			}
+		});
 	}
 
 	// In your onload handler

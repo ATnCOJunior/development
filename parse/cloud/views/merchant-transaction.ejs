@@ -208,14 +208,14 @@ if(Parse.User)
                 <!-- Alternative Sidebar Toggle Button -->
                 <li>
                     <a onclick="App.sidebar('toggle-sidebar-alt');">
-                        <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;">
+                        <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"> My Profile
                         </i>
                     </a>
                 </li>
                 <!-- END Alternative Sidebar Toggle Button -->
 
                 <!-- User Dropdown -->
-               <li>
+                <li>
                     <a href="/logout">
                         Logout
                     </a>
@@ -236,12 +236,12 @@ if(Parse.User)
 
                 <!-- Table Styles Content -->
                 <div class="table-responsive">
-                 <!-- Title -->
-                 <div class="block-title clearfix">
-                    <div class="block-options pull-right">
+                   <!-- Title -->
+                   <div class="block-title clearfix">
+                    <!-- <div class="block-options pull-right">
                         <a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
                         <a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
-                    </div>
+                    </div> -->
                     <div class="block-options pull-left">
                         <h2>Your due payments</h2>
                     </div>
@@ -473,22 +473,22 @@ if(Parse.User)
                                 </form>
                             </div>
 
-                        <!-- END Message Body -->
+                            <!-- END Message Body -->
+                        </div>
+                        <!-- END Message View -->
+                        <!-- END Table Styles Content -->
                     </div>
-                    <!-- END Message View -->
-                    <!-- END Table Styles Content -->
+                    <!-- END Table Styles Block -->
                 </div>
-                <!-- END Table Styles Block -->
+                <!-- END Page Content -->
             </div>
-            <!-- END Page Content -->
+            <!-- END Main Container -->
         </div>
-        <!-- END Main Container -->
+        <!-- END Page Container -->
     </div>
-    <!-- END Page Container -->
-</div>
-<!-- END Page Wrapper -->
+    <!-- END Page Wrapper -->
 
-<!-- Compose Message -->
+    <!-- Compose Message -->
     <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -499,26 +499,24 @@ if(Parse.User)
                 <div class="modal-body">
                     <form action="/compose" method="post" class="form-horizontal form-bordered">
                         <div class="form-group">
-                            <input type="hidden" name="origin" value="/merchant-transaction">
+                            <input type="hidden" name="origin" value="/merchant-inbox">
                             <div class="col-xs-12">
-                                If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
+                                If you have any feedback or would like to contact us, please fill out the fields below. 
+                                <!-- If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;) -->
                             </div>
                         </div>
                         <div class="block full form-inline">
                             <!-- Inline Form Content -->
 
                             <div class="form-group">
-                                <label class="sr-only">Email</label>
-                                <input type="email" name="contact" class="form-control" placeholder="Email">
+                                <label class="sr-only">email</label>
+                                <input type="email" name="contact" class="form-control" placeholder="Your email">
                             </div>
                             <div class="form-group">
-                                <label class="sr-only">Contact</label>
-                                <input type="text" name="contactNumber" class="form-control" placeholder="Contact number">
+                                <label class="sr-only">contact</label>
+                                <input type="text" name="contactNumber" class="form-control" placeholder="Your contact number">
                             </div>
-                            <div class="form-group">
-
-                                <button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
-                            </div>
+                            
                             <!-- END Inline Form Content -->
                         </div>
                         <div class="form-group">
@@ -528,17 +526,18 @@ if(Parse.User)
                         </div>
                         <div class="form-group form-actions">
                             <div class="col-xs-12 text-right">
+                                <button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
                                 <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
                             </div>
                         </div>
                         <div class="form-group">
-							<div class="col-xs-12">
-								Or email our manager: plsitoh.2011@sis.smu.edu.sg
-							</div>
-						</div>
-                    </form>
-                </div>
+                           <div class="col-xs-12">
+                            Or email our manager: plsitoh.2011@sis.smu.edu.sg
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- END Compose Message -->
+</div>
+<!-- END Compose Message -->

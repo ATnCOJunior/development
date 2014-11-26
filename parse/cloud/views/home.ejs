@@ -1,11 +1,11 @@
 <% 
-	var totalLike = 0;
-	var totalShare = 0;
-	_(allImages).each(function(image){
-		var imageMetadata = image.get("imageMetadata");
-		totalLike = totalLike + imageMetadata.get("likes");
-		totalShare = totalShare + imageMetadata.get("shares");
-		})
+var totalLike = 0;
+var totalShare = 0;
+_(allImages).each(function(image){
+	var imageMetadata = image.get("imageMetadata");
+	totalLike = totalLike + imageMetadata.get("likes");
+	totalShare = totalShare + imageMetadata.get("shares");
+})
 %>
 
 
@@ -75,10 +75,16 @@
 						</div>
 					</li>
 					<li class="hidden-xs animation-fadeInQuick">
-						<a><strong>Total Likes = <%=totalLike%></strong></a>
+						<a>
+							<i class="fa fa-heart-o"></i> 
+							<%=totalLike%>
+						</a>
 					</li>
 					<li class="hidden-xs animation-fadeInQuick">
-						<a><strong>Total Shares = <%=totalShare%></strong></a>
+						<a>
+							<i class="fa fa-share-alt"></i> 
+							<%=totalShare%>
+						</a>
 					</li>
 					<!-- END Header Link -->
 				</ul>
@@ -90,7 +96,7 @@
 					<!-- User Dropdown -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							User
+							Customer
 						</a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							
@@ -156,44 +162,44 @@
 					<a class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
 				</div>
 				<div class="btn-group">
-					<a data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by: <%=type%><span class="caret"></span></a>
+					<a data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by : <%=type%><span class="caret"></span></a>
 					<ul class="dropdown-menu text-left">
 
 						<li>
 							<a href="/">
-								New
+								New 
 							</a>
 						</li>
 
 						<li>
 							<a href="/trending">
-								Trending
-							</a>
+								Trending 
+							</a> 
 						</li>
 
 						<li>
 							<a href="/ending">
-								Ending
+								Ending 
 							</a>
 						</li>
 					</ul>
 				</div>
-				<div class="block-options pull-right">
+				<!-- <div class="block-options pull-right">
 					<a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;"><i class="fa fa-arrow-left"></i> Prev</a>
 					<a class="btn btn-effect-ripple btn-default" style="overflow: hidden; position: relative;">Next <i class="fa fa-arrow-right"></i></a>
-				</div>
+				</div> -->
 			</div>
 			<!-- END Gallery Filter Links -->
 		</div>
 		<!-- END Gallery Header -->
 
 		<%
-			if(images.length == 0){
-				%>
-				<div class="noshow"> There are currently no promotions in this category! </div>
+		if(images.length == 0){
+			%>
+			<div class="noshow"> There are currently no promotions in this category! </div>
 
-				<%
-			}
+			<%
+		}
 		%>
 
 		<div class="row gallery">
@@ -261,7 +267,10 @@
 							+ views 
 							%>"
 							>
-							<i class="fa fa-search-plus fa-3x text-light"></i>
+							<i class="fa fa-search-plus fa-3x text-light"></i><br>
+							<h3 class="text-light">
+								Click me to show more
+							</h3>
 						</a>
 					</div>
 					<!-- bookmark like share button -->
@@ -272,22 +281,7 @@
 							<i class="fa fa-bookmark"></i> Bookmark
 
 						</button> -->
-						<%
-							if(type == "Trending"){
-								%>
-								View Count: <%=views%>
-								<%
-							}else if(type == "Ending"){
-								%>
-								Promotion End Date: <%=promoDate%>
-								<%
-							}else{
-								%>
-								Promotion Start Date: <%=promoStart%>
-								<%
-							}
-						%>
-
+						
 						<button type="button" onclick="facebookMod.login()" class="btn btn-effect-ripple btn-info" data-dismiss="modal">
 
 							<i class="fa fa-thumbs-up"></i> Like
@@ -298,27 +292,52 @@
 							<i class="fa fa-share"></i> Share
 
 						</button>
+						<button type="button" onclick="facebookMod.login()" class="bookmark-switch btn btn-effect-ripple btn-success" >
+							Bookmark
+						</button>	
 
-						<%=likes%> likes so far!
-						<%=shares%> shares so far!
-							<!-- <div class="text-success">
-								<label class="switch switch-success">   
-									<input type="checkbox" checked="">
-									<span></span>
-								</label>
-								<strong class=" text-success">	Bookmark</strong>
-							</div> -->
+						<div class="widget-content text-muted">
+							<div class="row text-center">
+								<div class="col-xs-4">
+									<i class="fa fa-heart-o"></i> <%=likes%>
+								</div>
+								<div class="col-xs-4">
+									<i class="fa fa-eye"></i> 76k
+								</div>
+								<div class="col-xs-4">
+									<i class="fa fa-share-alt"></i> <%=shares%>
+								</div>
+							</div>
 						</div>
-						<!-- END bookmark like share button -->
+
+						<div class="widget-content text-muted">
+							<%
+							if(type == "Trending"){
+								// %>
+								// View Count: <%=views%>
+								// <%
+							} if(type == "Ending"){
+								%>
+								<small>End Date: <%=promoDate%></small>
+								<%
+							}else{
+								%>
+								<small>Start Date: <%=promoStart%></small>
+								<%
+							}
+							%>
+						</div>
+
 					</div>
-					<%}});%>
 				</div>
-				<!-- END Gallery Items -->
+				<%}});%>
 			</div>
-			<!-- END Page Content -->
+			<!-- END Gallery Items -->
 		</div>
-		<!-- END Main Container -->
+		<!-- END Page Content -->
 	</div>
-	<!-- END Page Container -->
+	<!-- END Main Container -->
+</div>
+<!-- END Page Container -->
 </div>
 <!-- END Page Wrapper -->

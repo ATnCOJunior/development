@@ -76,8 +76,8 @@
 
             <!-- Wrapper for scrolling functionality -->
             <div id="sidebar-scroll">
-               <!-- Sidebar Content -->
-               <div class="sidebar-content">
+             <!-- Sidebar Content -->
+             <div class="sidebar-content">
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
                     <li class="" style="text-align:center;">
@@ -98,7 +98,7 @@
                     <li class="active">
                         <a href="" >
                             <i class="fa fa-dollar sidebar-nav-icon"></i>
-                            <span class="sidebar-nav-mini-hide">Account</span>
+                            <span class="sidebar-nav-mini-hide">Cashout</span>
                         </a>
                     </li>
 
@@ -173,7 +173,7 @@
                         <!-- Alternative Sidebar Toggle Button -->
                         <li>
                             <a  onclick="App.sidebar('toggle-sidebar-alt');">
-                                <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i>
+                                <i class="fa fa-user" style="margin-bottom: 13px; margin-top: 13px;"></i> My Profile
                             </a>
                         </li>
                         <!-- END Alternative Sidebar Toggle Button -->
@@ -194,55 +194,42 @@
                 <div id="page-content">
                     <div class="row">
                         <div class="col-sm-4">
-                            <a  class="widget">
-                                <div class="widget-content themed-background-info text-light-op">
-                                    <i class="fa fa-fw fa-chevron-right"></i> <strong>Like Count</strong>
+                            <a class="widget">
+                                <div class="widget-content text-right clearfix">
+                                    <i class="fa fa-thumbs-o-up fa-3x text-info pull-left"></i>
+                                    <h2 class="widget-heading h3"><strong>Like Count</strong></h2>
+                                    <span class="text-muted">1 like = 2 points</span>
                                 </div>
-                                <div class="widget-content themed-background-muted text-center">
-                                    <i class="fa fa-thumbs-o-up fa-3x text-info"></i>
-                                </div>
-                                <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="<%=Parse.User.current().get("likes")%>"><%=Parse.User.current().get("likes")%></h3>
-                                </div>
+                                <div class="widget-content text-center themed-background-info text-light-op">
+                                  <h3 class="widget-heading text-light" data-toggle="counter" data-to="<%=Parse.User.current().get("likes")%>"><%=Parse.User.current().get("likes")%></h3>
+
+                              </div>
                             </a>
                         </div>
                         <div class="col-sm-4">
-                            <a  class="widget">
-                                <div class="widget-content themed-background-danger text-light-op">
-                                    <i class="fa fa-fw fa-chevron-right"></i> <strong>Share Count</strong>
+                            <a class="widget">
+                                <div class="widget-content text-right clearfix">
+                                    <i class="fa fa-share-alt fa-3x text-danger pull-left"></i>
+                                    <h2 class="widget-heading h3 text-danger"><strong>Share Count</strong></h2>
+                                    <span class="text-muted">1 share = 4 points</span>
                                 </div>
-                                <div class="widget-content themed-background-muted text-center">
-                                    <i class="fa fa-heart-o fa-3x text-danger"></i>
-                                </div>
-                                <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="<%=Parse.User.current().get("shares")%>"><%=Parse.User.current().get("shares")%></h3>
-                                </div>
+                                <div class="widget-content text-center themed-background-danger text-light-op">
+                                  <h3 class="widget-heading text-light" data-toggle="counter" data-to="0">0</h3>
+
+                              </div>
                             </a>
                         </div>
-                        <!-- <div class="col-sm-3">
-                            <a  class="widget">
-                                <div class="widget-content themed-background-dark text-light-op">
-                                    <i class="fa fa-fw fa-chevron-right"></i> <strong>Bookmarks</strong>
-                                </div>
-                                <div class="widget-content themed-background-muted text-center">
-                                    <i class="fa fa-bookmark fa-3x text-dark"></i>
-                                </div>
-                                <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="4">4</h3>
-                                </div>
-                            </a>
-                        </div> -->
                         <div class="col-sm-4">
-                            <a  class="widget">
-                                <div class="widget-content themed-background-success text-light-op">
-                                    <i class="fa fa-fw fa-chevron-right"></i> <strong>Points Balance</strong>
+                            <a class="widget">
+                                <div class="widget-content text-right clearfix">
+                                    <i class="fa fa-dollar fa-3x text-success pull-left"></i>
+                                    <h2 class="widget-heading h3 text-success"><strong>Point Balance</strong></h2>
+                                    <span class="text-muted">Your total balance</span>
                                 </div>
-                                <div class="widget-content themed-background-muted text-center">
-                                    <i class="fa fa-dollar fa-3x text-success"></i>
-                                </div>
-                                <div class="widget-content text-center">
-                                    <h3 class="widget-heading text-dark" data-toggle="counter" data-to="<%=Parse.User.current().get("points")%>"><%=Parse.User.current().get("points")%></h3>
-                                </div>
+                                <div class="widget-content text-center themed-background-success text-light-op">
+                                  <h3 class="widget-heading text-light" data-toggle="counter" data-to="<%=Parse.User.current().get("points")%>"><%=Parse.User.current().get("points")%></h3>
+
+                              </div>
                             </a>
                         </div>
                     </div>
@@ -258,24 +245,29 @@
                         <!-- Mini Pricing Tables Content -->
                         <div class="row">
                             <div class="col-sm-3">
-                                <table class="table table-pricing table-borderless">
+                                <table class="table table-pricing table-borderless text-muted">
                                     <thead>
                                         <tr>
-                                            <th>$50</th>
+                                            <th>$10 Voucher</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <h1>500 <br> points</h1>
+                                                <h1>retaurant name</h1>
+                                                <small>random code</small>
                                             </td>
                                         </tr>
                                         <tr class="active">
                                             <td>
-                                                <form  action="/cashout" method="post" class="form-horizontal">
+                                                <button type="submit" class="btn btn-effect-ripple btn-success">
+                                                    <i class="fa fa-arrow-right"></i>Redeem
+                                                </button>
+
+                                               <!--  <form  action="/cashout" method="post" class="form-horizontal">
                                                     <%if(Parse.User.current().get("points")>=500){%>
                                                     <button type="submit" class="btn btn-effect-ripple btn-success">
-                                                        <i class="fa fa-arrow-right"></i>Cashout
+                                                        <i class="fa fa-arrow-right"></i>Redeem
                                                     </button>
                                                     <%}else{%>
                                                     <button type="button" class="btn btn-effect-ripple btn-success disabled">
@@ -285,179 +277,77 @@
                                                     <input type="hidden" name="user" value="<%=Parse.User.current()%>">
                                                     <input type="hidden" name="pointAmount" value="500">
                                                     <input type="hidden" name="dollarAmount" value="50">
-                                                </form>
+                                                </form> -->
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-sm-3">
-                                <table class="table table-pricing table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>$100</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <h1>1000 <br> points</h1>
-                                            </td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>
-                                                <form  action="/cashout" method="post" class="form-horizontal">
-                                                    <%if(Parse.User.current().get("points")>=1000){%>
-                                                    <button type="submit" class="btn btn-effect-ripple btn-success">
-                                                        <i class="fa fa-arrow-right"></i>Cashout
-                                                    </button>
-                                                    <%}else{%>
-                                                    <button type="button" class="btn btn-effect-ripple btn-success disabled">
-                                                        Cashout
-                                                    </button>
-                                                    <%}%>
-                                                    <input type="hidden" name="user" value="<%=Parse.User.current()%>">
-                                                    <input type="hidden" name="pointAmount" value="1000">
-                                                    <input type="hidden" name="dollarAmount" value="100">
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-sm-3">
-                                <table class="table table-pricing table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>$150</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <h1>1500 <br> points</h1>
-                                            </td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>
-                                                <form  action="/cashout" method="post" class="form-horizontal">
-                                                    <%if(Parse.User.current().get("points")>=1500){%>
-                                                    <button type="submit" class="btn btn-effect-ripple btn-success">
-                                                        <i class="fa fa-arrow-right"></i>Cashout
-                                                    </button>
-                                                    <%}else{%>
-                                                    <button type="button" class="btn btn-effect-ripple btn-success disabled">
-                                                        Cashout
-                                                    </button>
-                                                    <%}%>
-                                                    <input type="hidden" name="user" value="<%=Parse.User.current()%>">
-                                                    <input type="hidden" name="pointAmount" value="1500">
-                                                    <input type="hidden" name="dollarAmount" value="150">
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-sm-3">
-                                <table class="table table-pricing table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>$200</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <h1>2000 <br> points</h1>
-                                            </td>
-                                        </tr>
-                                        <tr class="active">
-                                            <td>
-                                                <form  action="/cashout" method="post" class="form-horizontal">
-                                                    <%if(Parse.User.current().get("points")>=2000){%>
-                                                    <button type="submit" class="btn btn-effect-ripple btn-success">
-                                                        <i class="fa fa-arrow-right"></i>Cashout
-                                                    </button>
-                                                    <%}else{%>
-                                                    <button type="button" class="btn btn-effect-ripple btn-success disabled">
-                                                        Cashout
-                                                    </button>
-                                                    <%}%>
-                                                    <input type="hidden" name="user" value="<%=Parse.User.current()%>">
-                                                    <input type="hidden" name="pointAmount" value="2000">
-                                                    <input type="hidden" name="dollarAmount" value="200">
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            
+                            <!-- END Mini Pricing Tables Content -->
                         </div>
-                        <!-- END Mini Pricing Tables Content -->
-                    </div>
-                    <!-- END Mini Pricing Tables Block -->
+                        <!-- END Mini Pricing Tables Block -->
 
+                    </div>
+                    <!-- END Page Content -->
                 </div>
-                <!-- END Page Content -->
+                <!-- END Main Container -->
             </div>
-            <!-- END Main Container -->
+            <!-- END Page Container -->
         </div>
-        <!-- END Page Container -->
-    </div>
-    <!-- END Page Wrapper -->
+        <!-- END Page Wrapper -->
 
-    <!-- Compose Message -->
-    <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title"><strong>Compose Message</strong></h3>
-                </div>
-                <div class="modal-body">
-                    <form action="/compose" method="post" class="form-horizontal form-bordered">
-                        <div class="form-group">
-                            <input type="hidden" name="origin" value="/user-transaction">
-                            <div class="col-xs-12">
-                                If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;)
-                            </div>
-                        </div>
-                        <div class="block full form-inline">
-                            <!-- Inline Form Content -->
-
-                            <div class="form-group">
-                                <label class="sr-only">Email</label>
-                                <input type="email" name="contact" class="form-control" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label class="sr-only">Contact</label>
-                                <input type="text" name="contactNumber" class="form-control" placeholder="Contact number">
-                            </div>
-                            <div class="form-group">
-
-                                <button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
-                            </div>
-                            <!-- END Inline Form Content -->
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group form-actions">
-                            <div class="col-xs-12 text-right">
-                                <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                         <div class="col-xs-12">
-                            Or email our manager: plsitoh.2011@sis.smu.edu.sg
-                        </div>
+        <!-- Compose Message -->
+        <div id="modal-compose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3 class="modal-title"><strong>Compose Message</strong></h3>
                     </div>
-                </form>
+                    <div class="modal-body">
+                        <form action="/compose" method="post" class="form-horizontal form-bordered">
+                            <div class="form-group">
+                                <input type="hidden" name="origin" value="/merchant-inbox">
+                                <div class="col-xs-12">
+                                    If you have any feedback or would like to contact us, please fill out the fields below. 
+                                    <!-- If you have any feedback please feel free to let us know! This information will be sent to admin who will attend you shortly after that. We thank you and appreciate the feedback! ;) -->
+                                </div>
+                            </div>
+                            <div class="block full form-inline">
+                                <!-- Inline Form Content -->
+
+                                <div class="form-group">
+                                    <label class="sr-only">email</label>
+                                    <input type="email" name="contact" class="form-control" placeholder="Your email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">contact</label>
+                                    <input type="text" name="contactNumber" class="form-control" placeholder="Your contact number">
+                                </div>
+                                
+                                <!-- END Inline Form Content -->
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <textarea id="fcompose-message" name="message" rows="7" class="form-control" placeholder="Write your message.."></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="col-xs-12 text-right">
+                                    <button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
+                                    <button type="submit" class="btn btn-effect-ripple btn-primary">Send</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                               <div class="col-xs-12">
+                                Or email our manager: plsitoh.2011@sis.smu.edu.sg
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- END Compose Message -->
+    <!-- END Compose Message -->
+
