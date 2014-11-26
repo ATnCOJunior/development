@@ -185,8 +185,8 @@
 					<!-- END Alternative Sidebar Toggle Button -->
 
 					<!-- User Dropdown -->
-					<li class="dropdown open">
-						<a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+					<li>
+						<a href="/logout">
 							Logout
 						</a>
 					</li>
@@ -219,7 +219,15 @@
 					<!-- END Gallery Filter Links -->
 				</div>
 				<!-- END Gallery Header -->
+				
+				<%
+					if(images.length == 0){
+						%>
+						<div class="noshow"> There are currently no promotions in this category! </div>
 
+						<%
+					}
+				%>
 
 				<!-- Gallery Items -->
 				<!-- Lightbox functionality is based on Magnific Popup plugin (initialized in js/app.js -> uiInit()) -->
@@ -232,7 +240,7 @@
 						var imageMetadata = image.get('imageMetadata');
 						var title = imageMetadata.get('title');
 						var desc = imageMetadata.get('desc');
-						var expiry = imageMetadata.get('expiry');
+						var promoStart = imageMetadata.get('promoStart').toLocaleDateString();
 						var location = imageMetadata.get('location');
 						var reason = imageMetadata.get('reason');
 						var company = image.get("user").get("company");
@@ -270,7 +278,7 @@
 								<img src="<%= imageURL %>"
 								alt="<%= desc
 								+'|||'
-								+expiry
+								+promoStart
 								+'|||'
 								+location
 								%>" 
@@ -284,8 +292,8 @@
 									+ "<h3>Description: </h3>"
 									+ desc
 									+ "<br>"
-									+ "<h3>Campaign Period (Days/ End Date): </h3>"
-									+ expiry
+									+ "<h3>Promotion Start Date: </h3>"
+									+ promoStart
 									+ "<br>" 
 									+ "<h3>Promotion End Date: </h3>"
 									+ promoDate 

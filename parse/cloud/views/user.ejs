@@ -1,3 +1,6 @@
+<%
+	console.log(bookmarks);
+%>
 <div id="page-wrapper" class="page-loading">
 	<!-- Preloader -->
 	<!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
@@ -51,10 +54,10 @@
 								<label for="side-profile-name">Email Address</label>
 								<input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="side-profile-name">Paypal Account</label>
 								<input type="text" name="paypal" class="form-control" value="<%=Parse.User.current().get("paypal")%>">
-							</div>
+							</div> -->
 							<div class="form-group remove-margin">
 								<button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
 							</div>
@@ -160,12 +163,12 @@
 					<li class="hidden-xs animation-fadeInQuick">
 						<a><strong>Deals for You!</strong></a>
 					</li>
-					<li class="hidden-xs animation-fadeInQuick">
+<!-- 					<li class="hidden-xs animation-fadeInQuick">
 						<a><strong>1 Like = 2 Points</strong></a>
 					</li>
 					<li class="hidden-xs animation-fadeInQuick">
 						<a><strong>1 Share = 4 Points</strong></a>
-					</li>
+					</li> -->
 					<!-- END Header Link -->
 				</ul>
 				<!-- END Left Header Navigation -->
@@ -182,8 +185,8 @@
 					<!-- END Alternative Sidebar Toggle Button -->
 
 					<!-- User Dropdown -->
-					<li class="dropdown open">
-						<a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+					<li>
+						<a href="/logout">
 							Logout
 						</a>
 					</li>
@@ -209,7 +212,7 @@
 							<a class="btn btn-effect-ripple btn-primary" data-category="dining" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 70px; width: 70px; top: -9px; left: -18px;"></span>Dining</a>
 						</div>
 						<div class="btn-group">
-							<a data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by <span class="caret"></span></a>
+							<a data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Sort by: <%=type%><span class="caret"></span></a>
 							<ul class="dropdown-menu text-left">
 								
 								<li>
@@ -239,6 +242,15 @@
 					<!-- END Gallery Filter Links -->
 				</div>
 				<!-- END Gallery Header -->
+				
+				<%
+					if(images.length == 0){
+						%>
+						<div class="noshow"> There are currently no promotions in this category! </div>
+
+						<%
+					}
+				%>
 
 				<div class="row gallery">
 					<%
@@ -253,7 +265,7 @@
 						var imageMetadata = image.get('imageMetadata');
 						var title = imageMetadata.get('title');
 						var desc = imageMetadata.get('desc');
-						var expiry = imageMetadata.get('expiry');
+						var promoStart = imageMetadata.get('promoStart').toLocaleDateString();
 						var location = imageMetadata.get('location');
 						var category = imageMetadata.get("category");
 						var company = image.get("user").get("company");
@@ -282,7 +294,7 @@
 								<img src="<%= imageURL %>"
 								alt="<%= desc
 								+'|||'
-								+expiry
+								+promoStart
 								+'|||'
 								+location
 								%>" 
@@ -299,6 +311,12 @@
 									+ promoDate
 									+ "<h3>Location: </h3>"
 									+ location 
+									+"<h3>Likes: </h3>"
+									+ likes 
+									+"<h3>Shares: </h3>"
+									+ shares 
+									+"<h3>Views: </h3>"
+									+ views 
 									%>"
 									>
 									<i class="fa fa-search-plus fa-3x text-light"></i>
@@ -307,16 +325,58 @@
 							<!-- bookmark like share button -->
 							<div class="modal-footer" title="<%=imageID%>">
 								
-								<div class="fb-like" data-href="https://thefoodiemarket.parseapp.com/i/<%=imageID%>" data-layout="button" data-action="like" data-show-faces="true" data-dismiss="modal" title="<%=imageID%>"></div>
+								<%
+									if(type == "Trending"){
+										%>
+										View Count: <%=views%>
+										<%
+									}else if(type == "Ending"){
+										%>
+										Promotion End Date: <%=promoDate%>
+										<%
+									}else{
+										%>
+										Promotion Start Date: <%=promoStart%>
+										<%
+									}
+								%>
+
+								<div class="fb-like" data-href="https://thefoodiemarket.parseapp.com/i/<%=imageID%>" data-layout="button_count" data-action="like" data-show-faces="true" data-dismiss="modal" title="<%=imageID%>"></div>
 								
 								<button type="button" class="share share2 btn btn-effect-ripple btn-info" data-dismiss="
 								modal" title="<%=imageID + '|' + title + '|' + desc + '|' + Parse.User.current().id%>">
 								Share
-								</button>	
+								</button>
 
-								<button type="button" class="bookmark-switch btn btn-effect-ripple btn-success" data-dismiss="modal" title="<%=imageID%>">
+								<%=shares%> shares so far!
+								
+								<%	
+									var flag = false; 
+									for (var i = bookmarks.length - 1; i >= 0; i--) {
+										if(bookmarks[i]==imageID){
+											flag = true;
+										}
+									};
+									if(flag){
+										%>
+											<!-- if bookmarked -->
+											<button type="button" class="bookmark-switch btn btn-effect-ripple btn-success"  title="<%=imageID%>">
+												Unbookmark
+											</button>	
+										<%
+									}else{
+										%>
+											<!-- if haven't bookmark -->
+											<button type="button" class="bookmark-switch btn btn-effect-ripple btn-success"  title="<%=imageID%>">
+												 Bookmark
+											</button>	
+										<%
+									}
+								%>
+
+								<!-- <button type="button" class="bookmark-switch btn btn-effect-ripple btn-success" data-dismiss="modal" title="<%=imageID%>">
 									<i class="fa fa-bookmark"></i> Bookmark
-								</button>								
+								</button>	 -->							
 							
 							</div>
 							<!-- END bookmark like share button -->

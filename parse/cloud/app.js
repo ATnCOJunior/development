@@ -23,8 +23,8 @@ app.use(express.methodOverride());
 // Use Session Variables
 
 //puts app's masterkey
-app.use(express.cookieParser('asxP7Y1RX470f7cHlQ7VVk3LWYuPNynpVuxtU7mV')); //deployment
-//app.use(express.cookieParser('Ooj1bqRPg7ENuoQQ6kkbsFPFNAJM42tm0mSLPFbx')); //dev
+//app.use(express.cookieParser('asxP7Y1RX470f7cHlQ7VVk3LWYuPNynpVuxtU7mV')); //deployment
+app.use(express.cookieParser('Ooj1bqRPg7ENuoQQ6kkbsFPFNAJM42tm0mSLPFbx')); //dev
 app.use(parseExpressCookieSession({
     fetchUser: true,
     key: 'image.sess',
@@ -60,34 +60,55 @@ app.get('/', function(req, res) {
             var metaObjects = [];
             var expiredAds = [];
             for (i = 0; i < objects.length; i++) {
-                var expiryString = objects[i].get("imageMetadata").get("expiry");
-                console.log("String: " + objects[i].get("imageMetadata").get("expiry"));
-                if(expiryString.length < 10){
-                    var day = parseInt(expiryString.substring(0,1));
-                    var month = parseInt(expiryString.substring(2,4)-1);
-                    var year = parseInt(expiryString.substring(5,9));
-                }else{
-                    var day = parseInt(expiryString.substring(0,2));
-                    var month = parseInt(expiryString.substring(3,5)-1);
-                    var year = parseInt(expiryString.substring(6,10));
-                }
-                var expiry = new Date(year, month, day);
-                console.log("date: " + expiry);
+                // var expiryString = objects[i].get("imageMetadata").get("promoEnd");
+                // console.log("String: " + objects[i].get("imageMetadata").get("promoEnd"));
+                // if(expiryString.length < 10){
+                //     var day = parseInt(expiryString.substring(0,1));
+                //     var month = parseInt(expiryString.substring(2,4)-1);
+                //     var year = parseInt(expiryString.substring(5,9));
+                // }else{
+                //     var day = parseInt(expiryString.substring(0,2));
+                //     var month = parseInt(expiryString.substring(3,5)-1);
+                //     var year = parseInt(expiryString.substring(6,10));
+                // }
+                // var expiry = new Date(year, month, day);
+                // console.log("date: " + expiry);
+
+                var expiry = objects[i].get("imageMetadata").get("promoEnd");
+                console.log("expiry: " + expiry);
                 var today = new Date();
                 if(expiry < today){
                     objects[i].get("imageMetadata").set("approval", "2");
                     expiredAds.push(objects.splice(i,1));
                     i--;
+                    console.log("ad expired: " + objects[i]);
                 }else{
                     metaObjects.push(objects[i].get("imageMetadata"));
                 }
             }
             Parse.Object.saveAll(expiredAds, {
                 success: function(list) {
-                    res.render('home', {
-                        images: objects,
-                        metaObjects: metaObjects
-                    });
+                    console.log("successfully saved expiredAds");
+                    var query = new Parse.Query(Image);
+                    query.include("imageMetadata");
+                    query.find({
+                        success: function(allImages){
+                        console.log("successfully retrieved allImages");
+                        console.log("allImages: " + allImages);
+                        console.log("images: " + objects);
+                        console.log("metaObjects: " + metaObjects);
+                            res.render('home', {
+                                type: "New",
+                                allImages: allImages,
+                                images: objects,
+                                metaObjects: metaObjects
+                            });
+                        },
+                        error: function(error){
+                            console.log("cannot retrieve all images");
+                        }
+                    })
+                    
                 },
                 error: function(error) {
                     console.log("expiration unsuccessful");
@@ -115,10 +136,21 @@ app.get('/trending', function(req, res) {
 
                 metaObjects.push(objects[i].get("imageMetadata"));
             }
-            res.render('home', {
-                images: objects,
-                metaObjects: metaObjects
-            });
+            var query = new Parse.Query(Image);
+            query.include("imageMetadata");
+            query.find({
+                success: function(allImages){
+                    res.render('home', {
+                        type: "Trending",
+                        allImages: allImages,
+                        images: objects,
+                        metaObjects: metaObjects
+                    });
+                },
+                error: function(error){
+                    console.log("cannot retrieve all images");
+                }
+            })
         }
     });
 });
@@ -132,7 +164,7 @@ app.get('/ending', function(req, res) {
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
-    query.ascending("expiry");
+    query.ascending("promoEnd");
     query.find({
         success: function(objects) {
             var metaObjects = [];
@@ -140,10 +172,21 @@ app.get('/ending', function(req, res) {
 
                 metaObjects.push(objects[i].get("imageMetadata"));
             }
-            res.render('home', {
-                images: objects,
-                metaObjects: metaObjects
-            });
+            var query = new Parse.Query(Image);
+            query.include("imageMetadata");
+            query.find({
+                success: function(allImages){
+                    res.render('home', {
+                        type: "Ending",
+                        allImages: allImages,
+                        images: objects,
+                        metaObjects: metaObjects
+                    });
+                },
+                error: function(error){
+                    console.log("cannot retrieve all images");
+                }
+            })
         }
     });
 });
@@ -185,9 +228,30 @@ app.get('/user', function(req, res) {
 
                 metaObjects.push(objects[i].get("imageMetadata"));
             }
-            res.render('user', {
-                images: objects,
-                metaObjects: metaObjects
+
+            var query = new Parse.Query("Bookmark");
+            query.equalTo("user", Parse.User.current());
+            query.include("user");
+            query.include("bookmark_image");
+            query.include("bookmark_image.imageMetadata");
+            query.descending("createdAt");
+
+            query.find({
+                success: function(userBookmarks) {
+                    var bookmarks = [];
+                    for (var i = userBookmarks.length - 1; i >= 0; i--) {
+                        bookmarks.push(userBookmarks[i].get("bookmark_image").id);
+                    };
+                    res.render('user', {
+                        type: "New",
+                        bookmarks: bookmarks,
+                        images: objects,
+                        metaObjects: metaObjects
+                    });
+                },
+                error: function(err) {
+                    res.send(500, err);
+                }
             });
         }
     });
@@ -210,9 +274,30 @@ app.get('/user-trending', function(req, res) {
 
                 metaObjects.push(objects[i].get("imageMetadata"));
             }
-            res.render('user', {
-                images: objects,
-                metaObjects: metaObjects
+
+            var query = new Parse.Query("Bookmark");
+            query.equalTo("user", Parse.User.current());
+            query.include("user");
+            query.include("bookmark_image");
+            query.include("bookmark_image.imageMetadata");
+            query.descending("createdAt");
+
+            query.find({
+                success: function(userBookmarks) {
+                    var bookmarks = [];
+                    for (var i = userBookmarks.length - 1; i >= 0; i--) {
+                        bookmarks.push(userBookmarks[i].get("bookmark_image").id);
+                    };
+                    res.render('user', {
+                        type: "Trending",
+                        bookmarks: bookmarks,
+                        images: objects,
+                        metaObjects: metaObjects
+                    });
+                },
+                error: function(err) {
+                    res.send(500, err);
+                }
             });
         }
     });
@@ -227,7 +312,7 @@ app.get('/user-ending', function(req, res) {
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
-    query.ascending("expiry");
+    query.ascending("promoEnd");
     query.find({
         success: function(objects) {
             var metaObjects = [];
@@ -235,9 +320,29 @@ app.get('/user-ending', function(req, res) {
 
                 metaObjects.push(objects[i].get("imageMetadata"));
             }
-            res.render('user', {
-                images: objects,
-                metaObjects: metaObjects
+            var query = new Parse.Query("Bookmark");
+            query.equalTo("user", Parse.User.current());
+            query.include("user");
+            query.include("bookmark_image");
+            query.include("bookmark_image.imageMetadata");
+            query.descending("createdAt");
+            
+            query.find({
+                success: function(userBookmarks) {
+                    var bookmarks = [];
+                    for (var i = userBookmarks.length - 1; i >= 0; i--) {
+                        bookmarks.push(userBookmarks[i].get("bookmark_image").id);
+                    };
+                    res.render('user', {
+                        type: "Ending",
+                        bookmarks: bookmarks,
+                        images: objects,
+                        metaObjects: metaObjects
+                    });
+                },
+                error: function(err) {
+                    res.send(500, err);
+                }
             });
         }
     });

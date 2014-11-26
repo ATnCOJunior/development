@@ -174,8 +174,8 @@
 			<ul class="nav navbar-nav-custom pull-right">
 
 				<!-- User Dropdown -->
-				<li class="dropdown open">
-					<a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+				<li>
+					<a href="/logout">
 						Logout
 					</a>
 				</li>
@@ -210,14 +210,21 @@
 			</div>
 			<!-- END Gallery Header -->
 
+			<%
+				if(images.length == 0){
+					%>
+					<div class="noshow"> There are currently no promotions in this category! </div>
 
+					<%
+				}
+			%>
 			<div class="row gallery">
 				<% _(images).each(function(image){
 					var imageURL = image.get('sizeNormal').url();
 					var imageMetadata = image.get('imageMetadata');
 					var title = imageMetadata.get('title');
 					var desc = imageMetadata.get('desc');
-					var expiry = imageMetadata.get('expiry');
+					var promoStart = imageMetadata.get('promoStart').toLocaleDateString();
 					var location = imageMetadata.get('location');
 					var reason = imageMetadata.get('reason');
 					var company = image.get("user").get("company");
@@ -261,7 +268,7 @@
 							<img src="<%= imageURL %>"
 							alt="<%= desc
 							+'|||'
-							+expiry
+							+promoEnd
 							+'|||'
 							+location
 							%>" 
@@ -276,8 +283,8 @@
 								+ desc
 								+ "<h3> Status: </h3>" 
 								+ dataCategory  
-								+ "<h3>Campaign Period (Days/ End Date): </h3>"
-								+ expiry
+								+ "<h3>Promotion Start Date: </h3>"
+								+ promoStart
 								+ "<h3>Promotion End Date: </h3>"
 								+ promoDate
 								+ "<h3>Location: </h3>"

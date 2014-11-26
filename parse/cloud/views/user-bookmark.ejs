@@ -46,10 +46,10 @@
                                 <label for="side-profile-name">Email Address</label>
                                 <input type="email" name="email" class="form-control" value="<%=Parse.User.current().get("email")%>">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="side-profile-name">Paypal Account</label>
                                 <input type="text" name="paypal" class="form-control" value="<%=Parse.User.current().get("paypal")%>">
-                            </div>
+                            </div> -->
                             <div class="form-group remove-margin">
                                 <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
                             </div>
@@ -173,8 +173,8 @@
                 <!-- END Alternative Sidebar Toggle Button -->
 
                 <!-- User Dropdown -->
-                <li class="dropdown open">
-                    <a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+               <li>
+                    <a href="/logout">
                         Logout
                     </a>
                 </li>
@@ -186,7 +186,13 @@
 
         <!-- Page content -->
         <div id="page-content">
-
+            <%
+                if(bookmarks.length == 0){
+                    %>
+                        You have not bookmarked any advertisements so far!
+                    <%
+                }
+            %>
             <div class="row gallery">
                 <!-- BOOKMARK CONDITIONS -->
                 <% _(bookmarks).each(function(bookmark){
@@ -196,7 +202,7 @@
                     
                     var imageMetadata = image.get('imageMetadata');
                     var desc = imageMetadata.get('desc');
-                    var expiry = imageMetadata.get('expiry');
+                    var promoStart = imageMetadata.get('promoStart').toLocaleDateString();
                     var location = imageMetadata.get('location');
                     var title = imageMetadata.get("title");
                     var promoEnd = imageMetadata.get("promoEnd");
@@ -221,7 +227,7 @@
                             <div class="widget-image widget-image-xs gallery-image-container animation-fadeInQuick2">    <img src="<%= imageURL %>"
                                 alt="<%= desc
                                 +'|||'
-                                +expiry
+                                +promoStart
                                 +'|||'
                                 +location
                                 %>" 
@@ -230,6 +236,9 @@
                                     title="<%= 
                                     "<h3>Description: </h3>"
                                     + desc
+                                    + "<br>"
+                                    +"<h3>Promotion Start Date: </h3>"
+                                    + promoStart
                                     + "<br>"
                                     +"<h3>Promotion End Date: </h3>"
                                     + promoDate

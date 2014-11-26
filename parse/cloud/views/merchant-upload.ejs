@@ -190,8 +190,8 @@
                     <!-- END Alternative Sidebar Toggle Button -->
 
                     <!-- User Dropdown -->
-                    <li class="dropdown open">
-                        <a href="/logout" class="dropdown-toggle" data-toggle="dropdown">
+                   <li>
+                        <a href="/logout">
                             Logout
                         </a>
                     </li>
@@ -244,15 +244,17 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Posting Duration</label>
+                                <label class="col-md-3 control-label">Promotion Start Date</label>
                                 <div class="col-md-9">
-                                  <input type="number" name="expiry" class="form-control" placeholder="Tell us your posting period (at least 7 days)" required>
+                                    Tell us when you would like your promotion to start. (*Must be 3 days in advance.)
+                                  <input type="date" name="promoStart" class="form-control" placeholder="Tell us when you would like your promotion to start. (*Must be 3 days in advance.)" required>
                               </div>
                           </div>
 
                           <div class="form-group">
                             <label class="col-md-3 control-label">Promotion End-date</label>
                             <div class="col-md-9">
+                                Tell our customers when your promotion ends!
                               <input type="date" name="promoEnd" class="form-control" placeholder="Tell our customers when your promotion ends!" required>
                           </div>
                       </div>

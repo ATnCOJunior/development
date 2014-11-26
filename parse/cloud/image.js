@@ -28,7 +28,7 @@ module.exports = function() {
 
       imageMetadata.set("title", req.body.title);
       imageMetadata.set("category", req.body.category);
-      imageMetadata.set("expiry", req.body.expiry);
+      imageMetadata.set("promoStart", req.body.promoStart);
       imageMetadata.set("promoEnd", new Date(req.body.promoEnd));
       imageMetadata.set("location", req.body.location);
       imageMetadata.set("desc", req.body.desc);
@@ -145,7 +145,7 @@ module.exports = function() {
             console.log("ads approved notification not successful");
             Parse.Cloud.run('approveImage', {
               metadataId: imageMetadata.id,
-              expiry: imageMetadata.get("expiry")
+              promoEnd: imageMetadata.get("promoEnd")
             }).then(function() {
               // Render the template to show one image
               res.redirect('/admin');
@@ -193,7 +193,7 @@ module.exports = function() {
             Parse.Cloud.run('rejectImage', {
               metadataId: imageMetadata.id,
               reason: req.params.reason,
-              expiry: imageMetadata.get("expiry")
+              promoEnd: imageMetadata.get("promoEnd")
             }).then(function() {
               // Render the template to show one image
               res.redirect('/admin');

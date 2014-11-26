@@ -1,3 +1,21 @@
+<script>
+    function myFunction() {
+        var pass1 = document.getElementById("pass1").value;
+        var pass2 = document.getElementById("pass2").value;
+        var ok = true;
+        if (pass1 != pass2) {
+            alert("Passwords Do not match");
+            document.getElementById("pass1").style.borderColor = "#E34234";
+            document.getElementById("pass2").style.borderColor = "#E34234";
+            ok = false;
+        }
+        else {
+            alert("Passwords Match!!!");
+        }
+        return ok;
+    }
+</script>
+
 <!-- Login Container -->
 <div id="login-container">
     <!-- Register Header -->
@@ -20,7 +38,7 @@
         <!-- END Register Title -->
 
         <!-- Register Form -->
-        <form id="form-register" action="/signup-merchant" method="post" class="form-horizontal">
+        <form id="form-register" action="/signup-merchant" method="post" class="form-horizontal" onsubmit="return myFunction()">
             <input type="hidden" name="origin" value="/merchant">
             <div class="form-group">
                 <div class="col-xs-12">
@@ -30,7 +48,13 @@
             
             <div class="form-group">
                 <div class="col-xs-12">
-                    <input type="password" name="password" class="form-control" placeholder="**Password" required>
+                    <input id="pass1" type="password" name="password" class="form-control" placeholder="**Password" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input id="pass2" type="password" name="password" class="form-control" placeholder="**Confirm Password" required>
                 </div>
             </div>
             
@@ -82,3 +106,4 @@
     <!-- END Footer -->
 </div>
 <!-- END Login Container -->
+

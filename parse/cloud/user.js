@@ -292,7 +292,7 @@ module.exports = function() {
     app.post('/signup-merchant', function(req, res) {
         var origin = req.body.origin;
         var username = req.body.username;
-        var password = req.body.password;
+        var password = "" + req.body.password;
         var company = req.body.company;
         var email = req.body.email;
         var website = req.body.website;
@@ -324,7 +324,7 @@ module.exports = function() {
                 });
 
             } else {
-                res.render('login', {
+                res.render('signup-merchant', {
                     flash: error.message
                 });
             }
@@ -408,7 +408,7 @@ module.exports = function() {
                                         });
                                     },
                                     error: function() {
-                                        console.log("expiry notification unsuccessful");
+                                        console.log("promoEnd notification unsuccessful");
                                     }
                                 });
                             }
@@ -433,10 +433,10 @@ module.exports = function() {
         res.redirect('/');
     });
     // Logs out the user
-    app.post('/logout', function(req, res) {
-        Parse.User.logOut();
-        res.redirect('/');
-    });
+    // app.post('/logout', function(req, res) {
+    //     Parse.User.logOut();
+    //     res.redirect('/');
+    // });
 
     // CUSTOMER FUNCTIONS
 

@@ -19,7 +19,7 @@ $(function() {
     facebookMod = new FacebookMod("639663216116031");
     //facebookMod = new FacebookMod("683418888407130");
     console.log("facebookMod: " + facebookMod);
-    
+
     console.log("deployed to pengho parse acct!");
     // Make all of special links magically post the form
     // when it has a particular data-action associated
@@ -88,35 +88,35 @@ $(function() {
     // });
 
 
-$('.adsimage').click(function(event) {
-    $('.popup-image').attr("src", event.target.src);
-});
-
-
-$('.adsimage').click(function(event) {
-    var str = event.target.alt;
-    var parts = str.split(",");
-    $('.companyName').text(parts[0]);
-    $('.promoInfo').text(parts[1]);
-    $('.expiry').text(parts[2]);
-    $('.site').text(parts[3]);
-});
-
-$('.approve').click(function(event) {
-    var metadataId = event.currentTarget.getAttribute('metadataid');
-    $.ajax({
-        type: "POST",
-        url: "https://the-central-market.parseapp.com/i/" + metadataId + "/approve",
-        headers: {
-            "X-Parse-Application-Id": appid,
-            "X-Parse-REST-API-Key": restAPIKey
-        },
-        data: {
-            metadataId: metadataId
-        }
-    }).done(function(msg) {
-        console.log("Image Approve");
+    $('.adsimage').click(function(event) {
+        $('.popup-image').attr("src", event.target.src);
     });
+
+
+    $('.adsimage').click(function(event) {
+        var str = event.target.alt;
+        var parts = str.split(",");
+        $('.companyName').text(parts[0]);
+        $('.promoInfo').text(parts[1]);
+        $('.promoStart').text(parts[2]);
+        $('.site').text(parts[3]);
+    });
+
+    $('.approve').click(function(event) {
+        var metadataId = event.currentTarget.getAttribute('metadataid');
+        $.ajax({
+            type: "POST",
+            url: "https://the-central-market.parseapp.com/i/" + metadataId + "/approve",
+            headers: {
+                "X-Parse-Application-Id": appid,
+                "X-Parse-REST-API-Key": restAPIKey
+            },
+            data: {
+                metadataId: metadataId
+            }
+        }).done(function(msg) {
+            console.log("Image Approve");
+        });
         //Do POST to /:id/approve
     });
 
@@ -132,12 +132,15 @@ $('.approve').click(function(event) {
 
     // bookmark
     $('.bookmark-switch').click(function(event) {
-        var Bookmark = Parse.Object.extend("Bookmark");
-        var bookmark = new Bookmark();
+        var text = $(this).text();
 
-        // Make a new bookmark
+        if(text == "Bookmark"){
+            var Bookmark = Parse.Object.extend("Bookmark");
+            var bookmark = new Bookmark();
 
-        // if ($(event.currentTarget).is(':checked')) {
+            // Make a new bookmark
+
+            // if ($(event.currentTarget).is(':checked')) {
             var imageId = $(event.currentTarget).attr('title');
             var userId = $('#userID').val();
 
@@ -152,17 +155,81 @@ $('.approve').click(function(event) {
             bookmark.set("user", user);
             bookmark.save(null, {
                 success: function(bookmark) {
-                // Execute any logic that should take place after the object is saved.
-                console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user.id);
-            },
-            error: function(bookmark, error) {
-                // Execute any logic that should take place if the save fails.
-                // error is a Parse.Error with an error code and message.
-                console.log('Failed to create new bookmark, with error code: ' + error.message);
-            }
-        });
-        // }
+                    // Execute any logic that should take place after the object is saved.
+                    console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user.id);
+                    $('.bookmark-switch').text("Unbookmark");
+                },
+                error: function(bookmark, error) {
+                    // Execute any logic that should take place if the save fails.
+                    // error is a Parse.Error with an error code and message.
+                    console.log('Failed to create new bookmark, with error code: ' + error.message);
+                }
+            });
+        }else{
+            var query = new Parse.Query("Bookmark");
+            var imageID = $(event.currentTarget).attr('title');
+
+            query.equalTo("user", Parse.User.current());
+            query.include("user");
+            query.include("bookmark_image");
+            query.include("bookmark_image.imageMetadata");
+            query.descending("createdAt");
+
+            query.find({
+                success: function(objects) {
+                    for (var i = objects.length - 1; i >= 0; i--) {
+                        if(objects[i].get("bookmark_image").id == imageID){
+                            objects[i].destroy({
+                            success: function(myObject) {
+                               console.log("bookmark destroyed");
+                               $('.bookmark-switch').text("Bookmark");
+                            },
+                            error: function(err) {
+                                console.log("bookmark not destroyed");
+                            }
+                        });   
+                        }
+                    };
+                },
+                error: function(err) {
+                    console.log("retrieval of bookmarks failed");
+                }   
+            });
+        }
+
+
+        // var Bookmark = Parse.Object.extend("Bookmark");
+        // var bookmark = new Bookmark();
+
+        // // Make a new bookmark
+
+        // // if ($(event.currentTarget).is(':checked')) {
+        // var imageId = $(event.currentTarget).attr('title');
+        // var userId = $('#userID').val();
+
+        // var img = Parse.Object.extend("Image");
+        // var image = new img();
+        // image.id = imageId;
+
+        // var user = new Parse.User();
+        // user.id = userId;
+
+        // bookmark.set("bookmark_image", image);
+        // bookmark.set("user", user);
+        // bookmark.save(null, {
+        //     success: function(bookmark) {
+        //         // Execute any logic that should take place after the object is saved.
+        //         console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user.id);
+        //     },
+        //     error: function(bookmark, error) {
+        //         // Execute any logic that should take place if the save fails.
+        //         // error is a Parse.Error with an error code and message.
+        //         console.log('Failed to create new bookmark, with error code: ' + error.message);
+        //     }
+        // });
+        // // }
     });
+
 
     // share
     $('.share').click(function(event) {
@@ -171,7 +238,7 @@ $('.approve').click(function(event) {
         console.log(attributes);
 
         var imgId = attributes[0];
-        var title =  attributes[1];
+        var title = attributes[1];
         var desc = attributes[2];
         var userId = attributes[3];
 
@@ -188,8 +255,8 @@ $('.approve').click(function(event) {
             var query = new Parse.Query(Parse.User);
             query.get(userId, {
                 success: function(user) {
-                    user.set("shares", user.get("shares")+1);
-                    user.set("points", user.get("points")+4);
+                    user.set("shares", user.get("shares") + 1);
+                    user.set("points", user.get("points") + 4);
                     user.save(null, {
                         success: function(savedUserObject) {
                             console.log("facebook share successful");
@@ -205,17 +272,15 @@ $('.approve').click(function(event) {
                 }
             });
 
-            
+
             var imageQuery = new Parse.Query(Parse.Object.extend("Image"));
             imageQuery.include("imageMetadata");
-            imageQuery.get(imgId, 
-            {
+            imageQuery.get(imgId, {
                 success: function(image) {
                     var imageMetadata = image.get("imageMetadata");
                     console.log("shares: " + imageMetadata.get("shares"));
-                    imageMetadata.set("shares", imageMetadata.get("shares")+1);
-                    imageMetadata.save(null, 
-                    {
+                    imageMetadata.set("shares", imageMetadata.get("shares") + 1);
+                    imageMetadata.save(null, {
                         success: function(savedUserObject) {
                             console.log("image share count addition successful");
 
@@ -231,8 +296,8 @@ $('.approve').click(function(event) {
                 }
             });
         }
-       
-       FB.ui(obj, callback);
+
+        FB.ui(obj, callback);
     });
 
 
@@ -295,56 +360,56 @@ $('.approve').click(function(event) {
         // }
     });
 
-$('#merchant-inbox-message-list a').click(function(event) {
-    var attributes = event.currentTarget.title.split('|');
+    $('#merchant-inbox-message-list a').click(function(event) {
+        var attributes = event.currentTarget.title.split('|');
 
-    var title = attributes[0];
-    var date = attributes[1];
-    var message = attributes[2];
-    $('#feedback-type').text(title);
-    $('#feedback-time').text(date);
-    $('#feedback-content').text(message);
-});
+        var title = attributes[0];
+        var date = attributes[1];
+        var message = attributes[2];
+        $('#feedback-type').text(title);
+        $('#feedback-time').text(date);
+        $('#feedback-content').text(message);
+    });
 
-$('#user-inbox-message-list a').click(function(event) {
-    var attributes = event.currentTarget.title.split('|');
+    $('#user-inbox-message-list a').click(function(event) {
+        var attributes = event.currentTarget.title.split('|');
 
-    var title = attributes[0];
-    var date = attributes[1];
-    var message = attributes[2];
-    var imageUrl = attributes[3];
-    $('#feedback-type').text(title);
-    $('#feedback-time').text(date);
-    $('#feedback-content').text(message);
-    if (imageUrl != null) {
-        $('#feedback-image').attr('src', imageUrl);
-    }
-});
+        var title = attributes[0];
+        var date = attributes[1];
+        var message = attributes[2];
+        var imageUrl = attributes[3];
+        $('#feedback-type').text(title);
+        $('#feedback-time').text(date);
+        $('#feedback-content').text(message);
+        if (imageUrl != null) {
+            $('#feedback-image').attr('src', imageUrl);
+        }
+    });
 
-$('#admin-acc-merchant-list a').click(function(event) {
+    $('#admin-acc-merchant-list a').click(function(event) {
 
-    var attributes = event.currentTarget.title.split(',');
+        var attributes = event.currentTarget.title.split(',');
 
-    console.log(attributes);
+        console.log(attributes);
 
-    $('#admin-acc-merchant-list-userid').attr('value', attributes[0]);
-    $('#admin-acc-merchant-list-company').attr('value', attributes[1]);
-    $('#admin-acc-merchant-list-email').attr('value', attributes[2]);
-    $('#admin-acc-merchant-list-website').attr('value', attributes[3]);
-    $('#admin-acc-merchant-list-social').attr('value', attributes[4]);
-    $('#admin-acc-merchant-list-desc').attr('value', attributes[5]);
-});
+        $('#admin-acc-merchant-list-userid').attr('value', attributes[0]);
+        $('#admin-acc-merchant-list-company').attr('value', attributes[1]);
+        $('#admin-acc-merchant-list-email').attr('value', attributes[2]);
+        $('#admin-acc-merchant-list-website').attr('value', attributes[3]);
+        $('#admin-acc-merchant-list-social').attr('value', attributes[4]);
+        $('#admin-acc-merchant-list-desc').attr('value', attributes[5]);
+    });
 
-$('#admin-trans-user a').click(function(event) {
+    $('#admin-trans-user a').click(function(event) {
 
-    var attributes = event.currentTarget.title.split(',');
+        var attributes = event.currentTarget.title.split(',');
 
-    console.log(attributes);
+        console.log(attributes);
 
-    $('#admin-trans-user-name').attr('value', attributes[0]);
-    $('#admin-trans-user-amount').attr('value', attributes[1]);
-    $('#admin-trans-user-account').attr('value', attributes[2]);
-});
+        $('#admin-trans-user-name').attr('value', attributes[0]);
+        $('#admin-trans-user-amount').attr('value', attributes[1]);
+        $('#admin-trans-user-account').attr('value', attributes[2]);
+    });
 
 });
 
@@ -386,14 +451,13 @@ Uploader = Backbone.View.extend({
                     },
                     title: self.$("[name=title]").val(),
                     category: self.$("[name=category]").val(),
-                    expiry: self.$("[name=expiry]").val(),
+                    promoStart: self.$("[name=promoStart]").val(),
                     location: self.$("[name=location]").val(),
                     desc: self.$("[name=desc]").val(),
                     promoEnd: self.$("[name=promoEnd]").val(),
                     likes: 0,
                     shares: 0,
                     addDays: 0,
-                    daysLeft: self.$("[name=expiry]").val(),
                     paid: 0,
                     views: 0
                 }, function(data) {
@@ -403,11 +467,11 @@ Uploader = Backbone.View.extend({
                         window.location.href = "https://thefoodiemarket.parseapp.com/merchant";
                     }
                 });
-});
-} else {
-    alert("Please select a file");
-}
+            });
+        } else {
+            alert("Please select a file");
+        }
 
-return false;
-}
+        return false;
+    }
 });
