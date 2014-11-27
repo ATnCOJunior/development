@@ -202,7 +202,8 @@
                     
                     var imageMetadata = image.get('imageMetadata');
                     var desc = imageMetadata.get('desc');
-                    var promoStart = imageMetadata.get('promoStart').toLocaleDateString();
+                    var promoStartDate = imageMetadata.get('promoStart');
+					var promoStart = promoStartDate.getDate() + "/" + promoStartDate.getMonth() + "/" + promoStartDate.getFullYear();
                     var location = imageMetadata.get('location');
                     var title = imageMetadata.get("title");
                     var promoEnd = imageMetadata.get("promoEnd");

@@ -459,7 +459,9 @@ Uploader = Backbone.View.extend({
                     shares: 0,
                     addDays: 0,
                     paid: 0,
-                    views: 0
+                    views: 0,
+                    targetLikes: self.$("[name=targetLikes]").val(),
+                    targetShares: self.$("[name=targetShares]").val()
                 }, function(data) {
                     if (data.error) {
                         console.log(data.error);

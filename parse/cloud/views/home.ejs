@@ -208,7 +208,8 @@ _(allImages).each(function(image){
 				var imageMetadata = image.get('imageMetadata');
 				var title = imageMetadata.get('title');
 				var desc = imageMetadata.get('desc');
-				var promoStart = imageMetadata.get('promoStart').toLocaleDateString();
+				var promoStartDate = imageMetadata.get('promoStart');
+				var promoStart = promoStartDate.getDate() + "/" + promoStartDate.getMonth() + "/" + promoStartDate.getFullYear();
 				var location = imageMetadata.get('location');
 				var category = imageMetadata.get("category");
 				var company = image.get("user").get("company");
@@ -302,7 +303,7 @@ _(allImages).each(function(image){
 									<i class="fa fa-heart-o"></i> <%=likes%>
 								</div>
 								<div class="col-xs-4">
-									<i class="fa fa-eye"></i> 76k
+									<i class="fa fa-eye"></i> <%=views%>
 								</div>
 								<div class="col-xs-4">
 									<i class="fa fa-share-alt"></i> <%=shares%>
@@ -313,10 +314,10 @@ _(allImages).each(function(image){
 						<div class="widget-content text-muted">
 							<%
 							if(type == "Trending"){
-								// %>
-								// View Count: <%=views%>
-								// <%
-							} if(type == "Ending"){
+								%>
+								<small>View Count: <%=views%></small>
+								<%
+							}else if(type == "Ending"){
 								%>
 								<small>End Date: <%=promoDate%></small>
 								<%

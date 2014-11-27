@@ -224,7 +224,8 @@
 					var imageMetadata = image.get('imageMetadata');
 					var title = imageMetadata.get('title');
 					var desc = imageMetadata.get('desc');
-					var promoStart = imageMetadata.get('promoStart').toLocaleDateString();
+					var promoStartDate = imageMetadata.get('promoStart');
+					var promoStart = promoStartDate.getDate() + "/" + promoStartDate.getMonth() + "/" + promoStartDate.getFullYear();
 					var location = imageMetadata.get('location');
 					var reason = imageMetadata.get('reason');
 					var company = image.get("user").get("company");

@@ -224,10 +224,13 @@
                                             var timestamp = "";
                                             var message = "";
                                             var code = notification.get("code");
-                                            var imageUrl = notification.get("image").get("sizeNormal").url();
+                                            var imageUrl = "";
                                             
                                             if(code==9){
                                                 title = "Promotion Ending!";
+                                                var imageUrl = notification.get("image").get("sizeNormal").url();
+                                            }else if(code==99){
+                                                title = "Your Voucher redemption code!";
                                             }
 
                                             message = notification.get("message");

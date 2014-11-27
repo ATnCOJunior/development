@@ -265,7 +265,8 @@ console.log(bookmarks);
 						var imageMetadata = image.get('imageMetadata');
 						var title = imageMetadata.get('title');
 						var desc = imageMetadata.get('desc');
-						var promoStart = imageMetadata.get('promoStart').toLocaleDateString();
+						var promoStartDate = imageMetadata.get('promoStart');
+					var promoStart = promoStartDate.getDate() + "/" + promoStartDate.getMonth() + "/" + promoStartDate.getFullYear();
 						var location = imageMetadata.get('location');
 						var category = imageMetadata.get("category");
 						var company = image.get("user").get("company");
@@ -325,7 +326,7 @@ console.log(bookmarks);
 							<!-- bookmark like share button -->
 							<div class="modal-footer" title="<%=imageID%>">
 								
-								<div class="fb-like" data-href="https://thefoodiemarket.parseapp.com/i/<%=imageID%>"  data-action="like" data-show-faces="true" data-dismiss="modal" title="<%=imageID%>"></div>
+								<div class="fb-like" data-href="https://thefoodiemarket.parseapp.com/i/<%=imageID%>"  data-layout="button" data-action="like" data-show-faces="true" data-dismiss="modal" title="<%=imageID%>"></div>
 								
 								<button type="button" class="share share2 btn btn-effect-ripple btn-info" data-dismiss="
 								modal" title="<%=imageID + '|' + title + '|' + desc + '|' + Parse.User.current().id%>">
@@ -362,7 +363,7 @@ console.log(bookmarks);
 										<i class="fa fa-heart-o"></i> <%=likes%>
 									</div>
 									<div class="col-xs-4">
-										<i class="fa fa-eye"></i> 76k
+										<i class="fa fa-eye"></i> <%=views%>
 									</div>
 									<div class="col-xs-4">
 										<i class="fa fa-share-alt"></i> <%=shares%>
@@ -373,10 +374,10 @@ console.log(bookmarks);
 							<div class="widget-content text-muted">
 								<%
 								if(type == "Trending"){
-								// %>
-								// View Count: <%=views%>
-								// <%
-							} if(type == "Ending"){
+								%>
+								<small>View Count: <%=views%></small>
+								<%
+							}else if(type == "Ending"){
 								%>
 								<small>End Date: <%=promoDate%></small>
 								<%

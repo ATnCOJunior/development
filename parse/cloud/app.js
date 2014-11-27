@@ -53,7 +53,7 @@ app.get('/', function(req, res) {
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
-    query.descending("createdAt");
+    query.descending("promoStart");
 
     query.find({
         success: function(objects) {
@@ -77,12 +77,12 @@ app.get('/', function(req, res) {
                 var expiry = objects[i].get("imageMetadata").get("promoEnd");
                 console.log("expiry: " + expiry);
                 var today = new Date();
-                if(expiry < today){
+                if (expiry < today) {
                     objects[i].get("imageMetadata").set("approval", "2");
-                    expiredAds.push(objects.splice(i,1));
+                    expiredAds.push(objects.splice(i, 1));
                     i--;
                     console.log("ad expired: " + objects[i]);
-                }else{
+                } else {
                     metaObjects.push(objects[i].get("imageMetadata"));
                 }
             }
@@ -92,11 +92,11 @@ app.get('/', function(req, res) {
                     var query = new Parse.Query(Image);
                     query.include("imageMetadata");
                     query.find({
-                        success: function(allImages){
-                        console.log("successfully retrieved allImages");
-                        console.log("allImages: " + allImages);
-                        console.log("images: " + objects);
-                        console.log("metaObjects: " + metaObjects);
+                        success: function(allImages) {
+                            console.log("successfully retrieved allImages");
+                            console.log("allImages: " + allImages);
+                            console.log("images: " + objects);
+                            console.log("metaObjects: " + metaObjects);
                             res.render('home', {
                                 type: "New",
                                 allImages: allImages,
@@ -104,11 +104,11 @@ app.get('/', function(req, res) {
                                 metaObjects: metaObjects
                             });
                         },
-                        error: function(error){
+                        error: function(error) {
                             console.log("cannot retrieve all images");
                         }
                     })
-                    
+
                 },
                 error: function(error) {
                     console.log("expiration unsuccessful");
@@ -127,8 +127,7 @@ app.get('/trending', function(req, res) {
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
-    query.descending("likes");
-    query.descending("shares");
+    query.descending("views");
     query.find({
         success: function(objects) {
             var metaObjects = [];
@@ -139,7 +138,7 @@ app.get('/trending', function(req, res) {
             var query = new Parse.Query(Image);
             query.include("imageMetadata");
             query.find({
-                success: function(allImages){
+                success: function(allImages) {
                     res.render('home', {
                         type: "Trending",
                         allImages: allImages,
@@ -147,7 +146,7 @@ app.get('/trending', function(req, res) {
                         metaObjects: metaObjects
                     });
                 },
-                error: function(error){
+                error: function(error) {
                     console.log("cannot retrieve all images");
                 }
             })
@@ -175,7 +174,7 @@ app.get('/ending', function(req, res) {
             var query = new Parse.Query(Image);
             query.include("imageMetadata");
             query.find({
-                success: function(allImages){
+                success: function(allImages) {
                     res.render('home', {
                         type: "Ending",
                         allImages: allImages,
@@ -183,7 +182,7 @@ app.get('/ending', function(req, res) {
                         metaObjects: metaObjects
                     });
                 },
-                error: function(error){
+                error: function(error) {
                     console.log("cannot retrieve all images");
                 }
             })
@@ -326,7 +325,7 @@ app.get('/user-ending', function(req, res) {
             query.include("bookmark_image");
             query.include("bookmark_image.imageMetadata");
             query.descending("createdAt");
-            
+
             query.find({
                 success: function(userBookmarks) {
                     var bookmarks = [];
@@ -489,7 +488,27 @@ app.get('/signup-user', function(req, res) {
 });
 // TRANSACTION
 app.get('/user-transaction', function(req, res) {
-    res.render('user-transaction');
+    var query = new Parse.Query(Parse.Object.extend("Voucher"));
+    query.equalTo("redeemed", 0);
+    query.find({
+        success: function(objects) {
+            console.log(JSON.stringify(objects));
+            var uniqueListRest = [];
+            var uniqueList = [];
+            for (var i = objects.length - 1; i >= 0; i--) {
+                index = uniqueListRest.indexOf(objects[i].get("restName"));
+                if(index === -1){
+                    uniqueList.push(objects[i]);
+                    uniqueListRest.push(objects[i].get("restName"));
+                }
+            };
+            console.log(JSON.stringify(uniqueList));
+            console.log(JSON.stringify(uniqueListRest));
+            res.render('user-transaction', {
+                vouchers: uniqueList
+            });
+        } 
+    });
 });
 // INBOX
 app.get('/user-inbox', function(req, res) {

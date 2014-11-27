@@ -38,57 +38,65 @@ module.exports = function() {
     // Cashout function
     app.post('/cashout', function(req, res) {
         var user = Parse.User.current();
-        var pointAmount = req.body.pointAmount;
-        var dollarAmount = req.body.dollarAmount;
 
-        var pointAmountNew = parseInt(pointAmount);
-        var dollarAmountNew = parseInt(dollarAmount);
-        var newPointAmount = user.get("points") - pointAmountNew;
+        var newPointAmount = user.get("points") - 100;
+        var voucherID = req.body.voucher;
 
+        var voucher;
 
-        var Record = Parse.Object.extend("Record");
-        var record = new Record();
+        var query = new Parse.Query(Parse.Object.extend("Voucher"));
+        query.equalTo("objectId", voucherID);
 
-        var Notification = Parse.Object.extend("Notification");
-        var notification = new Notification();
+        query.find({
+            success: function(results) {
+                voucher = results[0];
 
-        user.set("points", newPointAmount);
-        record.set("amount", dollarAmountNew);
-        record.set("account", user.get("paypal"));
-        record.set("user", user.get("username"));
-        notification.set("owner", "VJNxQ9QDbY");
-        notification.set("code", 2);
-        notification.set("message", "Pending Cashout for User: " + user.get("username") + ", $" + dollarAmountNew);
-        notification.set("amount", dollarAmountNew);
-        notification.set("user", user);
-        notification.set("readStatus", 0);
+                var Notification = Parse.Object.extend("Notification");
+                var notification = new Notification();
 
-        notification.save(null, {
-            success: function() {
-                record.save(null, {
+                user.set("points", newPointAmount);
+                voucher.set("redeemed", 1);
+                notification.set("owner", user.id);
+                notification.set("code", 99);
+                notification.set("message", "Your voucher redeem code for " + voucher.get("restName") + " is " + voucher.get("serial"));
+                notification.set("user", user);
+                notification.set("readStatus", 0);
+
+                notification.save(null, {
                     success: function() {
-                        user.save(null, {
+                        voucher.save(null, {
                             success: function() {
-                                console.log("cashout successful!");
-                                res.redirect("/user-transaction");
+                                user.save(null, {
+                                    success: function() {
+                                        console.log("cashout successful!");
+                                        res.redirect("/user-transaction");
+                                    },
+                                    error: function() {
+                                        console.log("cashout not successful! user not saved");
+                                        res.redirect("/user-transaction");
+                                    }
+                                });
                             },
                             error: function() {
-                                console.log("cashout not successful! user not saved");
+                                console.log("cashout not successful! record not saved");
                                 res.redirect("/user-transaction");
                             }
                         });
                     },
-                    error: function() {
-                        console.log("cashout not successful! record not saved");
+                    error: function(error) {
+                        console.log("cashout not successful! notification not saved. error: " + JSON.stringify(error));
                         res.redirect("/user-transaction");
                     }
                 });
             },
-            error: function() {
-                console.log("cashout not successful! notification not saved");
-                res.redirect("/user-transaction");
+
+            error: function(error) {
+                // error is an instance of Parse.Error.
+                console.log("voucher not found")
             }
         });
+
+
     });
 
     // Updates the user's profile info
@@ -141,13 +149,13 @@ module.exports = function() {
         // });
     });
 
-        // Updates the user's profile info
+    // Updates the user's profile info
     app.post('/unlike', function(req, res) {
         var user = Parse.User.current();
 
         user.save({
-            likes: user.get("likes")-1,
-            points: user.get("points")-4
+            likes: user.get("likes") - 1,
+            points: user.get("points") - 4
         }, {
             success: function(user) {
                 res.redirect("/user");
@@ -160,13 +168,13 @@ module.exports = function() {
     });
 
 
-        // Updates the user's profile info
+    // Updates the user's profile info
     app.post('/share', function(req, res) {
         var user = Parse.User.current();
 
         user.save({
-            shares: user.get("shares")+1,
-            points: user.get("points")+4
+            shares: user.get("shares") + 1,
+            points: user.get("points") + 4
         }, {
             success: function(user) {
                 res.redirect("/user");
@@ -384,13 +392,13 @@ module.exports = function() {
                             var timeDiff = Math.abs(promoEnd.getTime() - today.getTime());
                             var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
                             console.log(diffDays);
-                            if(diffDays<=3 & objects[i].get("notified")==undefined){
+                            if (diffDays <= 3 & objects[i].get("notified") == undefined) {
                                 var Notification = Parse.Object.extend("Notification");
                                 var notification = new Notification();
 
                                 notification.set("owner", Parse.User.current().id);
                                 notification.set("code", 9);
-                                notification.set("image",image);
+                                notification.set("image", image);
                                 notification.set("message", "Bookmarked Ad Expiring: " + imageMetadata.get("title") + ".");
                                 notification.set("readStatus", 0);
 
@@ -398,11 +406,11 @@ module.exports = function() {
                                     success: function() {
                                         objects[i].save({
                                             notified: 1
-                                        },{
-                                            success: function(){
+                                        }, {
+                                            success: function() {
                                                 console.log("notified successfully updated");
                                             },
-                                            error: function(){
+                                            error: function() {
                                                 console.log("notified not successfully updated");
                                             }
                                         });

@@ -241,9 +241,15 @@
                             <h2>Cashout NOW</h2>
                         </div>
                         <!-- END Mini Pricing Tables Title -->
-
+                        
                         <!-- Mini Pricing Tables Content -->
                         <div class="row">
+                            <%  
+                            _(vouchers).each(function(voucher){
+                                var restName = voucher.get("restName");
+
+                                %>
+
                             <div class="col-sm-3">
                                 <table class="table table-pricing table-borderless text-muted">
                                     <thead>
@@ -254,16 +260,19 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <h1>retaurant name</h1>
-                                                <small>random code</small>
+                                                <h1><%=restName%></h1>
                                             </td>
                                         </tr>
                                         <tr class="active">
                                             <td>
-                                                <button type="submit" class="btn btn-effect-ripple btn-success">
+                                                <form action="/cashout" method="post" class="form-horizontal">
+                                                <input type="hidden" name="user" value="<%=Parse.User.current()%>">
+                                                <input type="hidden" name="voucher" value="<%=voucher.id%>">
+
+                                                <button type="submit" class="redeem-btn btn btn-effect-ripple btn-success">
                                                     <i class="fa fa-arrow-right"></i>Redeem
                                                 </button>
-
+                                                </form>
                                                <!--  <form  action="/cashout" method="post" class="form-horizontal">
                                                     <%if(Parse.User.current().get("points")>=500){%>
                                                     <button type="submit" class="btn btn-effect-ripple btn-success">
@@ -283,11 +292,12 @@
                                     </tbody>
                                 </table>
                             </div>
-                            
+                            <%});
+                        %>
                             <!-- END Mini Pricing Tables Content -->
                         </div>
                         <!-- END Mini Pricing Tables Block -->
-
+                        
                     </div>
                     <!-- END Page Content -->
                 </div>
