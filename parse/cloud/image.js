@@ -129,62 +129,71 @@ module.exports = function() {
     query.include("imageMetadata");
 
     query.find().then(function(objects) {
-        if (objects.length === 0) {
-          res.send("Image not found - 1");
-        } else {
-          var image = objects[0];
-          var imageMetadata = image.get("imageMetadata");
-          var imageTargetLikes = imageMetadata.get("targetLikes");
-          var imageTargetShares = imageMetadata.get("targetShares");
-          var voucherNum = Math.floor((imageTargetLikes * 2.5 + imageTargetShares * 4.5) / 100)
+      if (objects.length === 0) {
+        res.send("Image not found - 1");
+      } else {
+        var image = objects[0];
+        var imageMetadata = image.get("imageMetadata");
+        var imageTargetLikes = imageMetadata.get("targetLikes");
+        var imageTargetShares = imageMetadata.get("targetShares");
+        var voucherNum = Math.floor((imageTargetLikes * 2.5 + imageTargetShares * 4.5) / 100)
 
-          var Notification = Parse.Object.extend("Notification");
-          var notification = new Notification();
+        var query = new Parse.Query(Parse.Object.extend("Voucher"));
 
-          notification.set("owner", image.get("user").id);
-          notification.set("code", 4);
-          notification.set("message", "Ad approved by admin for ad: " + imageMetadata.get("title"));
-          notification.set("readStatus", 0);
-          notification.save(null, {
-            success: function() {
-              console.log("ads approved notification successful");
+        query.find().then(function(objects) {
+            var currentList = [];
+            for (var i = objects.length - 1; i >= 0; i--) {
+              currentList.push(objects[i].get("serial"));
+            };
 
-              var query = new Parse.Query(Parse.Object.extend("Voucher"));
+            var newList = [];
+            var serialList = [];
 
-              query.find().then(function(objects) {
-                var currentList = [];
-                for (var i = objects.length - 1; i >= 0; i--) {
-                  currentList.push(objects[i].get("serial"));
+            function randomString(length, chars) {
+              var result = '';
+              for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+              return result;
+            }
+            console.log("voucherNum: " + voucherNum);
+            for (var i = voucherNum; i > 0; i--) {
+              var Voucher = Parse.Object.extend("Voucher");
+              var voucher = new Voucher();
+
+              voucher.set("owner", image.get("user"));
+              voucher.set("restName", image.get("user").get("company"));
+              voucher.set("redeemed", 0);
+              var serial = "";
+
+              do {
+                serial = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+              } while (currentList.indexOf(serial) > -1)
+
+              voucher.set("serial", serial);
+              currentList.push(serial);
+              newList.push(voucher);
+              serialList.push(serial);
+            };
+
+            Parse.Object.saveAll(newList, {
+              success: function(list) {
+                console.log("vouchers succesfully created");
+
+                var serialString = "\n";
+
+                for (var i = serialList.length - 1; i >= 0; i--) {
+                  serialString += serialList[i] + "\n"
                 };
 
-                var newList = [];
+                var Notification = Parse.Object.extend("Notification");
+                var notification = new Notification();
 
-                function randomString(length, chars) {
-                  var result = '';
-                  for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
-                  return result;
-                }
-                console.log("voucherNum: " + voucherNum);
-                for (var i = voucherNum; i > 0; i--) {
-                  var Voucher = Parse.Object.extend("Voucher");
-                  var voucher = new Voucher();
+                notification.set("owner", image.get("user").id);
+                notification.set("code", 4);
+                notification.set("message", "Ad approved by admin for ad: " + imageMetadata.get("title") + ". " + serialList.length + " Vouchers created with these serial numbers: " + serialString);
+                notification.set("readStatus", 0);
 
-                  voucher.set("owner", image.get("user"));
-                  voucher.set("restName", image.get("user").get("company"));
-                  voucher.set("redeemed", 0);
-                  var serial = "";
-
-                  do {
-                    serial = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                  } while (currentList.indexOf(serial) > -1)
-
-                  voucher.set("serial", serial);
-                  currentList.push(serial);
-                  newList.push(voucher);
-                };
-                console.log("newList: " + JSON.stringify(newList));
-                Parse.Object.saveAll(newList, {
-                  success: function(list) {
+                notification.save(null, {
+                  success: function() {
                     Parse.Cloud.run('approveImage', {
                       metadataId: imageMetadata.id,
                       promoEnd: imageMetadata.get("promoEnd")
@@ -196,22 +205,22 @@ module.exports = function() {
                     });
                   },
                   error: function(error) {
-                    console.log("voucher save error because: " + JSON.stringify(error));
-                  },
+                    console.log("ads approved notification not successful");
+                    res.send("Error: " + error);
+                  }
                 });
-              });
 
-            },
-            error: function(error) {
-              console.log("ads approved notification not successful");
-              res.send("Error: " + error);
-            }
+              },
+              error: function(error) {
+                console.log("error creating vouchers");
+              }
+            });
+          },
+          function(error) {
+            res.send("Image not found");
           });
-        }
-      },
-      function(error) {
-        res.send("Image not found");
-      });
+      }
+    });
   });
 
 
