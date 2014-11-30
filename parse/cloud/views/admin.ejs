@@ -211,12 +211,12 @@
 			<!-- END Gallery Header -->
 
 			<%
-				if(images.length == 0){
-					%>
-					<div class="noshow"> There are currently no promotions in this category! </div>
+			if(images.length == 0){
+				%>
+				<div class="noshow"> There are currently no promotions in this category! </div>
 
-					<%
-				}
+				<%
+			}
 			%>
 			<div class="row gallery">
 				<% _(images).each(function(image){
@@ -232,18 +232,18 @@
 					var promoEnd = imageMetadata.get("promoEnd");
 					var likes = imageMetadata.get("likes");
 					var shares = imageMetadata.get("shares");
-				    var dd = promoEnd.getDate();
-				    var mm = promoEnd.getMonth()+1; 
-				    var yyyy = promoEnd.getFullYear();
+					var dd = promoEnd.getDate();
+					var mm = promoEnd.getMonth()+1; 
+					var yyyy = promoEnd.getFullYear();
 
-				    if(dd<10){
-				        dd='0'+dd;
-				    } 
-				    if(mm<10){
-				        mm='0'+mm;
-				    } 
-			       	
-				    var promoDate = dd+'/'+mm+'/'+yyyy;
+					if(dd<10){
+						dd='0'+dd;
+					} 
+					if(mm<10){
+						mm='0'+mm;
+					} 
+
+					var promoDate = dd+'/'+mm+'/'+yyyy;
 
 					var dataCategory = "";
 					var reasonTag = "";
@@ -278,7 +278,7 @@
 							>
 							<a href="<%= image.get('sizeNormal').url() %>" data-toggle="lightbox-image" class="gallery-image-options"								
 								title="<%= 
-								 "<h3>Title: </h3>"
+								"<h3>Title: </h3>"
 								+ title
 								+ "<h3>Company: </h3>"
 								+ company
@@ -298,8 +298,11 @@
 								+ shares 
 								+ reasonTag
 								%>">
-								<i class="fa fa-search-plus fa-3x text-light">
-								</i>
+								
+								<i class="fa fa-search-plus fa-3x text-light"></i><br>
+								<h3 class="text-light">
+									Click me to show more
+								</h3>
 							</a>
 
 						</div>

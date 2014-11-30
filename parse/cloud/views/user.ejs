@@ -132,7 +132,14 @@ _(allImages).each(function(image){
 						<li>
 							<a href="#modal-compose" data-toggle="modal" style="overflow: hidden; position: relative;">
 								<i class="fa fa-pencil sidebar-nav-icon"></i>
-								<span class="sidebar-nav-mini-hide">Feedback</span>
+								<span class="sidebar-nav-mini-hide">Contact Us</span>
+							</a>
+						</li>
+						<li>
+							<a data-toggle="modal" data-target="#help" style="overflow: hidden; position: relative;">
+								
+								<i class="fa fa-question-circle sidebar-nav-icon"></i>
+								<span class="sidebar-nav-mini-hide">Help</span>
 							</a>
 						</li>
 					</ul>
@@ -306,8 +313,8 @@ _(allImages).each(function(image){
 						var likes = imageMetadata.get("likes");
 						var shares = imageMetadata.get("shares");
 						var views = imageMetadata.get("views");
-						 dd = promoEnd.getDate();
-						 mm = promoEnd.getMonth()+1; 
+						dd = promoEnd.getDate();
+						mm = promoEnd.getMonth()+1; 
 						var yyyy = promoEnd.getFullYear();
 
 						if(dd<10){
@@ -350,7 +357,10 @@ _(allImages).each(function(image){
 									+ shares 
 									%>"
 									>
-									<i class="fa fa-search-plus fa-3x text-light"></i>
+									<i class="fa fa-search-plus fa-3x text-light"></i><br>
+									<h3 class="text-light">
+										Click me to show more
+									</h3>
 								</a>
 							</div>
 							<!-- bookmark like share button -->
@@ -399,30 +409,30 @@ _(allImages).each(function(image){
 
 							<div class="widget-content text-muted">
 								<%
-							if(type == "Ending"){
+								if(type == "Ending"){
+									%>
+									<small>End Date: <%=promoDate%></small>
+									<%
+								}else if(type == "New"){
+									%>
+									<small>Start Date: <%=promoStart%></small>
+									<%
+								}
 								%>
-								<small>End Date: <%=promoDate%></small>
-								<%
-							}else if(type == "New"){
-								%>
-								<small>Start Date: <%=promoStart%></small>
-								<%
-							}
-							%>
-						</div>				
-						
+							</div>				
+
+						</div>
+						<!-- END bookmark like share button -->
 					</div>
-					<!-- END bookmark like share button -->
+					<%}});%>
 				</div>
-				<%}});%>
+				<!-- END Gallery Items -->
 			</div>
-			<!-- END Gallery Items -->
+			<!-- END Page Content -->
 		</div>
-		<!-- END Page Content -->
+		<!-- END Main Container -->
 	</div>
-	<!-- END Main Container -->
-</div>
-<!-- END Page Container -->
+	<!-- END Page Container -->
 </div>
 <!-- END Page Wrapper -->
 
@@ -480,8 +490,51 @@ _(allImages).each(function(image){
 	</div>
 </div>
 <!-- END Compose Message -->
+<!-- HELP -->
+<div class="modal fade in" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background:transparent; width:900px; margin-left:-150px">
+                <div class="modal-body">
+                    <hr>
+                    <div class="row">
+                        <img class="img-responsive img-thumbnail" src="img/guide/user1.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <img class="img-responsive img-thumbnail" src="img/guide/userprofile.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <img class="img-responsive img-thumbnail" src="img/guide/userview.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <img class="img-responsive img-thumbnail" src="img/guide/userviewcat.png" alt="">
 
-
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <img class="img-responsive img-thumbnail" src="img/guide/usercashout.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <img class="img-responsive img-thumbnail" src="img/guide/userbookmark.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <img class="img-responsive img-thumbnail" src="img/guide/inbox.png" alt="">
+                    </div>
+                    <hr>
+                </div>
+                <div class="modal-footer" style="background:transparent;">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<!-- END HELP -->
 
 
 <script>
@@ -526,15 +579,15 @@ var page_like_callback = function(url, html_element) {
 						console.log("image like count addition successful");
 						imageMetadata.set("likes", imageMetadata.get("likes")+1);
 						imageMetadata.save(null, 
-							{
-								success: function(savedUserObject) {
-									console.log("image like count addition successful");
+						{
+							success: function(savedUserObject) {
+								console.log("image like count addition successful");
 
-								},
-								error: function(object, error) {
-									console.log('Failed to save object: ' + error.message);
-								}
-							});
+							},
+							error: function(object, error) {
+								console.log('Failed to save object: ' + error.message);
+							}
+						});
 					},
 					error: function(object, error) {
 						console.log('Failed to save object: ' + error.message);
@@ -589,15 +642,15 @@ var page_like_callback = function(url, html_element) {
 						console.log("image like count deduction successful");
 						imageMetadata.set("likes", imageMetadata.get("likes")-1);
 						imageMetadata.save(null, 
-							{
-								success: function(savedUserObject) {
-									console.log("image like count deduction successful");
+						{
+							success: function(savedUserObject) {
+								console.log("image like count deduction successful");
 
-								},
-								error: function(object, error) {
-									console.log('Failed to save object: ' + error.message);
-								}
-							});
+							},
+							error: function(object, error) {
+								console.log('Failed to save object: ' + error.message);
+							}
+						});
 					},
 					error: function(object, error) {
 						console.log('Failed to save object: ' + error.message);
