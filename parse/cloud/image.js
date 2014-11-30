@@ -44,6 +44,10 @@ module.exports = function() {
       imageMetadata.set("approval", "0")
 
       image.set("imageMetadata", imageMetadata);
+      image.set("promoStart", new Date(req.body.promoStart));
+      image.set("promoEnd",  new Date(req.body.promoEnd));
+      image.set("likes", 0);
+      image.set("shares", 0);
       console.log("creation at image.js" + imageMetadata);
       // Set up the ACL so everyone can read the image
       // but only the owner can have write access

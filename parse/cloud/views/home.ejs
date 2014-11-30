@@ -209,7 +209,20 @@ _(allImages).each(function(image){
 				var title = imageMetadata.get('title');
 				var desc = imageMetadata.get('desc');
 				var promoStartDate = imageMetadata.get('promoStart');
-				var promoStart = promoStartDate.getDate() + "/" + promoStartDate.getMonth() + "/" + promoStartDate.getFullYear();
+				var dd = promoStartDate.getDate();
+				var mm = promoStartDate.getMonth()+1; 
+				var yyyy = promoStartDate.getFullYear();
+
+				if(dd<10){
+					dd='0'+dd;
+				} 
+				if(mm<10){
+					mm='0'+mm;
+				} 
+
+				var promoStart = dd+'/'+mm+'/'+yyyy;
+
+
 				var location = imageMetadata.get('location');
 				var category = imageMetadata.get("category");
 				var company = image.get("user").get("company");
@@ -217,9 +230,9 @@ _(allImages).each(function(image){
 				var likes = imageMetadata.get("likes");
 				var shares = imageMetadata.get("shares");
 				var views = imageMetadata.get("views");
-				var dd = promoEnd.getDate();
-				var mm = promoEnd.getMonth()+1; 
-				var yyyy = promoEnd.getFullYear();
+				 dd = promoEnd.getDate();
+				 mm = promoEnd.getMonth()+1; 
+				 yyyy = promoEnd.getFullYear();
 
 				if(dd<10){
 					dd='0'+dd;
@@ -313,15 +326,11 @@ _(allImages).each(function(image){
 
 						<div class="widget-content text-muted">
 							<%
-							if(type == "Trending"){
-								%>
-								<small>View Count: <%=views%></small>
-								<%
-							}else if(type == "Ending"){
+							if(type == "Ending"){
 								%>
 								<small>End Date: <%=promoDate%></small>
 								<%
-							}else{
+							}else if(type == "New"){
 								%>
 								<small>Start Date: <%=promoStart%></small>
 								<%

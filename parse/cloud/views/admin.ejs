@@ -230,6 +230,8 @@
 					var reason = imageMetadata.get('reason');
 					var company = image.get("user").get("company");
 					var promoEnd = imageMetadata.get("promoEnd");
+					var likes = imageMetadata.get("likes");
+					var shares = imageMetadata.get("shares");
 				    var dd = promoEnd.getDate();
 				    var mm = promoEnd.getMonth()+1; 
 				    var yyyy = promoEnd.getFullYear();
@@ -290,6 +292,10 @@
 								+ promoDate
 								+ "<h3>Location: </h3>"
 								+ location
+								+"<h3>Likes: </h3>"
+								+ likes 
+								+"<h3>Shares: </h3>"
+								+ shares 
 								+ reasonTag
 								%>">
 								<i class="fa fa-search-plus fa-3x text-light">

@@ -48,13 +48,14 @@ var Image = Parse.Object.extend("Image");
 app.get('/', function(req, res) {
     var innerQuery = new Parse.Query(ImageMetadata);
     innerQuery.equalTo("approval", "1");
+    innerQuery.descending("promoStart");
 
     var query = new Parse.Query(Image);
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
     query.descending("promoStart");
-
+    
     query.find({
         success: function(objects) {
             var metaObjects = [];
@@ -122,12 +123,13 @@ app.get('/', function(req, res) {
 app.get('/trending', function(req, res) {
     var innerQuery = new Parse.Query(ImageMetadata);
     innerQuery.equalTo("approval", "1");
+    innerQuery.descending("views");
 
     var query = new Parse.Query(Image);
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
-    query.descending("views");
+    query.descending("shares", "likes");
     query.find({
         success: function(objects) {
             var metaObjects = [];
@@ -219,7 +221,7 @@ app.get('/user', function(req, res) {
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
-    query.descending("createdAt");
+    query.descending("promoStart");
     query.find({
         success: function(objects) {
             var metaObjects = [];
@@ -241,12 +243,23 @@ app.get('/user', function(req, res) {
                     for (var i = userBookmarks.length - 1; i >= 0; i--) {
                         bookmarks.push(userBookmarks[i].get("bookmark_image").id);
                     };
-                    res.render('user', {
-                        type: "New",
-                        bookmarks: bookmarks,
-                        images: objects,
-                        metaObjects: metaObjects
-                    });
+
+                    var query = new Parse.Query(Image);
+                    query.include("imageMetadata");
+                    query.find({
+                        success: function(allImages) {
+                            res.render('user', {
+                                type: "New",
+                                bookmarks: bookmarks,
+                                allImages: allImages,
+                                images: objects,
+                                metaObjects: metaObjects
+                            });
+                        },
+                        error: function(error) {
+                            console.log("cannot retrieve all images");
+                        }
+                    })
                 },
                 error: function(err) {
                     res.send(500, err);
@@ -265,7 +278,7 @@ app.get('/user-trending', function(req, res) {
     query.include("imageMetadata");
     query.include("user");
     query.matchesQuery("imageMetadata", innerQuery);
-    query.descending("views");
+    query.descending("likes", "shares");
     query.find({
         success: function(objects) {
             var metaObjects = [];
@@ -287,12 +300,22 @@ app.get('/user-trending', function(req, res) {
                     for (var i = userBookmarks.length - 1; i >= 0; i--) {
                         bookmarks.push(userBookmarks[i].get("bookmark_image").id);
                     };
-                    res.render('user', {
-                        type: "Trending",
-                        bookmarks: bookmarks,
-                        images: objects,
-                        metaObjects: metaObjects
-                    });
+                    var query = new Parse.Query(Image);
+                    query.include("imageMetadata");
+                    query.find({
+                        success: function(allImages) {
+                            res.render('user', {
+                                type: "Trending",
+                                bookmarks: bookmarks,
+                                allImages: allImages,
+                                images: objects,
+                                metaObjects: metaObjects
+                            });
+                        },
+                        error: function(error) {
+                            console.log("cannot retrieve all images");
+                        }
+                    })
                 },
                 error: function(err) {
                     res.send(500, err);
@@ -332,12 +355,22 @@ app.get('/user-ending', function(req, res) {
                     for (var i = userBookmarks.length - 1; i >= 0; i--) {
                         bookmarks.push(userBookmarks[i].get("bookmark_image").id);
                     };
-                    res.render('user', {
-                        type: "Ending",
-                        bookmarks: bookmarks,
-                        images: objects,
-                        metaObjects: metaObjects
-                    });
+                    var query = new Parse.Query(Image);
+                    query.include("imageMetadata");
+                    query.find({
+                        success: function(allImages) {
+                            res.render('user', {
+                                type: "Ending",
+                                bookmarks: bookmarks,
+                                allImages: allImages,
+                                images: objects,
+                                metaObjects: metaObjects
+                            });
+                        },
+                        error: function(error) {
+                            console.log("cannot retrieve all images");
+                        }
+                    })
                 },
                 error: function(err) {
                     res.send(500, err);

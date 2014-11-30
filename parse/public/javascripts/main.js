@@ -132,9 +132,13 @@ $(function() {
 
     // bookmark
     $('.bookmark-switch').click(function(event) {
+        console.log("bookmark-switch jquery");
+
         var text = $(this).text();
 
-        if(text == "Bookmark"){
+        if (text == "Bookmark") {
+            $(this).text("Unbookmark");
+
             var Bookmark = Parse.Object.extend("Bookmark");
             var bookmark = new Bookmark();
 
@@ -157,7 +161,7 @@ $(function() {
                 success: function(bookmark) {
                     // Execute any logic that should take place after the object is saved.
                     console.log('New bookmark created with objectId: ' + image.id + ' for user ' + user.id);
-                    $('.bookmark-switch').text("Unbookmark");
+
                 },
                 error: function(bookmark, error) {
                     // Execute any logic that should take place if the save fails.
@@ -165,7 +169,8 @@ $(function() {
                     console.log('Failed to create new bookmark, with error code: ' + error.message);
                 }
             });
-        }else{
+        } else {
+            $(this).text("Bookmark");
             var query = new Parse.Query("Bookmark");
             var imageID = $(event.currentTarget).attr('title');
 
@@ -178,22 +183,23 @@ $(function() {
             query.find({
                 success: function(objects) {
                     for (var i = objects.length - 1; i >= 0; i--) {
-                        if(objects[i].get("bookmark_image").id == imageID){
+                        if (objects[i].get("bookmark_image").id == imageID) {
                             objects[i].destroy({
-                            success: function(myObject) {
-                               console.log("bookmark destroyed");
-                               $('.bookmark-switch').text("Bookmark");
-                            },
-                            error: function(err) {
-                                console.log("bookmark not destroyed");
-                            }
-                        });   
+                                success: function(myObject) {
+                                    console.log("bookmark destroyed");
+
+                                    console.log("after2");
+                                },
+                                error: function(err) {
+                                    console.log("bookmark not destroyed");
+                                }
+                            });
                         }
                     };
                 },
                 error: function(err) {
                     console.log("retrieval of bookmarks failed");
-                }   
+                }
             });
         }
 
@@ -279,10 +285,22 @@ $(function() {
                 success: function(image) {
                     var imageMetadata = image.get("imageMetadata");
                     console.log("shares: " + imageMetadata.get("shares"));
-                    imageMetadata.set("shares", imageMetadata.get("shares") + 1);
-                    imageMetadata.save(null, {
+                    image.set("shares", image.get("shares") + 1);
+                    var newLikes = image.get("shares" + 1);
+                    image.save(null, {
                         success: function(savedUserObject) {
                             console.log("image share count addition successful");
+                            imageMetadata.set("shares", imageMetadata.get("shares") + 1);
+                            imageMetadata.save(null, {
+                                success: function(savedUserObject) {
+                                    console.log("image share count addition successful");
+                                    $(imgId).text(newLikes);
+
+                                },
+                                error: function(object, error) {
+                                    console.log('Failed to save object: ' + error.message);
+                                }
+                            });
 
                         },
                         error: function(object, error) {
